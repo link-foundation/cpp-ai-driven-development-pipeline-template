@@ -89,7 +89,9 @@ if [ -n "${CONAN_REMOTE_URL:-}" ]; then
   # `remote auth` is the CI form of `remote login`: it takes the credentials
   # from CONAN_LOGIN_USERNAME and CONAN_PASSWORD; --strict fails on bad ones.
   publish conan remote auth "$conan_remote" --force --strict
-  publish conan upload "${package}/${version}" --remote "$conan_remote" --confirm
+  # The recipe's name, which may differ from the CMake project name.
+  conan_name="$(python3 scripts/get_version.py --print conan_name)"
+  publish conan upload "${conan_name}/${version}" --remote "$conan_remote" --confirm
 else
   echo "Conan: upload disabled (set the CONAN_REMOTE_URL variable)"
 fi

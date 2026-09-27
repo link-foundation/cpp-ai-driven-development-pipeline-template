@@ -33,6 +33,7 @@ SINGLE_LANGUAGE_TAG_PREFIX = "v"
 CPP_SUBDIRECTORY = "cpp"
 CMAKE_FILE = "CMakeLists.txt"
 VCPKG_MANIFEST = "vcpkg.json"
+CONAN_RECIPE = "conanfile.py"
 CHANGELOG_FILE = "CHANGELOG.md"
 CHANGELOG_DIR = "changelog.d"
 BUMP_PRIORITY = {"patch": 1, "minor": 2, "major": 3}
@@ -59,6 +60,10 @@ class CppLayout:
     @property
     def vcpkg_manifest(self) -> Path:
         return self.root / VCPKG_MANIFEST
+
+    @property
+    def conanfile(self) -> Path:
+        return self.root / CONAN_RECIPE
 
     @property
     def changelog_file(self) -> Path:
@@ -186,6 +191,18 @@ def read_vcpkg_name(manifest: PathLike) -> Optional[str]:
     if not path.is_file():
         return None
     return json.loads(path.read_text(encoding="utf-8")).get("name")
+
+
+def read_conan_name(recipe: PathLike) -> Optional[str]:
+    """``name`` of the ConanFile class in conanfile.py, which may differ from
+    the CMake project (linksplatform: ``Platform.Numbers`` vs
+    ``platform.numbers``)."""
+    path = Path(recipe)
+    if not path.is_file():
+        return None
+    # Class attributes are indented once; names inside methods are deeper.
+    match = re.search(r"^    name\s*=\s*[\"']([^\"']+)[\"']", path.read_text(encoding="utf-8"), re.MULTILINE)
+    return match.group(1) if match else None
 
 
 def write_vcpkg_version(manifest: PathLike, version: str) -> bool:

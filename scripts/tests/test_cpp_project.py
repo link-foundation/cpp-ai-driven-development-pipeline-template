@@ -86,6 +86,14 @@ def test_vcpkg_manifest_version_keeps_formatting(make_repo) -> None:
     assert cp.read_vcpkg_name(repo.path / "absent.json") is None
 
 
+def test_conan_name_comes_from_the_recipe(make_repo) -> None:
+    repo = make_repo()
+    assert cp.read_conan_name(repo.layout.conanfile) is None
+    repo.write("conanfile.py", 'class Recipe(ConanFile):\n    # name = "commented"\n'
+                               '    name = "platform.numbers"\n    def layout(self):\n        name = "local"\n')
+    assert cp.read_conan_name(repo.layout.conanfile) == "platform.numbers"
+
+
 @pytest.mark.parametrize(
     ("version", "bump", "expected"),
     [("1.2.3", "patch", "1.2.4"), ("1.2.3", "minor", "1.3.0"), ("1.2.3", "major", "2.0.0")],

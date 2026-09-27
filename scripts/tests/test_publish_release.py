@@ -136,3 +136,13 @@ def test_failed_upload_leaves_the_release_incomplete(publisher):
     result, calls = run(CONAN_REMOTE_URL="https://conan.example/api", FAIL_STUB="conan")
     assert result.returncode != 0
     assert not any(call.startswith("gh") for call in calls)
+
+
+def test_uploads_the_conan_reference_of_the_recipe(publisher):
+    # linksplatform: CMake project Platform.Numbers, Conan package platform.numbers.
+    repo, run = publisher()
+    repo.write("conanfile.py", 'class Recipe(ConanFile):\n    name = "platform.numbers"\n')
+    repo.commit("conan recipe")
+    result, calls = run(CONAN_REMOTE_URL="https://conan.example/api")
+    assert result.returncode == 0, result.stderr
+    assert "conan upload platform.numbers/0.1.0 --remote release --confirm" in calls

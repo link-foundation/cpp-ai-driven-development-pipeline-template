@@ -7,8 +7,8 @@ Usage: python3 scripts/get_version.py [--cpp-root DIR] [--print FIELD]
 GITHUB_OUTPUT), for shell use: ``VERSION=$(python3 scripts/get_version.py
 --print version)``.
 
-Outputs: version, tag, tag_prefix, title, package_name, port_name, cpp_root,
-multi_language.
+Outputs: version, tag, tag_prefix, title, package_name, port_name, conan_name,
+cpp_root, multi_language.
 """
 
 from __future__ import annotations
@@ -37,6 +37,7 @@ def main(argv=None) -> int:
         "title": cp.build_release_title(version, name, layout.multi_language),
         "package_name": name,
         "port_name": port_name,
+        "conan_name": cp.read_conan_name(layout.conanfile) or name,
         "cpp_root": layout.relative(layout.root) or ".",
         "multi_language": str(layout.multi_language).lower(),
     }
