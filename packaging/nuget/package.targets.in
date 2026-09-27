@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  MSBuild integration of the @ID@ native NuGet package: adds the packaged
+  headers to the include path of every C/C++ project that references it
+  (the linksplatform "TemplateLibrary" convention).
+-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\..\lib\native\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard Condition="'%(ClCompile.LanguageStandard)' == '' Or '%(ClCompile.LanguageStandard)' == 'Default' Or '%(ClCompile.LanguageStandard)' == 'stdcpp14' Or '%(ClCompile.LanguageStandard)' == 'stdcpp17'">stdcpp20</LanguageStandard>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\..\lib\native\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+</Project>
