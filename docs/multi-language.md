@@ -86,6 +86,47 @@ The release archives, the vcpkg port, the Conan recipe and the NuGet package
 contain only the C++ project, so their consumers see no difference. See
 [distribution.md](distribution.md).
 
+## Migrating a linksplatform repository
+
+linksplatform repositories keep C++ in `cpp/` next to `csharp/` and
+`rust/`, with the headers in `cpp/Platform.<Repo>/`. The template reproduces
+their release naming with repository variables, so NuGet ids, tags and the
+Conan download URLs stay the same:
+
+| linksplatform convention | Template setting |
+| --- | --- |
+| tags `cpp_0.4.1`, titles `[C++] 0.4.1` | `CPP_TAG_PREFIX: cpp_` in the `env:` of `release.yml` (the titles are the default) |
+| NuGet `Platform.<Repo>.TemplateLibrary` | variables `NUGET_PUBLISH=true`, `NUGET_PACKAGE_ID=Platform.<Repo>.TemplateLibrary`, secret `NUGET_API_KEY` |
+| release asset `platform.<repo>_<version>.zip` | variable `RELEASE_ARCHIVE_BASENAME=platform.<repo>_{version}` |
+| Conan package `platform.<repo>` | `name = "platform.<repo>"` in `cpp/conanfile.py`, plus `CONAN_REMOTE_URL` to upload |
+| Doxygen reference on Pages | `DEPLOY_GITHUB_PAGES=true` (published under `/cpp/`) |
+
+Steps:
+
+1. Copy `.github/` and `scripts/` from the template to the repository root,
+   and the C++ files of the template into `cpp/` as above.
+2. Replace the example library with the repository's own: the headers go to
+   `cpp/include/` (for example `cpp/include/Platform.<Repo>/`) and the tests
+   to `cpp/tests/`; set the name, version and description in
+   `project(...)` of `cpp/CMakeLists.txt` and the names in `vcpkg.json`,
+   `conanfile.py` and `packaging/`.
+3. Set `project(VERSION)` to the current release. The existing `cpp_<version>`
+   tags count as C++ releases: a bump always yields a version above the
+   highest of them, so a tag is never reused.
+4. The recipes in linksplatform/conan-center-index copy `*.h` from the root
+   of the release zip. The template's archives keep the headers under
+   `include/`, so the recipe entry of a new version copies from
+   `os.path.join(self.source_folder, "include")`, or the recipe is replaced
+   by `cpp/conanfile.py`, which CI tests with `conan create` on every pull
+   request.
+
+The template also fixes the problems of the current linksplatform C++
+workflows that the case study found: tests that were compiled but never run,
+pull request pushes that were never tested, the NuGet push that fails on
+`ubuntu-24.04` after the GitHub release was already published, and Conan 1
+commands that no longer work. See
+[case-studies/issue-1](case-studies/issue-1/README.md#linksplatform).
+
 ## Trying it out
 
 [`experiments/multi_language_layout.py`](../experiments/multi_language_layout.py)
