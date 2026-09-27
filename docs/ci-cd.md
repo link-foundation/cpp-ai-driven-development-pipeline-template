@@ -127,6 +127,10 @@ Locally: `doxygen Doxyfile` (output in `docs/api/`), or build the
 | `links.yml` (**Broken Link Checker**) | markdown or HTML changes | lychee, a re-check of links that never answered, and a Web Archive fallback. `.lycheeignore` lists the exceptions. |
 | `workflows.yml` (**Workflows**) | workflow changes | actionlint and zizmor. |
 
+The dependency review needs the dependency graph: enable it in Settings →
+Advanced Security → **Dependency graph**, otherwise the job fails with
+"Dependency review is not supported on this repository".
+
 ## Variables and secrets
 
 All are optional; see the table in the
