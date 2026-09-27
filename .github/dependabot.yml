@@ -1,0 +1,20 @@
+# Keeps the action versions of .github/workflows and the pinned CI tools of
+# scripts/requirements-ci.txt current. Each update is an ordinary pull request
+# that runs the whole pipeline before it can merge.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ['*']
+
+  - package-ecosystem: pip
+    directory: /scripts
+    schedule:
+      interval: weekly
+    groups:
+      ci-tools:
+        patterns: ['*']
