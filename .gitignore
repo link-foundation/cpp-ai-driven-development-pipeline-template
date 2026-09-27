@@ -67,3 +67,34 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+# Keep the changelog fragments directory (matched by *.d above)
+!changelog.d/
+
+# Conan
+CMakeUserPresets.json
+test_package/build/
+conan.lock
+
+# Packaging and release artifacts
+dist/
+
+# Doxygen output
+docs/api/
+
+# Python (scripts/)
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# Coverage reports
+*.gcda
+*.gcno
+*.gcov
+coverage/
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store
