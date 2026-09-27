@@ -42,6 +42,14 @@ class ArchiveResult:
 
 def extract_broken_urls(content: str) -> list[str]:
     """Extract and deduplicate broken HTTP URLs from a lychee Markdown report."""
+    # Newer lychee reports list followed redirects (and suggestions) in their
+    # own "## ... per input" sections; only the errors are broken links.
+    content = re.sub(
+        r"^## (?!Errors per input)[^\n]*\n(?:(?!## )[^\n]*\n?)*",
+        "",
+        content,
+        flags=re.MULTILINE,
+    )
     urls: list[str] = []
     for pattern in (STATUS_URL_PATTERN, BULLET_URL_PATTERN):
         for match in pattern.finditer(content):

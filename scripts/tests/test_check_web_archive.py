@@ -108,3 +108,22 @@ def test_main_treats_a_recheck_recovered_url_as_not_broken(
     output = capsys.readouterr().out
     assert "answers the re-check -- not broken" in output
     assert "No broken URLs found in lychee output." in output
+
+
+def test_extract_broken_urls_ignores_the_redirects_of_the_report() -> None:
+    """lychee lists followed redirects after the errors; they are healthy."""
+    report = """## Errors per input
+
+### Errors in docs/ci-cd.md
+
+* [ERROR] <file:///repo/docs/missing.md> (at 16:1) | File not found
+* [404] <https://example.com/missing> | Rejected status code
+
+## Redirects per input
+
+### Redirects in README.md
+
+* http://unlicense.org/ --[301]--> https://unlicense.org/
+"""
+
+    assert module.extract_broken_urls(report) == ["https://example.com/missing"]
