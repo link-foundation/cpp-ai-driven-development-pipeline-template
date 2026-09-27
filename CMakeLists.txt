@@ -28,6 +28,7 @@ option(MY_PACKAGE_INSTALL "Generate the install and package-config rules" ${PROJ
 option(MY_PACKAGE_FETCH_DEPENDENCIES "Download missing test dependencies with FetchContent" ON)
 option(MY_PACKAGE_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" OFF)
 option(MY_PACKAGE_ENABLE_COVERAGE "Instrument tests for code coverage (GCC/Clang)" OFF)
+option(MY_PACKAGE_BUILD_DOCS "Add the my_package_docs target (needs Doxygen)" ${PROJECT_IS_TOP_LEVEL})
 option(MY_PACKAGE_NATIVE_ARCH "Tune tests and benchmarks for the host CPU (-march=native)" OFF)
 set(MY_PACKAGE_SANITIZERS "" CACHE STRING "Semicolon-separated sanitizers for tests, e.g. address;undefined")
 
@@ -59,6 +60,10 @@ endif()
 
 if(MY_PACKAGE_BUILD_BENCHMARKS)
     add_subdirectory(benchmarks)
+endif()
+
+if(MY_PACKAGE_BUILD_DOCS)
+    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/Documentation.cmake")
 endif()
 
 if(MY_PACKAGE_INSTALL)

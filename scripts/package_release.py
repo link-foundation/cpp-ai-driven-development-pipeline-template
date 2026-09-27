@@ -78,7 +78,8 @@ def install_tree(layout: cp.CppLayout, basename: str, out_dir: Path, option_pref
         cp.run([
             "cmake", "-S", str(layout.root), "-B", str(build), "-DCMAKE_BUILD_TYPE=Release",
             f"-D{option_prefix}_BUILD_TESTS=OFF", f"-D{option_prefix}_BUILD_EXAMPLES=OFF",
-            f"-D{option_prefix}_BUILD_BENCHMARKS=OFF", f"-D{option_prefix}_INSTALL=ON",
+            f"-D{option_prefix}_BUILD_BENCHMARKS=OFF", f"-D{option_prefix}_BUILD_DOCS=OFF",
+            f"-D{option_prefix}_INSTALL=ON",
         ])
         cp.run(["cmake", "--install", str(build), "--prefix", str(stage)])
         output = out_dir / f"{basename}-install.tar.gz"

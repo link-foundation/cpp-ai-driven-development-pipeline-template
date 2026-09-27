@@ -1,0 +1,49 @@
+# Static analysis of the C++ sources, run by the lint job over the compile
+# database of the "dev" preset. Every enabled check is an error in CI, so
+# keep the list to checks that find real defects; disable a check here (with
+# a reason) rather than sprinkling NOLINT comments.
+---
+Checks: >
+  -*,
+  bugprone-*,
+  cert-*,
+  clang-analyzer-*,
+  concurrency-*,
+  cppcoreguidelines-*,
+  misc-*,
+  modernize-*,
+  performance-*,
+  portability-*,
+  readability-*,
+  -bugprone-easily-swappable-parameters,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -readability-magic-numbers,
+  -misc-include-cleaner,
+  -misc-non-private-member-variables-in-classes,
+  -modernize-use-nodiscard,
+  -readability-identifier-length,
+  -readability-function-cognitive-complexity,
+  -cppcoreguidelines-owning-memory,
+  -cppcoreguidelines-avoid-do-while
+# Google Test and Google Benchmark macros expand to code that trips several
+# checks (global constructors, non-const globals); only our own headers are
+# analysed through HeaderFilterRegex.
+WarningsAsErrors: '*'
+HeaderFilterRegex: '(include|tests|examples|benchmarks)/.*'
+FormatStyle: file
+CheckOptions:
+  - key: readability-identifier-naming.NamespaceCase
+    value: lower_case
+  - key: readability-identifier-naming.FunctionCase
+    value: lower_case
+  - key: readability-identifier-naming.VariableCase
+    value: lower_case
+  - key: readability-identifier-naming.ParameterCase
+    value: lower_case
+  - key: readability-identifier-naming.TemplateParameterCase
+    value: CamelCase
+  - key: readability-identifier-naming.ConceptCase
+    value: CamelCase
+  - key: readability-identifier-naming.MacroDefinitionCase
+    value: UPPER_CASE
+...

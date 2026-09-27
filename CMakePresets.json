@@ -51,6 +51,15 @@
       }
     },
     {
+      "name": "lint",
+      "displayName": "Compile database of every source (tests, examples, benchmarks) for clang-tidy",
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "MY_PACKAGE_BUILD_BENCHMARKS": "ON"
+      }
+    },
+    {
       "name": "install",
       "displayName": "Library only, for cmake --install",
       "inherits": "base",
@@ -58,7 +67,8 @@
         "CMAKE_BUILD_TYPE": "Release",
         "MY_PACKAGE_BUILD_TESTS": "OFF",
         "MY_PACKAGE_BUILD_EXAMPLES": "OFF",
-        "MY_PACKAGE_INSTALL": "ON"
+        "MY_PACKAGE_INSTALL": "ON",
+        "MY_PACKAGE_BUILD_DOCS": "OFF"
       }
     }
   ],

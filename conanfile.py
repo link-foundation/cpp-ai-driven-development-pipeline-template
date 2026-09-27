@@ -55,6 +55,7 @@ class MyPackageConan(ConanFile):
         toolchain = CMakeToolchain(self)
         toolchain.cache_variables["MY_PACKAGE_BUILD_TESTS"] = False
         toolchain.cache_variables["MY_PACKAGE_BUILD_EXAMPLES"] = False
+        toolchain.cache_variables["MY_PACKAGE_BUILD_DOCS"] = False
         toolchain.cache_variables["MY_PACKAGE_INSTALL"] = True
         toolchain.generate()
 

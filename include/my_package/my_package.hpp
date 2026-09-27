@@ -104,7 +104,7 @@ namespace my_package
             {
                 return std::nullopt;
             }
-            value = value * radix + digit;
+            value = (value * radix) + digit;
         }
         return value;
     }

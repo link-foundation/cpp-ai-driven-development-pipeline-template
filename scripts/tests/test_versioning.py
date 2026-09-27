@@ -34,6 +34,17 @@ def test_get_version_outputs(make_repo, github_output) -> None:
     assert outputs["multi_language"] == "true"
 
 
+def test_get_version_prints_a_single_field(make_repo, github_output, capsys) -> None:
+    make_repo(version="1.0.2")
+    assert get_version.main(["--print", "version"]) == 0
+    assert capsys.readouterr().out == "1.0.2\n"
+    assert github_output() == {}
+    assert get_version.main(["--print", "tag"]) == 0
+    assert capsys.readouterr().out == "v1.0.2\n"
+    with pytest.raises(SystemExit):
+        get_version.main(["--print", "nope"])
+
+
 def test_get_bump_type_takes_highest(make_repo, github_output) -> None:
     repo = make_repo()
     assert get_bump_type.main([]) == 0
