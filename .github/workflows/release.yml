@@ -597,6 +597,9 @@ jobs:
 
       - name: Build the release assets
         id: package
+        env:
+          NUGET_PACKAGE_ID: ${{ vars.NUGET_PACKAGE_ID }}
+          RELEASE_ARCHIVE_BASENAME: ${{ vars.RELEASE_ARCHIVE_BASENAME }}
         run: python scripts/package_release.py --out-dir dist --nuget
 
       - name: Restore the NuGet package with the NuGet client
@@ -701,6 +704,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NUGET_PUBLISH: ${{ vars.NUGET_PUBLISH }}
+          NUGET_PACKAGE_ID: ${{ vars.NUGET_PACKAGE_ID }}
+          RELEASE_ARCHIVE_BASENAME: ${{ vars.RELEASE_ARCHIVE_BASENAME }}
           # Set only when there were no fragments and the lookup found the
           # current version on NuGet already.
           NUGET_PUBLISHED: ${{ steps.check.outputs.nuget_published }}
@@ -761,6 +766,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NUGET_PUBLISH: ${{ vars.NUGET_PUBLISH }}
+          NUGET_PACKAGE_ID: ${{ vars.NUGET_PACKAGE_ID }}
+          RELEASE_ARCHIVE_BASENAME: ${{ vars.RELEASE_ARCHIVE_BASENAME }}
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
           CONAN_REMOTE_URL: ${{ vars.CONAN_REMOTE_URL }}
           CONAN_LOGIN_USERNAME: ${{ vars.CONAN_LOGIN_USERNAME || secrets.CONAN_LOGIN_USERNAME }}
