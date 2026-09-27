@@ -1,0 +1,4 @@
+@PORT_NAME@ is header-only and provides CMake targets:
+
+  find_package(@CMAKE_PACKAGE@ CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE @CMAKE_PACKAGE@::@CMAKE_PACKAGE@)
