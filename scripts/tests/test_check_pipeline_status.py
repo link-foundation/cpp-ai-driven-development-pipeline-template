@@ -28,11 +28,14 @@ def write_workflow(tmp_path: Path, jobs: str, workflow_concurrency: str = "") ->
     return workflow
 
 
-def read_values(workflow: Path, *jobs: str) -> dict[str, str]:
+def read_values(workflow: Path, *jobs: str, ref: str = "") -> dict[str, str]:
     """Read effective cancellation values from a workflow fixture."""
+    env = {key: value for key, value in os.environ.items() if key != "GITHUB_REF"}
+    if ref:
+        env["GITHUB_REF"] = ref
     completed = subprocess.run(
         ["bash", str(READER), *jobs],
-        env={**os.environ, "WORKFLOW_FILE": str(workflow)},
+        env={**env, "WORKFLOW_FILE": str(workflow)},
         capture_output=True,
         text=True,
         check=False,
@@ -71,6 +74,44 @@ def test_reader_handles_every_job_level_value(
     assert values == {"build": expected, "renamed-job": "missing"}
 
 
+NOT_MAIN = (
+    "concurrency:\n      group: build\n"
+    "      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}"
+)
+
+
+@pytest.mark.parametrize(
+    ("ref", "expected"),
+    [
+        ("refs/pull/7/merge", "true"),
+        ("refs/heads/feature", "true"),
+        ("refs/heads/main", "false"),
+        ("", "unknown"),
+    ],
+)
+def test_reader_evaluates_the_not_main_expression_from_github_ref(
+    tmp_path: Path, ref: str, expected: str
+) -> None:
+    """The templates' `github.ref != 'refs/heads/main'` is decidable from GITHUB_REF."""
+    workflow = write_workflow(
+        tmp_path,
+        f"  build:\n    {NOT_MAIN}\n    runs-on: ubuntu-latest\n    steps: []\n",
+    )
+
+    assert read_values(workflow, "build", ref=ref) == {"build": expected}
+
+
+def test_reader_keeps_other_expressions_unknown(tmp_path: Path) -> None:
+    workflow = write_workflow(
+        tmp_path,
+        "  build:\n    concurrency:\n      group: build\n"
+        "      cancel-in-progress: ${{ github.event_name == 'pull_request' }}\n"
+        "    runs-on: ubuntu-latest\n    steps: []\n",
+    )
+
+    assert read_values(workflow, "build", ref="refs/pull/7/merge") == {"build": "unknown"}
+
+
 def test_reader_uses_job_value_before_workflow_value(tmp_path: Path) -> None:
     """Job concurrency overrides the workflow-level fallback."""
     workflow = write_workflow(
@@ -93,7 +134,7 @@ def test_reader_uses_job_value_before_workflow_value(tmp_path: Path) -> None:
     }
 
 
-def run_gate(workflow: Path, **results: str) -> subprocess.CompletedProcess[str]:
+def run_gate(workflow: Path, ref: str = "", **results: str) -> subprocess.CompletedProcess[str]:
     """Run the status gate as a provably superseded branch run."""
     needs = (
         "{"
@@ -106,7 +147,8 @@ def run_gate(workflow: Path, **results: str) -> subprocess.CompletedProcess[str]
         ["bash", str(GATE)],
         cwd=ROOT,
         env={
-            **os.environ,
+            **{key: value for key, value in os.environ.items() if key != "GITHUB_REF"},
+            **({"GITHUB_REF": ref} if ref else {}),
             "NEEDS_JSON": needs,
             "RUN_SHA": "1" * 40,
             "BRANCH_HEAD_SHA": "2" * 40,
@@ -164,6 +206,22 @@ def test_absent_or_dynamic_concurrency_fails_closed(tmp_path: Path, jobs: str) -
 
     assert completed.returncode == 1, completed.stdout
     assert "Pipeline has cancelled jobs::build" in completed.stdout
+
+
+def test_not_main_expression_explains_a_superseded_branch_cancellation(tmp_path: Path) -> None:
+    """With GITHUB_REF known, the templates' expression is as good as a literal."""
+    jobs = (
+        "  build:\n"
+        "    concurrency:\n"
+        "      group: build\n"
+        "      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}\n"
+        "    runs-on: ubuntu-latest\n"
+        "    steps: []\n"
+    )
+    completed = run_gate(write_workflow(tmp_path, jobs), ref="refs/pull/7/merge", build="cancelled")
+
+    assert completed.returncode == 0, completed.stdout
+    assert "Cancelled jobs in a superseded run::build" in completed.stdout
 
 
 def test_github_workflow_ref_resolves_the_active_file(tmp_path: Path) -> None:

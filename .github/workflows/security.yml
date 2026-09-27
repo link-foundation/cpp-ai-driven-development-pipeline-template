@@ -1,0 +1,105 @@
+name: Security
+
+# CodeQL for the C/C++ sources and for the workflows themselves, plus a review
+# of dependency changes in pull requests.
+#
+# C/C++ uses `build-mode: none` (as linksplatform/Interfaces does): CodeQL
+# extracts the sources without compiling them, so the analysis does not depend
+# on the compiler, the package manager or the C++ root of the repository
+# (single-language or cpp/). Switch the c-cpp entry to `build-mode: manual`
+# and add a `cmake --workflow --preset dev` step for the most precise results.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  GIT_CONFIG_COUNT: '1'
+  GIT_CONFIG_KEY_0: init.defaultBranch
+  GIT_CONFIG_VALUE_0: main
+
+jobs:
+  codeql:
+    name: CodeQL (${{ matrix.language }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}-codeql-${{ matrix.language }}
+      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+    permissions:
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [c-cpp, actions]
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: none
+          queries: security-extended,security-and-quality
+
+      - name: Analyze
+        uses: github/codeql-action/analyze@v4
+        with:
+          category: /language:${{ matrix.language }}
+
+  dependency-review:
+    name: Dependency Review
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}-dependency-review
+      cancel-in-progress: true
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Review dependency changes
+        uses: actions/dependency-review-action@v5
+        with:
+          fail-on-severity: high
+          comment-summary-in-pr: on-failure
+
+  # Terminal status gate: GitHub reports jobs killed by timeout-minutes as
+  # cancelled. Observe every other job so a timeout on main becomes a visible
+  # failure instead of a grey run, while a run that was superseded by a newer
+  # commit is recognised as expected churn.
+  pipeline-status:
+    name: Pipeline Status
+    needs:
+      - codeql
+      - dependency-review
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Check aggregate pipeline status
+        env:
+          NEEDS_JSON: ${{ toJSON(needs) }}
+          RUN_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+        run: bash scripts/check-pipeline-status.sh

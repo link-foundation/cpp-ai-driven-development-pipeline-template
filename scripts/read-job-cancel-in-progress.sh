@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Shared with link-foundation/python-ai-driven-development-pipeline-template;
-# "issue #N" references below point to that repository.
+# "issue #N" references below point to that repository. Local change: the
+# `github.ref != 'refs/heads/main'` expression is evaluated from GITHUB_REF.
 
 set -euo pipefail
 
@@ -17,8 +18,20 @@ from pathlib import Path
 from typing import Optional
 
 
+# The one expression every link-foundation template uses: cancel superseded
+# runs everywhere except on main. It is decidable from GITHUB_REF, which the
+# runner sets for the run being judged; any other expression stays unknown.
+NOT_MAIN_EXPRESSION = re.compile(r"^\$\{\{\s*github\.ref\s*!=\s*'refs/heads/main'\s*\}\}$")
+
+
 def normalize(value: str) -> str:
-    value = value.split("#", 1)[0].strip().strip("'\"").lower()
+    value = value.split("#", 1)[0].strip()
+    if NOT_MAIN_EXPRESSION.match(value):
+        ref = os.environ.get("GITHUB_REF", "")
+        if not ref:
+            return "unknown"
+        return "true" if ref != "refs/heads/main" else "false"
+    value = value.strip("'\"").lower()
     if "${{" in value:
         return "unknown"
     if value in {"true", "false"}:
