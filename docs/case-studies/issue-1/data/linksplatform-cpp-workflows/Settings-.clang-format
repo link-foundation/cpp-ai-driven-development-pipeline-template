@@ -1,0 +1,9 @@
+---
+Language: Cpp
+BasedOnStyle: google
+ColumnLimit: 999999999
+NamespaceIndentation: All
+DerivePointerAlignment: false
+PointerAlignment: Left
+ReferenceAlignment: Left
+SortIncludes: false

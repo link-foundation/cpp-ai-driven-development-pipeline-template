@@ -1,0 +1,2945 @@
+{
+  "summary": {
+    "generatedAt": "2026-09-27",
+    "source": "gh repo list linksplatform --limit 300 + gh api repos/linksplatform/<repo>/contents[/.github/workflows]",
+    "totalRepos": 88,
+    "reposWithCppLanguage": 27,
+    "reposWithCppFolder": 42,
+    "reposWithCppFolderAndCsharpFolder": 31,
+    "reposWithCppFolderAndRustFolder": 9,
+    "cppWorkflowPatternCounts": {
+      "cpp.yml": 21,
+      "cpp-test.yml+deploy-cpp.yml": 17,
+      "(none)": 3,
+      "cpp-docs.yml+cpp-test.yml+deploy-cpp.yml": 1
+    }
+  },
+  "repos": [
+    {
+      "name": ".github",
+      "description": "",
+      "primaryLanguage": null,
+      "languages": [],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-27T19:06:51Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        "LICENSE",
+        "profile"
+      ],
+      "workflows": [
+        "cpp.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "aqlgen",
+      "description": "Schema generator for async-graphql 4.x",
+      "primaryLanguage": "Rust",
+      "languages": [
+        "Rust"
+      ],
+      "isArchived": false,
+      "isFork": true,
+      "updatedAt": "2023-10-27T08:12:08Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "Cargo.toml",
+        "LICENSE",
+        "README.md",
+        "aqlgen-renderer",
+        "aqlgen"
+      ],
+      "workflows": [
+        "rust.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "BareJS",
+      "description": "Port of NodeJS to BareMetal OS",
+      "primaryLanguage": null,
+      "languages": [],
+      "isArchived": true,
+      "isFork": false,
+      "updatedAt": "2023-01-28T06:13:53Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        "LICENSE",
+        "README.md"
+      ],
+      "workflows": [],
+      "cppWorkflows": []
+    },
+    {
+      "name": "BareNET",
+      "description": "Port of .NET Core to BareMetal OS",
+      "primaryLanguage": null,
+      "languages": [],
+      "isArchived": true,
+      "isFork": false,
+      "updatedAt": "2023-01-28T06:13:55Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        "LICENSE",
+        "README.md"
+      ],
+      "workflows": [],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Bot",
+      "description": "VK bot, GitHub bot, Discord bot, Trader bot",
+      "primaryLanguage": "C#",
+      "languages": [
+        "Python",
+        "C#",
+        "Shell",
+        "Nim",
+        "Rust",
+        "TypeScript"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2026-04-29T18:12:07Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": true,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "Bot.sln",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp",
+        "js",
+        "nim",
+        "python",
+        "requirements.txt",
+        "rust",
+        "ts"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "CD.yml",
+        "cpp.yml",
+        "csharp.yml",
+        "python-bot.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "ccc",
+      "description": "Correlation Center Concept (Client) Web Hosting Repository",
+      "primaryLanguage": "JavaScript",
+      "languages": [
+        "JavaScript",
+        "CSS",
+        "HTML"
+      ],
+      "isArchived": false,
+      "isFork": true,
+      "updatedAt": "2022-03-27T06:08:06Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        "LICENSE",
+        "README.md",
+        "URI.js",
+        "bihisankey.js",
+        "bootstrap-theme.min.css",
+        "bootstrap.min.css",
+        "bootstrap.min.js",
+        "chains.css",
+        "chains.js",
+        "d3.v3.min.js",
+        "editor.html",
+        "editor.js",
+        "favicon.ico",
+        "index.html",
+        "jquery-2.1.4.min.js",
+        "jsoneditor",
+        "logo.svg",
+        "model.obj",
+        "model.stl",
+        "moment-with-locales.min.js",
+        "spacetime.js",
+        "storage.js",
+        "underscore-min.js"
+      ],
+      "workflows": [],
+      "cppWorkflows": []
+    },
+    {
+      "name": "CodeNetJavaToPythonTranslationExperiment",
+      "description": "This is an attempt to translate the code from Java to Python using available rule-based translation tools on the market.",
+      "primaryLanguage": "Python",
+      "languages": [
+        "Java",
+        "HTML",
+        "Python"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2022-05-31T08:01:37Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": true,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "java_code_snippets_all",
+        "java_code_snippets_metadata.csv",
+        "problem_descriptions",
+        "python_code_snippets_all",
+        "python_code_snippets_all_with_rules"
+      ],
+      "workflows": [
+        "cpp.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "Collections",
+      "description": "LinksPlatform's Platform.Collections Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "C++",
+        "CMake",
+        "C",
+        "Shell"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:57:58Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitmodules",
+        ".vscode",
+        "LICENSE",
+        "README.md",
+        "Settings",
+        "conan-center-index",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp-test.yml",
+        "csharp.yml",
+        "deploy-cpp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp-test.yml",
+        "deploy-cpp.yml"
+      ]
+    },
+    {
+      "name": "Collections.Methods",
+      "description": "LinksPlatform's Platform.Collections.Methods Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "C++",
+        "C",
+        "CMake",
+        "Shell"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:58:02Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": true,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitmodules",
+        ".gitpod.yml",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp",
+        "rust"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp-test.yml",
+        "csharp.yml",
+        "deploy-cpp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp-test.yml",
+        "deploy-cpp.yml"
+      ]
+    },
+    {
+      "name": "Comparers",
+      "description": "LinksPlatform's Platform.Comparers Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:58:05Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Comparisons.DeepGqlStandard",
+      "description": "Deep (PostgreSQL+Hasura) vs Doublets Rust vs Doublets C#",
+      "primaryLanguage": null,
+      "languages": [],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2022-07-14T17:03:07Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".gitignore",
+        ".gitmodules",
+        ".gitpod.yml",
+        "Config",
+        "Data.Doublets.Gql",
+        "LICENSE",
+        "README.md",
+        "dev",
+        "graphql-bench"
+      ],
+      "workflows": [],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Comparisons.Neo4jVSDoublets",
+      "description": "",
+      "primaryLanguage": "Rust",
+      "languages": [
+        "Rust",
+        "Python"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-12-31T10:26:23Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": true,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "Docs",
+        "LICENSE",
+        "README.md",
+        "docs",
+        "rust-toolchain.toml",
+        "rust",
+        "rustfmt.toml"
+      ],
+      "workflows": [
+        "rust.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Comparisons.PostgreSQLVSDoublets",
+      "description": "The comparison between PostgreSQL and Doublets",
+      "primaryLanguage": "Rust",
+      "languages": [
+        "Rust",
+        "Python",
+        "C++",
+        "CMake"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2026-05-29T23:24:52Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": false,
+      "hasRustFolder": true,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitmodules",
+        "Docs",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "docs",
+        "rust-toolchain.toml",
+        "rust",
+        "rustfmt.toml"
+      ],
+      "workflows": [
+        "cpp.yml",
+        "rust.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "Comparisons.RedisVSDoublets",
+      "description": "The comparison between Redis and Doublets",
+      "primaryLanguage": null,
+      "languages": [],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:45:32Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md"
+      ],
+      "workflows": [
+        "cpp.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Comparisons.SpacetimeDBVSDoublets",
+      "description": "",
+      "primaryLanguage": "Rust",
+      "languages": [
+        "Shell",
+        "JavaScript",
+        "Rust",
+        "Python"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2026-09-16T09:21:05Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": true,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".pre-commit-config.yaml",
+        "CHANGELOG.md",
+        "CONTRIBUTING.md",
+        "Cargo.lock",
+        "Cargo.toml",
+        "LICENSE",
+        "README.md",
+        "changelog.d",
+        "docs",
+        "examples",
+        "experiments",
+        "rust",
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "workflows": [
+        "release.yml",
+        "rust-benchmark.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Comparisons.SQLiteVSDoublets",
+      "description": "Comparison of SQLite and LinksPlatform's Doublets (links) on basic embeded database operations with objects (create list, read list, delete list).",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "Rust",
+        "Python"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2026-09-19T18:46:08Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": true,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "README.ru.md",
+        "cpp",
+        "csharp",
+        "docs",
+        "rust",
+        "scripts"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "CI.yml",
+        "cpp.yml",
+        "rust.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "conan-center-index",
+      "description": "Recipes for the ConanCenter repository",
+      "primaryLanguage": "Python",
+      "languages": [
+        "CMake",
+        "Python",
+        "C",
+        "Perl",
+        "Assembly",
+        "C++",
+        "Makefile",
+        "Meson",
+        "Tcl",
+        "M4",
+        "Yacc",
+        "XSLT",
+        "Lex",
+        "Thrift",
+        "Objective-C++",
+        "Verilog",
+        "SWIG",
+        "GLSL",
+        "Cap'n Proto",
+        "Shell",
+        "Lua",
+        "Batchfile",
+        "QMake",
+        "LLVM",
+        "WebAssembly",
+        "JetBrains MPS",
+        "Groovy",
+        "Fortran",
+        "Cuda"
+      ],
+      "isArchived": false,
+      "isFork": true,
+      "updatedAt": "2021-10-29T15:54:01Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".c3i",
+        ".editorconfig",
+        ".gitattributes",
+        ".github",
+        ".gitignore",
+        "CONTRIBUTING.md",
+        "LICENSE",
+        "README.md",
+        "assets",
+        "docs",
+        "linter",
+        "recipes"
+      ],
+      "workflows": [
+        "alert-community.yml",
+        "hooks-warnings.yml",
+        "linter-conan-v2.yml",
+        "linter-yaml.yml",
+        "markdown-links.yml",
+        "mlc_config.json",
+        "on-push-do-doco.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Converters",
+      "description": "LinksPlatform's Platform.Converters Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "C++",
+        "C",
+        "CMake"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:58:12Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".vscode",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp-test.yml",
+        "csharp.yml",
+        "deploy-cpp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp-test.yml",
+        "deploy-cpp.yml"
+      ]
+    },
+    {
+      "name": "Crawler",
+      "description": "Crawler experiment",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "HTML",
+        "JavaScript",
+        "Batchfile"
+      ],
+      "isArchived": false,
+      "isFork": true,
+      "updatedAt": "2021-11-11T17:06:43Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": true,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "MeteorUI",
+        "Platform.Data.ConsoleTerminal",
+        "Platform.Data.CrawlerServer",
+        "Platform.Web.Crawler",
+        "Platform.sln",
+        "Platform.sln.DotSettings",
+        "cpp"
+      ],
+      "workflows": [
+        "AutoMerge.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "cs2py",
+      "description": "The C# code to Python code translator",
+      "primaryLanguage": "Python",
+      "languages": [
+        "Python"
+      ],
+      "isArchived": false,
+      "isFork": true,
+      "updatedAt": "2022-03-27T06:09:16Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": true,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "cs2py",
+        "test.py"
+      ],
+      "workflows": [],
+      "cppWorkflows": []
+    },
+    {
+      "name": "CSharpToCppTranslator",
+      "description": "A specific translator for LinksPlatform's libraries.",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "Shell"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2021-11-11T17:06:37Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": true,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitmodules",
+        "CSharpToCppTranslator.csproj",
+        "CSharpToCppTranslator.sln",
+        "CSharpToCppTranslator.sln.DotSettings",
+        "CustomCSharpToCppTransformer.cs",
+        "LICENSE",
+        "Program.cs",
+        "README.md",
+        "Settings",
+        "cpp",
+        "translate.sh"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "CI.yml",
+        "cpp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "CSharpToCppTranslatorTestSolution",
+      "description": "Test solution for CSharpToCppTranslator",
+      "primaryLanguage": null,
+      "languages": [],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2022-01-24T06:10:45Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".gitignore",
+        "CSharpToCppTranslatorTestSolution",
+        "LICENSE",
+        "README.md"
+      ],
+      "workflows": [],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Data",
+      "description": "LinksPlatform's Platform.Data Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "C++",
+        "CMake",
+        "C",
+        "Shell"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:58:13Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": true,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitmodules",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp",
+        "rust"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp-test.yml",
+        "csharp.yml",
+        "deploy-cpp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp-test.yml",
+        "deploy-cpp.yml"
+      ]
+    },
+    {
+      "name": "data-rs",
+      "description": "",
+      "primaryLanguage": "Rust",
+      "languages": [
+        "Rust"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2026-04-14T13:21:44Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".pre-commit-config.yaml",
+        "CHANGELOG.md",
+        "CONTRIBUTING.md",
+        "Cargo.lock",
+        "Cargo.toml",
+        "LICENSE",
+        "README.md",
+        "changelog.d",
+        "docs",
+        "rust-toolchain.toml",
+        "rustfmt.toml",
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "workflows": [
+        "release.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Data.Doublets",
+      "description": "LinksPlatform's Platform.Data.Doublets Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "C++",
+        "C",
+        "Shell",
+        "CMake"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:58:28Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": true,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitmodules",
+        ".gitpod.yml",
+        "LICENSE",
+        "README.md",
+        "README.ru.md",
+        "c",
+        "cpp",
+        "csharp",
+        "publish-bin.sh",
+        "rust"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp-test.yml",
+        "csharp.yml",
+        "deploy-cpp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp-test.yml",
+        "deploy-cpp.yml"
+      ]
+    },
+    {
+      "name": "Data.Doublets.Gql",
+      "description": "",
+      "primaryLanguage": "Rust",
+      "languages": [
+        "C#",
+        "Python",
+        "Rust"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-11-21T21:39:37Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": true,
+      "topLevelEntries": [
+        ".editorconfig",
+        ".github",
+        ".gitignore",
+        ".gitmodules",
+        "LICENSE",
+        "README.md",
+        "Settings",
+        "cpp",
+        "csharp",
+        "python",
+        "rust"
+      ],
+      "workflows": [
+        "cpp.yml",
+        "csharp.yml",
+        "dotnet.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "Data.Doublets.Gql.Client",
+      "description": "",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T16:08:01Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        "LICENSE",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "cpp.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "Data.Doublets.Json",
+      "description": "Platform.Data.Doublets.Json Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T16:06:14Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitpod.yml",
+        "LICENSE",
+        "README.md",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "CD.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Data.Doublets.Lino",
+      "description": "Platform.Data.Doublets.Json Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:46:25Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitpod.yml",
+        "LICENSE",
+        "README.md",
+        "csharp"
+      ],
+      "workflows": [
+        "CD.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Data.Doublets.Sequences",
+      "description": "Platform.Data.Doublets.Sequences",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "C++"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:58:52Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitpod.yml",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "Data.Doublets.Sql",
+      "description": "SQL interface to Doublets",
+      "primaryLanguage": null,
+      "languages": [],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:46:35Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md"
+      ],
+      "workflows": [
+        "cpp.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Data.Doublets.Xml",
+      "description": "LinksPlatform's Platform.Data.Doublets.Xml Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:47:09Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".idea",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "CD.yml",
+        "cpp.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "Data.Sequences",
+      "description": "Platform.Data.Sequences",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:59:15Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "Data.Triplets",
+      "description": "LinksPlatform's Platform.Data.Triplets Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "Nim",
+        "Rust"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:59:27Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": true,
+      "hasRustFolder": true,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "csharp",
+        "nim",
+        "rust",
+        "triplets.nimble"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Data.Triplets.Kernel",
+      "description": "LinksPlatform's Platform.Data.Triplets.Kernel native library.",
+      "primaryLanguage": "C",
+      "languages": [
+        "C++",
+        "C",
+        "Makefile",
+        "Shell",
+        "Batchfile"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2024-10-13T18:35:25Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "NuGetPackageSource",
+        "Platform.Data.Triplets.Kernel.Tests",
+        "Platform.Data.Triplets.Kernel.sln",
+        "Platform.Data.Triplets.Kernel",
+        "README.md",
+        "publish-binaries.sh"
+      ],
+      "workflows": [
+        "AutoMerge.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Delegates",
+      "description": "LinksPlatform's Platform.Delegates Template Library",
+      "primaryLanguage": "C++",
+      "languages": [
+        "C++",
+        "C",
+        "Shell",
+        "CMake",
+        "C#"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:59:36Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "NuGet.Config",
+        "README.md",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "cpp-test.yml",
+        "csharp.yml",
+        "deploy-cpp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp-test.yml",
+        "deploy-cpp.yml"
+      ]
+    },
+    {
+      "name": "Diagnostics",
+      "description": "LinksPlatform's Platform.Diagnostics Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:59:37Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "Disposables",
+      "description": "LinksPlatform's Platform.Disposables Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "C++",
+        "C"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:47:59Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitmodules",
+        ".vscode",
+        "LICENSE",
+        "README.md",
+        "README.ru.md",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "Documentation",
+      "description": "Documentation and support root repository for all LinksPlatform projects",
+      "primaryLanguage": null,
+      "languages": [],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2023-10-27T08:10:55Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": true,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "doc"
+      ],
+      "workflows": [
+        "cpp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "doublets-dev",
+      "description": "",
+      "primaryLanguage": null,
+      "languages": [],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2022-07-26T13:35:35Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".gitignore",
+        "LICENSE",
+        "README.md"
+      ],
+      "workflows": [],
+      "cppWorkflows": []
+    },
+    {
+      "name": "doublets-rs",
+      "description": "",
+      "primaryLanguage": "Rust",
+      "languages": [
+        "Rust",
+        "Shell",
+        "RenderScript"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2026-08-29T15:04:07Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitkeep",
+        ".pre-commit-config.yaml",
+        ".travis.yml",
+        "CHANGELOG.md",
+        "CONTRIBUTING.md",
+        "Cargo.lock",
+        "Cargo.toml",
+        "LICENSE",
+        "README.md",
+        "changelog.d",
+        "ci",
+        "docs",
+        "doublets-decorators",
+        "doublets-ffi",
+        "doublets",
+        "experiments",
+        "integration",
+        "rust-toolchain.toml",
+        "rustfmt.toml",
+        "scripts"
+      ],
+      "workflows": [
+        "release.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "doublets-web",
+      "description": "",
+      "primaryLanguage": "TypeScript",
+      "languages": [
+        "Rust",
+        "JavaScript",
+        "HTML",
+        "TypeScript",
+        "CSS"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2026-05-08T14:06:29Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".cargo",
+        ".github",
+        ".gitignore",
+        "CHANGELOG.md",
+        "Cargo.lock",
+        "Cargo.toml",
+        "LICENSE",
+        "README.md",
+        "docs",
+        "site",
+        "src",
+        "testapp",
+        "tests"
+      ],
+      "workflows": [
+        "pages.yml",
+        "release.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "DoubletsVsClickHouseBenchmarks",
+      "description": "",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "Shell"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:48:18Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitpod.yml",
+        "DoubletsVsClickHouseBenchmarks.Benchmarks",
+        "DoubletsVsClickHouseBenchmarks.Tests",
+        "DoubletsVsClickHouseBenchmarks.sln",
+        "DoubletsVsClickHouseBenchmarks",
+        "MSFT.csv",
+        "README.md",
+        "install-clickhouse.sh"
+      ],
+      "workflows": [
+        "benchmark.yml",
+        "build.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Equality",
+      "description": "",
+      "primaryLanguage": "C++",
+      "languages": [
+        "CMake",
+        "C++",
+        "C"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2024-10-13T18:35:55Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "cpp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp-test.yml",
+        "deploy-cpp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp-test.yml",
+        "deploy-cpp.yml"
+      ]
+    },
+    {
+      "name": "Examples.Doublets.CRUD",
+      "description": "A quick start example that shows how to create, read, update and delete the first link using Doublets",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "Rust"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:48:20Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": true,
+      "hasRustFolder": true,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "csharp",
+        "rust"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "CI.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Exceptions",
+      "description": "LinksPlatform's Platform.Exceptions Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "C++",
+        "C",
+        "CMake",
+        "Shell"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:48:35Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitmodules",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp-test.yml",
+        "csharp.yml",
+        "deploy-cpp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp-test.yml",
+        "deploy-cpp.yml"
+      ]
+    },
+    {
+      "name": "Files",
+      "description": "Files required for automation to work.",
+      "primaryLanguage": null,
+      "languages": [],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:48:39Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "TemplateLibrary.targets",
+        "docfx"
+      ],
+      "workflows": [
+        "cpp.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Hardware.Cpu",
+      "description": "LinksPlatform's Platform.Hardware.Cpu Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#"
+      ],
+      "isArchived": false,
+      "isFork": true,
+      "updatedAt": "2025-07-19T15:48:54Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Hashing",
+      "description": "LinksPlatform's Platform.Hashing Template Library",
+      "primaryLanguage": "C",
+      "languages": [
+        "C++",
+        "C",
+        "CMake"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2024-10-13T18:36:09Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitmodules",
+        "LICENSE",
+        "Platform.Hashing.sln",
+        "README.md",
+        "cpp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp-test.yml",
+        "deploy-cpp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp-test.yml",
+        "deploy-cpp.yml"
+      ]
+    },
+    {
+      "name": "Helpers",
+      "description": "LinksPlatform's Platform.Helpers Class Library",
+      "primaryLanguage": "Batchfile",
+      "languages": [
+        "Batchfile"
+      ],
+      "isArchived": true,
+      "isFork": false,
+      "updatedAt": "2023-01-28T17:32:32Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".gitignore",
+        "LICENSE",
+        "Platform.Helpers.csproj",
+        "Platform.Helpers.sln",
+        "README.md",
+        "push-nuget.bat"
+      ],
+      "workflows": [],
+      "cppWorkflows": []
+    },
+    {
+      "name": "IdClient",
+      "description": "TCP/IP client implementation for IdDistributorServer.",
+      "primaryLanguage": "C",
+      "languages": [
+        "C",
+        "Shell",
+        "Batchfile"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2022-05-31T07:58:34Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".gitignore",
+        "Client.c",
+        "Common.h",
+        "IdClient.sln",
+        "IdClient.vcxproj",
+        "IdClient.vcxproj.filters",
+        "LICENSE",
+        "README.md",
+        "build-linux-gcc.sh",
+        "build-linux-mingw32-i586.sh",
+        "build.bat"
+      ],
+      "workflows": [],
+      "cppWorkflows": []
+    },
+    {
+      "name": "IdDistributorServer",
+      "description": "Identifier distributor TCP/IP server implementation. A prototype for LinksPlatform cluster's core service.",
+      "primaryLanguage": "C",
+      "languages": [
+        "C",
+        "Shell",
+        "Batchfile"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2022-05-31T07:58:32Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".gitignore",
+        "Common.h",
+        "IdDistributorServer.sln",
+        "IdDistributorServer.vcxproj",
+        "IdDistributorServer.vcxproj.filters",
+        "LICENSE",
+        "README.md",
+        "Server.c",
+        "build-linux-gcc.sh",
+        "build-linux-mingw32-i586.sh",
+        "build.bat"
+      ],
+      "workflows": [],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Incrementers",
+      "description": "LinksPlatform's Platform.Incrementers Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "C++"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T16:01:40Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "InfiniteDepthTreeWebUIPrototype",
+      "description": "",
+      "primaryLanguage": "HTML",
+      "languages": [
+        "HTML",
+        "JavaScript",
+        "CSS"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2022-05-31T08:00:24Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "indented-text.es2015.js",
+        "indented-text.js",
+        "index.html",
+        "logo5.png",
+        "screenshot.png",
+        "script.es2015.js",
+        "script.js",
+        "styles.css"
+      ],
+      "workflows": [],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Interfaces",
+      "description": "LinksPlatform's Platform.Interfaces Class Library",
+      "primaryLanguage": "C++",
+      "languages": [
+        "C#",
+        "C++",
+        "C",
+        "CMake",
+        "Shell",
+        "JavaScript",
+        "Python"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2026-09-26T02:54:42Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".clang-format",
+        ".github",
+        ".gitignore",
+        ".gitmodules",
+        ".gitpod.yml",
+        "LICENSE",
+        "MIGRATION_SUMMARY.md",
+        "README.md",
+        "Scripts",
+        "Settings",
+        "convert-nuget-to-dotnet.mjs",
+        "cpp",
+        "csharp",
+        "docs",
+        "examples",
+        "experiments"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "codeql.yml",
+        "cpp-docs.yml",
+        "cpp-test.yml",
+        "csharp.yml",
+        "deploy-cpp.yml",
+        "readme-badges.yml"
+      ],
+      "cppWorkflows": [
+        "cpp-docs.yml",
+        "cpp-test.yml",
+        "deploy-cpp.yml"
+      ]
+    },
+    {
+      "name": "IO",
+      "description": "LinksPlatform's Platform.IO Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "C++"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:49:41Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp-test.yml",
+        "csharp.yml",
+        "deploy-cpp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp-test.yml",
+        "deploy-cpp.yml"
+      ]
+    },
+    {
+      "name": "java2cpp",
+      "description": "Translator java code to C++ code",
+      "primaryLanguage": "Python",
+      "languages": [
+        "Python",
+        "C++",
+        "Java"
+      ],
+      "isArchived": false,
+      "isFork": true,
+      "updatedAt": "2022-06-23T10:30:52Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "java2cpp",
+        "setup.py",
+        "test.cpp",
+        "test.java",
+        "test.py"
+      ],
+      "workflows": [],
+      "cppWorkflows": []
+    },
+    {
+      "name": "linksplatform.github.io",
+      "description": "Root web-site for Links Platform organization",
+      "primaryLanguage": "HTML",
+      "languages": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2021-11-01T09:42:48Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".gitingore",
+        "GitHub.svg",
+        "LICENSE",
+        "animation.html",
+        "animation.svg",
+        "circles-ring.html",
+        "cytoscape-compound.html",
+        "cytoscape-intermediate.html",
+        "index.html",
+        "itself-animated-bezier.js",
+        "itself.html",
+        "link.html",
+        "moving-complex-sine-wave-antialias.html",
+        "moving-complex-sine-wave.html",
+        "standing-complex-sine-wave-antialias.html",
+        "standing-complex-sine-wave.html",
+        "style.css",
+        "triplet.html"
+      ],
+      "workflows": [],
+      "cppWorkflows": []
+    },
+    {
+      "name": "mem-rs",
+      "description": "",
+      "primaryLanguage": "Rust",
+      "languages": [
+        "Rust",
+        "JavaScript"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2026-04-13T08:30:21Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "CHANGELOG.md",
+        "CONTRIBUTING.md",
+        "Cargo.lock",
+        "Cargo.toml",
+        "LICENSE",
+        "README.md",
+        "benches",
+        "changelog.d",
+        "docs",
+        "experiments",
+        "rust-toolchain.toml",
+        "rustfmt.toml",
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "workflows": [
+        "release.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Memory",
+      "description": "LinksPlatform's Platform.Memory Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "C++",
+        "CMake",
+        "C",
+        "Shell"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:50:00Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": true,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitmodules",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp",
+        "rust"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp-test.yml",
+        "csharp.yml",
+        "deploy-cpp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp-test.yml",
+        "deploy-cpp.yml"
+      ]
+    },
+    {
+      "name": "Numbers",
+      "description": "LinksPlatform's Platform.Numbers Class Library",
+      "primaryLanguage": "Rust",
+      "languages": [
+        "C#",
+        "C++",
+        "Rust",
+        "C",
+        "CMake",
+        "JavaScript",
+        "Shell"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2026-04-14T15:06:04Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": true,
+      "topLevelEntries": [
+        ".codacy.yml",
+        ".github",
+        ".gitignore",
+        ".gitpod.yml",
+        ".markdownlint.json",
+        ".pre-commit-config.yaml",
+        "CHANGELOG.md",
+        "CONTRIBUTING.md",
+        "LICENSE",
+        "README.md",
+        "changelog.d",
+        "cpp",
+        "csharp",
+        "docs",
+        "experiments",
+        "rust",
+        "scripts"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp-test.yml",
+        "csharp.yml",
+        "deploy-cpp.yml",
+        "rust.yml"
+      ],
+      "cppWorkflows": [
+        "cpp-test.yml",
+        "deploy-cpp.yml"
+      ]
+    },
+    {
+      "name": "platform-rs",
+      "description": "",
+      "primaryLanguage": "Rust",
+      "languages": [
+        "Rust"
+      ],
+      "isArchived": true,
+      "isFork": false,
+      "updatedAt": "2023-01-27T23:22:19Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": true,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "Cargo.toml",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "data",
+        "mem",
+        "num",
+        "treesmethods"
+      ],
+      "workflows": [
+        "cd.yml",
+        "cpp.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "Protocols",
+      "description": "LinksPlatform's Platform.Communication Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:50:48Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp",
+        "toc.yml"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "Random",
+      "description": "LinksPlatform's Platform.Random Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "C++",
+        "CMake",
+        "C",
+        "Shell"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:51:18Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitmodules",
+        ".vscode",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp-test.yml",
+        "csharp.yml",
+        "deploy-cpp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp-test.yml",
+        "deploy-cpp.yml"
+      ]
+    },
+    {
+      "name": "Ranges",
+      "description": "LinksPlatform's Platform.Ranges Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "C++",
+        "C",
+        "CMake",
+        "Shell"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:52:52Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitmodules",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp-test.yml",
+        "csharp.yml",
+        "deploy-cpp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp-test.yml",
+        "deploy-cpp.yml"
+      ]
+    },
+    {
+      "name": "RawDoubletsViewer",
+      "description": "",
+      "primaryLanguage": "C++",
+      "languages": [
+        "C",
+        "C++"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2022-05-31T08:00:22Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "winapi"
+      ],
+      "workflows": [],
+      "cppWorkflows": []
+    },
+    {
+      "name": "react-deep-tree",
+      "description": "",
+      "primaryLanguage": "TypeScript",
+      "languages": [
+        "TypeScript",
+        "Shell"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2024-10-18T12:14:47Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "example",
+        "index.js",
+        "index.js.map",
+        "index.tsx",
+        "package-lock.json",
+        "package.json",
+        "tsconfig.json",
+        "tslint.json"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "\u0421D.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Reflection",
+      "description": "LinksPlatform's Platform.Reflection Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T15:52:54Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".vscode",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "Reflection.Sigil",
+      "description": "LinksPlatform's Platform.Reflection.Sigil Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "Batchfile",
+        "Python",
+        "Shell"
+      ],
+      "isArchived": true,
+      "isFork": false,
+      "updatedAt": "2023-01-28T17:11:34Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".gitignore",
+        ".travis.yml",
+        "LICENSE",
+        "Platform.Reflection.Sigil.Tests",
+        "Platform.Reflection.Sigil.sln",
+        "Platform.Reflection.Sigil",
+        "README.md",
+        "docfx.json",
+        "format-csharp-files.py",
+        "format-document.sh",
+        "generate-pdf.sh",
+        "publish-docs.sh",
+        "push-nuget.bat",
+        "toc.yml"
+      ],
+      "workflows": [],
+      "cppWorkflows": []
+    },
+    {
+      "name": "RegularExpressions.Transformer",
+      "description": "LinksPlatform's Platform.RegularExpressions.Transformer Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "Python",
+        "Nim"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T16:01:45Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "csharp",
+        "nim",
+        "python",
+        "retranslator.nimble"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "RegularExpressions.Transformer.CppToJava",
+      "description": "LinksPlatform's Platform.RegularExpressions.Transformer.CppToJava Class Library",
+      "primaryLanguage": "Python",
+      "languages": [
+        "C#",
+        "Python",
+        "Batchfile",
+        "Shell"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T16:02:22Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": true,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "RegularExpressions.Transformer.CppToJava.sln",
+        "RegularExpressions.Transformer.CppToJava",
+        "cpp",
+        "python"
+      ],
+      "workflows": [
+        "cpp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "RegularExpressions.Transformer.CSharpToCpp",
+      "description": "LinksPlatform's Platform.RegularExpressions.Transformer.CSharpToCpp Class Library",
+      "primaryLanguage": "Python",
+      "languages": [
+        "C#",
+        "Python"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T16:02:08Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "csharp",
+        "python"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "RegularExpressions.Transformer.CSharpToPython",
+      "description": "LinksPlatform's Platform.RegularExpressions.Transformer.CSharpToPython Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T16:02:16Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitmodules",
+        "LICENSE",
+        "README.md",
+        "csharp",
+        "python"
+      ],
+      "workflows": [
+        "csharp.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "RegularExpressions.Transformer.HasuraSQLSimplifier",
+      "description": "LinksPlatform's Platform.RegularExpressions.Transformer.HasuraSQLSimplifier Class Library, with a command line tool to simplify SQL generated by Hasura.",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T16:03:15Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "CD.yml",
+        "cpp.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "RegularExpressions.Transformer.PythonToNim",
+      "description": "LinksPlatform's Platform.RegularExpressions.Transformer.PythonToNim Class Library.",
+      "primaryLanguage": "Python",
+      "languages": [
+        "Python",
+        "Nim"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2024-03-23T10:13:31Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": true,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "python"
+      ],
+      "workflows": [
+        "cpp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "resourse-cooperation",
+      "description": "",
+      "primaryLanguage": "JavaScript",
+      "languages": [
+        "CSS",
+        "HTML",
+        "JavaScript"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2022-05-31T07:58:30Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        "LICENSE",
+        "README.md",
+        "css",
+        "images",
+        "index.html",
+        "js"
+      ],
+      "workflows": [],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Scopes",
+      "description": "LinksPlatform's Platform.Scopes Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T16:03:25Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Scripts",
+      "description": "Automation scripts for Continuous Integration, Continuous Deploy and Code Changes",
+      "primaryLanguage": "Shell",
+      "languages": [
+        "Python",
+        "Shell",
+        "JavaScript"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-08-08T20:46:02Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".gitignore",
+        ".vscode",
+        "CodeChanges",
+        "LICENSE",
+        "MultiProjectRepository",
+        "README.md",
+        "SingleProjectRepository",
+        "Utils"
+      ],
+      "workflows": [],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Setters",
+      "description": "LinksPlatform's Platform.Setters Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "C++",
+        "CMake",
+        "C",
+        "Shell"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T16:04:23Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitmodules",
+        ".vscode",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp-test.yml",
+        "csharp.yml",
+        "deploy-cpp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp-test.yml",
+        "deploy-cpp.yml"
+      ]
+    },
+    {
+      "name": "Settings",
+      "description": "Solution settings.",
+      "primaryLanguage": null,
+      "languages": [],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-09-12T20:40:02Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".DotSettings",
+        ".clang-format",
+        ".editorconfig",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "dotnet-document-config.yaml"
+      ],
+      "workflows": [],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Sigil",
+      "description": "A fail-fast validating helper for .NET CIL generation (Further developed from https://github.com/kevin-montrose/Sigil project)",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "Batchfile"
+      ],
+      "isArchived": true,
+      "isFork": true,
+      "updatedAt": "2023-01-28T17:11:34Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".editorconfig",
+        ".gitignore",
+        "LICENSE.txt",
+        "NuGet-README.md",
+        "NuGet.Config",
+        "README.md",
+        "Sigil.sln",
+        "Sigil",
+        "SigilTests",
+        "appveyor.yml",
+        "global.json",
+        "push-nuget.bat"
+      ],
+      "workflows": [],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Singletons",
+      "description": "LinksPlatform's Platform.Singletons Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "C++"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T16:04:55Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".vscode",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp.yml"
+      ]
+    },
+    {
+      "name": "Solver",
+      "description": "Algorithms to find shortest and simplest possible functions for given input and output data ranges.",
+      "primaryLanguage": "Rust",
+      "languages": [
+        "Rust"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2026-07-13T00:25:07Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".gitignore",
+        ".gitpod.yml",
+        "Cargo.lock",
+        "Cargo.toml",
+        "LICENSE",
+        "README.md",
+        "cargo-run-output.txt",
+        "rust-toolchain.toml",
+        "rustfmt.toml",
+        "src"
+      ],
+      "workflows": [],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Threading",
+      "description": "LinksPlatform's Platform.Threading Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "C++"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T16:05:08Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "Platform.Threading.csproj",
+        "README.md",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp-test.yml",
+        "csharp.yml",
+        "deploy-cpp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp-test.yml",
+        "deploy-cpp.yml"
+      ]
+    },
+    {
+      "name": "Timestamps",
+      "description": "LinksPlatform's Platform.Timestamps Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#",
+        "C++",
+        "CMake"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T16:05:23Z",
+      "languagesIncludeCpp": true,
+      "hasCppFolder": true,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitmodules",
+        ".vscode",
+        "LICENSE",
+        "README.md",
+        "cpp",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "cpp-test.yml",
+        "csharp.yml",
+        "deploy-cpp.yml"
+      ],
+      "cppWorkflows": [
+        "cpp-test.yml",
+        "deploy-cpp.yml"
+      ]
+    },
+    {
+      "name": "trees-rs",
+      "description": "",
+      "primaryLanguage": "Rust",
+      "languages": [
+        "Rust",
+        "Shell"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2026-04-14T13:15:57Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        ".gitkeep",
+        "Cargo.lock",
+        "Cargo.toml",
+        "LICENSE",
+        "README.md",
+        "changelog.d",
+        "ci-logs",
+        "docs",
+        "experiments",
+        "rust-toolchain.toml",
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "workflows": [
+        "ci.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Unsafe",
+      "description": "LinksPlatform's Platform.Unsafe Class Library",
+      "primaryLanguage": "C#",
+      "languages": [
+        "C#"
+      ],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T16:05:32Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": true,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "csharp"
+      ],
+      "workflows": [
+        "AutoMerge.yml",
+        "csharp.yml"
+      ],
+      "cppWorkflows": []
+    },
+    {
+      "name": "Workflows",
+      "description": "",
+      "primaryLanguage": null,
+      "languages": [],
+      "isArchived": false,
+      "isFork": false,
+      "updatedAt": "2025-07-19T16:05:40Z",
+      "languagesIncludeCpp": false,
+      "hasCppFolder": false,
+      "hasCsharpFolder": false,
+      "hasRustFolder": false,
+      "topLevelEntries": [
+        ".github"
+      ],
+      "workflows": [
+        "build-csharp.yml",
+        "cpp-test.yml",
+        "cpp.yml",
+        "csharp.yml",
+        "deploy-cpp.yml",
+        "get-cpp-conan-package-info.yml",
+        "get-cpp-package-info.yml",
+        "publish-to-conan.yml"
+      ],
+      "cppWorkflows": []
+    }
+  ]
+}

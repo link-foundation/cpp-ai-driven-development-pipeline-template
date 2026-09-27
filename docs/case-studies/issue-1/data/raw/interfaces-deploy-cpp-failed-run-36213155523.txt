@@ -1,0 +1,40 @@
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4477900Z ^[[36;1m^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4478159Z ^[[36;1m# Download TemplateLibrary.targets for the package^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4479295Z ^[[36;1mwget -O "$nuspec_direction/Platform.Interfaces.TemplateLibrary.targets" https://raw.githubusercontent.com/linksplatform/Files/ed0dc702f52d56d80ea2f19c93df5cf2fdcbccbf/TemplateLibrary.targets^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4480178Z ^[[36;1m^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4480373Z ^[[36;1m# Update .nuspec file^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4480801Z ^[[36;1mIFS=$'\n' #Set Separator.^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4481359Z ^[[36;1mfiles=$(find $nuspec_direction | grep "\.h" | grep -v "bin" | grep -v "obj" | cut -c $(( $(echo $nuspec_direction | wc -m) + 1))-)^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4482158Z ^[[36;1mfilename="$(echo cpp/Platform.Interfaces/Platform.Interfaces.TemplateLibrary.nuspec | sed 's~^cpp/~~')"^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4482755Z ^[[36;1mfile=($(cat $filename)) #Read file by line in array^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4483132Z ^[[36;1munset file[-1] #Remove last element in array.^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4483450Z ^[[36;1mfile+=("  <files>")^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4483784Z ^[[36;1mfile+=("    <file src=\"icon.png\" target=\"images/icon.png\" />")^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4484544Z ^[[36;1mfile+=("    <file src=\"Platform.Interfaces.TemplateLibrary.targets\" target=\"build\native\Platform.Interfaces.TemplateLibrary.targets\" />")^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4485260Z ^[[36;1mfor FILE in $files #Get all files on directory.^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4485566Z ^[[36;1mdo^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4485954Z ^[[36;1m  file+=("    <file src=\"$FILE\" target=\"lib\\native\\include\\$FILE\" />") #Append new files to array.^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4486408Z ^[[36;1mdone^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4486647Z ^[[36;1mfile+=("  </files>") #Append end for tag files.^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4487003Z ^[[36;1mfile+=("</package>") #Append end for tag package.^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4487435Z ^[[36;1mprintf '%s\n' "${file[@]}" > "$filename" #Write array by line to .nuspec file.^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4487803Z ^[[36;1m^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4488212Z ^[[36;1m# Pack NuGet package by .nuspec file^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4488770Z ^[[36;1mnuget pack "$(echo cpp/Platform.Interfaces/Platform.Interfaces.TemplateLibrary.nuspec | sed 's~^cpp/~~')"^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4489289Z ^[[36;1m^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4489483Z ^[[36;1m# Push NuGet package^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4490327Z ^[[36;1mnuget push ./**/*.nupkg -NoSymbols -Source https://api.nuget.org/v3/index.json -ApiKey "***" ^[[0m
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4695120Z shell: /usr/bin/bash -e {0}
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4695514Z env:
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4696237Z   NUSPEC_PATH: $(echo cpp/Platform.Interfaces/Platform.Interfaces.TemplateLibrary.nuspec | sed 's~^cpp/~~')
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:29.4697087Z ##[endgroup]
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:30.5096642Z Reading package lists...
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:30.7330797Z Building dependency tree...
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:30.7341759Z Reading state information...
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:30.7503023Z Package nuget is not available, but is referred to by another package.
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:30.7504007Z This may mean that the package is missing, has been obsoleted, or
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:30.7504598Z is only available from another source
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:30.7504917Z 
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:30.7530248Z E: Package 'nuget' has no installation candidate
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:30.7568749Z ##[error]Process completed with exit code 100.
+main / pushToNuget	UNKNOWN STEP	2026-09-26T02:55:30.7664963Z Cleaning up orphan processes

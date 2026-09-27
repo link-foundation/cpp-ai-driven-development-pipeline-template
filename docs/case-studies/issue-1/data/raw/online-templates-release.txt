@@ -1,0 +1,16 @@
+# GitHub API (2026-09-27) stars / last push / license
+cpp-best-practices/cmake_template  stars=1809 pushed=2026-08-17 Unlicense
+TheLartians/ModernCppStarter       stars=5408 pushed=2026-05-30 Unlicense
+filipdutescu/modern-cpp-template   stars=1921 pushed=2025-12-26 Unlicense
+bsamseth/cpp-project               stars=625  pushed=2023-09-19 Unlicense
+friendlyanon/cmake-init            stars=2545 pushed=2026-04-15 GPL-3.0 (generator; generated code not GPL - unverified)
+# cmake_template README: large GH Actions matrix, Catch2, libFuzzer, ASan+UBSan default, clang-tidy+cppcheck warnings-as-errors, codecov, CPM, FTXUI executable example, WASM build to GitHub Pages
+# ModernCppStarter README: CPM.cmake, PackageProject.cmake (install/version header), doctest, Format.cmake (clang-format/cmake-format), clang-tidy/iwyu/cppcheck, sanitizers, codecov, Doxygen to GitHub Pages, ccache
+# modern-cpp-template README: CI Windows/Linux/macOS, GoogleTest or Catch2, clang-tidy/cppcheck, Conan and Vcpkg, Doxygen, codecov, ccache, install/export
+# cpp-project README: Travis/Appveyor/GH Actions, Coveralls+Codecov, Doxygen, doctest (last push 2023)
+# cmake-init README: executables/static-shared/header-only; optional Conan or vcpkg; presets; clang-tidy, cppcheck, clang-format, codespell; sanitizers; lcov coverage; Doxygen + m.css to GH Pages; relocatable CMake packages
+# Release tooling (GitHub API): release-please v17.11.2 (2026-08-24), release-please-action v5.0.0 (2026-04-22); semantic-release v25.0.9 (2026-08-05; v26.0.0-beta.2 prerelease 2026-09-25); changesets @changesets/cli@3.0.3 (2026-09-14); changie v1.26.0 (2026-08-20); towncrier 26.9.0 (2026-09-04); scriv 1.8.0 (2025-12-30)
+# Source: https://github.com/googleapis/release-please : no C++/CMake strategy; "simple" = version.txt + CHANGELOG.md
+# Source: https://github.com/googleapis/release-please/blob/main/docs/customizing.md : extra-files + generic updater; annotations x-release-please-version, x-release-please-major/minor/patch, x-release-please-start-version ... x-release-please-end; "type": "generic"
+# Source: https://semantic-release.gitbook.io/semantic-release/support/faq : non-JS projects use @semantic-release/exec (prepareCmd) + @semantic-release/git
+# Source: https://dev.to/miniscruff/changie-automated-changelog-tool-11ed : changie language-agnostic Go binary; towncrier usable for non-Python projects (https://towncrier.readthedocs.io/en/stable/markdown.html)

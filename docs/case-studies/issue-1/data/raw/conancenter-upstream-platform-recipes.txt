@@ -1,0 +1,16 @@
+platform.collections.methods: NOT IN CONANCENTER
+platform.collections: NOT IN CONANCENTER
+platform.converters: 0.4.0 0.1.0 
+platform.data.doublets: NOT IN CONANCENTER
+platform.data: NOT IN CONANCENTER
+platform.delegates: 0.3.7 0.2.7 0.1.3 
+platform.equality: 0.0.1 
+platform.exceptions: 0.5.0 0.3.2 0.2.1 
+platform.hashing: 0.5.6 0.5.5 0.4.0 0.3.0 0.2.0 
+platform.interfaces: 0.3.41 0.1.2 
+platform.memory: NOT IN CONANCENTER
+platform.numbers: NOT IN CONANCENTER
+platform.random: NOT IN CONANCENTER
+platform.ranges: NOT IN CONANCENTER
+platform.setters: NOT IN CONANCENTER
+platform.timestamps: NOT IN CONANCENTER

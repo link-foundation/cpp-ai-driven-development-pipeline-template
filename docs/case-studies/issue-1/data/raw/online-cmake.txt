@@ -1,0 +1,25 @@
+# Source: https://cmake.org/download/ (2026-09-27): Latest Release 4.4.3 ; Kitware/CMake tags: v4.4.3 v4.4.2 ... v4.3.5 (2026-09-04), v4.2.8
+# Source: https://cmake.org/cmake/help/latest/module/CMakePackageConfigHelpers.html (docs 4.4.3)
+write_basic_package_version_file(<filename> [VERSION <major.minor.patch>] COMPATIBILITY <mode> [ARCH_INDEPENDENT])
+Modes: AnyNewerVersion, SameMajorVersion, SameMinorVersion, (4.4+ per fetched summary: SamePatchVersion, SameFullVersion, SemanticVersion), ExactVersion
+ARCH_INDEPENDENT added 3.14: "intended for header-only libraries or similar packages with no binaries."
+configure_package_config_file(<input> <output> INSTALL_DESTINATION <path> [PATH_VARS ...] [NO_SET_AND_CHECK_MACRO] [NO_CHECK_REQUIRED_COMPONENTS_MACRO] [INSTALL_PREFIX <path>])
+# Source: https://cmake.org/cmake/help/latest/module/FetchContent.html
+FIND_PACKAGE_ARGS (3.24+); FETCHCONTENT_TRY_FIND_PACKAGE_MODE OPT_IN|ALWAYS|NEVER (3.24+); SYSTEM (3.25+); EXCLUDE_FROM_ALL (3.28+); OVERRIDE_FIND_PACKAGE
+FetchContent_Populate() single-arg form deprecated in 3.30 (policy CMP0169)
+# Source: https://cmake.org/cmake/help/latest/release/4.0.html
+"Compatibility with versions of CMake older than 3.5 has been removed. Calls to cmake_minimum_required() or cmake_policy() that set the policy version to an older value now issue an error."
+CMAKE_POLICY_VERSION_MINIMUM added to help configure unmaintained projects. <min>...<max> syntax still supported.
+# Source: https://cmake.org/cmake/help/latest/variable/PROJECT_IS_TOP_LEVEL.html
+Added in 3.21. "A boolean variable indicating whether the most recently called project() command in the current scope or above was in the top level CMakeLists.txt file."
+# Source: https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html
+Schema versions: 1(3.19) 2(3.20) 3(3.21) 4(3.23) 5(3.24) 6(3.25, workflow+package presets) 7(3.27) 8(3.28) 9(3.30) 10(3.31) 11(4.3) 12(4.4)
+# Source: https://cmake.org/cmake/help/latest/command/install.html
+install(TARGETS ... FILE_SET HEADERS ...): "If EXPORT is used and the targets include PUBLIC or INTERFACE file sets, all of them must be specified with FILE_SET arguments."
+install(PACKAGE_INFO) generating Common Package Specification (.cps) files - added in 4.3 (per fetched page)
+# Verified by curl+grep of https://cmake.org/cmake/help/latest/module/CMakePackageConfigHelpers.html (2026-09-27):
+"Added in version 4.4: The SamePatchVersion, SameFullVersion, and SemanticVersion ..." ; "Deprecated since version 4.4: The ExactVersion compatibility mode. Use SamePatchVersion or ..."
+# Verified install.html: "install(PACKAGE_INFO <package-name> EXPORT <export-name> ..." "The PACKAGE_INFO form generates and installs a Common Package Specification file"
+# Source: https://cmake.org/cmake/help/latest/cpack_gen/deb.html
+CPACK_DEBIAN_PACKAGE_MAINTAINER (defaults to CPACK_PACKAGE_CONTACT); CPACK_DEBIAN_FILE_NAME DEB-DEFAULT -> <PackageName>_<VersionNumber>-<DebianRevisionNumber>_<DebianArchitecture>.deb; CPACK_DEBIAN_PACKAGE_SHLIBDEPS uses dpkg-shlibdeps; CPACK_DEB_COMPONENT_INSTALL
+# PyPI (2026-09-27): cmake 4.4.3, conan 2.32.0, gcovr 8.6, clang-format 23.1.1, clang-tidy 22.1.8, towncrier 26.9.0, scriv 1.8.0, ninja 1.13.2

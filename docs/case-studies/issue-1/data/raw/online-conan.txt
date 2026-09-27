@@ -1,0 +1,12 @@
+# Source: GitHub API conan-io/conan releases (2026-09-27): 2.32.0 (2026-08-31), 2.31.2 (2026-08-04), 2.31.1 (2026-07-24); last 1.x: 1.66.0 (2024-12-02)
+# 2.32.0 notes (https://github.com/conan-io/conan/releases): "basic LoongArch64 architecture support and host detection"; Xcode 26.6 and GCC 16.2 settings
+# Source: https://blog.conan.io/2024/09/30/Conan-Center-will-stop-receiving-updates-for-Conan-1.html
+# and https://github.com/conan-io/conan-center-index/discussions/25461
+From November 4, 2024, ConanCenter recipe updates only compatible with Conan 2; no new recipe revisions/versions/recipes visible to Conan 1.x clients; existing Conan 1 packages stay accessible. (~97% recipes were Conan 2 compatible at announcement.)
+# Source: https://docs.conan.io/2/tutorial/creating_packages/other_types_of_packages/header_only_packages.html
+package_type = "header-library"; no_copy_source = True ("a typical optimization for header-only libraries to avoid extra copies")
+"for header-only packages, libdirs and bindirs are not used so it's necessary to set those as empty" -> self.cpp_info.bindirs = []; self.cpp_info.libdirs = []
+package_id(): self.info.clear() -> removes settings/options/requirements from package_id => single binary; test_requires for gtest; `conan create .` runs test_package
+# Source: https://github.com/conan-io/conan-center-index/blob/master/docs/adding_packages/README.md
+Sign CLA (cla-assistant); copy template from docs/package_templates/ into recipes/<name>/; files: config.yml, all/conanfile.py, all/conandata.yml, all/test_package/
+"recipes should always match upstream ... what the original author(s) intended"; CI builds 30+ configurations; merged packages published to ConanCenter (JFrog).
