@@ -74,7 +74,19 @@ jobs:
         with:
           persist-credentials: false
 
+      # The review needs the dependency graph, a repository setting that a
+      # repository created from this template starts without; skip with a
+      # warning instead of failing every pull request until it is enabled.
+      - name: Check that the dependency graph is enabled
+        id: graph
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: bash scripts/check-dependency-review-support.sh
+
       - name: Review dependency changes
+        if: steps.graph.outputs.supported == 'true'
         uses: actions/dependency-review-action@v5
         with:
           fail-on-severity: high

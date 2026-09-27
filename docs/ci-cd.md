@@ -128,8 +128,10 @@ Locally: `doxygen Doxyfile` (output in `docs/api/`), or build the
 | `workflows.yml` (**Workflows**) | workflow changes | actionlint and zizmor. |
 
 The dependency review needs the dependency graph: enable it in Settings →
-Advanced Security → **Dependency graph**, otherwise the job fails with
-"Dependency review is not supported on this repository".
+Advanced Security → **Dependency graph**. Until then
+`scripts/check-dependency-review-support.sh` sees the API refuse the
+comparison (HTTP 403) and the job skips the review with a
+"Dependency review skipped" warning instead of failing every pull request.
 
 ## Variables and secrets
 
