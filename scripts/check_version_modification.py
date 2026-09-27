@@ -26,10 +26,7 @@ def version_at(ref: str, path: str, reader) -> Optional[str]:
 
 
 def _cmake_version(text: str) -> Optional[str]:
-    import re
-
-    match = re.search(r"\bproject\s*\([^)]*?\bVERSION\s+(\d+\.\d+\.\d+)", text, re.IGNORECASE | re.DOTALL)
-    return match.group(1) if match else None
+    return cp.project_version_from_text(text)
 
 
 def _vcpkg_version(text: str) -> Optional[str]:

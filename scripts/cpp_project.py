@@ -130,12 +130,21 @@ def read_project_name(cmake_file: PathLike) -> str:
     return name
 
 
-def read_project_version(cmake_file: PathLike) -> str:
-    _, body = _project_body(Path(cmake_file).read_text(encoding="utf-8"))
+def project_version_from_text(text: str) -> Optional[str]:
+    """Return the project() VERSION of CMakeLists.txt ``text`` (None if absent)."""
+    try:
+        _, body = _project_body(text)
+    except ValueError:
+        return None
     match = _VERSION_IN_PROJECT_RE.search(body)
-    if not match:
+    return match.group(2) if match else None
+
+
+def read_project_version(cmake_file: PathLike) -> str:
+    version = project_version_from_text(Path(cmake_file).read_text(encoding="utf-8"))
+    if version is None:
         raise ValueError(f"{cmake_file}: project() has no VERSION X.Y.Z")
-    return match.group(2)
+    return version
 
 
 def read_project_field(cmake_file: PathLike, field: str) -> str:
