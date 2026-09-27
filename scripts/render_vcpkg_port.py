@@ -29,7 +29,6 @@ from typing import Dict
 
 import cpp_project as cp
 
-TEMPLATE_DIR = Path(__file__).resolve().parent.parent / "packaging" / "vcpkg"
 TEMPLATES = {"portfile.cmake.in": "portfile.cmake", "vcpkg.json.in": "vcpkg.json", "usage.in": "usage"}
 
 
@@ -109,8 +108,9 @@ def render_port(layout: cp.CppLayout, out_dir: Path, version: str, step: str) ->
     values = substitutions(layout, version, step)
     port_dir = out_dir / values["PORT_NAME"]
     port_dir.mkdir(parents=True, exist_ok=True)
+    template_dir = layout.packaging_dir("vcpkg")
     for source, target in TEMPLATES.items():
-        text = render((TEMPLATE_DIR / source).read_text(encoding="utf-8"), values)
+        text = render((template_dir / source).read_text(encoding="utf-8"), values)
         (port_dir / target).write_text(text, encoding="utf-8")
     json.loads((port_dir / "vcpkg.json").read_text(encoding="utf-8"))
     return port_dir

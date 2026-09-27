@@ -35,6 +35,15 @@ def test_cpp_root_override(make_repo, monkeypatch) -> None:
         cp.detect_layout(repo.path)
 
 
+def test_packaging_templates_of_the_cpp_project_come_first(make_repo) -> None:
+    repo = make_repo(multi=True)
+    layout = cp.detect_layout(repo.path)
+    assert layout.packaging_dir("vcpkg") == repo.path / "cpp" / "packaging" / "vcpkg"
+    # A multi-language repository may keep packaging/ next to scripts/.
+    (repo.path / "cpp" / "packaging").rename(repo.path / "packaging")
+    assert layout.packaging_dir("nuget") == repo.path / "packaging" / "nuget"
+
+
 def test_missing_project_is_reported(tmp_path) -> None:
     with pytest.raises(FileNotFoundError, match="set CPP_ROOT"):
         cp.detect_layout(tmp_path, cpp_root="")

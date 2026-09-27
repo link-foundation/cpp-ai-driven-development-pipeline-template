@@ -35,7 +35,6 @@ from xml.sax.saxutils import escape
 
 import cpp_project as cp
 
-TEMPLATE_DIR = Path(__file__).resolve().parent.parent / "packaging" / "nuget"
 HEADER_SUFFIXES = {".h", ".hh", ".hpp", ".hxx", ".h++", ".ipp", ".inl", ".tpp"}
 NUGET_ID_RE = re.compile(r"^[A-Za-z0-9_][A-Za-z0-9_.-]{0,99}$")
 
@@ -118,7 +117,8 @@ def pack(layout: cp.CppLayout, out_dir: Path, values: Dict[str, str]) -> Path:
     files: List[Tuple[str, bytes]] = []
     for path, target in collect_headers(layout.root / "include"):
         files.append((target, path.read_bytes()))
-    targets = render((TEMPLATE_DIR / "package.targets.in").read_text(encoding="utf-8"), values)
+    template_dir = layout.packaging_dir("nuget")
+    targets = render((template_dir / "package.targets.in").read_text(encoding="utf-8"), values)
     files.append((f"build/native/{values['ID']}.targets", targets.encode("utf-8")))
     for name in ("README.md", "LICENSE"):
         source = layout.root / name
@@ -128,7 +128,7 @@ def pack(layout: cp.CppLayout, out_dir: Path, values: Dict[str, str]) -> Path:
             files.append((name, source.read_bytes()))
 
     nuspec_name = f"{values['ID']}.nuspec"
-    nuspec = render((TEMPLATE_DIR / "package.nuspec.in").read_text(encoding="utf-8"), values)
+    nuspec = render((template_dir / "package.nuspec.in").read_text(encoding="utf-8"), values)
     if not any(target == "README.md" for target, _ in files):
         nuspec = nuspec.replace("    <readme>README.md</readme>\n", "")
     psmdcp_hash = hashlib.sha256(f"{values['ID']}{values['VERSION']}".encode()).hexdigest()[:32]

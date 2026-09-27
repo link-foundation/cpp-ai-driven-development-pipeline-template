@@ -68,6 +68,16 @@ class CppLayout:
     def changelog_dir(self) -> Path:
         return self.root / CHANGELOG_DIR
 
+    def packaging_dir(self, channel: str) -> Path:
+        """``packaging/<channel>`` of the C++ project, else of the repository.
+
+        The templates normally move into ``cpp/`` with the rest of the C++
+        project; a multi-language repository may also keep ``packaging/`` at
+        the root next to the shared ``scripts/``.
+        """
+        own = self.root / "packaging" / channel
+        return own if own.is_dir() else self.repository_root / "packaging" / channel
+
     def relative(self, path: PathLike) -> str:
         """Return ``path`` relative to the repository root, POSIX style."""
         try:

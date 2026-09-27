@@ -39,9 +39,7 @@ def publisher(make_repo, tmp_path):
         scripts.mkdir()
         for script in [*SCRIPTS_DIR.glob("*.py"), SCRIPTS_DIR / "publish-release.sh"]:
             shutil.copy2(script, scripts / script.name)
-        # The packaging templates sit next to scripts/ (repository root), as here.
-        shutil.copytree(SCRIPTS_DIR.parent / "packaging", repo.path / "packaging")
-        (repo.path / ".git" / "info" / "exclude").write_text("scripts/\npackaging/\ndist/\n")
+        (repo.path / ".git" / "info" / "exclude").write_text("scripts/\ndist/\n")
 
         def run(**env: str):
             log.write_text("")

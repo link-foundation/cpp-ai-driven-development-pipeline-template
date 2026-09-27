@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import json
 import os
+import shutil
 import subprocess
 import sys
 from dataclasses import dataclass
@@ -23,6 +24,7 @@ from typing import Dict, Optional
 import pytest
 
 SCRIPTS_DIR = Path(__file__).resolve().parents[1]
+TEMPLATE_ROOT = SCRIPTS_DIR.parent
 if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
@@ -123,6 +125,8 @@ def make_repo(tmp_path, git_env, monkeypatch):
             target = path / (relative if relative in ("LICENSE",) and multi else prefix + relative)
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(text, encoding="utf-8")
+        # The real port and NuGet templates, where a C++ project keeps them.
+        shutil.copytree(TEMPLATE_ROOT / "packaging", path / prefix / "packaging")
         if multi:
             (path / "rust").mkdir()
             (path / "rust" / "Cargo.toml").write_text("[package]\nname = \"x\"\n", encoding="utf-8")
