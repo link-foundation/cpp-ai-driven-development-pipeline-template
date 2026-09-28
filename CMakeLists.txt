@@ -6,7 +6,7 @@ cmake_minimum_required(VERSION 3.21)
 # changelog fragments in changelog.d/ (see CONTRIBUTING.md).
 project(
     my_package
-    VERSION 0.1.0
+    VERSION 0.2.0
     DESCRIPTION "Example header-only C++ library of the AI-driven development pipeline template"
     HOMEPAGE_URL "https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template"
     LANGUAGES CXX

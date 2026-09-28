@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "name": "my-package",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Example header-only C++ library of the AI-driven development pipeline template",
   "homepage": "https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template",
   "license": "Unlicense",
