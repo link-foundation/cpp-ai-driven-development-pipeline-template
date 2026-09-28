@@ -1,0 +1,17 @@
+on:
+  workflow_call:
+    outputs:
+      name:
+        description: "The conan package name"
+        value: ${{ jobs.get_conan_package_info.outputs.name }}
+        
+jobs:
+  get_conan_package_info:
+    runs-on: ubuntu-latest
+    outputs: 
+      name: ${{ steps.get_name.outputs.name }}
+    steps:
+      - name: Get name
+        id: get_name
+        run: |
+          echo "name=platform.$(echo ${{ github.event.repository.name }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT

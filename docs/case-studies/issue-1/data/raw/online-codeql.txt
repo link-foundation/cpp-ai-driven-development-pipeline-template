@@ -1,0 +1,8 @@
+# Source: https://github.blog/changelog/2025-10-14-codeql-scanning-rust-and-c-c-without-builds-is-now-generally-available/
+C/C++ build-mode none GA (CodeQL 2.23.3, Oct 2025); public preview since 2025-06-03 (https://github.blog/changelog/2025-06-03-codeql-can-be-enabled-at-scale-on-c-c-repositories-in-public-preview-using-build-free-scanning/)
+"over 10,000 repositories were enabled with a success rate of over 70%"; default setup uses build mode none for newly configured repos; GHES 3.20+
+# Source: https://docs.github.com/en/code-security/reference/code-scanning/codeql/build-options-for-compiled-languages
+C/C++ supports "none", "autobuild" or "manual". none: infers compilation units from extensions, deduces flags/include paths; may be less precise with custom macros / many external deps.
+# Source: https://github.blog/changelog/2025-10-28-upcoming-deprecation-of-codeql-action-v3/
+CodeQL Action v4 released 2025-10-07 (Node.js 24). "In December 2026, CodeQL Action v3 will be officially deprecated"
+# GitHub API: github/codeql-action v4.38.2 (2026-09-24), v3.38.2 (2026-09-24), codeql-bundle-v2.27.1 (2026-09-22)

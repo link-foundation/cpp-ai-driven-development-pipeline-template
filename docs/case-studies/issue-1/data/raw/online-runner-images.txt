@@ -1,0 +1,29 @@
+# Source: https://github.com/actions/runner-images (README, fetched 2026-09-27)
+ubuntu-latest / ubuntu-24.04 -> Ubuntu 24.04 x64; ubuntu-26.04; ubuntu-26.04-arm; ubuntu-24.04-arm; ubuntu-22.04; ubuntu-22.04-arm; ubuntu-slim
+windows-latest / windows-2025 / windows-2025-vs2026 -> Windows Server 2025; windows-2022; windows-11-arm; windows-11-vs2026-arm
+macos-latest / macos-26 / macos-26-xlarge -> macOS 26 Arm64; macos-26-intel / macos-26-large / macos-latest-large -> macOS 26 x64
+macos-15 / macos-15-xlarge -> macOS 15 Arm64; macos-15-intel / macos-15-large -> x64; macos-14 deprecated (issue #13518)
+
+# Source: https://raw.githubusercontent.com/actions/runner-images/main/images/ubuntu/Ubuntu2404-Readme.md
+Image Version: 20260920.314.1
+GNU C++: 12.4.0, 13.3.0, 14.2.0 ; Clang: 16.0.6, 17.0.6, 18.1.3 ; clang-format/clang-tidy: 16.0.6, 17.0.6, 18.1.3
+CMake 3.31.6 ; Ninja 1.13.2 ; Vcpkg (build from commit 5f96cd15fd) ; Python 3.12.3 ; Doxygen/Conan/cppcheck/gcovr not listed
+
+# Source: .../images/ubuntu/Ubuntu2604-Readme.md
+Image Version: 20260920.143.1
+GNU C++: 13.4.0, 14.3.0, 15.2.0 ; Clang: 20.1.8, 21.1.8, 22.1.2 ; clang-format/clang-tidy: 20.1.8, 21.1.8, 22.1.2
+CMake 4.4.3 ; Ninja 1.13.2 ; Python 3.14.4
+
+# Source: .../images/windows/Windows2025-Readme.md
+Image Version: 20260922.270.2
+Visual Studio Enterprise 2022 17.14.37710.0 ; VC++ runtime 14.51.36247 ; LLVM 20.1.8 ; gcc 15.2.0 (MinGW)
+CMake 3.31.6 ; Ninja 1.13.2 ; Vcpkg (build from commit 68112cf89d)
+(label windows-2025-vs2026 exists for Visual Studio 2026 variant)
+
+# Source: .../images/macos/macos-15-arm64-Readme.md
+Image Version: 20260907.0337.1 ; Xcode 16.4 (default) ; Apple Clang 17.0.0 ; Homebrew LLVM 18.1.8
+GCC 13.4.0 / 14.4.0 / 15.3.0 (Homebrew) ; CMake 3.31.5 and 4.1.2 ; Ninja 1.13.2
+
+# Source: .../images/macos/macos-26-arm64-Readme.md
+Image Version: 20260907.0351.1 ; Xcode 26.6 (default, build 17F113) ; Apple Clang 21.0.0 ; Homebrew LLVM 20.1.8
+GCC 13.4.0 / 14.4.0 / 15.3.0 ; CMake 3.31.5 and 4.1.2

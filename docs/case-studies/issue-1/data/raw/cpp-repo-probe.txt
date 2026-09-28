@@ -1,0 +1,29 @@
+Interfaces|.clang-format,.github,.gitignore,.gitmodules,.gitpod.yml,LICENSE,MIGRATION_SUMMARY.md,README.md,Scripts,Settings,convert-nuget-to-dotnet.mjs,cpp,csharp,docs,examples,experiments|AutoMerge.yml,codeql.yml,cpp-docs.yml,cpp-test.yml,csharp.yml,deploy-cpp.yml,readme-badges.yml
+Comparisons.PostgreSQLVSDoublets|.github,.gitignore,.gitmodules,Docs,LICENSE,README.md,cpp,docs,rust-toolchain.toml,rust,rustfmt.toml|cpp.yml,rust.yml
+Data.Doublets|.github,.gitignore,.gitmodules,.gitpod.yml,LICENSE,README.md,README.ru.md,c,cpp,csharp,publish-bin.sh,rust|AutoMerge.yml,cpp-test.yml,csharp.yml,deploy-cpp.yml
+Numbers|.codacy.yml,.github,.gitignore,.gitpod.yml,.markdownlint.json,.pre-commit-config.yaml,CHANGELOG.md,CONTRIBUTING.md,LICENSE,README.md,changelog.d,cpp,csharp,docs,experiments,rust,scripts|AutoMerge.yml,cpp-test.yml,csharp.yml,deploy-cpp.yml,rust.yml
+Disposables|.github,.gitignore,.gitmodules,.vscode,LICENSE,README.md,README.ru.md,cpp,csharp|AutoMerge.yml,cpp.yml,csharp.yml
+Collections|.github,.gitignore,.gitmodules,.vscode,LICENSE,README.md,Settings,conan-center-index,cpp,csharp|AutoMerge.yml,cpp-test.yml,csharp.yml,deploy-cpp.yml
+Random|.github,.gitignore,.gitmodules,.vscode,LICENSE,README.md,cpp,csharp|AutoMerge.yml,cpp-test.yml,csharp.yml,deploy-cpp.yml
+Exceptions|.github,.gitignore,.gitmodules,LICENSE,README.md,cpp,csharp|AutoMerge.yml,cpp-test.yml,csharp.yml,deploy-cpp.yml
+Threading|.github,.gitignore,LICENSE,Platform.Threading.csproj,README.md,cpp,csharp|AutoMerge.yml,cpp-test.yml,csharp.yml,deploy-cpp.yml
+IO|.github,.gitignore,LICENSE,README.md,cpp,csharp|AutoMerge.yml,cpp-test.yml,csharp.yml,deploy-cpp.yml
+Memory|.github,.gitignore,.gitmodules,LICENSE,README.md,cpp,csharp,rust|AutoMerge.yml,cpp-test.yml,csharp.yml,deploy-cpp.yml
+Ranges|.github,.gitignore,.gitmodules,LICENSE,README.md,cpp,csharp|AutoMerge.yml,cpp-test.yml,csharp.yml,deploy-cpp.yml
+Timestamps|.github,.gitignore,.gitmodules,.vscode,LICENSE,README.md,cpp,csharp|AutoMerge.yml,cpp-test.yml,csharp.yml,deploy-cpp.yml
+Converters|.github,.gitignore,.vscode,LICENSE,README.md,cpp,csharp|AutoMerge.yml,cpp-test.yml,csharp.yml,deploy-cpp.yml
+Collections.Methods|.github,.gitignore,.gitmodules,.gitpod.yml,LICENSE,README.md,cpp,csharp,rust|AutoMerge.yml,cpp-test.yml,csharp.yml,deploy-cpp.yml
+Data|.github,.gitignore,.gitmodules,LICENSE,README.md,cpp,csharp,rust|AutoMerge.yml,cpp-test.yml,csharp.yml,deploy-cpp.yml
+Singletons|.github,.gitignore,.vscode,LICENSE,README.md,cpp,csharp|AutoMerge.yml,cpp.yml,csharp.yml
+Data.Doublets.Sequences|.github,.gitignore,.gitpod.yml,LICENSE,README.md,cpp,csharp|AutoMerge.yml,cpp.yml,csharp.yml
+Data.Triplets.Kernel|.github,.gitignore,LICENSE,NuGetPackageSource,Platform.Data.Triplets.Kernel.Tests,Platform.Data.Triplets.Kernel.sln,Platform.Data.Triplets.Kernel,README.md,publish-binaries.sh|AutoMerge.yml
+Setters|.github,.gitignore,.gitmodules,.vscode,LICENSE,README.md,cpp,csharp|AutoMerge.yml,cpp-test.yml,csharp.yml,deploy-cpp.yml
+Incrementers|.github,.gitignore,LICENSE,README.md,cpp,csharp|AutoMerge.yml,cpp.yml,csharp.yml
+RawDoubletsViewer|.gitignore,LICENSE,README.md,winapi|{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/contents#get-repository-content","status":"404"}
+Hashing|.github,.gitignore,.gitmodules,LICENSE,Platform.Hashing.sln,README.md,cpp|AutoMerge.yml,cpp-test.yml,deploy-cpp.yml
+Delegates|.github,.gitignore,LICENSE,NuGet.Config,README.md,cpp,csharp|cpp-test.yml,csharp.yml,deploy-cpp.yml
+Equality|.github,.gitignore,LICENSE,README.md,cpp|AutoMerge.yml,cpp-test.yml,deploy-cpp.yml
+conan-center-index|.c3i,.editorconfig,.gitattributes,.github,.gitignore,CONTRIBUTING.md,LICENSE,README.md,assets,docs,linter,recipes|alert-community.yml,hooks-warnings.yml,linter-conan-v2.yml,linter-yaml.yml,markdown-links.yml,mlc_config.json,on-push-do-doco.yml
+IdClient|.gitignore,Client.c,Common.h,IdClient.sln,IdClient.vcxproj,IdClient.vcxproj.filters,LICENSE,README.md,build-linux-gcc.sh,build-linux-mingw32-i586.sh,build.bat|{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/contents#get-repository-content","status":"404"}
+IdDistributorServer|.gitignore,Common.h,IdDistributorServer.sln,IdDistributorServer.vcxproj,IdDistributorServer.vcxproj.filters,LICENSE,README.md,Server.c,build-linux-gcc.sh,build-linux-mingw32-i586.sh,build.bat|{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/contents#get-repository-content","status":"404"}
+java2cpp|.gitignore,LICENSE,README.md,java2cpp,setup.py,test.cpp,test.java,test.py|{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/contents#get-repository-content","status":"404"}

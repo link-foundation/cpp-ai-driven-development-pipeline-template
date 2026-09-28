@@ -1,0 +1,322 @@
+## js/example-app.yml name='Example app'
+   triggers=['pull_request', 'push', 'workflow_dispatch']
+     pull_request: {'types': ['opened', 'synchronize', 'reopened'], 'paths': ['examples/universal-app/**', 'src/**', 'package.json', 'package-lock.json', 'scripts/update-preview-images.mjs', '.github/workflows/example-app.yml']}
+     push: {'branches': ['main'], 'paths': ['examples/universal-app/**', 'src/**', 'package.json', 'package-lock.json', 'scripts/update-preview-images.mjs', '.github/workflows/example-app.yml']}
+   concurrency=None
+   top-permissions={'contents': 'read'}
+   job web-build: name='Build web app' needs=None runs-on=ubuntu-24.04 if='None' perms=None strategy= uses=None
+   job pages-deploy: name='Deploy GitHub Pages' needs=['web-build'] runs-on=ubuntu-24.04 if="github.event_name == 'push' && github.ref == 'refs/heads/main'" perms={'pages': 'write', 'id-token': 'write'} strategy= uses=None
+   job desktop-package: name='Package desktop app (${{ matrix.os }})' needs=None runs-on=${{ matrix.os }} if='None' perms=None strategy=matrix uses=None
+   job android-build: name='Build Android app' needs=None runs-on=ubuntu-24.04 if="github.event_name == 'workflow_dispatch' && vars.EXAMPLE_APP_ENABLE_ANDROID_BUILD == 'true'" perms=None strategy= uses=None
+   job ios-build: name='Build iOS app' needs=None runs-on=macos-latest if="github.event_name == 'workflow_dispatch' && vars.EXAMPLE_APP_ENABLE_IOS_BUILD == 'true'" perms=None strategy= uses=None
+   job preview-regen: name='Regenerate Preview Images' needs=None runs-on=ubuntu-24.04 if="(github.event_name == 'push' && github.ref == 'refs/heads/main') ||\ngithub.event_name == 'workflow_dispatch'\n" perms={'contents': 'write'} strategy= uses=None
+   job pipeline-status: name='Pipeline Status' needs=['web-build', 'pages-deploy', 'desktop-package', 'android-build', 'ios-build', 'preview-regen'] runs-on=ubuntu-24.04 if='!cancelled()' perms=None strategy= uses=None
+## js/links.yml name='Broken Link Checker'
+   triggers=['push', 'pull_request', 'workflow_dispatch']
+     push: {'branches': ['main'], 'paths': ['**.md', '**.html', '.github/workflows/links.yml', '.lycheeignore', 'scripts/check-web-archive.mjs', 'scripts/recheck-broken-links.mjs', 'tests/fixtures/lychee-report.md', 'tests/links-workflow.test.js', 'tests/recheck-broken-links.test.js']}
+     pull_request: {'types': ['opened', 'synchronize', 'reopened'], 'paths': ['**.md', '**.html', '.github/workflows/links.yml', '.lycheeignore', 'scripts/check-web-archive.mjs', 'scripts/recheck-broken-links.mjs', 'tests/fixtures/lychee-report.md', 'tests/links-workflow.test.js', 'tests/recheck-broken-links.test.js']}
+   concurrency=None
+   top-permissions={'contents': 'read'}
+   job link-checker: name='Check Links' needs=None runs-on=ubuntu-24.04 if='None' perms={'contents': 'read'} strategy= uses=None
+   job pipeline-status: name='Pipeline Status' needs=['link-checker'] runs-on=ubuntu-24.04 if='!cancelled()' perms=None strategy= uses=None
+## js/release.yml name='Checks and release'
+   triggers=['push', 'pull_request', 'workflow_dispatch']
+     push: {'branches': ['main']}
+     pull_request: {'types': ['opened', 'synchronize', 'reopened']}
+     workflow_dispatch: {'inputs': ['release_mode', 'bump_type', 'description']}
+   concurrency=None
+   top-permissions={'contents': 'read'}
+   job detect-changes: name='Detect Changes' needs=None runs-on=ubuntu-24.04 if="github.event_name != 'workflow_dispatch'" perms={'contents': 'read', 'actions': 'read'} strategy= uses=None
+   job test-compilation: name='Test Compilation' needs=['detect-changes'] runs-on=ubuntu-24.04 if="needs.detect-changes.outputs.js-changed == 'true'\n" perms=None strategy= uses=None
+   job check-file-line-limits: name='Check File Line Limits' needs=['detect-changes'] runs-on=ubuntu-24.04 if="needs.detect-changes.outputs.docs-changed == 'true' ||\nneeds.detect-changes.outputs.any-code-changed == 'true'\n" perms=None strategy= uses=None
+   job version-check: name='Check for Manual Version Changes' needs=None runs-on=ubuntu-24.04 if="github.event_name == 'pull_request'" perms=None strategy= uses=None
+   job changeset-check: name='Check for Changesets' needs=['detect-changes'] runs-on=ubuntu-24.04 if="github.event_name == 'pull_request' && needs.detect-changes.outputs.any-code-changed == 'true'" perms=None strategy= uses=None
+   job lint: name='Lint and Format Check' needs=['detect-changes'] runs-on=ubuntu-24.04 if="!cancelled() &&\n(\n  github.event_name == 'workflow_dispatch' ||\n  needs.detect-changes.outputs.docs-changed == 'true' ||\n  needs.detect-changes.outputs.any-code" perms=None strategy= uses=None
+   job test: name='Test (${{ matrix.runtime }} on ${{ matrix.os }})' needs=['detect-changes', 'changeset-check', 'test-compilation', 'lint', 'check-file-line-limits'] runs-on=${{ matrix.os }} if="!cancelled() &&\n(\n  needs.detect-changes.outputs.any-code-changed == 'true' ||\n  (\n    github.event_name == 'workflow_dispatch' &&\n    github.event.inputs.relea" perms=None strategy=matrix uses=None
+   job docker-build: name='Docker Image Build Check' needs=['detect-changes'] runs-on=ubuntu-24.04 if="github.event_name == 'pull_request' && needs.detect-changes.outputs.any-code-changed == 'true'" perms={'contents': 'read'} strategy= uses=None
+   job validate-docs: name='Validate Documentation' needs=['detect-changes'] runs-on=ubuntu-24.04 if="needs.detect-changes.outputs.docs-changed == 'true'\n" perms=None strategy= uses=None
+   job release-preflight: name='Release Preflight' needs=None runs-on=ubuntu-24.04 if='None' perms={'contents': 'read', 'id-token': 'write'} strategy= uses=None
+   job release: name='Release' needs=['lint', 'test', 'release-preflight'] runs-on=ubuntu-24.04 if="!cancelled() &&\ngithub.ref == 'refs/heads/main' &&\ngithub.event_name == 'push' &&\nneeds.release-preflight.result == 'success' &&\nneeds.lint.result == 'success' " perms={'contents': 'write', 'id-token': 'write'} strategy= uses=None
+   job instant-release: name='Instant Release' needs=['lint', 'test', 'release-preflight'] runs-on=ubuntu-24.04 if="!cancelled() &&\ngithub.event_name == 'workflow_dispatch' &&\ngithub.event.inputs.release_mode == 'instant' &&\nneeds.release-preflight.result == 'success' &&\nneed" perms={'contents': 'write', 'id-token': 'write'} strategy= uses=None
+   job docker-publish-config: name='Configure Docker Hub Publish' needs=['release', 'instant-release', 'release-preflight'] runs-on=ubuntu-24.04 if="!cancelled() &&\nneeds.release-preflight.result == 'success' &&\n(\n  (needs.release.result == 'success' && needs.release.outputs.published == 'true') ||\n  (needs." perms={'contents': 'read'} strategy= uses=None
+   job docker-publish-build: name='Build Docker Image (${{ matrix.platform }})' needs=['docker-publish-config'] runs-on=${{ matrix.runner }} if="needs.docker-publish-config.outputs.enabled == 'true'" perms={'contents': 'read'} strategy=matrix uses=None
+   job docker-publish: name='Optional Docker Hub Publish' needs=['docker-publish-config', 'docker-publish-build'] runs-on=ubuntu-24.04 if="needs.docker-publish-build.result == 'success'" perms={'contents': 'read'} strategy= uses=None
+   job changeset-pr: name='Create Changeset PR' needs=['lint'] runs-on=ubuntu-24.04 if="!cancelled() &&\ngithub.event_name == 'workflow_dispatch' &&\ngithub.event.inputs.release_mode == 'changeset-pr' &&\nneeds.lint.result == 'success'\n" perms={'contents': 'read'} strategy= uses=None
+   job pipeline-status: name='Pipeline Status' needs=['detect-changes', 'test-compilation', 'check-file-line-limits', 'version-check', 'changeset-check', 'lint', 'test', 'docker-build', 'docker-publish-config', 'docker-publish-build', 'validate-docs', 'release-preflight', 'release', 'instant-release', 'docker-publish', 'changeset-pr'] runs-on=ubuntu-24.04 if='!cancelled()' perms=None strategy= uses=None
+## js/security.yml name='Security'
+   triggers=['push', 'pull_request', 'schedule', 'workflow_dispatch']
+     push: {'branches': ['main']}
+     pull_request: {'types': ['opened', 'synchronize', 'reopened']}
+   concurrency=None
+   top-permissions={'contents': 'read'}
+   job codeql: name='CodeQL (${{ matrix.language }})' needs=None runs-on=ubuntu-24.04 if='None' perms={'actions': 'read', 'contents': 'read', 'security-events': 'write'} strategy=matrix uses=None
+   job dependency-review: name='Dependency Review' needs=None runs-on=ubuntu-24.04 if="github.event_name == 'pull_request'" perms={'contents': 'read', 'pull-requests': 'write'} strategy= uses=None
+   job npm-audit: name='Audit npm lock (${{ matrix.directory }})' needs=None runs-on=ubuntu-24.04 if='None' perms=None strategy=matrix uses=None
+   job pipeline-status: name='Pipeline Status' needs=['codeql', 'dependency-review', 'npm-audit'] runs-on=ubuntu-24.04 if='!cancelled()' perms=None strategy= uses=None
+## js/workflows.yml name='Workflows'
+   triggers=['push', 'pull_request', 'workflow_dispatch']
+     push: {'branches': ['main'], 'paths': ['.github/workflows/**', '.github/zizmor.yml']}
+     pull_request: {'types': ['opened', 'synchronize', 'reopened'], 'paths': ['.github/workflows/**', '.github/zizmor.yml']}
+   concurrency=None
+   top-permissions={'contents': 'read'}
+   job actionlint: name='actionlint' needs=None runs-on=ubuntu-24.04 if='None' perms=None strategy= uses=None
+   job status-gate-coverage: name='Status Gate Coverage' needs=None runs-on=ubuntu-24.04 if='None' perms=None strategy= uses=None
+   job zizmor: name='zizmor' needs=None runs-on=ubuntu-24.04 if='None' perms=None strategy= uses=None
+   job pipeline-status: name='Pipeline Status' needs=['actionlint', 'status-gate-coverage', 'zizmor'] runs-on=ubuntu-24.04 if='!cancelled()' perms=None strategy= uses=None
+## rust/desktop-release.yml name='Desktop Release'
+   triggers=['pull_request', 'workflow_run', 'workflow_dispatch']
+     pull_request: {'types': ['opened', 'synchronize', 'reopened']}
+     workflow_run: {'workflows': ['CI/CD Pipeline'], 'types': ['completed']}
+     workflow_dispatch: {'inputs': ['tag']}
+   concurrency={'group': "desktop-release-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref }}", 'cancel-in-progress': "${{ github.event_name == 'pull_request' }}"}
+   top-permissions={'contents': 'read'}
+   job resolve: name='Resolve release' needs=None runs-on=ubuntu-latest if="${{ vars.DESKTOP_RELEASE_ENABLED == 'true' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') }}" perms=None strategy= uses=None
+   job build: name='Build ${{ matrix.label }}' needs=resolve runs-on=${{ matrix.runner }} if="${{ !cancelled() && (github.event_name == 'pull_request' || needs.resolve.outputs.should_build == 'true') }}" perms={'contents': 'read'} strategy=matrix uses=None
+   job finalize: name='Publish checksums and provenance' needs=['resolve', 'build'] runs-on=ubuntu-latest if="${{ !cancelled() && github.event_name != 'pull_request' && needs.build.result == 'success' && needs.resolve.outputs.should_build == 'true' }}" perms={'actions': 'read', 'contents': 'write', 'id-token': 'write', 'attestations': 'write'} strategy= uses=None
+   job pipeline-status: name='Pipeline Status' needs=['resolve', 'build', 'finalize'] runs-on=ubuntu-latest if='${{ !cancelled() }}' perms=None strategy= uses=None
+## rust/links.yml name='Broken Link Checker'
+   triggers=['push', 'pull_request', 'workflow_dispatch']
+     push: {'branches': ['main'], 'paths': ['**.md', '**.html', '.github/workflows/links.yml', '.lycheeignore', 'scripts/check-web-archive.mjs', 'scripts/check-web-archive.test.mjs', 'scripts/recheck-broken-links.mjs', 'scripts/recheck-broken-links.test.mjs', 'scripts/fixtures/lychee-report.md']}
+     pull_request: {'types': ['opened', 'synchronize', 'reopened'], 'paths': ['**.md', '**.html', '.github/workflows/links.yml', '.lycheeignore', 'scripts/check-web-archive.mjs', 'scripts/check-web-archive.test.mjs', 'scripts/recheck-broken-links.mjs', 'scripts/recheck-broken-links.test.mjs', 'scripts/fixtures/lychee-report.md']}
+   concurrency=None
+   top-permissions={'contents': 'read'}
+   job link-checker: name='Check Links' needs=None runs-on=ubuntu-latest if='None' perms={'contents': 'read'} strategy= uses=None
+   job pipeline-status: name='Pipeline Status' needs=['link-checker'] runs-on=ubuntu-latest if='${{ !cancelled() }}' perms=None strategy= uses=None
+## rust/release.yml name='CI/CD Pipeline'
+   triggers=['push', 'pull_request', 'workflow_dispatch']
+     push: {'branches': ['main']}
+     pull_request: {'types': ['opened', 'synchronize', 'reopened']}
+     workflow_dispatch: {'inputs': ['release_mode', 'bump_type', 'description']}
+   concurrency=None
+   top-permissions={'contents': 'read'}
+   job detect-changes: name='Detect Changes' needs=None runs-on=ubuntu-latest if="github.event_name != 'workflow_dispatch'" perms=None strategy= uses=None
+   job validate-docs: name='Validate Documentation' needs=['detect-changes'] runs-on=ubuntu-latest if="needs.detect-changes.outputs.docs-changed == 'true'" perms=None strategy= uses=None
+   job release-preflight: name='Release Preflight' needs=None runs-on=ubuntu-latest if='None' perms={'contents': 'read'} strategy= uses=None
+   job changelog: name='Changelog Fragment Check' needs=['detect-changes'] runs-on=ubuntu-latest if="github.event_name == 'pull_request' && needs.detect-changes.outputs.any-code-changed == 'true'" perms=None strategy= uses=None
+   job version-check: name='Version Modification Check' needs=None runs-on=ubuntu-latest if="github.event_name == 'pull_request'" perms=None strategy= uses=None
+   job secrets-scan: name='Secrets Scan' needs=None runs-on=ubuntu-latest if='None' perms=None strategy= uses=None
+   job fresh-merge: name='Fresh Merge Simulation' needs=['detect-changes'] runs-on=ubuntu-latest if="github.event_name == 'pull_request' && needs.detect-changes.outputs.any-code-changed == 'true'" perms=None strategy= uses=None
+   job docker-build: name='Docker Image Build Check' needs=['detect-changes'] runs-on=ubuntu-latest if="github.event_name == 'pull_request' && needs.detect-changes.outputs.any-code-changed == 'true'" perms=None strategy= uses=None
+   job cargo-lock: name='Cargo.lock Guard' needs=['detect-changes'] runs-on=ubuntu-latest if="!cancelled() && (\n  github.event_name == 'workflow_dispatch' ||\n  needs.detect-changes.outputs.rs-changed == 'true' ||\n  needs.detect-changes.outputs.toml-chang" perms=None strategy= uses=None
+   job lint: name='Lint and Format Check' needs=['detect-changes', 'cargo-lock'] runs-on=ubuntu-latest if="!cancelled() && (\n  needs.cargo-lock.result == 'success' && (\n    github.event_name == 'workflow_dispatch' ||\n    needs.detect-changes.outputs.rs-changed == 'tr" perms=None strategy= uses=None
+   job test: name='Test (${{ matrix.os }})' needs=['detect-changes', 'cargo-lock'] runs-on=${{ matrix.os }} if="!cancelled() && (\n  needs.cargo-lock.result == 'success' && (\n    github.event_name == 'workflow_dispatch' ||\n    needs.detect-changes.outputs.any-code-changed " perms=None strategy=matrix uses=None
+   job script-tests: name='Release Script Tests' needs=['detect-changes', 'cargo-lock'] runs-on=ubuntu-latest if="!cancelled() && (\n  needs.cargo-lock.result == 'success' && (\n    github.event_name == 'workflow_dispatch' ||\n    needs.detect-changes.outputs.any-code-changed " perms=None strategy= uses=None
+   job coverage: name='Code Coverage' needs=['detect-changes', 'cargo-lock'] runs-on=ubuntu-latest if="!cancelled() && (\n  needs.cargo-lock.result == 'success' && (\n    github.event_name == 'workflow_dispatch' ||\n    needs.detect-changes.outputs.rs-changed == 'tr" perms=None strategy= uses=None
+   job build: name='Build Package' needs=['lint', 'test', 'script-tests'] runs-on=ubuntu-latest if="${{ !cancelled() && needs.lint.result == 'success' && needs.test.result == 'success' && needs.script-tests.result == 'success' }}" perms=None strategy= uses=None
+   job auto-release: name='Auto Release' needs=['lint', 'test', 'build', 'release-preflight'] runs-on=ubuntu-latest if="!cancelled() &&\ngithub.event_name == 'push' &&\ngithub.ref == 'refs/heads/main' &&\nneeds.release-preflight.result == 'success' &&\nneeds.build.result == 'success'" perms={'contents': 'write'} strategy= uses=None
+   job manual-release: name='Instant Release' needs=['lint', 'test', 'build', 'release-preflight'] runs-on=ubuntu-latest if="!cancelled() &&\ngithub.event_name == 'workflow_dispatch' &&\ngithub.event.inputs.release_mode == 'instant' &&\nneeds.release-preflight.result == 'success' &&\nneed" perms={'contents': 'write'} strategy= uses=None
+   job docker-publish: name='Publish Docker / ${{ matrix.platform }}' needs=['auto-release', 'manual-release', 'release-preflight'] runs-on=${{ matrix.runner }} if="!cancelled() &&\nneeds.release-preflight.result == 'success' &&\n(needs.auto-release.result == 'success' || needs.manual-release.result == 'success') &&\n(needs.au" perms=None strategy=matrix uses=None
+   job docker-merge-manifest: name='Publish Docker manifest' needs=['auto-release', 'manual-release', 'docker-publish', 'release-preflight'] runs-on=ubuntu-latest if="!cancelled() &&\nneeds.release-preflight.result == 'success' &&\nneeds.docker-publish.result == 'success'\n" perms=None strategy= uses=None
+   job changelog-pr: name='Create Changelog PR' needs=None runs-on=ubuntu-latest if="github.event_name == 'workflow_dispatch' && github.event.inputs.release_mode == 'changelog-pr'" perms={'contents': 'write', 'pull-requests': 'write'} strategy= uses=None
+   job deploy-docs: name='Deploy Rust Documentation' needs=['build'] runs-on=ubuntu-latest if="!cancelled() &&\nneeds.build.result == 'success' && (\n  (github.event_name == 'push' && github.ref == 'refs/heads/main') ||\n  (github.event_name == 'workflow_dis" perms={'contents': 'read', 'pages': 'write', 'id-token': 'write'} strategy= uses=None
+   job pipeline-status: name='Pipeline Status' needs=['detect-changes', 'validate-docs', 'release-preflight', 'changelog', 'version-check', 'secrets-scan', 'fresh-merge', 'docker-build', 'cargo-lock', 'lint', 'test', 'script-tests', 'coverage', 'build', 'auto-release', 'manual-release', 'docker-publish', 'docker-merge-manifest', 'changelog-pr', 'deploy-docs'] runs-on=ubuntu-latest if='${{ !cancelled() }}' perms=None strategy= uses=None
+## rust/security.yml name='Security'
+   triggers=['push', 'pull_request', 'schedule']
+     push: {'branches': ['main']}
+   concurrency=None
+   top-permissions={'contents': 'read'}
+   job cargo-audit: name='Cargo audit' needs=None runs-on=ubuntu-latest if='None' perms=None strategy= uses=None
+   job codeql: name='CodeQL (${{ matrix.language }})' needs=None runs-on=ubuntu-latest if='None' perms={'contents': 'read', 'security-events': 'write'} strategy=matrix uses=None
+   job dependency-review: name='Dependency Review' needs=None runs-on=ubuntu-latest if="github.event_name == 'pull_request'" perms={'contents': 'read', 'pull-requests': 'write'} strategy= uses=None
+   job pipeline-status: name='Pipeline Status' needs=['cargo-audit', 'codeql', 'dependency-review'] runs-on=ubuntu-latest if='${{ !cancelled() }}' perms=None strategy= uses=None
+## rust/workflows.yml name='Workflows'
+   triggers=['push', 'pull_request']
+     push: {'branches': ['main'], 'paths': ['.github/**']}
+     pull_request: {'paths': ['.github/**']}
+   concurrency=None
+   top-permissions={'contents': 'read'}
+   job actionlint: name='Actionlint' needs=None runs-on=ubuntu-latest if='None' perms=None strategy= uses=None
+   job zizmor: name='Zizmor' needs=None runs-on=ubuntu-latest if='None' perms={'contents': 'read'} strategy= uses=None
+   job pipeline-status: name='Pipeline Status' needs=['actionlint', 'zizmor'] runs-on=ubuntu-latest if='${{ !cancelled() }}' perms=None strategy= uses=None
+## python/docs.yml name='Docs'
+   triggers=['push', 'pull_request', 'workflow_dispatch']
+     push: {'branches': ['main'], 'paths': ['docs/**', 'src/**', 'pyproject.toml', '.github/workflows/docs.yml']}
+     pull_request: {'types': ['opened', 'synchronize', 'reopened'], 'paths': ['docs/**', 'src/**', 'pyproject.toml', '.github/workflows/docs.yml']}
+   concurrency={'group': '${{ github.workflow }}-${{ github.ref }}', 'cancel-in-progress': "${{ github.ref != 'refs/heads/main' }}"}
+   top-permissions={'contents': 'read'}
+   job build: name='Build docs' needs=None runs-on=ubuntu-latest if='None' perms={'contents': 'read', 'pages': 'write'} strategy= uses=None
+   job deploy: name='Deploy to GitHub Pages' needs=['build'] runs-on=ubuntu-latest if="github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.DEPLOY_GITHUB_PAGES == 'true'" perms={'contents': 'read', 'pages': 'write', 'id-token': 'write'} strategy= uses=None
+   job pipeline-status: name='Pipeline Status' needs=['build', 'deploy'] runs-on=ubuntu-latest if='always()' perms=None strategy= uses=None
+## python/links.yml name='Broken Link Checker'
+   triggers=['push', 'pull_request', 'workflow_dispatch']
+     push: {'branches': ['main'], 'paths': ['**.md', '**.html', '.github/workflows/links.yml', 'scripts/check_web_archive.py', 'scripts/recheck_broken_links.py']}
+     pull_request: {'types': ['opened', 'synchronize', 'reopened'], 'paths': ['**.md', '**.html', '.github/workflows/links.yml', 'scripts/check_web_archive.py', 'scripts/recheck_broken_links.py']}
+   concurrency=None
+   top-permissions={'contents': 'read'}
+   job link-checker: name='Check Links' needs=None runs-on=ubuntu-latest if='None' perms={'contents': 'read'} strategy= uses=None
+   job pipeline-status: name='Pipeline Status' needs=['link-checker'] runs-on=ubuntu-latest if='always()' perms=None strategy= uses=None
+## python/release.yml name='CI/CD Pipeline'
+   triggers=['push', 'pull_request', 'workflow_dispatch']
+     push: {'branches': ['main']}
+     pull_request: {'types': ['opened', 'synchronize', 'reopened']}
+     workflow_dispatch: {'inputs': ['bump_type', 'description']}
+   concurrency=None
+   top-permissions={'contents': 'read'}
+   job detect-changes: name='Detect Changes' needs=None runs-on=ubuntu-latest if="github.event_name != 'workflow_dispatch'" perms=None strategy= uses=None
+   job lint: name='Lint and Format Check' needs=['detect-changes'] runs-on=ubuntu-latest if="!cancelled() && (\n  github.event_name == 'workflow_dispatch' ||\n  needs.detect-changes.outputs.any-code-changed == 'true'\n)\n" perms=None strategy= uses=None
+   job validate-docs: name='Validate Documentation' needs=['detect-changes'] runs-on=ubuntu-latest if="!cancelled() && (\n  github.event_name == 'workflow_dispatch' ||\n  needs.detect-changes.outputs.docs-changed == 'true'\n)\n" perms=None strategy= uses=None
+   job release-preflight: name='Release Preflight (credentials)' needs=None runs-on=ubuntu-latest if='None' perms={'contents': 'read', 'id-token': 'write'} strategy= uses=None
+   job test: name='Test (Python 3.13)' needs=['detect-changes'] runs-on=ubuntu-latest if="!cancelled() && (\n  github.event_name == 'workflow_dispatch' ||\n  needs.detect-changes.outputs.any-code-changed == 'true'\n)\n" perms=None strategy= uses=None
+   job build: name='Build Package' needs=['detect-changes', 'lint', 'test'] runs-on=ubuntu-latest if="!cancelled() && (\n  github.event_name == 'workflow_dispatch' ||\n  needs.detect-changes.outputs.any-code-changed == 'true'\n) && (\n  needs.lint.result == 'success" perms=None strategy= uses=None
+   job changelog: name='Changelog Fragment Check' needs=['detect-changes'] runs-on=ubuntu-latest if="github.event_name == 'pull_request' && needs.detect-changes.outputs.any-code-changed == 'true'" perms=None strategy= uses=None
+   job docker-build: name='Docker Image Build Check' needs=['detect-changes'] runs-on=ubuntu-latest if="github.event_name == 'pull_request' && needs.detect-changes.outputs.any-code-changed == 'true'" perms=None strategy= uses=None
+   job auto-release: name='Auto Release' needs=['lint', 'test', 'build', 'release-preflight'] runs-on=ubuntu-latest if="!cancelled() &&\ngithub.event_name == 'push' && github.ref == 'refs/heads/main' &&\nneeds.lint.result == 'success' &&\nneeds.test.result == 'success' &&\nneeds.buil" perms={'contents': 'write', 'id-token': 'write'} strategy= uses=None
+   job manual-release: name='Manual Release' needs=['lint', 'test', 'build', 'release-preflight'] runs-on=ubuntu-latest if="!cancelled() &&\ngithub.event_name == 'workflow_dispatch' &&\nneeds.lint.result == 'success' &&\nneeds.test.result == 'success' &&\nneeds.build.result == 'success' " perms={'contents': 'write', 'id-token': 'write'} strategy= uses=None
+   job docker-publish-config: name='Configure Docker Hub Publish' needs=['auto-release', 'manual-release', 'release-preflight'] runs-on=ubuntu-latest if="!cancelled() &&\nneeds.release-preflight.result == 'success' && (\n  needs.auto-release.outputs.released == 'true' ||\n  needs.manual-release.outputs.released == '" perms={'contents': 'read'} strategy= uses=None
+   job docker-publish-build: name='Build Docker Image (${{ matrix.platform }})' needs=['docker-publish-config', 'release-preflight'] runs-on=${{ matrix.runner }} if="needs.release-preflight.result == 'success' &&\nneeds.docker-publish-config.outputs.enabled == 'true'\n" perms={'contents': 'read'} strategy=matrix uses=None
+   job docker-publish: name='Publish Multi-Architecture Docker Image' needs=['docker-publish-config', 'docker-publish-build', 'release-preflight'] runs-on=ubuntu-latest if="needs.release-preflight.result == 'success' &&\nneeds.docker-publish-build.result == 'success'\n" perms={'contents': 'read'} strategy= uses=None
+   job pipeline-status: name='Pipeline Status' needs=['detect-changes', 'validate-docs', 'release-preflight', 'lint', 'test', 'build', 'changelog', 'docker-build', 'auto-release', 'manual-release', 'docker-publish-config', 'docker-publish-build', 'docker-publish'] runs-on=ubuntu-latest if='always()' perms=None strategy= uses=None
+## python/security.yml name='Security'
+   triggers=['push', 'pull_request', 'schedule']
+     push: {'branches': ['main']}
+   concurrency=None
+   top-permissions={'contents': 'read'}
+   job dependency-audit: name='Audit Resolved Python Dependencies' needs=None runs-on=ubuntu-latest if='None' perms=None strategy= uses=None
+   job codeql: name='CodeQL (${{ matrix.language }})' needs=None runs-on=ubuntu-latest if='None' perms={'contents': 'read', 'security-events': 'write'} strategy=matrix uses=None
+   job dependency-review: name='Dependency Review' needs=None runs-on=ubuntu-latest if="github.event_name == 'pull_request'" perms={'contents': 'read', 'pull-requests': 'write'} strategy= uses=None
+   job pipeline-status: name='Pipeline Status' needs=['dependency-audit', 'codeql', 'dependency-review'] runs-on=ubuntu-latest if='always()' perms=None strategy= uses=None
+## python/workflows.yml name='Workflows'
+   triggers=['push', 'pull_request', 'workflow_dispatch']
+     push: {'branches': ['main'], 'paths': ['.github/**']}
+     pull_request: {'types': ['opened', 'synchronize', 'reopened'], 'paths': ['.github/**']}
+   concurrency=None
+   top-permissions={'contents': 'read'}
+   job actionlint: name='Lint Workflows' needs=None runs-on=ubuntu-latest if='None' perms={'contents': 'read'} strategy= uses=None
+   job zizmor: name='Audit Workflows' needs=None runs-on=ubuntu-latest if='None' perms={'contents': 'read'} strategy= uses=None
+   job pipeline-status: name='Pipeline Status' needs=['actionlint', 'zizmor'] runs-on=ubuntu-latest if='always()' perms=None strategy= uses=None
+## go/release.yml name='CI/CD Pipeline'
+   triggers=['push', 'pull_request', 'workflow_dispatch']
+     push: {'branches': ['main']}
+     pull_request: {'types': ['opened', 'synchronize', 'reopened']}
+     workflow_dispatch: {'inputs': ['release_mode', 'bump_type', 'description']}
+   concurrency=None
+   top-permissions={'contents': 'read'}
+   job detect-changes: name='Detect Changes' needs=None runs-on=ubuntu-latest if="github.event_name != 'workflow_dispatch'" perms=None strategy= uses=None
+   job changeset-check: name='Check for Changeset' needs=['detect-changes'] runs-on=ubuntu-latest if="github.event_name == 'pull_request' && needs.detect-changes.outputs.any-code-changed == 'true'" perms=None strategy= uses=None
+   job lint: name='Lint' needs=['detect-changes'] runs-on=ubuntu-latest if="github.event_name == 'push' ||\ngithub.event_name == 'workflow_dispatch' ||\nneeds.detect-changes.outputs.go-changed == 'true' ||\nneeds.detect-changes.outputs.mod" perms=None strategy= uses=None
+   job test: name='Test (${{ matrix.os }})' needs=['detect-changes', 'changeset-check'] runs-on=${{ matrix.os }} if="${{ !cancelled() && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || needs.changeset-check.result == 'success' || needs.changeset-che" perms=None strategy=matrix uses=None
+   job build: name='Build' needs=['lint', 'test'] runs-on=ubuntu-latest if='None' perms=None strategy= uses=None
+   job auto-release: name='Auto Release' needs=['lint', 'test', 'build'] runs-on=ubuntu-latest if="github.event_name == 'push' && github.ref == 'refs/heads/main'" perms={'contents': 'write'} strategy= uses=None
+   job instant-release: name='Instant Release' needs=['lint', 'test', 'build'] runs-on=ubuntu-latest if="github.event_name == 'workflow_dispatch' && github.event.inputs.release_mode == 'instant'" perms={'contents': 'write'} strategy= uses=None
+   job changeset-release: name='Changeset Release' needs=['lint', 'test', 'build'] runs-on=ubuntu-latest if="github.event_name == 'workflow_dispatch' && github.event.inputs.release_mode == 'changeset'" perms={'contents': 'write'} strategy= uses=None
+## go/workflows.yml name='Workflow checks'
+   triggers=['push', 'pull_request']
+     push: {'branches': ['main'], 'paths': ['.github/**', 'scripts/**']}
+     pull_request: {'paths': ['.github/**', 'scripts/**']}
+   concurrency=None
+   top-permissions={'contents': 'read'}
+   job workflows: name='Lint and test workflows' needs=None runs-on=ubuntu-latest if='None' perms=None strategy= uses=None
+## java/release.yml name='CI/CD Pipeline'
+   triggers=['push', 'pull_request', 'workflow_dispatch']
+     push: {'branches': ['main']}
+     pull_request: {'types': ['opened', 'synchronize', 'reopened']}
+     workflow_dispatch: {'inputs': ['release_mode', 'bump_type', 'description']}
+   concurrency=None
+   top-permissions=None
+   job detect-changes: name='Detect Changes' needs=None runs-on=ubuntu-latest if="github.event_name != 'workflow_dispatch'" perms=None strategy= uses=None
+   job lint: name='Lint & Format' needs=['detect-changes'] runs-on=ubuntu-latest if="github.event_name == 'workflow_dispatch' ||\ngithub.event_name == 'push' ||\nneeds.detect-changes.outputs.java-changed == 'true' ||\nneeds.detect-changes.outputs.p" perms=None strategy= uses=None
+   job test: name='Test (Java ${{ matrix.java }}, ${{ matrix.os }})' needs=['detect-changes', 'changeset-check'] runs-on=${{ matrix.os }} if="${{ !cancelled() && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || needs.changeset-check.result == 'success' || needs.changeset-che" perms=None strategy=matrix uses=None
+   job build: name='Build Package' needs=['lint', 'test'] runs-on=ubuntu-latest if="${{ !cancelled() && (needs.lint.result == 'success' || needs.lint.result == 'skipped') && needs.test.result == 'success' }}" perms=None strategy= uses=None
+   job changeset-check: name='Changeset Check' needs=['detect-changes'] runs-on=ubuntu-latest if="github.event_name == 'pull_request' && needs.detect-changes.outputs.any-code-changed == 'true'" perms=None strategy= uses=None
+   job auto-release: name='Auto Release' needs=['build'] runs-on=ubuntu-latest if="github.event_name == 'push' && github.ref == 'refs/heads/main'" perms={'contents': 'write'} strategy= uses=None
+   job manual-release-changeset: name='Manual Release (Changeset)' needs=['build'] runs-on=ubuntu-latest if="github.event_name == 'workflow_dispatch' && github.event.inputs.release_mode == 'changeset'" perms={'contents': 'write'} strategy= uses=None
+   job manual-release-instant: name='Manual Release (Instant)' needs=['build'] runs-on=ubuntu-latest if="github.event_name == 'workflow_dispatch' && github.event.inputs.release_mode == 'instant'" perms={'contents': 'write'} strategy= uses=None
+   job changeset-pr: name='Create Changeset PR' needs=None runs-on=ubuntu-latest if="github.event_name == 'workflow_dispatch' && github.event.inputs.release_mode == 'changeset-pr'" perms={'contents': 'write', 'pull-requests': 'write'} strategy= uses=None
+## csharp/docs.yml name='docs'
+   triggers=['push', 'pull_request', 'workflow_dispatch']
+     push: {'branches': ['main'], 'paths': ['docs/**', 'src/**', 'docfx.json', '.github/workflows/docs.yml']}
+     pull_request: {'branches': ['main'], 'paths': ['docs/**', 'src/**', 'docfx.json', '.github/workflows/docs.yml']}
+   concurrency={'group': '${{ github.workflow }}-${{ github.ref }}', 'cancel-in-progress': "${{ github.ref != 'refs/heads/main' }}"}
+   top-permissions={'contents': 'read'}
+   job build: name='Build documentation' needs=None runs-on=ubuntu-24.04 if='None' perms=None strategy= uses=None
+   job deploy: name='Deploy to GitHub Pages' needs=build runs-on=ubuntu-24.04 if="((github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch') &&\nvars.DEPLOY_GITHUB_PAGES == 'true'\n" perms={'contents': 'read', 'pages': 'write', 'id-token': 'write'} strategy= uses=None
+## csharp/links.yml name='Broken Link Checker'
+   triggers=['push', 'pull_request', 'workflow_dispatch']
+     push: {'branches': ['main'], 'paths': ['**.md', '**.html', '.github/workflows/links.yml']}
+     pull_request: {'types': ['opened', 'synchronize', 'reopened'], 'paths': ['**.md', '**.html', '.github/workflows/links.yml']}
+   concurrency=None
+   top-permissions={'contents': 'read'}
+   job link-checker: name='Check Links' needs=None runs-on=ubuntu-24.04 if='None' perms={'contents': 'read'} strategy= uses=None
+## csharp/release.yml name='CI/CD Pipeline'
+   triggers=['push', 'pull_request', 'workflow_dispatch']
+     push: {'branches': ['main']}
+     pull_request: {'types': ['opened', 'synchronize', 'reopened']}
+     workflow_dispatch: {'inputs': ['release_mode', 'bump_type', 'description']}
+   concurrency={'group': '${{ github.workflow }}-${{ github.ref }}', 'cancel-in-progress': "${{ github.ref != 'refs/heads/main' }}"}
+   top-permissions={'contents': 'read'}
+   job detect-changes: name='Detect Changes' needs=None runs-on=ubuntu-24.04 if="github.event_name != 'workflow_dispatch'" perms=None strategy= uses=None
+   job changeset-check: name='Changeset Validation' needs=['detect-changes'] runs-on=ubuntu-24.04 if="github.event_name == 'pull_request' && needs.detect-changes.outputs.any-code-changed == 'true'" perms=None strategy= uses=None
+   job lint: name='Lint and Format Check' needs=['detect-changes'] runs-on=ubuntu-24.04 if="always() && !cancelled() && (\n  github.event_name == 'workflow_dispatch' ||\n  needs.detect-changes.outputs.any-code-changed == 'true'\n)\n" perms=None strategy= uses=None
+   job test: name='Test (${{ matrix.os }})' needs=['detect-changes'] runs-on=${{ matrix.os }} if="always() && !cancelled() && (\n  github.event_name == 'workflow_dispatch' ||\n  needs.detect-changes.outputs.any-code-changed == 'true'\n)\n" perms=None strategy=matrix uses=None
+   job build: name='Build Package' needs=['lint', 'test'] runs-on=ubuntu-24.04 if="always() && needs.lint.result == 'success' && needs.test.result == 'success'" perms=None strategy= uses=None
+   job release-preflight: name='Release Preflight' needs=None runs-on=ubuntu-24.04 if='None' perms={'contents': 'read'} strategy= uses=None
+   job release: name='Release' needs=['lint', 'test', 'build', 'release-preflight'] runs-on=ubuntu-24.04 if="always() && github.ref == 'refs/heads/main' && github.event_name == 'push' && needs.lint.result == 'success' && needs.test.result == 'success' && needs.build.re" perms={'contents': 'write', 'packages': 'write'} strategy= uses=None
+   job instant-release: name='Instant Release' needs=['lint', 'test', 'build', 'release-preflight'] runs-on=ubuntu-24.04 if="always() && !cancelled() &&\ngithub.event_name == 'workflow_dispatch' &&\ngithub.event.inputs.release_mode == 'instant' &&\nneeds.lint.result == 'success' &&\nneeds" perms={'contents': 'write', 'packages': 'write'} strategy= uses=None
+   job changeset-pr: name='Create Changeset PR' needs=None runs-on=ubuntu-24.04 if="github.event_name == 'workflow_dispatch' && github.event.inputs.release_mode == 'changeset-pr'" perms={'contents': 'write', 'pull-requests': 'write'} strategy= uses=None
+   job pipeline-status: name='Pipeline Status' needs=['detect-changes', 'changeset-check', 'lint', 'test', 'build', 'release-preflight', 'release', 'instant-release', 'changeset-pr'] runs-on=ubuntu-24.04 if='always()' perms=None strategy= uses=None
+## csharp/security.yml name='Security'
+   triggers=['push', 'pull_request', 'schedule']
+     push: {'branches': ['main']}
+   concurrency=None
+   top-permissions={'contents': 'read'}
+   job codeql: name='CodeQL (${{ matrix.language }})' needs=None runs-on=ubuntu-24.04 if='None' perms={'contents': 'read', 'security-events': 'write'} strategy=matrix uses=None
+   job dependency-review: name='Dependency Review' needs=None runs-on=ubuntu-24.04 if="github.event_name == 'pull_request'" perms={'contents': 'read', 'pull-requests': 'write'} strategy= uses=None
+## csharp/workflows.yml name='Workflows'
+   triggers=['push', 'pull_request', 'workflow_dispatch']
+     push: {'branches': ['main'], 'paths': ['.github/workflows/**', '.github/actions/**']}
+     pull_request: {'types': ['opened', 'synchronize', 'reopened'], 'paths': ['.github/workflows/**', '.github/actions/**']}
+   concurrency=None
+   top-permissions={'contents': 'read'}
+   job actionlint: name='Lint Workflows' needs=None runs-on=ubuntu-24.04 if='None' perms={'contents': 'read'} strategy= uses=None
+   job zizmor: name='zizmor' needs=None runs-on=ubuntu-24.04 if='None' perms={'contents': 'read'} strategy= uses=None
+## php/docs.yml name='Docs'
+   triggers=['push', 'pull_request', 'workflow_dispatch']
+     push: {'branches': ['main'], 'paths': ['docs/**', 'src/**', 'composer.json', '.github/workflows/docs.yml']}
+     pull_request: {'types': ['opened', 'synchronize', 'reopened'], 'paths': ['docs/**', 'src/**', 'composer.json', '.github/workflows/docs.yml']}
+   concurrency={'group': '${{ github.workflow }}-${{ github.ref }}', 'cancel-in-progress': "${{ github.ref != 'refs/heads/main' }}"}
+   top-permissions={'contents': 'read'}
+   job build: name='Build docs' needs=None runs-on=ubuntu-latest if='None' perms=None strategy= uses=None
+   job deploy: name='Deploy to GitHub Pages' needs=['build'] runs-on=ubuntu-latest if="github.event_name == 'push' && github.ref == 'refs/heads/main'" perms={'pages': 'write', 'id-token': 'write'} strategy= uses=None
+   job pipeline-status: name='Pipeline Status' needs=['build', 'deploy'] runs-on=ubuntu-latest if='always()' perms=None strategy= uses=None
+## php/links.yml name='Broken Link Checker'
+   triggers=['push', 'pull_request', 'workflow_dispatch']
+     push: {'branches': ['main'], 'paths': ['**.md', '**.html', '.github/workflows/links.yml']}
+     pull_request: {'types': ['opened', 'synchronize', 'reopened'], 'paths': ['**.md', '**.html', '.github/workflows/links.yml']}
+   concurrency=None
+   top-permissions={'contents': 'read'}
+   job link-checker: name='Check Links' needs=None runs-on=ubuntu-latest if='None' perms={'contents': 'read'} strategy= uses=None
+   job pipeline-status: name='Pipeline Status' needs=['link-checker'] runs-on=ubuntu-latest if='always()' perms=None strategy= uses=None
+## php/release.yml name='CI/CD Pipeline'
+   triggers=['push', 'pull_request', 'workflow_dispatch']
+     push: {'branches': ['main']}
+     pull_request: {'types': ['opened', 'synchronize', 'reopened']}
+     workflow_dispatch: {'inputs': ['bump_type', 'description']}
+   concurrency={'group': '${{ github.workflow }}-${{ github.ref }}', 'cancel-in-progress': "${{ github.ref != 'refs/heads/main' }}"}
+   top-permissions={'contents': 'read'}
+   job detect-changes: name='Detect Changes' needs=None runs-on=ubuntu-latest if="github.event_name != 'workflow_dispatch'" perms=None strategy= uses=None
+   job lint: name='Lint and Static Analysis' needs=['detect-changes'] runs-on=ubuntu-latest if="always() && !cancelled() && (\n  github.event_name == 'push' ||\n  github.event_name == 'workflow_dispatch' ||\n  needs.detect-changes.outputs.php-changed == 'true" perms=None strategy= uses=None
+   job release-preflight: name='Release Preflight' needs=None runs-on=ubuntu-latest if='None' perms=None strategy= uses=None
+   job test: name='Test (PHP ${{ matrix.php }})' needs=['detect-changes'] runs-on=ubuntu-latest if="always() && !cancelled() && (\n  github.event_name == 'push' ||\n  github.event_name == 'workflow_dispatch' ||\n  needs.detect-changes.outputs.php-changed == 'true" perms=None strategy=matrix uses=None
+   job changeset: name='Changeset Check' needs=['detect-changes'] runs-on=ubuntu-latest if="github.event_name == 'pull_request' && needs.detect-changes.outputs.any-code-changed == 'true'" perms=None strategy= uses=None
+   job build: name='Build' needs=['detect-changes', 'lint', 'test'] runs-on=ubuntu-latest if="always() && (\n  github.event_name == 'push' ||\n  github.event_name == 'workflow_dispatch' ||\n  (\n    (needs.lint.result == 'success' || needs.lint.result == 'sk" perms=None strategy= uses=None
+   job auto-release: name='Auto Release' needs=['lint', 'test', 'build', 'release-preflight'] runs-on=ubuntu-latest if="always() && !cancelled() &&\ngithub.event_name == 'push' && github.ref == 'refs/heads/main' &&\nneeds.release-preflight.result == 'success'\n" perms={'contents': 'write'} strategy= uses=None
+   job manual-release: name='Manual Release' needs=['lint', 'test', 'build', 'release-preflight'] runs-on=ubuntu-latest if="always() && !cancelled() &&\ngithub.event_name == 'workflow_dispatch' &&\nneeds.lint.result == 'success' &&\nneeds.test.result == 'success' &&\nneeds.build.result =" perms={'contents': 'write'} strategy= uses=None
+   job pipeline-status: name='Pipeline Status' needs=['detect-changes', 'lint', 'release-preflight', 'test', 'changeset', 'build', 'auto-release', 'manual-release'] runs-on=ubuntu-latest if='always()' perms=None strategy= uses=None
+## php/security.yml name='Security'
+   triggers=['push', 'pull_request', 'schedule']
+     push: {'branches': ['main']}
+   concurrency={'group': '${{ github.workflow }}-${{ github.ref }}', 'cancel-in-progress': "${{ github.ref != 'refs/heads/main' }}"}
+   top-permissions={'contents': 'read'}
+   job dependency-audit: name='Audit Resolved Composer Dependencies' needs=None runs-on=ubuntu-latest if='None' perms=None strategy= uses=None
+   job codeql: name='CodeQL (${{ matrix.language }})' needs=None runs-on=ubuntu-latest if='None' perms={'contents': 'read', 'security-events': 'write'} strategy=matrix uses=None
+   job dependency-review: name='Dependency Review' needs=None runs-on=ubuntu-latest if="github.event_name == 'pull_request'" perms={'contents': 'read', 'pull-requests': 'write'} strategy= uses=None
+   job pipeline-status: name='Pipeline Status' needs=['dependency-audit', 'codeql', 'dependency-review'] runs-on=ubuntu-latest if='always()' perms=None strategy= uses=None
+## php/workflows.yml name='Workflows'
+   triggers=['push', 'pull_request', 'workflow_dispatch']
+     push: {'branches': ['main'], 'paths': ['.github/**']}
+     pull_request: {'types': ['opened', 'synchronize', 'reopened'], 'paths': ['.github/**']}
+   concurrency=None
+   top-permissions={'contents': 'read'}
+   job actionlint: name='actionlint' needs=None runs-on=ubuntu-latest if='None' perms=None strategy= uses=None
+   job zizmor: name='zizmor' needs=None runs-on=ubuntu-latest if='None' perms=None strategy= uses=None
+   job pipeline-status: name='Pipeline Status' needs=['actionlint', 'zizmor'] runs-on=ubuntu-latest if='always()' perms=None strategy= uses=None

@@ -1,0 +1,74 @@
+# Doxygen configuration of the C++ API reference. Only the settings that
+# differ from Doxygen's defaults are listed (`doxygen -x Doxyfile` shows them).
+#
+# Run from the C++ root (the repository root, or cpp/ in a multi-language
+# repository):
+#
+#   DOXYGEN_PROJECT_NUMBER=$(python3 scripts/get_version.py --print version) doxygen
+#
+# CI (the docs job) does exactly this, fails on any warning, and publishes
+# docs/api/html to GitHub Pages; docs/api/xml feeds tools such as Sphinx/Breathe.
+
+PROJECT_NAME           = "my_package"
+PROJECT_NUMBER         = $(DOXYGEN_PROJECT_NUMBER)
+PROJECT_BRIEF          = "Header-only C++20 example library of the AI-driven development pipeline template"
+OUTPUT_DIRECTORY       = docs/api
+CREATE_SUBDIRS         = NO
+FULL_PATH_NAMES        = YES
+STRIP_FROM_PATH        = include
+STRIP_FROM_INC_PATH    = include
+JAVADOC_AUTOBRIEF      = YES
+BUILTIN_STL_SUPPORT    = YES
+MARKDOWN_SUPPORT       = YES
+TOC_INCLUDE_HEADINGS   = 3
+
+# Extraction: only what is documented is public API; detail namespaces stay out.
+EXTRACT_ALL            = NO
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+HIDE_UNDOC_MEMBERS     = NO
+EXCLUDE_SYMBOLS        = detail *::detail
+SORT_MEMBER_DOCS       = NO
+
+# Warnings are errors, so an undocumented public symbol fails CI.
+QUIET                  = YES
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_IF_INCOMPLETE_DOC = YES
+WARN_NO_PARAMDOC       = YES
+WARN_AS_ERROR          = FAIL_ON_WARNINGS
+WARN_FORMAT            = "$file:$line: $text"
+
+# Input: the public headers plus the Markdown main page.
+INPUT                  = include docs/mainpage.md
+FILE_PATTERNS          = *.h *.hh *.hpp *.hxx *.ipp *.inl *.tpp
+RECURSIVE              = YES
+USE_MDFILE_AS_MAINPAGE = docs/mainpage.md
+EXAMPLE_PATH           = examples
+EXAMPLE_RECURSIVE      = YES
+
+# Browsing.
+SOURCE_BROWSER         = YES
+REFERENCED_BY_RELATION = NO
+REFERENCES_RELATION    = NO
+ALPHABETICAL_INDEX     = YES
+
+# Output: HTML for GitHub Pages, XML for other tooling, no LaTeX.
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+GENERATE_TREEVIEW      = YES
+SEARCHENGINE           = YES
+GENERATE_LATEX         = NO
+GENERATE_XML           = YES
+XML_OUTPUT             = xml
+
+# Preprocessing: see through the include guard and C++20 attributes.
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = NO
+SEARCH_INCLUDES        = YES
+INCLUDE_PATH           = include
+
+# Diagrams need Graphviz; the built-in class graphs are enough without it.
+HAVE_DOT               = NO

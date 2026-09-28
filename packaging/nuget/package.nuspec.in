@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Rendered by scripts/pack_nuget.py; the <files> are added at pack time. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>@ID@</id>
+    <version>@VERSION@</version>
+    <title>@TITLE@</title>
+    <authors>@AUTHORS@</authors>
+    <description>@DESCRIPTION@</description>
+    <releaseNotes>@RELEASE_NOTES@</releaseNotes>
+    <projectUrl>@PROJECT_URL@</projectUrl>
+    <repository type="git" url="@REPOSITORY_URL@" commit="@COMMIT@" />
+    <license type="expression">@LICENSE@</license>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <readme>README.md</readme>
+    <tags>@TAGS@</tags>
+    <dependencies>
+      <group targetFramework="native" />
+    </dependencies>
+  </metadata>
+</package>

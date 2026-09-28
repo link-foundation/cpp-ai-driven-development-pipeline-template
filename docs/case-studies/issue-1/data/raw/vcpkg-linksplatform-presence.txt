@@ -1,0 +1,2 @@
+vcpkg ports total: 2867; linksplatform-related ports: 0 (the only name match below, platform-folders, is an unrelated sago007 library)
+platform-folders

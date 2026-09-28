@@ -1,0 +1,183 @@
+name: cpp
+
+on:
+  workflow_call:
+    secrets:
+      NUGETTOKEN:
+        required: true
+#       GITHUB_TOKEN:
+#         required: true
+
+env:
+  SCRIPTS_BASE_URL: https://raw.githubusercontent.com/linksplatform/Scripts/main/MultiProjectRepository
+
+defaults:
+  run:
+    working-directory: cpp
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: true
+      - name: Install GCC
+        uses: egor-tensin/setup-gcc@v1
+      - name: Install conan
+        run: pip install conan
+      - name: Setup conan
+        run: |
+          conan profile new linksplatform --detect
+          conan profile update settings.compiler=gcc linksplatform
+          conan profile update settings.compiler.version=11 linksplatform
+          conan profile update settings.compiler.libcxx=libstdc++11 linksplatform
+          conan profile update env.CXX=clang++ linksplatform
+          conan profile show linksplatform
+      - name: Instll conan packages
+        run: |
+          if [ -f "install-local-conan-dependencies.sh" ]; then
+              echo "install-local-conan-dependencies.sh exists."
+              chmod +x ./install-local-conan-dependencies.sh
+              ./install-local-conan-dependencies.sh
+          fi
+      - name: Test and scan-build
+        run: |
+          CXX=clang++
+          cmake_flags="-DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang++ -DLINKS_PLATFORM_TESTS=TRUE"
+          cmake_build_dir="build"
+          mkdir $cmake_build_dir && cd $cmake_build_dir
+          conan install .. -pr=linksplatform --build=missing
+          cmake .. "$cmake_flags"
+          cmake --build .
+          ls
+  get_package_info:
+    uses: linksplatform/Workflows/.github/workflows/get-cpp-package-info.yml@main
+  get_changed_files:
+    runs-on: ubuntu-latest
+    needs: [test, get_package_info]
+    outputs: 
+      all_changed_files: ${{steps.get_changed_files.outputs.all_changed_files}}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+         fetch-depth: 0
+      - id: get_changed_files
+        uses: tj-actions/changed-files@v21
+  pushToNuget:
+    runs-on: ubuntu-latest
+    needs: [test, get_package_info, get_changed_files]
+    if: ${{contains(needs.get_changed_files.outputs.all_changed_files, needs.get_package_info.outputs.nuspec_path)}}
+    env:
+      NUSPEC_PATH: $(echo ${{needs.get_package_info.outputs.nuspec_path}} | sed 's~^cpp/~~')
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: true
+      - name: Push to nuget
+        run: |
+          sudo apt-get install nuget
+          echo "needs.get_package_info.outputs.nuspec_path: ${{needs.get_package_info.outputs.nuspec_path}}"
+          echo "env.NUSPEC_PATH: ${{env.NUSPEC_PATH}}"
+          echo "needs.get_package_info.outputs.name: ${{needs.get_package_info.outputs.name}}"
+          echo "needs.get_package_info.outputs.version: ${{needs.get_package_info.outputs.version}}"
+          nuspec_direction=$(dirname ${{env.NUSPEC_PATH}})
+          echo "nuspec_direction: ${nuspec_direction}"
+
+          # Ensure NuGet package does not exist
+          NuGetPackageUrl="https://globalcdn.nuget.org/packages/Platform.${{github.event.repository.name}}.TemplateLibrary.${{needs.get_package_info.outputs.version}}.nupkg"
+          NuGetPackageUrl=$(echo "$NuGetPackageUrl" | tr '[:upper:]' '[:lower:]')
+          NuGetPageStatus="$(curl -Is "$NuGetPackageUrl" | head -1)"
+          StatusContents=( $NuGetPageStatus )
+          if [ "${StatusContents[1]}" == "200" ]; then
+            echo "NuGet with current version is already pushed."
+            exit 0
+          fi
+
+          # Download icon.png for the package
+          wget -O "$nuspec_direction/icon.png" https://raw.githubusercontent.com/linksplatform/Documentation/18469f4d033ee9a5b7b84caab9c585acab2ac519/doc/Avatar-rainbow-icon-64x64.png
+
+          # Download TemplateLibrary.targets for the package
+          wget -O "$nuspec_direction/Platform.${{github.event.repository.name}}.TemplateLibrary.targets" https://raw.githubusercontent.com/linksplatform/Files/ed0dc702f52d56d80ea2f19c93df5cf2fdcbccbf/TemplateLibrary.targets
+
+          # Update .nuspec file
+          IFS=$'\n' #Set Separator.
+          files=$(find $nuspec_direction | grep "\.h" | grep -v "bin" | grep -v "obj" | cut -c $(( $(echo $nuspec_direction | wc -m) + 1))-)
+          filename="${{env.NUSPEC_PATH}}"
+          file=($(cat $filename)) #Read file by line in array
+          unset file[-1] #Remove last element in array.
+          file+=("  <files>")
+          file+=("    <file src=\"icon.png\" target=\"images/icon.png\" />")
+          file+=("    <file src=\"Platform.${{github.event.repository.name}}.TemplateLibrary.targets\" target=\"build\native\Platform.${{github.event.repository.name}}.TemplateLibrary.targets\" />")
+          for FILE in $files #Get all files on directory.
+          do
+            file+=("    <file src=\"$FILE\" target=\"lib\\native\\include\\$FILE\" />") #Append new files to array.
+          done
+          file+=("  </files>") #Append end for tag files.
+          file+=("</package>") #Append end for tag package.
+          printf '%s\n' "${file[@]}" > "$filename" #Write array by line to .nuspec file.
+
+          # Pack NuGet package by .nuspec file
+          nuget pack "${{env.NUSPEC_PATH}}"
+
+          # Push NuGet package
+          nuget push ./**/*.nupkg -NoSymbols -Source https://api.nuget.org/v3/index.json -ApiKey "${{secrets.NUGETTOKEN}}" 
+  get_conan_package_info:
+    uses: linksplatform/Workflows/.github/workflows/get-cpp-conan-package-info.yml@main
+  publishRelease:
+    runs-on: ubuntu-latest
+    needs: [test, get_package_info, get_changed_files, get_conan_package_info]
+    if: ${{contains(needs.get_changed_files.outputs.all_changed_files, needs.get_package_info.outputs.nuspec_path)}}
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: true
+      - name: Zip conan package
+        run: | 
+          zip -r "${{needs.get_conan_package_info.outputs.name}}_${{needs.get_package_info.outputs.version}}.zip" "${{ format('Platform.{0}', github.event.repository.name) }}"
+          echo "ls:"
+          ls
+          echo "ls end\n"
+          echo "Artifact pattern: ${{needs.get_conan_package_info.outputs.name}}_${{needs.get_package_info.outputs.version}}.zip"
+      - name: Create Release
+        id: create_release
+        uses: ncipollo/release-action@v1.11.2
+        with:
+          tag: "cpp_${{needs.get_package_info.outputs.version}}"
+          name: "[C++] ${{needs.get_package_info.outputs.version}}"
+          body: >
+            https://www.nuget.org/packages/Platform.${{github.event.repository.name}}.TemplateLibrary/${{needs.get_package_info.outputs.version}}
+            
+            
+            ${{needs.get_package_info.outputs.release_notes}}
+          artifactErrorsFailBuild: true
+          artifacts: "cpp/${{needs.get_conan_package_info.outputs.name}}_${{needs.get_package_info.outputs.version}}.zip"
+      - name: Push to nuget
+        run: |
+          echo ${{steps.create_release.outputs.id}}
+          echo ${{steps.create_release.outputs.html_url}}
+          echo ${{steps.create_release.outputs.upload_url}}
+#   push_to_conan:
+#     needs: [publishRelease, get_conan_package_info]
+#     uses: linksplatform/Workflows/.github/workflows/push-to-conan.yml@main
+#     with:
+#       name: ${{needs.get_conan_package_info.outputs.name}}
+#   update_conan_dependants:
+#     runs-on: ubuntu-latest
+#     needs: [push_to_conan, get_conan_package_info]
+#     steps:
+#       - uses: actions/checkout@v1
+#         with:
+#           submodules: true
+#       - name: Update conan dependants in organization
+#         uses: FreePhoenix888/update-conan-dependants-in-organization-action@v0.0.1-alpha
+#         with:
+#           token: ${{ secrets.PERSONAL_TOKEN }}
+#           organizationName: 'linksplatform'
+#           conanFilePath: 'cpp/conanfile.txt'
+#           commitMessageTemplate: 'Update ${{needs.get_conan_package_info.outputs.name}} dependency from {PREVIOUS_VERSION} to ${{needs.get_package_info.outputs.version}}'
+#           sourceBranchName: 'main'
+#           destinationBranchName: 'main'
+#           conanFileReplaceableRegex: "${{needs.get_conan_package_info.outputs.name}}/\\(?<PREVIOUS_VERSION>\\d\\.\\d\\.\\d\\)"
+#           conanFileReplacement: '${{needs.get_conan_package_info.outputs.name}}/${{needs.get_package_info.outputs.version}}'
+#           shouldOpenPullRequest: 'false'

@@ -1,0 +1,20 @@
+# Doxygen releases (GitHub API doxygen/doxygen): Release_1_18_0 2026-08-13; 1.17.0 2026-04-30; 1.16.1 2026-01-11 (doxygen.nl/download.html not fetched directly)
+# Source: https://www.doxygen.nl/manual/config.html#cfg_warn_as_error
+WARN_AS_ERROR: NO (default) | YES (stop at first warning) | FAIL_ON_WARNINGS (continue, non-zero exit at end) | FAIL_ON_WARNINGS_PRINT (like FAIL_ON_WARNINGS, warnings printed at end / also to WARN_LOGFILE)
+# Source: https://jothepro.github.io/doxygen-awesome-css/ ; releases v2.5.0 (2026-09-12, "Doxygen >= v1.17.0 support"), v2.4.2 (2026-03-20)
+"works best with Doxygen 1.9.1 - 1.9.4 and 1.9.6 - 1.18.0"; GENERATE_TREEVIEW=YES (sidebar-only), DISABLE_INDEX=NO, FULL_SIDEBAR=NO, HTML_COLORSTYLE=LIGHT (1.9.5+); install via git submodule, npm (#v2.5.0), FetchContent, make install
+# Source: https://github.com/actions/deploy-pages README: permissions pages: write, id-token: write; environment github-pages url steps.deployment.outputs.page_url; README still shows @v4 while latest release is v5.0.1 (2026-09-01, Node 24)
+# upload-pages-artifact v5.0.0 (2026-04-10): "Update upload-artifact action to version 7"; adds include-hidden-files input. configure-pages v6.0.0 (2026-03-25)
+# Source: https://clang.llvm.org/docs/AddressSanitizer.html : -fsanitize=address -fno-omit-frame-pointer -O1 -g ; ~2x slowdown; Linux, macOS, Windows 8.1+ ...; ASAN_OPTIONS detect_leaks=1 (default Linux), UBSAN_OPTIONS/LSAN_OPTIONS separate
+# Source: https://clang.llvm.org/docs/MemorySanitizer.html : Linux/NetBSD/FreeBSD; "MemorySanitizer requires that all program code is instrumented. This also includes any libraries that the program depends on, even libc."; -fsanitize=memory -fsanitize-memory-track-origins=2
+# Source: https://learn.microsoft.com/en-us/cpp/build/reference/fsanitize?view=msvc-170 : MSVC supports /fsanitize=address, /fsanitize=kernel-address, /fsanitize=fuzzer; undefined/thread/leak/memory listed as future; no comma-separated syntax
+# Source: https://github.com/actions/runner-images/issues/9515 ; https://github.com/google/sanitizers/issues/1716
+vm.mmap_rnd_bits=32 on newer kernels breaks older TSan/ASan/MSan ("unexpected memory mapping"); workarounds: sysctl vm.mmap_rnd_bits=28, setarch -R, or LLVM >= 18.1 runtimes
+# Source: https://gcovr.com/en/stable/ (gcovr 8.6): outputs text, html, cobertura, coveralls, lcov, json, sonarqube, jacoco, markdown, csv
+# Source: https://gcovr.com/en/stable/guide/compiling.html : --coverage (or -fprofile-arcs -ftest-coverage), -O0, -fprofile-abs-path; clang: gcovr --gcov-executable "llvm-cov gcov"
+# Source: https://github.com/codecov/codecov-action : README shows v5; releases v6.0.0 (2026-03-26, node24), v7.0.0 (2026-06-07, key account change codecovsecops), latest v7.1.1 (2026-09-17); use_oidc: true requires id-token: write; tokenless for fork PRs to public repos
+# Source: https://github.com/cpp-linter/cpp-linter-action (v2.23.1, 2026-09-23): uses: cpp-linter/cpp-linter-action@v2 with style: 'file', tidy-checks: '', thread-comments, files-changed-only, step-summary, version; output checks-failed
+# Source: https://clang.llvm.org/extra/clang-tidy/ (docs 24.0.0git): run-clang-tidy.py parallel over compile_commands.json (CMAKE_EXPORT_COMPILE_COMMANDS=ON); clang-tidy-diff.py for changed lines; .clang-tidy WarningsAsErrors, HeaderFilterRegex
+# GitHub API: cppcheck 2.22.0 (2026-09-19); include-what-you-use 0.26 (2026-03-22); llvm 23.1.2 (2026-09-22); gcc tags up to releases/gcc-16.2.0
+# Source: https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/ : C/C++ up to Clang 22, GCC 16, VS 2022; C++98..C++23 (C23/C++23 beta); "C++20 modules are not supported"
+# CodeQL starter workflow (https://github.com/actions/starter-workflows/blob/main/code-scanning/codeql.yml): matrix language: c-cpp, build-mode: manual|autobuild|none; github/codeql-action/init@v4

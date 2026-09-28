@@ -1,0 +1,14 @@
+# Source: https://learn.microsoft.com/en-us/vcpkg/contributing/maintainer-guide (ms.date 2026-02-18)
+Maturity: "The project has a release that is at least six months old" OR "at least six months of active public development" (one of these) for curated registry.
+"Pull requests should make changes to a single port." Draft PRs recommended; PRs inactive >60 days may be closed.
+Deprecated: vcpkg_fixup_cmake_targets -> vcpkg_cmake_config_fixup; vcpkg_configure_cmake -> vcpkg_cmake_configure; host deps "vcpkg-cmake" and "vcpkg-cmake-config" with "host": true
+SHA512/REF hex strings must be lowercase. Copyright: vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
+Update port-version for port-only changes; reset to 0 on upstream version change. "The recommended method to update these files is to run the x-add-version command": vcpkg x-add-version <port> / --all
+"We require that the manifest file be formatted": vcpkg format-manifest --all ; "Do not use vendored dependencies"; "Do not build tests/docs/examples by default"
+Port names must be distinctive; ambiguous names use <github owner>-<repo> prefix. Non-upstream CMake exports go under unofficial- prefix.
+# Source: https://learn.microsoft.com/en-us/vcpkg/concepts/registries
+Three kinds: built-in, git, filesystem. "Git registries are the recommended method for implementing a custom registry." Structure: ports/<name>/{portfile.cmake,vcpkg.json}, versions/baseline.json, versions/<x>-/<name>.json (git-tree SHA)
+vcpkg x-add-version --x-builtin-ports-root=./ports --x-builtin-registry-versions-dir=./versions foo
+vcpkg-configuration.json: {"default-registry":{"kind":"git","repository":"https://github.com/Microsoft/vcpkg","baseline":"<sha>"},"registries":[{"kind":"git","repository":"...","baseline":"<sha>","packages":["foo"]}]}
+"Don't rewrite version history"; "Don't delete versions files"
+# GitHub API: microsoft/vcpkg latest tag 2026.07.29 (published 2026-07-31); vcpkg-tool 2026-07-27 (latest stable), 2026-09-26 (prerelease)
