@@ -200,7 +200,11 @@ bash scripts/check-nuget-package.sh dist/Platform.Example.TemplateLibrary.1.2.3.
 
 Preflight reports which mode is selected. In API-key mode, obtaining a
 one-time verification key checks validity and general push scope, then
-verification against a published version checks the package glob and owner.
+verification against a published version checks the temporary key's owner
+scope and consumes it. A final verification request with the original API
+key checks its actual push scopes, package glob and owner: the temporary
+key's glob was replaced with the requested ID, so its success alone cannot
+prove the original key may push that package.
 A refused key or scope blocks the release; a package with no published
 versions has `unknown` scope because its first push cannot be checked this
 way. Trusted publishing is also `unknown` during preflight: the actual token

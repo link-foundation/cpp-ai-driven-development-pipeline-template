@@ -67,6 +67,12 @@ Notes:
   filter: a skipped workflow reports no **Pipeline Status**, which blocks a
   branch protection that requires it; change detection already skips the
   work.
+- **NuGet trusted publishing**: set `NUGET_USER` and register a nuget.org
+  policy for the C++ workflow's actual filename (for example `cpp.yml`
+  after renaming), repository and package owner/glob. Leave its environment
+  empty unless you add a GitHub environment to the publishing jobs. Each
+  language's publishing workflow needs its own matching policy. See
+  [NuGet setup](distribution.md#nuget).
 
 ## Consumers
 
@@ -96,7 +102,7 @@ Conan download URLs stay the same:
 | linksplatform convention | Template setting |
 | --- | --- |
 | tags `cpp_0.4.1`, titles `[C++] 0.4.1` | `CPP_TAG_PREFIX: cpp_` in the `env:` of `release.yml` (the titles are the default) |
-| NuGet `Platform.<Repo>.TemplateLibrary` | variables `NUGET_PUBLISH=true`, `NUGET_PACKAGE_ID=Platform.<Repo>.TemplateLibrary`, secret `NUGET_API_KEY` |
+| NuGet `Platform.<Repo>.TemplateLibrary` | variables `NUGET_PUBLISH=true`, `NUGET_PACKAGE_ID=Platform.<Repo>.TemplateLibrary`, plus `NUGET_USER` and a trusted publishing policy, or the fallback secret `NUGET_API_KEY` |
 | release asset `platform.<repo>_<version>.zip` | variable `RELEASE_ARCHIVE_BASENAME=platform.<repo>_{version}` |
 | Conan package `platform.<repo>` | `name = "platform.<repo>"` in `cpp/conanfile.py`, plus `CONAN_REMOTE_URL` to upload |
 | Doxygen reference on Pages | `DEPLOY_GITHUB_PAGES=true` (published under `/cpp/`) |

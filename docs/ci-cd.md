@@ -153,8 +153,12 @@ release if another channel was verified; it is never counted as verified:
 - **NuGet API key**: first obtains a one-time verification key, which checks
   key validity and general push scope only. It then looks up the newest
   published version in the public flat-container index and calls
-  `GET /api/v2/verifykey/{id}/{version}` with the one-time key. Only HTTP 200
-  from this second call verifies package/glob and owner scope. HTTP 401/403
+  `GET /api/v2/verifykey/{id}/{version}` with the one-time key, consuming it
+  and checking its owner scope. NuGet replaces the original package glob
+  with the requested ID when creating that key, so preflight calls the same
+  endpoint again with the original API key to check its actual push scopes,
+  package glob and owner. Both verification calls must return HTTP 200
+  before NuGet is counted as verified. HTTP 401/403
   fails; no published version, HTTP 404, malformed responses, rate limits
   and network errors report `unknown`. The gallery deletes the one-time key
   after verification. No package is pushed. `NUGET_FLAT_CONTAINER_URL` and

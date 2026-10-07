@@ -29,6 +29,8 @@ class FakeEndpoints:
         self.nuget_status = 200
         self.nuget_verify_status = 200
         self.nuget_verify_disconnect = False
+        self.nuget_original_verify_status = 200
+        self.nuget_original_verify_disconnect = False
         self.nuget_index_status = 200
         self.nuget_versions = ["1.0.0", "1.2.3"]
         self.nuget_key_body = json.dumps({"Key": "verification-secret"})
@@ -73,7 +75,12 @@ class FakeEndpoints:
                 if self.path == "/conan/v2/users/authenticate":
                     self._respond(fake.conan_status, "conan-jwt" if fake.conan_status == 200 else "")
                 elif self.path.startswith("/api/v2/verifykey/"):
-                    if fake.nuget_verify_disconnect:
+                    if self.headers.get("X-NuGet-ApiKey") == "oy2key":
+                        if fake.nuget_original_verify_disconnect:
+                            self.close_connection = True
+                        else:
+                            self._respond(fake.nuget_original_verify_status)
+                    elif fake.nuget_verify_disconnect:
                         self.close_connection = True
                     else:
                         self._respond(fake.nuget_verify_status)
@@ -199,9 +206,11 @@ def test_nuget_verification_key_proves_push_scope(fake) -> None:
     assert nuget_calls[0][1]["X-NuGet-ApiKey"] == "oy2key"
     assert nuget_calls[0][1]["Content-Length"] == "0"
     verify_calls = [(p, h) for _, p, h in fake.requests if "/verifykey/" in p]
-    assert len(verify_calls) == 1
+    assert len(verify_calls) == 2
     assert verify_calls[0][0] == "/api/v2/verifykey/Platform.Example.TemplateLibrary/1.2.3"
     assert verify_calls[0][1]["X-NuGet-ApiKey"] == "verification-secret"
+    assert verify_calls[1][0] == verify_calls[0][0]
+    assert verify_calls[1][1]["X-NuGet-ApiKey"] == "oy2key"
     index_calls = [(p, h) for _, p, h in fake.requests if "/flatcontainer/" in p]
     assert index_calls[0][0] == "/flatcontainer/platform.example.templatelibrary/index.json"
     assert "X-NuGet-ApiKey" not in index_calls[0][1]
@@ -215,6 +224,40 @@ def test_valid_key_with_wrong_package_glob_or_owner_fails(fake, status: int) -> 
     assert result.returncode == 1, result.stdout + result.stderr
     assert "FAIL: NuGet refused push scope" in result.stdout
     assert f"({status})" in result.stdout
+    assert "PASS: NuGet" not in result.stdout
+
+
+@pytest.mark.parametrize("status", [401, 403])
+def test_temporary_key_cannot_prove_original_package_glob(fake, status: int) -> None:
+    # CredentialBuilder replaces the original glob with the requested ID.
+    # Its temporary key can verify successfully while the push key is refused.
+    fake.nuget_verify_status = 200
+    fake.nuget_original_verify_status = status
+    result = run_script({**github_env(fake), **nuget_env(fake)})
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "FAIL: NuGet refused push scope" in result.stdout
+    assert f"({status})" in result.stdout
+    assert "PASS: NuGet" not in result.stdout
+    keys = [headers["X-NuGet-ApiKey"] for _, path, headers in fake.requests
+            if "/verifykey/" in path]
+    assert keys == ["verification-secret", "oy2key"]
+
+
+@pytest.mark.parametrize("status", [404, 429, 500])
+def test_original_key_verification_uncertainty_never_proves_scope(fake, status: int) -> None:
+    fake.nuget_original_verify_status = status
+    result = run_script({**github_env(fake), **nuget_env(fake)})
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "UNKNOWN: NuGet" in result.stdout
+    assert "PASS: NuGet" not in result.stdout
+    assert "Release preflight: 1 verified, 0 failed, 1 unknown" in result.stdout
+
+
+def test_unreachable_original_key_verification_is_unknown(fake) -> None:
+    fake.nuget_original_verify_disconnect = True
+    result = run_script({**github_env(fake), **nuget_env(fake)})
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "UNKNOWN: NuGet" in result.stdout
     assert "PASS: NuGet" not in result.stdout
 
 

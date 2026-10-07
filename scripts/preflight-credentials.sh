@@ -13,8 +13,9 @@
 #     payload was refused; 403/404 means the release commit, tag and GitHub
 #     release would be refused. Nothing is created.
 #   - NuGet (NUGET_PUBLISH=true): obtain a verification key, then verify it
-#     against an existing package version. Only the second request checks
-#     the package id/glob and owner. With NUGET_USER set, trusted publishing
+#     against an existing package version, then verify the original key's
+#     push scope. The temporary key retains owners but replaces the original
+#     package glob, so both checks are needed. With NUGET_USER set, trusted publishing
 #     takes priority; its OIDC exchange is deferred to the release job and
 #     reported as unknown here. Neither path publishes during preflight.
 #   - Conan remote (CONAN_REMOTE_URL set): Conan's server API has no dry-run
@@ -156,7 +157,7 @@ check_github() {
 
 check_nuget() {
   local publish="${NUGET_PUBLISH:-false}" key="${NUGET_API_KEY:-}" package_id="${NUGET_PACKAGE_ID:-}"
-  local user="${NUGET_USER:-}" response status verification_key version encoded_id
+  local user="${NUGET_USER:-}" response status verification_key version encoded_id verification_url
 
   printf 'NuGet:\n'
 
@@ -179,7 +180,7 @@ check_nuget() {
     return 0
   fi
 
-  # The NuGet client uses this two-request flow before pushing symbols.
+  # The NuGet client uses this verification-key flow before pushing symbols.
   # The POST checks validity and general push scope, not the id or owner.
   encoded_id=$(url_segment "$package_id")
   response=$(http -A "$CURL_USER_AGENT" -X POST -H "X-NuGet-ApiKey: ${key}" \
@@ -235,10 +236,34 @@ check_nuget() {
       ;;
   esac
 
-  # Use the returned one-time key, never the publishing key. The gallery
-  # checks package/glob and owner here and deletes the key after this call.
+  # Consume the one-time key to check its owner scope. CredentialBuilder
+  # replaces the original package glob with the requested ID on this key,
+  # so this check alone cannot prove that the publishing key may push it.
+  verification_url="${NUGET_GALLERY%/}/api/v2/verifykey/${encoded_id}/$(url_segment "$version")"
   response=$(http -A "$CURL_USER_AGENT" -H "X-NuGet-ApiKey: ${verification_key}" \
-    "${NUGET_GALLERY%/}/api/v2/verifykey/${encoded_id}/$(url_segment "$version")")
+    "$verification_url")
+  status="${response##*"$NEWLINE"}"
+  case "$status" in
+    200)
+      ;;
+    401 | 403)
+      bad "NuGet refused push scope for ${package_id} (${status}) -- check the API key's package id / glob and owner"
+      return 0
+      ;;
+    404)
+      unknown "NuGet could not find ${package_id} ${version} during verification -- package scope is unknown"
+      return 0
+      ;;
+    *)
+      unknown "NuGet package verification answered ${status:-000} -- package scope is unknown"
+      return 0
+      ;;
+  esac
+
+  # VerifyPackageKeyInternalAsync accepts ordinary push keys too. With the
+  # original key it evaluates PackagePush/PackagePushVersion and the actual
+  # package glob and owner, without replacing the scopes or consuming it.
+  response=$(http -A "$CURL_USER_AGENT" -H "X-NuGet-ApiKey: ${key}" "$verification_url")
   status="${response##*"$NEWLINE"}"
   case "$status" in
     200)
