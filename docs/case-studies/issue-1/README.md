@@ -5,6 +5,10 @@ Issue: [link-foundation/cpp-ai-driven-development-pipeline-template#1](https://g
 
 This folder holds the evidence and the analysis behind the template:
 
+Runner and NuGet authorization follow-ups are documented in the
+[issues 5–7 case study](../issue-7/README.md). The raw workflow snapshots here
+remain evidence from the original research date.
+
 | File | Contents |
 | --- | --- |
 | [README.md](README.md) | This summary: the requirements, a solution and plan for each, where each one is implemented, and what is left |
@@ -85,7 +89,7 @@ stay generic:
 | `cpp/` layout | Detected automatically, or set with `CPP_ROOT` (`scripts/cpp_project.py`, `detect_layout`) |
 | `cpp_<version>` tags | `CPP_TAG_PREFIX: cpp_`; the old `cpp_` and `cpp-v` tags are read as C++ versions, and a bump always lands above the highest one |
 | `[C++] <version>` titles | The multi-language default |
-| NuGet `TemplateLibrary` | `NUGET_PUBLISH`, `NUGET_PACKAGE_ID`, `NUGET_API_KEY`; `packaging/nuget/` (`.nuspec` + `.targets`), `scripts/pack_nuget.py` |
+| NuGet `TemplateLibrary` | `NUGET_PUBLISH`, `NUGET_PACKAGE_ID`, `NUGET_USER` (trusted publishing) or `NUGET_API_KEY`; `packaging/nuget/` (`.nuspec` + `.targets`), `scripts/pack_nuget.py` |
 | `platform.<repo>_<version>.zip` | `RELEASE_ARCHIVE_BASENAME=platform.<repo>_{version}` |
 | Conan `platform.<repo>` | The `name` of `conanfile.py`, uploaded as that reference (`read_conan_name`) |
 | GoogleTest, Google Benchmark | `tests/`, `benchmarks/`, `cmake/Dependencies.cmake` (`find_package` first, FetchContent otherwise) |
@@ -258,7 +262,7 @@ fixes, with the evidence in [CICD-COMPARISON.md](CICD-COMPARISON.md#151-linkspla
 
 | Problem today | In the template |
 | --- | --- |
-| `sudo apt-get install nuget` fails on `ubuntu-24.04` ("no installation candidate"). The GitHub releases `cpp_0.4.0` and `cpp_0.4.1` of Interfaces exist, but NuGet stops at 0.3.41 | The .NET SDK packs and pushes; the preflight proves the key before the build; the GitHub release is created last, and a missing package is re-published on the next push |
+| `sudo apt-get install nuget` fails on `ubuntu-24.04` ("no installation candidate"). The GitHub releases `cpp_0.4.0` and `cpp_0.4.1` of Interfaces exist, but NuGet stops at 0.3.41 | Python packs and the .NET SDK pushes; preflight checks key and package authorization, reporting unknown when no published version exists; the GitHub release is created last, and a missing package is re-published on the next push |
 | The tests are compiled but never run (`Workflows-cpp-test.yml`) | `ctest` in every Test, Sanitizers and Coverage job |
 | `pull_request: types: [edited]`: pushes to a pull request are never tested | `pull_request` on `opened`, `synchronize` and `reopened` |
 | `sed -i '5d'` on the Conan profile | `conan profile detect` and `-s compiler.cppstd=20` |
@@ -309,9 +313,8 @@ Known gaps, none required by the issue:
 - **CodeQL `build-mode: manual`**: `none` needs no build and works in both
   layouts; `manual` with the `dev` preset is more precise (a comment in
   `security.yml` explains the switch).
-- **Runner images**: the jobs use `ubuntu-latest`, `macos-latest` and
-  `windows-latest` like the sibling templates, so the compilers move with
-  the images; the research lists the versions per image.
+- **Runner images**: issues 5–7 pin the OS generations to `ubuntu-24.04`,
+  `macos-15` and `windows-2025`. GitHub still updates tools within each image.
 - **Registry submissions** (ConanCenter, microsoft/vcpkg, Homebrew and the
   others in R4) stay manual.
 - **Repository setting**: the dependency review needs the dependency graph

@@ -21,10 +21,16 @@ on:
 permissions:
   contents: read
 
+env:
+  # Set the initial branch before checkout invokes git init.
+  GIT_CONFIG_COUNT: '1'
+  GIT_CONFIG_KEY_0: init.defaultBranch
+  GIT_CONFIG_VALUE_0: main
+
 jobs:
   actionlint:
     name: Lint Workflows
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     concurrency:
       group: check-${{ github.workflow }}-${{ github.ref }}-actionlint
@@ -67,7 +73,7 @@ jobs:
   #     --config .github/zizmor.yml .github/workflows
   zizmor:
     name: Audit Workflows
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     concurrency:
       group: check-${{ github.workflow }}-${{ github.ref }}-zizmor
@@ -90,7 +96,7 @@ jobs:
       # a side effect of bumping the action, and documents exactly which
       # analyser reproduces a finding.
       - name: Audit workflow files
-        uses: zizmorcore/zizmor-action@v0.6.4
+        uses: zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482 # v0.6.4
         with:
           advanced-security: false
           annotations: true
@@ -125,7 +131,7 @@ jobs:
       - actionlint
       - zizmor
     if: always()
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v7

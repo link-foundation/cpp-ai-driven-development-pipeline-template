@@ -24,7 +24,7 @@ release).
 | --- | --- | --- |
 | Detect Changes | PRs, pushes | `detect_code_changes.py`: did code, C++ sources or docs change? Markdown, `docs/`, `changelog.d/` and `experiments/` are not code. |
 | Validate Documentation | docs changed | `check-required-docs.sh`: README, CONTRIBUTING and the changelog exist and keep the sections other documents link to. |
-| Release Preflight | always | `preflight-credentials.sh`: proves each configured credential can publish (report only on PRs, enforced on `main`). |
+| Release Preflight | always | `preflight-credentials.sh`: checks credentials and reports verified, refused or unknown access (advisory on PRs, refusals block releases). |
 | Changelog Fragment Check | PRs with code changes | `check_changelog_fragment.py`: the PR adds a fragment to `changelog.d/`. |
 | Version Modification Check | PRs | `check_version_modification.py`: the PR does not edit the version by hand. |
 | Secrets Scan | PRs, pushes | secretlint over the tracked files. |
@@ -54,8 +54,13 @@ fails with a clear message before the job timeout.
   arbitrary code of the branch).
 - **Pinned actions**: third-party actions are pinned by commit hash, except
   the namespaces `.github/zizmor.yml` trusts to keep their tags immutable
-  (`actions/*`, `github/*`, `lycheeverse/*`, `zizmorcore/*` ...); zizmor
+  (`actions/*`, `github/*`, `docker/*`, `astral-sh/*`); zizmor
   enforces the policy and pins Docker images by digest.
+- **Explicit runner images**: all five workflows use `ubuntu-24.04`; the
+  compiler matrix also uses `macos-15` and `windows-2025`. These labels fix
+  the OS generation while GitHub continues updating tools within the images.
+  Policy tests reject floating `-latest` runner labels and require the Git
+  initial-branch environment configuration before checkout in every workflow.
 - **Job-scoped concurrency**: read-only jobs cancel their superseded run on
   branches, never on `main`. Every job that writes shares the
   `CI/CD Pipeline-main-write` group with `cancel-in-progress: false`, so a
@@ -83,10 +88,14 @@ fails with a clear message before the job timeout.
       and `vcpkg.json` (`bump_version.py`), moves the fragments into
       `CHANGELOG.md` (`collect_changelog.py`), commits, tags (`v1.2.3`, or
       `cpp_v1.2.3` in a multi-language repository) and pushes.
-   4. `publish-release.sh` builds the assets from the tag, creates the
-      GitHub release (`create_github_release.py`), and pushes to NuGet and
-      the Conan remote when they are configured. Each step skips what is
-      already published, so re-runs are safe.
+   4. `publish-release.sh` builds the assets from the tag, pushes to NuGet
+      and the Conan remote when configured, then creates the GitHub release
+      (`create_github_release.py`). Each step skips what is already
+      published, so re-runs are safe.
+      When `NUGET_USER` is set, the publishing job first obtains a temporary
+      API key through hash-pinned `NuGet/login`. Only the automatic and
+      instant publishing jobs receive `id-token: write`. When `NUGET_USER`
+      is unset, the existing `NUGET_API_KEY` secret remains the fallback.
 3. A release can also be started from the Actions tab (**CI/CD Pipeline** →
    **Run workflow**): `instant` releases the chosen bump immediately, and
    `changelog-pr` opens a pull request with a fragment first.
@@ -137,16 +146,37 @@ comparison (HTTP 403) and the job skips the review with a
 
 All are optional; see the table in the
 [README](../README.md#configuration). The credential preflight reports each
-configured channel on pull requests and fails the release on `main` when a
-credential cannot publish:
+configured channel on pull requests and fails releases on refused credentials
+or when no credential could be verified. An unknown channel does not block a
+release if another channel was verified; it is never counted as verified:
 
-- **NuGet**: asks nuget.org for a package verification key for
-  `NUGET_PACKAGE_ID`, which only an API key with push scope for that id gets.
+- **NuGet API key**: first obtains a one-time verification key, which checks
+  key validity and general push scope only. It then looks up the newest
+  published version in the public flat-container index and calls
+  `GET /api/v2/verifykey/{id}/{version}` with the one-time key, consuming it
+  and checking its owner scope. NuGet replaces the original package glob
+  with the requested ID when creating that key, so preflight calls the same
+  endpoint again with the original API key to check its actual push scopes,
+  package glob and owner. Both verification calls must return HTTP 200
+  before NuGet is counted as verified. HTTP 401/403
+  fails; no published version, HTTP 404, malformed responses, rate limits
+  and network errors report `unknown`. The gallery deletes the one-time key
+  after verification. No package is pushed. `NUGET_FLAT_CONTAINER_URL` and
+  `NUGET_GALLERY_URL` can override the endpoints for testing.
+- **NuGet trusted publishing**: `NUGET_USER` takes priority, even when an old
+  API-key secret exists. Preflight reports the mode and `unknown`, because
+  the OIDC exchange runs later in the publishing job. A login failure stops
+  that job; it does not silently switch to the secret. See
+  [setup instructions](distribution.md#nuget).
 - **Conan**: logs in to `CONAN_REMOTE_URL` with `CONAN_LOGIN_USERNAME` and
-  `CONAN_PASSWORD`.
+  `CONAN_PASSWORD`; a refused login fails, while a successful login is
+  `unknown` because the API offers no dry-run upload.
 - **GitHub**: tries to create an invalid ref with the workflow's
   `GITHUB_TOKEN`; the validation error (422) proves write access without
   writing anything.
+
+Set `PREFLIGHT_VERBOSE=true` for HTTP status/URL diagnostics; headers and
+response bodies containing keys are never printed.
 
 ## Running the checks locally
 

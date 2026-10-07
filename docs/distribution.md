@@ -181,10 +181,36 @@ python3 scripts/pack_nuget.py --out-dir dist --id Platform.Example.TemplateLibra
 bash scripts/check-nuget-package.sh dist/Platform.Example.TemplateLibrary.1.2.3.nupkg
 ```
 
-**Publishing**: set `NUGET_PUBLISH=true` and `NUGET_PACKAGE_ID`, and the
-`NUGET_API_KEY` secret. The release preflight asks nuget.org for a package
-verification key, which only an API key with push scope for that id gets, so
-a wrong or expired key fails before the build.
+**Publishing**: set the repository variables `NUGET_PUBLISH=true` and
+`NUGET_PACKAGE_ID`, then choose either authentication mode:
+
+- **Trusted publishing**: register a
+  [nuget.org trusted publishing policy](https://learn.microsoft.com/en-us/nuget/nuget-org/trusted-publishing)
+  with this repository's owner and name, workflow file `release.yml` (file
+  name only), and the appropriate package owner, push scopes and glob.
+  Leave the policy's environment empty: the release jobs do not declare a
+  GitHub environment. Set the repository variable `NUGET_USER` to the
+  nuget.org profile name, not an email address. Both automatic and instant
+  releases use `NuGet/login` to exchange GitHub OIDC credentials for an API
+  key valid for one hour, immediately before the publishing script runs.
+- **API key fallback**: leave `NUGET_USER` unset and configure the
+  `NUGET_API_KEY` secret with push scope, the correct package glob and owner.
+  Existing API-key configurations keep working. If `NUGET_USER` is set,
+  trusted publishing takes priority and login failures stop the release.
+
+Preflight reports which mode is selected. In API-key mode, obtaining a
+one-time verification key checks validity and general push scope, then
+verification against a published version checks the temporary key's owner
+scope and consumes it. A final verification request with the original API
+key checks its actual push scopes, package glob and owner: the temporary
+key's glob was replaced with the requested ID, so its success alone cannot
+prove the original key may push that package.
+A refused key or scope blocks the release; a package with no published
+versions has `unknown` scope because its first push cannot be checked this
+way. Trusted publishing is also `unknown` during preflight: the actual token
+exchange happens in the publishing job. Network errors and malformed
+responses never count as proof of access. See
+[credential checks](ci-cd.md#variables-and-secrets) for the verdict rules.
 
 ## Other channels
 

@@ -166,7 +166,8 @@ and creates GitHub releases with all the release assets. Set repository
 | --- | --- | --- |
 | `NUGET_PUBLISH` | variable | `true` pushes the NuGet package on release |
 | `NUGET_PACKAGE_ID` | variable | NuGet package id, e.g. `Platform.Numbers.TemplateLibrary` |
-| `NUGET_API_KEY` | secret | nuget.org API key with push scope for that id |
+| `NUGET_USER` | variable | nuget.org profile name for trusted publishing; takes priority over the API key |
+| `NUGET_API_KEY` | secret | fallback nuget.org API key with push scope for that id when `NUGET_USER` is unset |
 | `CONAN_REMOTE_URL` | variable | Conan remote to upload releases to |
 | `CONAN_LOGIN_USERNAME` | variable or secret | Conan remote user |
 | `CONAN_PASSWORD` | secret | Conan remote password or token |
@@ -174,10 +175,13 @@ and creates GitHub releases with all the release assets. Set repository
 | `CODECOV_TOKEN` | secret | uploads coverage to Codecov |
 | `DEPLOY_GITHUB_PAGES` | variable | `true` deploys the Doxygen reference to GitHub Pages |
 
-Before any job builds, the **Release Preflight** job proves that each
-configured credential can publish, so an expired token fails the release
-before the build matrix runs. The branch protection of `main` should require
-the **Pipeline Status** check.
+The **Release Preflight** job checks credentials alongside the build and
+blocks releases on refused credentials. NuGet API keys are checked against
+an existing package version; first-push scope and deferred OIDC exchanges
+are reported as `unknown`. To use trusted publishing, register a nuget.org
+policy for this repository and `release.yml`, then set `NUGET_USER` to your
+profile name. See [NuGet publishing](docs/distribution.md#nuget).
+The branch protection of `main` should require the **Pipeline Status** check.
 
 The CMake options are prefixed with the package name:
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Prove the release credentials can write before any expensive job runs.
+# Check release credentials and distinguish proven access from unknown scope.
 #
 # Principle 16 of the shared CI/CD best practices ("Prove You Can Publish
 # Before You Build"; adapted from
@@ -12,9 +12,12 @@
 #     exist. 422 means the token passed the contents:write check and only the
 #     payload was refused; 403/404 means the release commit, tag and GitHub
 #     release would be refused. Nothing is created.
-#   - NuGet (NUGET_PUBLISH=true): ask the gallery for a package verification
-#     key for NUGET_PACKAGE_ID. nuget.org only issues it to an API key with
-#     push scope for that id, and issuing it publishes nothing.
+#   - NuGet (NUGET_PUBLISH=true): obtain a verification key, then verify it
+#     against an existing package version, then verify the original key's
+#     push scope. The temporary key retains owners but replaces the original
+#     package glob, so both checks are needed. With NUGET_USER set, trusted publishing
+#     takes priority; its OIDC exchange is deferred to the release job and
+#     reported as unknown here. Neither path publishes during preflight.
 #   - Conan remote (CONAN_REMOTE_URL set): Conan's server API has no dry-run
 #     upload, so a successful login is reported as `unknown` -- never as a
 #     pass -- and a refused login as a failure.
@@ -39,6 +42,7 @@ set -u
 MODE="${PREFLIGHT_MODE:-report}"
 GITHUB_API="${GITHUB_API_URL:-https://api.github.com}"
 NUGET_GALLERY="${NUGET_GALLERY_URL:-https://www.nuget.org}"
+NUGET_FLAT_CONTAINER="${NUGET_FLAT_CONTAINER_URL:-https://api.nuget.org/v3-flatcontainer}"
 CURL_TIMEOUT="${PREFLIGHT_CURL_TIMEOUT:-15}"
 NEWLINE=$'\n'
 
@@ -71,16 +75,37 @@ unknown() {
 http() {
   local body
   body=$(curl -sS --max-time "$CURL_TIMEOUT" -o - -w "${NEWLINE}%{http_code}" "$@" 2>/dev/null)
+  # Never print headers or response bodies: both can contain credentials.
+  if [ "${PREFLIGHT_VERBOSE:-false}" = true ]; then
+    printf 'preflight HTTP %s: %s\n' "${body##*"$NEWLINE"}" "${!#}" >&2
+  fi
   printf '%s\n%s' "${body%"${NEWLINE}"*}" "${body##*"$NEWLINE"}"
 }
 
 CURL_USER_AGENT="release-preflight (github.com/link-foundation/cpp-ai-driven-development-pipeline-template)"
 
-# First match of `"key": "<value>"` in a JSON payload -- enough for the flat
-# responses in play here and free of jq/node dependencies this template does
-# not otherwise have.
-json_string() {
-  printf '%s' "$1" | sed -n "s/.*\"$2\" *: *\"\([^\"]*\)\".*/\1/p" | head -n 1
+# Python's standard library is already required by the release scripts.
+# Parse JSON without logging a potentially secret response on failure.
+nuget_json_value() {
+  python3 -c '
+import json, sys
+try:
+    data = json.load(sys.stdin)
+    value = data.get(sys.argv[1])
+    if sys.argv[1] == "versions":
+        if not isinstance(value, list) or not all(isinstance(v, str) and v for v in value):
+            sys.exit(1)
+        value = value[-1] if value else ""
+    if not isinstance(value, str) or any(ord(c) < 32 for c in value):
+        sys.exit(1)
+    print(value)
+except (ValueError, AttributeError):
+    sys.exit(1)
+' "$1"
+}
+
+url_segment() {
+  python3 -c 'import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1], safe=""))' "$1"
 }
 
 # The release job pushes `chore: release <tag>` to main, pushes the tag and
@@ -132,7 +157,7 @@ check_github() {
 
 check_nuget() {
   local publish="${NUGET_PUBLISH:-false}" key="${NUGET_API_KEY:-}" package_id="${NUGET_PACKAGE_ID:-}"
-  local response status
+  local user="${NUGET_USER:-}" response status verification_key version encoded_id verification_url
 
   printf 'NuGet:\n'
 
@@ -144,31 +169,114 @@ check_nuget() {
     bad 'NUGET_PUBLISH is true but NUGET_PACKAGE_ID is empty -- set the repository variable to the package id'
     return 0
   fi
+  if [ -n "$user" ]; then
+    printf '  MODE: NuGet trusted publishing (NUGET_USER is set)\n'
+    unknown "NuGet trusted publishing for ${package_id} will exchange OIDC credentials in the release job; package scope is not verified by preflight"
+    return 0
+  fi
+  printf '  MODE: NuGet API key (NUGET_API_KEY secret fallback)\n'
   if [ -z "$key" ]; then
-    bad "NUGET_PUBLISH is true but NUGET_API_KEY is missing -- dotnet nuget push of ${package_id} would fail with 401/403"
+    bad "NUGET_PUBLISH is true but NUGET_API_KEY is missing -- configure NUGET_USER for trusted publishing or an API key for ${package_id}"
     return 0
   fi
 
-  # The same endpoint the NuGet client uses before pushing symbols: the
-  # gallery checks that the API key may push this id, then hands out a
-  # short-lived verification key. The key is deliberately not printed.
+  # The NuGet client uses this verification-key flow before pushing symbols.
+  # The POST checks validity and general push scope, not the id or owner.
+  encoded_id=$(url_segment "$package_id")
   response=$(http -A "$CURL_USER_AGENT" -X POST -H "X-NuGet-ApiKey: ${key}" \
     -H 'Content-Length: 0' \
-    "${NUGET_GALLERY}/api/v2/package/create-verification-key/${package_id}")
+    "${NUGET_GALLERY%/}/api/v2/package/create-verification-key/${encoded_id}")
   status="${response##*"$NEWLINE"}"
 
   case "$status" in
     200)
-      ok "NuGet issued a verification key for ${package_id} -- the API key may push it"
+      verification_key=$(printf '%s' "${response%"${NEWLINE}"*}" | nuget_json_value Key)
+      if [ -z "$verification_key" ]; then
+        unknown 'NuGet returned no usable verification key -- package scope is unknown'
+        return 0
+      fi
       ;;
     401 | 403)
-      bad "NuGet refused the API key for ${package_id} (${status}) -- the key is invalid, expired, or lacks push scope for this package id / glob"
+      bad "NuGet refused the API key for ${package_id} (${status}) -- the key is invalid, expired, or lacks push scope"
+      return 0
       ;;
     '' | 000)
       unknown 'NuGet was unreachable during the verification-key probe'
+      return 0
       ;;
     *)
       unknown "NuGet answered ${status} to the verification-key probe (no verdict on the API key)"
+      return 0
+      ;;
+  esac
+
+  # The public index lists published versions, including unlisted versions.
+  # It receives no credentials. A first push has no version to verify against.
+  response=$(http -A "$CURL_USER_AGENT" \
+    "${NUGET_FLAT_CONTAINER%/}/$(url_segment "${package_id,,}")/index.json")
+  status="${response##*"$NEWLINE"}"
+  case "$status" in
+    200)
+      if ! version=$(printf '%s' "${response%"${NEWLINE}"*}" | nuget_json_value versions); then
+        unknown 'NuGet returned a malformed version index -- package scope is unknown'
+        return 0
+      fi
+      if [ -z "$version" ]; then
+        unknown "NuGet has no published version of ${package_id} -- package scope for a first push cannot be verified"
+        return 0
+      fi
+      ;;
+    404)
+      unknown "NuGet has no published version of ${package_id} -- package scope for a first push cannot be verified"
+      return 0
+      ;;
+    *)
+      unknown "NuGet version lookup answered ${status:-000} -- package scope is unknown"
+      return 0
+      ;;
+  esac
+
+  # Consume the one-time key to check its owner scope. CredentialBuilder
+  # replaces the original package glob with the requested ID on this key,
+  # so this check alone cannot prove that the publishing key may push it.
+  verification_url="${NUGET_GALLERY%/}/api/v2/verifykey/${encoded_id}/$(url_segment "$version")"
+  response=$(http -A "$CURL_USER_AGENT" -H "X-NuGet-ApiKey: ${verification_key}" \
+    "$verification_url")
+  status="${response##*"$NEWLINE"}"
+  case "$status" in
+    200)
+      ;;
+    401 | 403)
+      bad "NuGet refused push scope for ${package_id} (${status}) -- check the API key's package id / glob and owner"
+      return 0
+      ;;
+    404)
+      unknown "NuGet could not find ${package_id} ${version} during verification -- package scope is unknown"
+      return 0
+      ;;
+    *)
+      unknown "NuGet package verification answered ${status:-000} -- package scope is unknown"
+      return 0
+      ;;
+  esac
+
+  # VerifyPackageKeyInternalAsync accepts ordinary push keys too. With the
+  # original key it evaluates PackagePush/PackagePushVersion and the actual
+  # package glob and owner, without replacing the scopes or consuming it.
+  response=$(http -A "$CURL_USER_AGENT" -H "X-NuGet-ApiKey: ${key}" "$verification_url")
+  status="${response##*"$NEWLINE"}"
+  case "$status" in
+    200)
+      ok "NuGet verified push scope for ${package_id} against published version ${version}"
+      ;;
+    401 | 403)
+      bad "NuGet refused push scope for ${package_id} (${status}) -- check the API key's package id / glob and owner"
+      ;;
+    404)
+      unknown "NuGet could not find ${package_id} ${version} during verification -- package scope is unknown"
+      ;;
+    *)
+      unknown "NuGet package verification answered ${status:-000} -- package scope is unknown"
       ;;
   esac
 
@@ -224,6 +332,7 @@ append_summary() {
   [ -n "${GITHUB_STEP_SUMMARY:-}" ] || return 0
   {
     printf '### Release preflight (%s mode)\n\n' "$MODE"
+    printf 'Verdict: **%s**\n\n' "$verdict"
     printf '| verdict | count |\n| --- | --- |\n'
     printf '| verified | %d |\n' "$verified"
     printf '| failed | %d |\n' "$n_fail"

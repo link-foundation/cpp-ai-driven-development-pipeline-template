@@ -27,6 +27,14 @@ class FakeEndpoints:
     def __init__(self) -> None:
         self.github_status = 422
         self.nuget_status = 200
+        self.nuget_verify_status = 200
+        self.nuget_verify_disconnect = False
+        self.nuget_original_verify_status = 200
+        self.nuget_original_verify_disconnect = False
+        self.nuget_index_status = 200
+        self.nuget_versions = ["1.0.0", "1.2.3"]
+        self.nuget_key_body = json.dumps({"Key": "verification-secret"})
+        self.nuget_index_body = None
         self.conan_status = 200
         self.requests: list[tuple[str, str, dict[str, str]]] = []
         self._server = ThreadingHTTPServer(("127.0.0.1", 0), self._build_handler())
@@ -66,6 +74,21 @@ class FakeEndpoints:
                 self._record("GET")
                 if self.path == "/conan/v2/users/authenticate":
                     self._respond(fake.conan_status, "conan-jwt" if fake.conan_status == 200 else "")
+                elif self.path.startswith("/api/v2/verifykey/"):
+                    if self.headers.get("X-NuGet-ApiKey") == "oy2key":
+                        if fake.nuget_original_verify_disconnect:
+                            self.close_connection = True
+                        else:
+                            self._respond(fake.nuget_original_verify_status)
+                    elif fake.nuget_verify_disconnect:
+                        self.close_connection = True
+                    else:
+                        self._respond(fake.nuget_verify_status)
+                elif self.path.startswith("/flatcontainer/"):
+                    body = fake.nuget_index_body
+                    if body is None:
+                        body = json.dumps({"versions": fake.nuget_versions})
+                    self._respond(fake.nuget_index_status, body)
                 else:
                     self._respond(404)
 
@@ -74,7 +97,7 @@ class FakeEndpoints:
                 if self.path == f"/repos/{REPOSITORY}/git/refs":
                     self._respond(fake.github_status, json.dumps({"message": "Object does not exist"}))
                 elif self.path.startswith("/api/v2/package/create-verification-key/"):
-                    body = json.dumps({"Key": "secret"}) if fake.nuget_status == 200 else ""
+                    body = fake.nuget_key_body if fake.nuget_status == 200 else ""
                     self._respond(fake.nuget_status, body)
                 else:
                     self._respond(404)
@@ -97,7 +120,8 @@ def run_script(env: dict[str, str]) -> subprocess.CompletedProcess[str]:
     }
     merged = {**cleared, "PREFLIGHT_MODE": "release", "PREFLIGHT_CURL_TIMEOUT": "5", **env}
     return subprocess.run(
-        ["bash", str(SCRIPT_PATH)], cwd=ROOT, env=merged, capture_output=True, text=True
+        ["bash", str(SCRIPT_PATH)], cwd=ROOT, env=merged, capture_output=True, text=True,
+        timeout=30,
     )
 
 
@@ -108,6 +132,7 @@ def github_env(fake: FakeEndpoints) -> dict[str, str]:
 def nuget_env(fake: FakeEndpoints) -> dict[str, str]:
     return {
         "NUGET_GALLERY_URL": fake.url,
+        "NUGET_FLAT_CONTAINER_URL": f"{fake.url}/flatcontainer",
         "NUGET_PUBLISH": "true",
         "NUGET_PACKAGE_ID": "Platform.Example.TemplateLibrary",
         "NUGET_API_KEY": "oy2key",
@@ -174,18 +199,181 @@ def test_nuget_is_skipped_unless_enabled(fake) -> None:
 def test_nuget_verification_key_proves_push_scope(fake) -> None:
     result = run_script({**github_env(fake), **nuget_env(fake)})
     assert result.returncode == 0, result.stdout + result.stderr
-    assert "PASS: NuGet issued a verification key for Platform.Example.TemplateLibrary" in result.stdout
-    assert "secret" not in result.stdout
+    assert "PASS: NuGet verified push scope for Platform.Example.TemplateLibrary" in result.stdout
+    assert "verification-secret" not in result.stdout
     nuget_calls = [(p, h) for _, p, h in fake.requests if "verification-key" in p]
     assert nuget_calls[0][0].endswith("/Platform.Example.TemplateLibrary")
     assert nuget_calls[0][1]["X-NuGet-ApiKey"] == "oy2key"
+    assert nuget_calls[0][1]["Content-Length"] == "0"
+    verify_calls = [(p, h) for _, p, h in fake.requests if "/verifykey/" in p]
+    assert len(verify_calls) == 2
+    assert verify_calls[0][0] == "/api/v2/verifykey/Platform.Example.TemplateLibrary/1.2.3"
+    assert verify_calls[0][1]["X-NuGet-ApiKey"] == "verification-secret"
+    assert verify_calls[1][0] == verify_calls[0][0]
+    assert verify_calls[1][1]["X-NuGet-ApiKey"] == "oy2key"
+    index_calls = [(p, h) for _, p, h in fake.requests if "/flatcontainer/" in p]
+    assert index_calls[0][0] == "/flatcontainer/platform.example.templatelibrary/index.json"
+    assert "X-NuGet-ApiKey" not in index_calls[0][1]
 
 
-def test_nuget_refusal_fails_the_release(fake) -> None:
-    fake.nuget_status = 403
+@pytest.mark.parametrize("status", [401, 403])
+def test_valid_key_with_wrong_package_glob_or_owner_fails(fake, status: int) -> None:
+    # Creating a verification key succeeds even when this package is forbidden.
+    fake.nuget_verify_status = status
+    result = run_script({**github_env(fake), **nuget_env(fake)})
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "FAIL: NuGet refused push scope" in result.stdout
+    assert f"({status})" in result.stdout
+    assert "PASS: NuGet" not in result.stdout
+
+
+@pytest.mark.parametrize("status", [401, 403])
+def test_temporary_key_cannot_prove_original_package_glob(fake, status: int) -> None:
+    # CredentialBuilder replaces the original glob with the requested ID.
+    # Its temporary key can verify successfully while the push key is refused.
+    fake.nuget_verify_status = 200
+    fake.nuget_original_verify_status = status
+    result = run_script({**github_env(fake), **nuget_env(fake)})
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "FAIL: NuGet refused push scope" in result.stdout
+    assert f"({status})" in result.stdout
+    assert "PASS: NuGet" not in result.stdout
+    keys = [headers["X-NuGet-ApiKey"] for _, path, headers in fake.requests
+            if "/verifykey/" in path]
+    assert keys == ["verification-secret", "oy2key"]
+
+
+@pytest.mark.parametrize("status", [404, 429, 500])
+def test_original_key_verification_uncertainty_never_proves_scope(fake, status: int) -> None:
+    fake.nuget_original_verify_status = status
+    result = run_script({**github_env(fake), **nuget_env(fake)})
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "UNKNOWN: NuGet" in result.stdout
+    assert "PASS: NuGet" not in result.stdout
+    assert "Release preflight: 1 verified, 0 failed, 1 unknown" in result.stdout
+
+
+def test_unreachable_original_key_verification_is_unknown(fake) -> None:
+    fake.nuget_original_verify_disconnect = True
+    result = run_script({**github_env(fake), **nuget_env(fake)})
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "UNKNOWN: NuGet" in result.stdout
+    assert "PASS: NuGet" not in result.stdout
+
+
+@pytest.mark.parametrize("status", [404, 429, 500])
+def test_package_verification_uncertainty_never_proves_scope(fake, status: int) -> None:
+    fake.nuget_verify_status = status
+    result = run_script({**github_env(fake), **nuget_env(fake)})
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "UNKNOWN: NuGet" in result.stdout
+    assert "PASS: NuGet" not in result.stdout
+    assert "Release preflight: 1 verified, 0 failed, 1 unknown" in result.stdout
+
+
+def test_unreachable_package_verification_is_unknown(fake) -> None:
+    fake.nuget_verify_disconnect = True
+    result = run_script({**github_env(fake), **nuget_env(fake)})
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "UNKNOWN: NuGet package verification answered 000" in result.stdout
+    assert "PASS: NuGet" not in result.stdout
+
+
+def test_unreachable_version_index_is_unknown(fake) -> None:
+    result = run_script({**github_env(fake), **nuget_env(fake),
+                         "NUGET_FLAT_CONTAINER_URL": "http://127.0.0.1:9"})
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "UNKNOWN: NuGet version lookup answered 000" in result.stdout
+    assert "PASS: NuGet" not in result.stdout
+
+
+def test_refused_package_scope_is_advisory_on_pull_requests(fake) -> None:
+    fake.nuget_verify_status = 403
+    result = run_script({**github_env(fake), **nuget_env(fake), "PREFLIGHT_MODE": "report"})
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "FAIL: NuGet refused push scope" in result.stdout
+    assert "::warning::release-preflight:" in result.stdout
+
+
+def test_version_url_is_encoded_and_keys_stay_private(fake) -> None:
+    fake.nuget_versions = ["1.2.3-preview+metadata"]
+    fake.nuget_key_body = json.dumps({"Key": 'one-time-"quoted-key'})
+    result = run_script({**github_env(fake), **nuget_env(fake)})
+    assert result.returncode == 0, result.stdout + result.stderr
+    call = next(call for call in fake.requests if "/verifykey/" in call[1])
+    assert call[1].endswith("/1.2.3-preview%2Bmetadata")
+    assert call[2]["X-NuGet-ApiKey"] == 'one-time-"quoted-key'
+    assert 'quoted-key' not in result.stdout + result.stderr
+
+
+@pytest.mark.parametrize("status,versions", [(404, []), (200, []), (429, []), (500, [])])
+def test_missing_or_unavailable_published_version_is_unknown(fake, status, versions) -> None:
+    fake.nuget_index_status = status
+    fake.nuget_versions = versions
+    result = run_script({**github_env(fake), **nuget_env(fake)})
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "UNKNOWN: NuGet" in result.stdout
+    assert "PASS: NuGet" not in result.stdout
+    assert not any("/verifykey/" in path for _, path, _ in fake.requests)
+
+
+@pytest.mark.parametrize("body", ["not JSON", "{}", '{"Key": ""}', '{"Key": null}'])
+def test_missing_or_malformed_verification_key_is_unknown(fake, body: str) -> None:
+    fake.nuget_key_body = body
+    result = run_script({**github_env(fake), **nuget_env(fake)})
+    assert "UNKNOWN: NuGet" in result.stdout
+    assert "PASS: NuGet" not in result.stdout
+    assert not any("/verifykey/" in path for _, path, _ in fake.requests)
+
+
+@pytest.mark.parametrize("body", ["not JSON", "{}", '{"versions": "1.2.3"}',
+                                 '{"versions": [null]}'])
+def test_malformed_version_index_is_unknown(fake, body: str) -> None:
+    fake.nuget_index_body = body
+    result = run_script({**github_env(fake), **nuget_env(fake)})
+    assert "UNKNOWN: NuGet" in result.stdout
+    assert "PASS: NuGet" not in result.stdout
+
+
+def test_trusted_publishing_takes_priority_and_defers_exchange(fake) -> None:
+    fake.nuget_status = 403  # The obsolete secret must not block OIDC mode.
+    result = run_script({**github_env(fake), **nuget_env(fake), "NUGET_USER": "publisher"})
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "MODE: NuGet trusted publishing" in result.stdout
+    assert "UNKNOWN:" in result.stdout and "release job" in result.stdout
+    assert "PASS: NuGet" not in result.stdout
+    assert not any("/api/v2/" in path for _, path, _ in fake.requests)
+
+
+def test_trusted_publishing_does_not_require_a_secret(fake) -> None:
+    result = run_script({**github_env(fake), **nuget_env(fake), "NUGET_USER": "publisher",
+                         "NUGET_API_KEY": ""})
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "MODE: NuGet trusted publishing" in result.stdout
+    assert "FAIL: NuGet" not in result.stdout
+
+
+def test_api_key_mode_is_reported(fake) -> None:
+    result = run_script({**github_env(fake), **nuget_env(fake)})
+    assert "MODE: NuGet API key" in result.stdout
+
+
+def test_verbose_diagnostics_and_summary_do_not_leak_keys(fake, tmp_path: Path) -> None:
+    summary = tmp_path / "summary.md"
+    result = run_script({**github_env(fake), **nuget_env(fake), "PREFLIGHT_VERBOSE": "true",
+                         "GITHUB_STEP_SUMMARY": str(summary)})
+    combined = result.stdout + result.stderr + summary.read_text()
+    assert "HTTP" in result.stderr
+    for key in ("oy2key", "verification-secret", "ghs_token"):
+        assert key not in combined
+
+
+@pytest.mark.parametrize("status", [401, 403])
+def test_nuget_refusal_fails_the_release(fake, status: int) -> None:
+    fake.nuget_status = status
     result = run_script({**github_env(fake), **nuget_env(fake)})
     assert result.returncode == 1
-    assert "FAIL: NuGet refused the API key for Platform.Example.TemplateLibrary (403)" in result.stdout
+    assert f"FAIL: NuGet refused the API key for Platform.Example.TemplateLibrary ({status})" in result.stdout
 
 
 def test_nuget_enabled_without_key_or_id_fails(fake) -> None:
@@ -225,4 +413,5 @@ def test_step_summary_receives_the_verdict(fake, tmp_path: Path) -> None:
     assert result.returncode == 0
     written = summary.read_text()
     assert "### Release preflight (release mode)" in written
+    assert "Verdict: **passed**" in written
     assert "| verified | 1 |" in written
