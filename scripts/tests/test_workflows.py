@@ -14,7 +14,8 @@ from typing import Dict, List
 import pytest
 
 ROOT = Path(__file__).resolve().parents[2]
-WORKFLOWS = sorted((ROOT / ".github" / "workflows").glob("*.yml"))
+WORKFLOWS = sorted(path for path in (ROOT / ".github" / "workflows").iterdir()
+                   if path.suffix in {".yml", ".yaml"})
 WRITE_GROUP = "group: ${{ github.workflow }}-main-write"
 # Jobs that push the release commit and tag keep the checkout credentials.
 PUSHING_JOBS = {"auto-release", "manual-release"}
@@ -43,6 +44,41 @@ def all_steps():
 def test_workflows_are_found() -> None:
     names = {path.name for path in WORKFLOWS}
     assert {"release.yml", "docs.yml", "security.yml", "links.yml", "workflows.yml"} <= names
+
+
+def floating_runner_labels(text: str) -> list[str]:
+    fields = re.findall(r"^\s*(?:- )?(?:runs-on|os):[^\n]*(?:\n[ \t]+-[^\n]*)*",
+                        text, re.MULTILINE)
+    return [field for field in fields
+            if re.search(r"[a-z]+-latest\b", re.sub(r"#[^\n]*", "", field))]
+
+
+@pytest.mark.parametrize("path", WORKFLOWS, ids=lambda p: p.name)
+def test_runner_images_are_explicit(path: Path) -> None:
+    assert not floating_runner_labels(path.read_text()), path.name
+
+
+@pytest.mark.parametrize("field", ["runs-on: ubuntu-latest", "os: macos-latest",
+                                  "os: [ubuntu-24.04, windows-latest]",
+                                  "runs-on:\n      - ubuntu-latest"])
+def test_floating_runner_policy_catches_scalar_and_list_labels(field: str) -> None:
+    assert floating_runner_labels(field)
+
+
+@pytest.mark.parametrize("path", WORKFLOWS, ids=lambda p: p.name)
+def test_git_initial_branch_is_set_before_checkout(path: Path) -> None:
+    global_config = path.read_text().split("\njobs:\n", 1)[0]
+    assert "\nenv:\n" in global_config, path.name
+    assert "GIT_CONFIG_COUNT: '1'" in global_config, path.name
+    assert "GIT_CONFIG_KEY_0: init.defaultBranch" in global_config, path.name
+    assert "GIT_CONFIG_VALUE_0: main" in global_config, path.name
+
+
+def test_sensitive_action_namespaces_require_hash_pins() -> None:
+    policy = (ROOT / ".github/zizmor.yml").read_text()
+    for namespace in ("lycheeverse", "zizmorcore", "NuGet"):
+        assert f"{namespace}/*: ref-pin" not in policy
+    assert "'*': hash-pin" in policy
 
 
 @pytest.mark.parametrize("path", WORKFLOWS, ids=lambda p: p.name)
@@ -128,3 +164,36 @@ def test_publishing_secrets_are_step_scoped() -> None:
                 secrets = set(re.findall(r"secrets\.([A-Z_]+)", job_env.group(1)))
                 # Codecov's token is harmless (upload only) and gates a step.
                 assert secrets <= {"CODECOV_TOKEN"}, f"{path.name}:{name} {secrets}"
+
+
+@pytest.mark.parametrize("name", sorted(PUSHING_JOBS))
+def test_both_publish_jobs_support_trusted_nuget_and_secret_fallback(name: str) -> None:
+    job = jobs(ROOT / ".github/workflows/release.yml")[name]
+    assert "      id-token: write" in job.split("    steps:", 1)[0]
+    login = [step for step in steps(job) if "uses: NuGet/login@" in step]
+    assert len(login) == 1
+    assert "id: nuget-login" in login[0]
+    assert "vars.NUGET_PUBLISH == 'true'" in login[0]
+    assert "vars.NUGET_USER != ''" in login[0]
+    assert "user: ${{ vars.NUGET_USER }}" in login[0]
+    publish = next(step for step in steps(job) if "run: bash scripts/publish-release.sh" in step)
+    assert "NUGET_API_KEY: ${{ steps.nuget-login.outputs.NUGET_API_KEY || secrets.NUGET_API_KEY }}" in publish
+    assert job.index("uses: NuGet/login@") < job.index("run: bash scripts/publish-release.sh")
+    if name == "auto-release":
+        assert "steps.check.outputs.should_release == 'true'" in login[0]
+        assert "steps.check.outputs.nuget_published != 'true'" in login[0]
+    else:
+        assert "steps.version.outputs.version_committed == 'true'" in login[0]
+        assert "steps.version.outputs.already_released == 'true'" in login[0]
+
+
+def test_oidc_permission_is_limited_to_publishing_jobs() -> None:
+    for path in WORKFLOWS:
+        assert "id-token: write" not in path.read_text().split("\njobs:\n", 1)[0]
+        for name, job in jobs(path).items():
+            if "id-token: write" in job:
+                # GitHub Pages already uses OIDC independently of NuGet.
+                assert (path.name == "release.yml" and name in PUSHING_JOBS) or (
+                    path.name == "docs.yml" and name == "deploy")
+    preflight = jobs(ROOT / ".github/workflows/release.yml")["release-preflight"]
+    assert "NUGET_USER: ${{ vars.NUGET_USER }}" in preflight

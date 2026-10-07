@@ -18,7 +18,8 @@
 #
 # Environment:
 #   GITHUB_REPOSITORY, GH_TOKEN         GitHub release (gh CLI)
-#   NUGET_PUBLISH, NUGET_API_KEY        NuGet push; NUGET_SOURCE overrides nuget.org
+#   NUGET_PUBLISH, NUGET_API_KEY        NuGet push (OIDC output or secret fallback);
+#                                      NUGET_SOURCE overrides nuget.org
 #   NUGET_PUBLISHED                     true: this version is already on NuGet
 #   CONAN_REMOTE_URL, CONAN_LOGIN_USERNAME, CONAN_PASSWORD
 #   CONAN_REMOTE_NAME                   name of the Conan remote (release)
@@ -71,7 +72,7 @@ if [ "${NUGET_PUBLISH:-false}" = true ]; then
   if [ "${NUGET_PUBLISHED:-false}" = true ]; then
     echo "NuGet: ${version} is already published"
   elif [ -z "${NUGET_API_KEY:-}" ] && [ "$dry_run" != true ]; then
-    echo "::error title=NuGet publish::NUGET_PUBLISH is true but the NUGET_API_KEY secret is empty"
+    echo "::error title=NuGet publish::NUGET_PUBLISH is true but NUGET_API_KEY is empty -- configure trusted publishing with NUGET_USER or the NUGET_API_KEY secret"
     exit 1
   else
     # --skip-duplicate turns a re-run after a partial release into a no-op.

@@ -127,7 +127,7 @@ def test_missing_nuget_key_fails_before_the_github_release(publisher):
     _, run = publisher()
     result, calls = run(NUGET_PUBLISH="true")
     assert result.returncode == 1
-    assert "NUGET_API_KEY secret is empty" in result.stdout
+    assert "NUGET_API_KEY is empty" in result.stdout
     assert not any(call.startswith("gh") for call in calls)
 
 
