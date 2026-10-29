@@ -38,6 +38,9 @@ def main():
             ("quoted queue", WORKFLOW.replace("queue: max", "'queue': typo"), 1),
             ("mismatched quotes", WORKFLOW.replace("queue: max", "queue: \"max'"), 1),
             ("missing separator", WORKFLOW.replace("queue: max", "queue:max"), 1),
+            ("embedded YAML", WORKFLOW.replace("- run: echo ok", "- run: |\n"
+                "          cat <<'YAML'\n          concurrency:\n"
+                "            cancel-in-progress: false\n            queue: max\n          YAML"), 0),
         ]:
             path.write_text(text)
             queue = subprocess.run([sys.executable, str(ROOT / "scripts/check_workflow_concurrency.py"),

@@ -74,3 +74,16 @@ def test_compatibility_preserves_malformed_unvalidated_key(tmp_path):
     workflow.write_text(text)
     subprocess.run([sys.executable, str(SCRIPT), "--actionlint-compat", str(workflow)], check=True)
     assert workflow.read_text() == text
+
+
+@pytest.mark.parametrize("header", ["      - run: |", "      - run: >-", "        run: |2"])
+def test_compatibility_preserves_yaml_inside_block_scalars(tmp_path, header):
+    workflow = tmp_path / "workflow.yml"
+    script = ("jobs:\n  example:\n    steps:\n" + header + "\n"
+              "          cat <<'YAML'\n          concurrency:\n"
+              "            cancel-in-progress: false\n            queue: max\n          YAML\n")
+    suffix = "    concurrency:\n      cancel-in-progress: false\n      queue: max\n"
+    workflow.write_text(script + suffix)
+    subprocess.run([sys.executable, str(SCRIPT), "--actionlint-compat", str(workflow)], check=True)
+    assert workflow.read_text() == script + suffix.replace(
+        "queue: max", "# queue validated by check_workflow_concurrency.py")

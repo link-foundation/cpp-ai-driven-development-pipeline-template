@@ -23,7 +23,22 @@ def validate(text: str, validated_lines: list[int] | None = None) -> list[str]:
     errors = []
     parents = []
     lines = text.splitlines()
+    scalar_indent = None
     for number, line in enumerate(lines):
+        indent = len(line) - len(line.lstrip(" "))
+        if scalar_indent is not None:
+            if not line.strip() or indent > scalar_indent:
+                continue
+            scalar_indent = None
+        scalar = re.match(
+            r"^( *)(- )?[\w-]+:[ \t]+[|>](?:[1-9][+-]?|[+-][1-9]?)?(?:[ \t]+#.*)?[ \t]*$",
+            line,
+        )
+        if scalar:
+            # Embedded YAML in run/env strings is script data, never workflow
+            # configuration. A sequence marker occupies two indentation columns.
+            scalar_indent = len(scalar[1]) + (2 if scalar[2] else 0)
+            continue
         match = re.match(r"^( *)([\w-]+):(?:[ \t]+(.*)|[ \t]*)$", line)
         if not match:
             continue

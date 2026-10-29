@@ -103,10 +103,12 @@ experiment so it can be repeated with actionlint 1.7.12 and shellcheck.
   missing reports, provider refusals, unknown packages, transitive host/build
   packages and propagation of each failed job to the terminal gate. Missing
   native authorization is tested on PR, push, weekly and manual events, in
-  both single-language and `cpp/` layouts. All 399 script tests pass, including
-  127 focused security/workflow tests. Four additional queue edge-case failures found
-  during review now pass, and the compatibility
-  experiment also checks mismatched quotes and missing YAML separators.
+  both single-language and `cpp/` layouts. All 402 script tests pass, including
+  130 focused security/workflow tests. Four additional queue edge-case failures
+  found during review now pass. The compatibility experiment also checks
+  mismatched quotes, missing YAML separators and embedded YAML in shell
+  heredocs. Three failing-before regressions verify that literal/folded
+  script contents stay unchanged while real queue fields are validated.
   The CPM and pipx inventory omissions each have a failing-before regression.
 - Debug, Release, ASan/UBSan and coverage presets each pass all ten C++ tests;
   line/function coverage is 100% (branch coverage 93.3%). Format, clang-tidy,
