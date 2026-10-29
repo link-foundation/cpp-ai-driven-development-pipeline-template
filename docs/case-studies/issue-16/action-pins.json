@@ -1,0 +1,86 @@
+[
+  {
+    "action": "NuGet/login",
+    "previous_ref": "8d196754b4036150537f80ac539e15c2f1028841",
+    "sha": "8d196754b4036150537f80ac539e15c2f1028841",
+    "manifest": "https://github.com/NuGet/login/blob/8d196754b4036150537f80ac539e15c2f1028841/action.yml"
+  },
+  {
+    "action": "actions/checkout",
+    "previous_ref": "v7",
+    "sha": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+    "manifest": "https://github.com/actions/checkout/blob/3d3c42e5aac5ba805825da76410c181273ba90b1/action.yml"
+  },
+  {
+    "action": "actions/configure-pages",
+    "previous_ref": "v6",
+    "sha": "45bfe0192ca1faeb007ade9deae92b16b8254a0d",
+    "manifest": "https://github.com/actions/configure-pages/blob/45bfe0192ca1faeb007ade9deae92b16b8254a0d/action.yml"
+  },
+  {
+    "action": "actions/dependency-review-action",
+    "previous_ref": "v5.0.0",
+    "sha": "a1d282b36b6f3519aa1f3fc636f609c47dddb294",
+    "manifest": "https://github.com/actions/dependency-review-action/blob/a1d282b36b6f3519aa1f3fc636f609c47dddb294/action.yml"
+  },
+  {
+    "action": "actions/deploy-pages",
+    "previous_ref": "v5",
+    "sha": "368f82528645a54fb793d4d04e342629a3f51346",
+    "manifest": "https://github.com/actions/deploy-pages/blob/368f82528645a54fb793d4d04e342629a3f51346/action.yml"
+  },
+  {
+    "action": "actions/setup-python",
+    "previous_ref": "v7",
+    "sha": "6d4fd22b20465ccc0f7354476588e8df7c9ca0e0",
+    "manifest": "https://github.com/actions/setup-python/blob/6d4fd22b20465ccc0f7354476588e8df7c9ca0e0/action.yml"
+  },
+  {
+    "action": "actions/upload-artifact",
+    "previous_ref": "v7",
+    "sha": "cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+    "manifest": "https://github.com/actions/upload-artifact/blob/cf430e030ddbb5b0abf93d22962f4752f3646cd9/action.yml"
+  },
+  {
+    "action": "actions/upload-pages-artifact",
+    "previous_ref": "v5",
+    "sha": "fc324d3547104276b827a68afc52ff2a11cc49c9",
+    "manifest": "https://github.com/actions/upload-pages-artifact/blob/fc324d3547104276b827a68afc52ff2a11cc49c9/action.yml"
+  },
+  {
+    "action": "codecov/codecov-action",
+    "previous_ref": "303a32d7a59b442fa8d48b6a1cc6825c09c847a5",
+    "sha": "303a32d7a59b442fa8d48b6a1cc6825c09c847a5",
+    "manifest": "https://github.com/codecov/codecov-action/blob/303a32d7a59b442fa8d48b6a1cc6825c09c847a5/action.yml"
+  },
+  {
+    "action": "github/codeql-action/analyze",
+    "previous_ref": "v4",
+    "sha": "9b3254085494b55a0f7c4c2b3d2d52cc712ce370",
+    "manifest": "https://github.com/github/codeql-action/blob/9b3254085494b55a0f7c4c2b3d2d52cc712ce370/analyze/action.yml"
+  },
+  {
+    "action": "github/codeql-action/init",
+    "previous_ref": "v4",
+    "sha": "9b3254085494b55a0f7c4c2b3d2d52cc712ce370",
+    "manifest": "https://github.com/github/codeql-action/blob/9b3254085494b55a0f7c4c2b3d2d52cc712ce370/init/action.yml"
+  },
+  {
+    "action": "lycheeverse/lychee-action",
+    "previous_ref": "e7477775783ea5526144ba13e8db5eec57747ce8",
+    "sha": "e7477775783ea5526144ba13e8db5eec57747ce8",
+    "manifest": "https://github.com/lycheeverse/lychee-action/blob/e7477775783ea5526144ba13e8db5eec57747ce8/action.yml"
+  },
+  {
+    "action": "peter-evans/create-pull-request",
+    "previous_ref": "5f6978faf089d4d20b00c7766989d076bb2fc7f1",
+    "sha": "5f6978faf089d4d20b00c7766989d076bb2fc7f1",
+    "manifest": "https://github.com/peter-evans/create-pull-request/blob/5f6978faf089d4d20b00c7766989d076bb2fc7f1/action.yml"
+  },
+  {
+    "action": "zizmorcore/zizmor-action",
+    "previous_ref": "cc914d7f3750a2d13d75c7f184a1060aa0e9d482",
+    "sha": "cc914d7f3750a2d13d75c7f184a1060aa0e9d482",
+    "manifest": "https://github.com/zizmorcore/zizmor-action/blob/cc914d7f3750a2d13d75c7f184a1060aa0e9d482/action.yml"
+  }
+]

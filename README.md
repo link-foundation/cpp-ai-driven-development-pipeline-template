@@ -157,8 +157,10 @@ every job, the release flow and the other workflows.
 
 ## Configuration
 
-Everything is optional: without any configuration the pipeline builds, tests
-and creates GitHub releases with all the release assets. Set repository
+Without publishing configuration the pipeline builds, tests and creates
+GitHub releases with all the release assets. Native vulnerability auditing
+requires a provider token; missing configuration is explicitly incomplete
+on PRs and fails main/scheduled/manual security runs. Set repository
 **variables** (Settings → Secrets and variables → Actions → Variables) and
 **secrets** to enable more:
 
@@ -171,6 +173,7 @@ and creates GitHub releases with all the release assets. Set repository
 | `CONAN_REMOTE_URL` | variable | Conan remote to upload releases to |
 | `CONAN_LOGIN_USERNAME` | variable or secret | Conan remote user |
 | `CONAN_PASSWORD` | secret | Conan remote password or token |
+| `CONAN_AUDIT_PROVIDER_TOKEN_CONANCENTER` | secret | required for complete native security coverage; [provider setup and failure policy](docs/ci-cd.md#other-workflows) |
 | `RELEASE_ARCHIVE_BASENAME` | variable | release archive name, e.g. `platform.numbers_{version}` |
 | `CODECOV_TOKEN` | secret | uploads coverage to Codecov |
 | `DEPLOY_GITHUB_PAGES` | variable | `true` deploys the Doxygen reference to GitHub Pages |
