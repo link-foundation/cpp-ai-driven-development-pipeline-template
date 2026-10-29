@@ -8,6 +8,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Unreleased changes are kept as fragments in [changelog.d/](changelog.d/) and
 collected here by the release pipeline.
 
+## [0.2.2] - 2026-10-29
+
+### Fixed
+- Back off between every round of unanswered-link retries, respect the retry
+  budget between requests, and keep final broken links from clearing the gate.
+- Fail the Web Archive check when its expected lychee report is missing.
+
+### Fixed
+- Retain up to 100 waiting repository writers across release and Pages jobs
+  with a shared concurrency group and `queue: max`.
+- Validate the new queue field independently while keeping every other
+  actionlint check enabled.
+
+### Security
+- Pin every remote workflow action to a reviewed full commit SHA and enforce
+  the policy for all namespaces while Dependabot maintains updates.
+
+### Security
+- Fail Security on CodeQL findings, failed tool diagnostics, incomplete scans
+  or missing SARIF, and retain reports for review.
+- Trace the real C++20 build, consumers and Conan package test instead of
+  inferring compiler flags and accepting partial extraction.
+- Prebuild pinned external libraries outside the checkout before tracing,
+  and explicitly discard benchmark iteration variables flagged by CodeQL.
+- Audit the full Python CI dependency tree and resolved native dependencies
+  on pull requests, main, schedules and manual runs, retaining coordinates
+  and rejecting vulnerabilities or incomplete provider coverage.
+
 ## [0.2.1] - 2026-10-07
 
 ### Fixed
