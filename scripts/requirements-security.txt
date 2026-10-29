@@ -1,0 +1,2 @@
+# Installed in the Security workflow only; audited along with requirements-ci.txt.
+pip-audit==2.10.1

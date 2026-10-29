@@ -78,6 +78,7 @@ conan.lock
 
 # Packaging and release artifacts
 dist/
+security-reports/
 
 # Doxygen output
 docs/api/
