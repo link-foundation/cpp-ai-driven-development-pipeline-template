@@ -35,6 +35,7 @@ raises them, so a bug here cannot turn a green run red.
 
 from __future__ import annotations
 
+import math
 import os
 import re
 import sys
@@ -181,6 +182,10 @@ def recheck_unanswered(
     is retried.
     """
     is_accepted = parse_accept_ranges(accept)
+    if not math.isfinite(initial_wait_ms) or initial_wait_ms <= 0:
+        raise ValueError("initial_wait_ms must be finite and positive")
+    if not math.isfinite(budget_seconds) or budget_seconds < 0:
+        raise ValueError("budget_seconds must be finite and nonnegative")
     ask = fetch or default_fetch
     deadline = time.monotonic() + budget_seconds
     wait_ms = initial_wait_ms
@@ -188,16 +193,21 @@ def recheck_unanswered(
     recovered: list[str] = []
     rejected: list[StillBroken] = []
     pending = list(dict.fromkeys(urls))
+    first_round = True
 
     while pending and time.monotonic() < deadline:
-        if wait_ms != initial_wait_ms:
+        if not first_round:
             if time.monotonic() + wait_ms / 1000 > deadline:
                 break
             time.sleep(wait_ms / 1000)
             wait_ms *= 2
+        first_round = False
 
         still_pending: list[str] = []
-        for url in pending:
+        for index, url in enumerate(pending):
+            if time.monotonic() >= deadline:
+                still_pending.extend(pending[index:])
+                break
             try:
                 status = ask(url, user_agent)
             except Exception:  # noqa: BLE001 - no answer this round, whatever the cause
@@ -286,7 +296,7 @@ def main() -> int:
         f"{len(result.still_broken)} still without an answer"
     )
 
-    if not result.still_broken and len(result.recovered) == len(unanswered):
+    if not final and not result.still_broken and len(result.recovered) == len(set(unanswered)):
         set_github_output("all_recovered", "true")
     return 0
 

@@ -160,10 +160,10 @@ def main() -> int:
     print("=== Web Archive Fallback Check ===")
     print(f"Reading lychee output from: {output_path}")
 
-    if not output_path.exists():
-        print("No lychee output file found. Skipping web archive check.")
-        set_output("all_archived", "true")
-        return 0
+    if not output_path.is_file():
+        print(f"::error::Expected lychee report is missing: {output_path}")
+        set_output("all_archived", "false")
+        return 1
 
     broken_urls = extract_broken_urls(output_path.read_text(encoding="utf-8"))
     recovered_file = Path(os.environ.get("RECOVERED_URLS", "lychee/recovered.txt"))

@@ -16,6 +16,24 @@ sys.modules[spec.name] = module
 spec.loader.exec_module(module)  # type: ignore[union-attr]
 
 
+def test_missing_report_fails_closed(tmp_path, monkeypatch) -> None:
+    output = tmp_path / "github-output"
+    monkeypatch.setenv("LYCHEE_OUTPUT", str(tmp_path / "missing.md"))
+    monkeypatch.setenv("GITHUB_OUTPUT", str(output))
+    assert module.main() != 0
+    assert output.read_text() == "all_archived=false\n"
+
+
+def test_valid_report_without_errors_succeeds(tmp_path, monkeypatch) -> None:
+    report = tmp_path / "out.md"
+    report.write_text("# Link Checker Report\n\n## Errors per input\n\n")
+    output = tmp_path / "github-output"
+    monkeypatch.setenv("LYCHEE_OUTPUT", str(report))
+    monkeypatch.setenv("GITHUB_OUTPUT", str(output))
+    assert module.main() == 0
+    assert output.read_text() == "all_archived=true\n"
+
+
 def test_extract_broken_urls_supports_lychee_markdown_and_deduplicates() -> None:
     """Every broken URL format emitted by lychee should be recognized once."""
     report = """

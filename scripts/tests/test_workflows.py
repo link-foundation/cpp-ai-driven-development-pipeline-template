@@ -16,7 +16,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[2]
 WORKFLOWS = sorted(path for path in (ROOT / ".github" / "workflows").iterdir()
                    if path.suffix in {".yml", ".yaml"})
-WRITE_GROUP = "group: ${{ github.workflow }}-main-write"
+WRITE_GROUP = "group: repository-main-write"
 # Jobs that push the release commit and tag keep the checkout credentials.
 PUSHING_JOBS = {"auto-release", "manual-release"}
 
@@ -113,23 +113,63 @@ def test_checkouts_drop_credentials_except_in_pushing_jobs() -> None:
 
 
 def test_jobs_that_write_share_the_main_write_group() -> None:
-    for name, job in jobs(ROOT / ".github/workflows/release.yml").items():
-        # The preflight only probes (an invalid ref: 422) and never writes.
-        if "contents: write" in job and name != "release-preflight":
-            assert WRITE_GROUP in job and "cancel-in-progress: false" in job, name
+    for path in WORKFLOWS:
+        for name, job in jobs(path).items():
+            # Preflight probes an invalid ref, without writing.
+            writer = "contents: write" in job or "pages: write" in job
+            if writer and name != "release-preflight":
+                assert WRITE_GROUP in job, f"{path.name}:{name}"
+                assert "cancel-in-progress: false" in job, name
+                assert "queue: max" in job, name
+            else:
+                assert WRITE_GROUP not in job, f"{path.name}:{name}"
 
 
 def test_third_party_actions_are_pinned_by_hash() -> None:
-    trusted = tuple(f"{namespace}/" for namespace in re.findall(
-        r"^        ([a-z0-9-]+)/\*: ref-pin$",
-        (ROOT / ".github/zizmor.yml").read_text(encoding="utf-8"), re.MULTILINE))
     for path in WORKFLOWS:
         for action in re.findall(r"^ +(?:- )?uses: (\S+)", path.read_text(encoding="utf-8"),
                                  re.MULTILINE):
             if action.startswith("docker://"):
-                assert "@sha256:" in action, f"{path.name}: {action}"
-            elif not action.startswith(trusted):
+                assert re.search(r"@sha256:[0-9a-f]{64}$", action), action
+            elif not action.startswith("./"):
                 assert re.search(r"@[0-9a-f]{40}$", action), f"{path.name}: {action}"
+
+
+def test_pin_policy_has_no_namespace_exemptions_and_dependabot_is_enabled() -> None:
+    assert "ref-pin" not in (ROOT / ".github/zizmor.yml").read_text()
+    assert "package-ecosystem: github-actions" in (ROOT / ".github/dependabot.yml").read_text()
+
+
+def test_security_gates_findings_and_full_audits_independently_of_dependency_review() -> None:
+    workflow = jobs(ROOT / ".github/workflows/security.yml")
+    codeql = workflow["codeql"]
+    assert "output: security-reports/codeql" in codeql
+    assert "python3 scripts/check_sarif.py security-reports/codeql" in codeql
+    assert "if: always()" in codeql
+    for name in ("python-audit", "native-audit"):
+        job = workflow[name]
+        assert "    if:" not in job.split("    steps:", 1)[0]
+        assert "continue-on-error" not in job
+        assert "if: always()" in job
+        assert f"      - {name}" in workflow["pipeline-status"]
+
+
+def test_python_audit_covers_explicit_pipx_tools() -> None:
+    requirements = (ROOT / "scripts/requirements-ci.txt").read_text()
+    requirements += (ROOT / "scripts/requirements-security.txt").read_text()
+    for path in WORKFLOWS:
+        for tool in re.findall(r"pipx run ([\w-]+==[\w.]+)", path.read_text()):
+            assert tool in requirements.splitlines(), f"Unaudited workflow tool: {tool}"
+
+
+def test_cpp_codeql_uses_the_real_build_instead_of_inferred_compiler_flags() -> None:
+    codeql = jobs(ROOT / ".github/workflows/security.yml")["codeql"]
+    assert "language: c-cpp\n            build-mode: manual" in codeql
+    assert "language: actions\n            build-mode: none" in codeql
+    assert "build-mode: ${{ matrix.build-mode }}" in codeql
+    assert "if: matrix.build-mode == 'manual'" in codeql
+    assert codeql.index("python3 scripts/build_codeql.py") < codeql.index("name: Analyze")
+    assert codeql.index("--prepare-dependencies") < codeql.index("name: Initialize CodeQL")
 
 
 def test_run_blocks_do_not_interpolate_untrusted_input() -> None:

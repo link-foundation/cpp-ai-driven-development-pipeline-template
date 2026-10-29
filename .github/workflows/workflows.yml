@@ -2,20 +2,24 @@ name: Workflows
 # Shared with link-foundation/python-ai-driven-development-pipeline-template;
 # "python template issue #N" refers to an issue in that repository.
 
-# GitHub Actions ignores unknown workflow keys instead of rejecting them, so a
-# typo such as `queue: max` inside a `concurrency:` block silently does nothing
-# (python template issue #62). actionlint validates the schema and, through shellcheck, every
-# `run:` block as well.
+# actionlint validates the schema and, through shellcheck, every run block.
+# Version 1.7.12 predates GitHub's concurrency.queue field: validate that one
+# field independently, then comment out only validated queue lines in this
+# disposable checkout. Every other field still goes unchanged to actionlint.
 on:
   push:
     branches:
       - main
     paths:
       - '.github/**'
+      - 'scripts/check_workflow_concurrency.py'
+      - 'scripts/tests/test_check_workflow_concurrency.py'
   pull_request:
     types: [opened, synchronize, reopened]
     paths:
       - '.github/**'
+      - 'scripts/check_workflow_concurrency.py'
+      - 'scripts/tests/test_check_workflow_concurrency.py'
   workflow_dispatch:
 
 permissions:
@@ -38,7 +42,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
 
@@ -60,6 +64,9 @@ jobs:
       # bumping:
       #   docker pull rhysd/actionlint:<tag> &&
       #   docker inspect --format='{{index .RepoDigests 0}}' rhysd/actionlint:<tag>
+      - name: Validate concurrency queue policy
+        run: python3 scripts/check_workflow_concurrency.py --actionlint-compat
+
       - name: Lint workflow files
         uses: docker://rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667 # v1.7.12
         with:
@@ -81,7 +88,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
 
@@ -134,7 +141,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
 

@@ -103,6 +103,9 @@ def test_nuget_package_layout(make_repo, tmp_path) -> None:
     ns = {"n": root.tag.split("}")[0].strip("{")}
     assert root.find("n:metadata/n:id", ns).text == "Platform.Example.TemplateLibrary"
     assert root.find("n:metadata/n:description", ns).text == "A <library> & more"
+    # This native header package has no NuGet dependency tree to restore/audit.
+    # Adding dependencies requires extending the full-tree security audit too.
+    assert root.findall(".//n:dependency", ns) == []
     assert "lib\\native\\include" in targets or "lib/native/include" in targets
     ElementTree.fromstring(targets)
     for extension in ("hpp", "targets", "nuspec", "md"):

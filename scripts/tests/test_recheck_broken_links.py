@@ -12,6 +12,7 @@ import importlib.util
 import subprocess
 import sys
 import threading
+from unittest.mock import Mock
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
@@ -22,6 +23,69 @@ spec = importlib.util.spec_from_file_location("recheck_broken_links", SCRIPT_PAT
 module = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = module
 spec.loader.exec_module(module)  # type: ignore[union-attr]
+
+
+def test_single_reset_waits_before_retry(monkeypatch) -> None:
+    sleep = Mock()
+    monkeypatch.setattr(module.time, "sleep", sleep)
+    fetch = Mock(side_effect=[OSError("connection reset"), 200])
+    result = module.recheck_unanswered(
+        ["https://a.example"], accept="200..=299", user_agent="lychee",
+        initial_wait_ms=1, fetch=fetch,
+    )
+    assert result.recovered == ["https://a.example"]
+    sleep.assert_called_once_with(0.001)
+
+
+def test_multiple_urls_collapse_to_one_and_keep_doubling_backoff(monkeypatch) -> None:
+    sleep = Mock()
+    monkeypatch.setattr(module.time, "sleep", sleep)
+    fetch = Mock(side_effect=[200, OSError("reset"), OSError("reset"), 200])
+    result = module.recheck_unanswered(
+        ["https://a.example", "https://b.example"], accept="200..=299",
+        user_agent="lychee", initial_wait_ms=1, fetch=fetch,
+    )
+    assert result.recovered == ["https://a.example", "https://b.example"]
+    assert [call.args[0] for call in sleep.call_args_list] == [0.001, 0.002]
+
+
+def test_budget_prevents_late_requests_and_excessive_sleep(monkeypatch) -> None:
+    now = [0.0]
+    sleeps = []
+    monkeypatch.setattr(module.time, "monotonic", lambda: now[0])
+
+    def sleep(seconds):
+        sleeps.append(seconds)
+        now[0] += seconds
+
+    def fetch(url, user_agent):
+        now[0] += 0.4
+        raise OSError("reset")
+
+    monkeypatch.setattr(module.time, "sleep", sleep)
+    result = module.recheck_unanswered(
+        ["https://a.example", "https://b.example", "https://c.example"],
+        accept="200", user_agent="lychee", budget_seconds=0.5,
+        initial_wait_ms=1000, fetch=fetch,
+    )
+    assert now[0] == 0.8
+    assert sleeps == []
+    assert len(result.still_broken) == 3
+
+
+def test_recovery_does_not_hide_final_broken_links(tmp_path, monkeypatch) -> None:
+    report = tmp_path / "out.md"
+    report.write_text(
+        "- [ERROR] <https://a.example> | Connection reset\n"
+        "- [404] <https://b.example> | Rejected status code\n"
+    )
+    output = tmp_path / "output"
+    monkeypatch.setenv("LYCHEE_OUTPUT", str(report))
+    monkeypatch.setenv("RECOVERED_OUTPUT", str(tmp_path / "recovered"))
+    monkeypatch.setenv("GITHUB_OUTPUT", str(output))
+    monkeypatch.setattr(module, "default_fetch", lambda *_: 200)
+    assert module.main() == 0
+    assert not output.exists() or "all_recovered=true" not in output.read_text()
 
 
 # A trimmed copy of a real lychee report: summary table, per-input error

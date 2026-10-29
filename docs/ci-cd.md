@@ -52,19 +52,19 @@ fails with a clear message before the job timeout.
   checkout except the release jobs that push, and publishing secrets are set
   on the steps that need them, never at the workflow level (CMake runs
   arbitrary code of the branch).
-- **Pinned actions**: third-party actions are pinned by commit hash, except
-  the namespaces `.github/zizmor.yml` trusts to keep their tags immutable
-  (`actions/*`, `github/*`, `docker/*`, `astral-sh/*`); zizmor
-  enforces the policy and pins Docker images by digest.
+- **Pinned actions**: every remote action uses a full commit hash and Docker
+  images use digests. Zizmor enforces this without namespace exemptions;
+  Dependabot proposes updates to the pins.
 - **Explicit runner images**: all five workflows use `ubuntu-24.04`; the
   compiler matrix also uses `macos-15` and `windows-2025`. These labels fix
   the OS generation while GitHub continues updating tools within the images.
   Policy tests reject floating `-latest` runner labels and require the Git
   initial-branch environment configuration before checkout in every workflow.
 - **Job-scoped concurrency**: read-only jobs cancel their superseded run on
-  branches, never on `main`. Every job that writes shares the
-  `CI/CD Pipeline-main-write` group with `cancel-in-progress: false`, so a
-  started release is never cancelled.
+  branches, never on `main`. Release, changelog and Pages writers across
+  workflows share `repository-main-write` with `cancel-in-progress: false`
+  and `queue: max`, retaining up to 100 waiting jobs. Read-only checks use
+  separate groups. Push recovery remains bounded and never force-pushes.
 - **`!cancelled()` instead of `always()`** on jobs that need skipped jobs
   ([actions/runner#491](https://github.com/actions/runner/issues/491)), so
   a cancelled run cancels them too.
@@ -132,9 +132,50 @@ Locally: `doxygen Doxyfile` (output in `docs/api/`), or build the
 
 | Workflow | Triggers | Checks |
 | --- | --- | --- |
-| `security.yml` (**Security**) | PRs, pushes, weekly | CodeQL for C/C++ (`build-mode: none`) and for the workflows; dependency review of pull requests. |
+| `security.yml` (**Security**) | PRs, main pushes, weekly, manual | Fatal CodeQL SARIF gate for C/C++ and workflows; full Python/native dependency audits; additional PR dependency review. |
 | `links.yml` (**Broken Link Checker**) | markdown or HTML changes | lychee, a re-check of links that never answered, and a Web Archive fallback. `.lycheeignore` lists the exceptions. |
-| `workflows.yml` (**Workflows**) | workflow changes | actionlint and zizmor. |
+| `workflows.yml` (**Workflows**) | workflow changes | actionlint, independent concurrency queue validation and zizmor; every remote action uses a full commit SHA (Docker uses a digest). |
+
+The C++ CodeQL job traces the real C++20 release build, all five consumer
+examples and Conan's package test in both repository layouts. Workflow analysis
+uses build mode `none`. Pinned external libraries are built outside the
+checkout before CodeQL initialization; the traced build compiles project
+sources with their real SYSTEM dependency headers. Compiler inference previously
+selected C++17 and left incomplete extraction; manual compilation supplies the
+actual flags and headers.
+The security workflow retains CodeQL SARIF and requires explicit successful
+invocations, complete reports and no findings at any result level. Failed or
+unknown execution state and warning/error tool diagnostics fail the job and
+the terminal Pipeline Status. Analysis/upload success alone is insufficient.
+
+Full audits run independently of dependency review. `pip-audit --strict`
+resolves all pinned CI/audit requirements and their transitive dependencies;
+its JSON validator rejects findings, skipped packages and incomplete reports.
+The native audit resolves the Conan host/build graphs, CMake test/benchmark
+dependencies and every vcpkg manifest feature, including transitive build
+helpers, plus the CPM consumer's pinned bootstrap version and integrity hash.
+It retains raw graphs, exact vcpkg versions/port revisions, a provider
+SBOM and coverage status under `security-reports/`. No packages are compiled.
+
+ConanCenter's supported audit provider requires a free token from
+[Conan Audit](https://audit.conan.io/register). Configure the Actions secret
+`CONAN_AUDIT_PROVIDER_TOKEN_CONANCENTER`. Without it, PRs explicitly warn and
+record **incomplete** native coverage; main, weekly and manual runs fail with
+setup instructions. This permits reviewing a new template before an owner
+configures the provider. With credentials, provider refusals, unresolved or
+unknown packages (including unsupported vcpkg helpers or CPM), missing verdicts and
+vulnerabilities fail on every event. A missing token never produces a clean
+verdict. The native NuGet package declares no dependencies, verified in the
+packaging tests; adding NuGet dependencies requires a locked restore with
+transitive auditing and warnings as errors.
+
+The pinned actionlint 1.7.12 predates `queue`. Before linting, the helper
+`check_workflow_concurrency.py --actionlint-compat` validates block-style queue
+placement, literal values and cancellation compatibility, then comments out
+only those validated lines in the disposable checkout. Every other line goes
+unchanged to actionlint, including unsupported inline/quoted queue forms.
+No diagnostic category is suppressed; shell checks remain enabled.
+Dependabot maintains action pins.
 
 The dependency review needs the dependency graph: enable it in Settings →
 Advanced Security → **Dependency graph**. Until then
@@ -144,7 +185,8 @@ comparison (HTTP 403) and the job skips the review with a
 
 ## Variables and secrets
 
-All are optional; see the table in the
+Publishing credentials are optional; native security auditing requires the
+provider token above. See the table in the
 [README](../README.md#configuration). The credential preflight reports each
 configured channel on pull requests and fails releases on refused credentials
 or when no credential could be verified. An unknown channel does not block a
@@ -188,6 +230,10 @@ cmake --workflow --preset coverage && gcovr --object-directory build/coverage
 cmake --preset lint && python3 scripts/lint_cpp.py
 python3 scripts/check_consumers.py            # consumer examples
 python3 -m pytest scripts/tests               # Release Script Tests
+python3 scripts/check_workflow_concurrency.py # queue policy (before actionlint)
+python3 -m pip install -r scripts/requirements-security.txt
+python3 -m pip_audit --strict -r scripts/requirements-ci.txt -r scripts/requirements-security.txt
+python3 scripts/audit_native_dependencies.py  # Conan profile, vcpkg and provider token required
 python3 scripts/package_release.py --out-dir dist --nuget   # Build Packages
 bash scripts/check-required-docs.sh           # Validate Documentation
 doxygen Doxyfile                              # Docs
