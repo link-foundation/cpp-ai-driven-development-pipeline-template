@@ -3,11 +3,9 @@ name: Security
 # CodeQL findings gate, full ecosystem dependency audits on every event, and
 # an additional dependency-diff review on eligible pull requests.
 #
-# C/C++ uses `build-mode: none` (as linksplatform/Interfaces does): CodeQL
-# extracts the sources without compiling them, so the analysis does not depend
-# on the compiler, the package manager or the C++ root of the repository
-# (single-language or cpp/). Switch the c-cpp entry to `build-mode: manual`
-# and add a `cmake --workflow --preset dev` step for the most precise results.
+# C/C++ is traced through the real C++20 build, including all consumer examples
+# and the Conan package test. Inferring flags in build-mode:none leaves partial
+# extraction when C++17 is guessed or external test headers are unavailable.
 
 on:
   push:
@@ -40,7 +38,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [c-cpp, actions]
+        include:
+          - language: c-cpp
+            build-mode: manual
+          - language: actions
+            build-mode: none
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -50,8 +52,14 @@ jobs:
         uses: github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4
         with:
           languages: ${{ matrix.language }}
-          build-mode: none
+          build-mode: ${{ matrix.build-mode }}
           queries: security-extended,security-and-quality
+
+      - name: Build all C++ entry points with their real compiler flags
+        if: matrix.build-mode == 'manual'
+        env:
+          CMAKE_BUILD_PARALLEL_LEVEL: '2'
+        run: python3 scripts/build_codeql.py
 
       - name: Analyze
         uses: github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4

@@ -136,6 +136,10 @@ Locally: `doxygen Doxyfile` (output in `docs/api/`), or build the
 | `links.yml` (**Broken Link Checker**) | markdown or HTML changes | lychee, a re-check of links that never answered, and a Web Archive fallback. `.lycheeignore` lists the exceptions. |
 | `workflows.yml` (**Workflows**) | workflow changes | actionlint, independent concurrency queue validation and zizmor; every remote action uses a full commit SHA (Docker uses a digest). |
 
+The C++ CodeQL job traces the real C++20 release build, all five consumer
+examples and Conan's package test in both repository layouts. Workflow analysis
+uses build mode `none`. Compiler inference previously selected C++17 and left
+incomplete extraction; manual compilation supplies the actual flags and headers.
 The security workflow retains CodeQL SARIF and requires explicit successful
 invocations, complete reports and no findings at any result level. Failed or
 unknown execution state and warning/error tool diagnostics fail the job and

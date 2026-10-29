@@ -83,6 +83,10 @@ were read before implementation; there were no additional comments.
 - [CodeQL analyze action](https://github.com/github/codeql-action/tree/main/analyze)
   can retain SARIF via its `output` input. Analysis/upload success is separate
   from the finding verdict, which is enforced by the new local validator.
+- [CodeQL compiled-language build options](https://docs.github.com/en/code-security/reference/code-scanning/codeql/build-options-for-compiled-languages):
+  build-free scanning infers compiler flags and dependencies. Manual tracing
+  supplies the actual C++20 flags and dependency headers for more complete
+  analysis, while Actions analysis needs no compiler.
 
 ## Reproduction and verification evidence
 
@@ -103,13 +107,21 @@ experiment so it can be repeated with actionlint 1.7.12 and shellcheck.
   missing reports, provider refusals, unknown packages, transitive host/build
   packages and propagation of each failed job to the terminal gate. Missing
   native authorization is tested on PR, push, weekly and manual events, in
-  both single-language and `cpp/` layouts. All 402 script tests pass, including
-  130 focused security/workflow tests. Four additional queue edge-case failures
+  both single-language and `cpp/` layouts. All 406 script tests pass, including
+  134 focused security/workflow/build tests. Four additional queue edge-case failures
   found during review now pass. The compatibility experiment also checks
   mismatched quotes, missing YAML separators and embedded YAML in shell
   heredocs. Three failing-before regressions verify that literal/folded
   script contents stay unchanged while real queue fields are validated.
   The CPM and pipx inventory omissions each have a failing-before regression.
+- The first strict C++ CI gate exposed a pre-existing extraction failure:
+  [run 40961167465](https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/actions/runs/40961167465),
+  job `CodeQL (c-cpp)`, log line 2280 rejects a tool diagnostic. Its retained
+  SARIF reports an aborted consumer compiler invocation using `-std=c++17`;
+  none of five translation units was fully extracted. Four failing-before
+  regressions now require manual C++20 builds, coverage of consumer/package
+  entry points in both layouts, and propagation of compiler failure. The
+  SARIF diagnostic gate remains strict.
 - Debug, Release, ASan/UBSan and coverage presets each pass all ten C++ tests;
   line/function coverage is 100% (branch coverage 93.3%). Format, clang-tidy,
   cppcheck, all five consumer examples, required-document checks, Doxygen,

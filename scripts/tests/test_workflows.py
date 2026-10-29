@@ -162,6 +162,15 @@ def test_python_audit_covers_explicit_pipx_tools() -> None:
             assert tool in requirements.splitlines(), f"Unaudited workflow tool: {tool}"
 
 
+def test_cpp_codeql_uses_the_real_build_instead_of_inferred_compiler_flags() -> None:
+    codeql = jobs(ROOT / ".github/workflows/security.yml")["codeql"]
+    assert "language: c-cpp\n            build-mode: manual" in codeql
+    assert "language: actions\n            build-mode: none" in codeql
+    assert "build-mode: ${{ matrix.build-mode }}" in codeql
+    assert "if: matrix.build-mode == 'manual'" in codeql
+    assert codeql.index("python3 scripts/build_codeql.py") < codeql.index("name: Analyze")
+
+
 def test_run_blocks_do_not_interpolate_untrusted_input() -> None:
     unsafe = re.compile(r"\$\{\{\s*(?:inputs\.|github\.event\.|github\.(?:base|head)_ref)")
     for workflow, job, step in all_steps():
