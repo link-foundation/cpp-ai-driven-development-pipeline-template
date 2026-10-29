@@ -30,7 +30,7 @@ on:
   workflow_dispatch:
 
 # Least-privilege default; the write scopes GitHub Pages needs are granted
-# per job, to the two jobs that actually publish.
+# per job, to the deployment job that actually publishes.
 permissions:
   contents: read
 

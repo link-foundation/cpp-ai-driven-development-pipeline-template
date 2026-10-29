@@ -138,8 +138,11 @@ Locally: `doxygen Doxyfile` (output in `docs/api/`), or build the
 
 The C++ CodeQL job traces the real C++20 release build, all five consumer
 examples and Conan's package test in both repository layouts. Workflow analysis
-uses build mode `none`. Compiler inference previously selected C++17 and left
-incomplete extraction; manual compilation supplies the actual flags and headers.
+uses build mode `none`. Pinned external libraries are built outside the
+checkout before CodeQL initialization; the traced build compiles project
+sources with their real SYSTEM dependency headers. Compiler inference previously
+selected C++17 and left incomplete extraction; manual compilation supplies the
+actual flags and headers.
 The security workflow retains CodeQL SARIF and requires explicit successful
 invocations, complete reports and no findings at any result level. Failed or
 unknown execution state and warning/error tool diagnostics fail the job and

@@ -87,6 +87,10 @@ were read before implementation; there were no additional comments.
   build-free scanning infers compiler flags and dependencies. Manual tracing
   supplies the actual C++20 flags and dependency headers for more complete
   analysis, while Actions analysis needs no compiler.
+- [CodeQL build scope](https://docs.github.com/en/code-security/reference/code-scanning/troubleshoot-analysis-errors/alerts-in-generated-code)
+  follows compiled files in manual mode; `paths-ignore` cannot exclude C++
+  dependencies there. Build the pinned external libraries before tracing,
+  outside the checkout, and retain their SYSTEM headers during project builds.
 
 ## Reproduction and verification evidence
 
@@ -107,8 +111,8 @@ experiment so it can be repeated with actionlint 1.7.12 and shellcheck.
   missing reports, provider refusals, unknown packages, transitive host/build
   packages and propagation of each failed job to the terminal gate. Missing
   native authorization is tested on PR, push, weekly and manual events, in
-  both single-language and `cpp/` layouts. All 406 script tests pass, including
-  134 focused security/workflow/build tests. Four additional queue edge-case failures
+  both single-language and `cpp/` layouts. All 409 script tests pass, including
+  137 focused security/workflow/build tests. Four additional queue edge-case failures
   found during review now pass. The compatibility experiment also checks
   mismatched quotes, missing YAML separators and embedded YAML in shell
   heredocs. Three failing-before regressions verify that literal/folded
@@ -122,6 +126,16 @@ experiment so it can be repeated with actionlint 1.7.12 and shellcheck.
   regressions now require manual C++20 builds, coverage of consumer/package
   entry points in both layouts, and propagation of compiler failure. The
   SARIF diagnostic gate remains strict.
+- The first manual build produced 68 successful extractions and zero extractor
+  failures, then correctly rejected 52 findings in
+  [run 40963291575](https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/actions/runs/40963291575)
+  (C++ job log lines 2620–2671). Two were unused benchmark loop variables in
+  this repository; both now have explicit discard expressions. The other 50
+  were in downloaded GoogleTest/Benchmark code. Preparation now builds those
+  pinned external libraries before tracing and outside the checkout; every
+  project translation unit is still built under tracing. Four failing-before
+  checks verify the preparation boundary and both layouts. No SARIF findings
+  or tool diagnostics are filtered or suppressed.
 - Debug, Release, ASan/UBSan and coverage presets each pass all ten C++ tests;
   line/function coverage is 100% (branch coverage 93.3%). Format, clang-tidy,
   cppcheck, all five consumer examples, required-document checks, Doxygen,

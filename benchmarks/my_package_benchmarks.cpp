@@ -9,8 +9,9 @@ namespace
     void fibonacci_benchmark(benchmark::State& state)
     {
         const auto index = static_cast<std::uint32_t>(state.range(0));
-        for ([[maybe_unused]] auto _ : state)
+        for (auto iteration : state)
         {
+            static_cast<void>(iteration);
             benchmark::DoNotOptimize(my_package::fibonacci(index));
         }
     }
@@ -20,8 +21,9 @@ namespace
     // cppcheck-suppress constParameterCallback ; Google Benchmark fixes the callback signature
     void parse_unsigned_benchmark(benchmark::State& state)
     {
-        for ([[maybe_unused]] auto _ : state)
+        for (auto iteration : state)
         {
+            static_cast<void>(iteration);
             benchmark::DoNotOptimize(my_package::parse_unsigned("18446744073709551615"));
         }
     }

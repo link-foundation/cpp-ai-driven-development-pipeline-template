@@ -169,6 +169,7 @@ def test_cpp_codeql_uses_the_real_build_instead_of_inferred_compiler_flags() -> 
     assert "build-mode: ${{ matrix.build-mode }}" in codeql
     assert "if: matrix.build-mode == 'manual'" in codeql
     assert codeql.index("python3 scripts/build_codeql.py") < codeql.index("name: Analyze")
+    assert codeql.index("--prepare-dependencies") < codeql.index("name: Initialize CodeQL")
 
 
 def test_run_blocks_do_not_interpolate_untrusted_input() -> None:

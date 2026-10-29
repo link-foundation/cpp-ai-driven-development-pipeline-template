@@ -48,6 +48,12 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Build pinned external libraries before compiler tracing
+        if: matrix.build-mode == 'manual'
+        env:
+          CMAKE_BUILD_PARALLEL_LEVEL: '2'
+        run: python3 scripts/build_codeql.py --prepare-dependencies --dependency-dir "$RUNNER_TEMP/codeql-dependencies"
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4
         with:
