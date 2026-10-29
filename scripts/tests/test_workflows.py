@@ -154,6 +154,14 @@ def test_security_gates_findings_and_full_audits_independently_of_dependency_rev
         assert f"      - {name}" in workflow["pipeline-status"]
 
 
+def test_python_audit_covers_explicit_pipx_tools() -> None:
+    requirements = (ROOT / "scripts/requirements-ci.txt").read_text()
+    requirements += (ROOT / "scripts/requirements-security.txt").read_text()
+    for path in WORKFLOWS:
+        for tool in re.findall(r"pipx run ([\w-]+==[\w.]+)", path.read_text()):
+            assert tool in requirements.splitlines(), f"Unaudited workflow tool: {tool}"
+
+
 def test_run_blocks_do_not_interpolate_untrusted_input() -> None:
     unsafe = re.compile(r"\$\{\{\s*(?:inputs\.|github\.event\.|github\.(?:base|head)_ref)")
     for workflow, job, step in all_steps():

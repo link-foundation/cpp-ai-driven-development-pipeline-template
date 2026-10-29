@@ -84,6 +84,20 @@ FetchContent_Declare(benchmark URL "...v${MY_PACKAGE_BENCHMARK_VERSION}.tar.gz")
         native().cmake_references(text + "\nFetchContent_Declare(new_library URL something)")
 
 
+def test_cpm_consumer_tool_is_inventoried_with_integrity_pin(tmp_path):
+    assert native().cmake_tools(tmp_path) == []
+    path = tmp_path / "examples/consumers/cpm/CMakeLists.txt"
+    path.parent.mkdir(parents=True)
+    path.write_text("set(CPM_VERSION 0.42.0)\nset(CPM_SHA256 " + "a" * 64 + ")\n")
+    assert native().cmake_tools(tmp_path) == [{
+        "name": "CPM.cmake", "version": "0.42.0", "sha256": "a" * 64,
+        "provider_reference": "cpm-cmake/0.42.0",
+    }]
+    path.write_text("set(CPM_VERSION floating)")
+    with pytest.raises(ValueError):
+        native().cmake_tools(tmp_path)
+
+
 def test_python_audit_requires_nonempty_complete_dependencies():
     assert python_audit().validate({"dependencies": [
         {"name": "pytest", "version": "9.1.1", "vulns": []}
@@ -122,6 +136,8 @@ def test_native_audit_event_and_coverage_policy(
     repo.write(repo.prefix + "cmake/Dependencies.cmake", """set(MY_PACKAGE_GTEST_VERSION 1.18.0)
 FetchContent_Declare(googletest URL pinned)
 """)
+    repo.write(repo.prefix + "examples/consumers/cpm/CMakeLists.txt",
+               "set(CPM_VERSION 0.42.0)\nset(CPM_SHA256 " + "a" * 64 + ")\n")
     monkeypatch.setenv("GITHUB_EVENT_NAME", event)
     monkeypatch.setenv("CONAN_AUDIT_PROVIDER_TOKEN_CONANCENTER", token)
     monkeypatch.setenv("VCPKG_INSTALLATION_ROOT", str(tmp_path / "vcpkg"))
@@ -139,7 +155,8 @@ FetchContent_Declare(googletest URL pinned)
             if verdict == "unauthorized":
                 raise ValueError("Provider authorization refused (401)")
             clean = {"vulnerabilities": {"totalCount": 0, "edges": []}}
-            payload = {"data": {"gtest/1.18.0": clean, "vcpkg-cmake/2024-04-23": clean}}
+            payload = {"data": {"gtest/1.18.0": clean, "vcpkg-cmake/2024-04-23": clean,
+                                "cpm-cmake/0.42.0": clean}}
             if verdict == "unknown":
                 del payload["data"]["vcpkg-cmake/2024-04-23"]
             if verdict == "finding":
@@ -153,7 +170,8 @@ FetchContent_Declare(googletest URL pinned)
     assert native().main(["--out-dir", str(out)]) == expected
     report = json.loads((out / "status.json").read_text())
     assert report["status"] == status
-    assert report["references"] == ["gtest/1.18.0", "vcpkg-cmake/2024-04-23"]
+    assert report["references"] == ["cpm-cmake/0.42.0", "gtest/1.18.0", "vcpkg-cmake/2024-04-23"]
+    assert json.loads((out / "cmake-tools.json").read_text())[0]["version"] == "0.42.0"
     assert json.loads((out / "vcpkg-coordinates.json").read_text())[0][1] == "1.18.0#2"
     assert len(calls) == (4 if token else 3)
     if not token:

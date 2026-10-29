@@ -52,10 +52,9 @@ fails with a clear message before the job timeout.
   checkout except the release jobs that push, and publishing secrets are set
   on the steps that need them, never at the workflow level (CMake runs
   arbitrary code of the branch).
-- **Pinned actions**: third-party actions are pinned by commit hash, except
-  the namespaces `.github/zizmor.yml` trusts to keep their tags immutable
-  (`actions/*`, `github/*`, `docker/*`, `astral-sh/*`); zizmor
-  enforces the policy and pins Docker images by digest.
+- **Pinned actions**: every remote action uses a full commit hash and Docker
+  images use digests. Zizmor enforces this without namespace exemptions;
+  Dependabot proposes updates to the pins.
 - **Explicit runner images**: all five workflows use `ubuntu-24.04`; the
   compiler matrix also uses `macos-15` and `windows-2025`. These labels fix
   the OS generation while GitHub continues updating tools within the images.
@@ -147,7 +146,8 @@ resolves all pinned CI/audit requirements and their transitive dependencies;
 its JSON validator rejects findings, skipped packages and incomplete reports.
 The native audit resolves the Conan host/build graphs, CMake test/benchmark
 dependencies and every vcpkg manifest feature, including transitive build
-helpers. It retains raw graphs, exact vcpkg versions/port revisions, a provider
+helpers, plus the CPM consumer's pinned bootstrap version and integrity hash.
+It retains raw graphs, exact vcpkg versions/port revisions, a provider
 SBOM and coverage status under `security-reports/`. No packages are compiled.
 
 ConanCenter's supported audit provider requires a free token from
@@ -156,7 +156,7 @@ ConanCenter's supported audit provider requires a free token from
 record **incomplete** native coverage; main, weekly and manual runs fail with
 setup instructions. This permits reviewing a new template before an owner
 configures the provider. With credentials, provider refusals, unresolved or
-unknown packages (including unsupported vcpkg helpers), missing verdicts and
+unknown packages (including unsupported vcpkg helpers or CPM), missing verdicts and
 vulnerabilities fail on every event. A missing token never produces a clean
 verdict. The native NuGet package declares no dependencies, verified in the
 packaging tests; adding NuGet dependencies requires a locked restore with

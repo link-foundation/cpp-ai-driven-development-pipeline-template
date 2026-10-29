@@ -18,8 +18,9 @@ were read before implementation; there were no additional comments.
    security regressions within the container's memory budget.
 6. [x] Fetch and merge main if needed, review the PR diff, update its title,
    analysis, tests and closing references, push only the prepared branch.
-7. [ ] Verify CI timestamps and head SHA, download and inspect non-passing
-   logs, fix failures, confirm a clean tree and mark PR 17 ready.
+7. Final CI timestamps, head SHA, log investigation, clean-tree confirmation
+   and PR readiness are recorded in PR 17, so subsequent verification does
+   not require another source commit that restarts CI.
 
 ## Requirement inventory, alternatives and implementation plans
 
@@ -42,7 +43,7 @@ were read before implementation; there were no additional comments.
 | 14 | Missing lychee report fails and writes all_archived=false | Return nonzero with actionable error | Missing report regression |
 | 14 | Valid empty-error report succeeds | Keep empty-error handling distinct from missing artifact | Empty-error report regression |
 | 14 | Broken live links fail even with archive copies | Keep workflow's live-link gate and ensure recovered transport failures never hide final 404/local errors | Mixed-report and workflow regressions |
-| 15 | Full direct/transitive dependency audit on PR, main and schedule | Ecosystem-native audit tools, independently of dependency review; include CI Python tools and native developer dependencies | Workflow policies, resolved inventory and provider reports |
+| 15 | Full direct/transitive dependency audit on PR, main and schedule | Ecosystem-native audit tools, independently of dependency review; include CI Python tools, native developer dependencies, vcpkg helpers and CPM bootstrap | Workflow policies, resolved inventory and provider reports |
 | 15 | Fatal verdict on CodeQL findings | Validate retained SARIF locally after analyze instead of relying on asynchronous upload checks | Analysis-success/finding fixture exits nonzero |
 | 15 | Reject failed diagnostics, absent/empty invocations, unknown execution state and missing reports | Strict fail-closed SARIF validator; all finding levels are fatal | Malformed/incomplete scan fixtures |
 | 15 | Retain SARIF and resolved dependency coordinates | Upload artifacts even on failure | Workflow artifact policies |
@@ -72,7 +73,13 @@ were read before implementation; there were no additional comments.
   It is an alternative to ConanCenter, not a substitute for coverage checks.
 - [pip-audit](https://github.com/pypa/pip-audit): resolves requirements and
   audits their transitive Python dependencies. Keep its report and reject
-  skipped/unknown packages as incomplete.
+  skipped/unknown packages as incomplete. Include the pinned zizmor package
+  invoked through pipx as well as the CI requirements.
+- [CPM.cmake](https://github.com/cpm-cmake/CPM.cmake): the consumer bootstraps
+  this existing CMake dependency manager. Retain its explicit version and
+  SHA256, and submit its provider coordinate alongside the resolved graphs.
+  An unsupported provider coordinate must fail as unknown rather than vanish
+  from the inventory.
 - [CodeQL analyze action](https://github.com/github/codeql-action/tree/main/analyze)
   can retain SARIF via its `output` input. Analysis/upload success is separate
   from the finding verdict, which is enforced by the new local validator.
@@ -96,18 +103,20 @@ experiment so it can be repeated with actionlint 1.7.12 and shellcheck.
   missing reports, provider refusals, unknown packages, transitive host/build
   packages and propagation of each failed job to the terminal gate. Missing
   native authorization is tested on PR, push, weekly and manual events, in
-  both single-language and `cpp/` layouts. All 120 focused security/workflow
-  tests pass. The full script suite passes all 392 tests. Four additional
-  queue edge-case failures found during review now pass, and the compatibility
+  both single-language and `cpp/` layouts. All 399 script tests pass, including
+  127 focused security/workflow tests. Four additional queue edge-case failures found
+  during review now pass, and the compatibility
   experiment also checks mismatched quotes and missing YAML separators.
+  The CPM and pipx inventory omissions each have a failing-before regression.
 - Debug, Release, ASan/UBSan and coverage presets each pass all ten C++ tests;
   line/function coverage is 100% (branch coverage 93.3%). Format, clang-tidy,
   cppcheck, all five consumer examples, required-document checks, Doxygen,
   actionlint with shellcheck, and regular/selected pedantic zizmor checks pass.
-- A real strict Python audit found no known vulnerabilities across 48 resolved
+- A real strict Python audit found no known vulnerabilities across 49 resolved
   packages. Real native resolution retained `gtest/1.18.0`, `benchmark/1.9.5`,
   `cmake/4.4.4`, `vcpkg-cmake/2025-08-07` and
-  `vcpkg-cmake-config/2026-07-21`. No provider token is configured in this
+  `vcpkg-cmake-config/2026-07-21` and `cpm-cmake/0.42.0`, including CPM's
+  integrity pin. No provider token is configured in this
   repository: native coverage is explicitly **incomplete**, not clean. PRs
   report this setup gap; main/weekly/manual runs fail until configured. Unknown
   provider packages remain fatal even after credentials are added.

@@ -43,6 +43,19 @@ def cmake_references(text: str) -> list[str]:
     return sorted(refs)
 
 
+def cmake_tools(root: Path) -> list[dict[str, str]]:
+    path = root / "examples/consumers/cpm/CMakeLists.txt"
+    if not path.exists():
+        return []  # Consumers are optional in projects derived from this template.
+    text = re.sub(r"#[^\n]*", "", path.read_text())
+    version = re.search(r"set\(CPM_VERSION\s+(\d+\.\d+\.\d+)\)", text)
+    digest = re.search(r"set\(CPM_SHA256\s+([0-9a-f]{64})\)", text)
+    if not version or not digest:
+        raise ValueError("CPM consumer must declare a pinned version and SHA256")
+    return [{"name": "CPM.cmake", "version": version[1], "sha256": digest[1],
+             "provider_reference": f"cpm-cmake/{version[1]}"}]
+
+
 def graph_references(payload) -> list[str]:
     graph = payload.get("graph") if isinstance(payload, dict) else None
     nodes = graph.get("nodes") if isinstance(graph, dict) else None
@@ -148,6 +161,9 @@ def main(argv=None) -> int:
         # Other ports (including build helpers) are sent too: an unsupported
         # coordinate must be reported unknown by the provider, never omitted.
         refs.update(f"{name}/{version.split('#', 1)[0]}" for name, version in coordinates)
+        tools = cmake_tools(root)
+        (out / "cmake-tools.json").write_text(json.dumps(tools, indent=2) + "\n")
+        refs.update(tool["provider_reference"] for tool in tools)
         refs = sorted(refs)
         status["references"] = refs
         sbom = {"bomFormat": "CycloneDX", "specVersion": "1.5", "version": 1,
