@@ -36,6 +36,8 @@ def main():
             ("shellcheck", WORKFLOW.replace("echo ok", "echo $undefined"), 1),
             ("inline queue", WORKFLOW.replace("      queue: max", "      queue: {invalid: value}"), 1),
             ("quoted queue", WORKFLOW.replace("queue: max", "'queue': typo"), 1),
+            ("mismatched quotes", WORKFLOW.replace("queue: max", "queue: \"max'"), 1),
+            ("missing separator", WORKFLOW.replace("queue: max", "queue:max"), 1),
         ]:
             path.write_text(text)
             queue = subprocess.run([sys.executable, str(ROOT / "scripts/check_workflow_concurrency.py"),

@@ -19,24 +19,30 @@ import sys
 from pathlib import Path
 
 
-def validate(text: str) -> list[str]:
+def validate(text: str, validated_lines: list[int] | None = None) -> list[str]:
     errors = []
     parents = []
     lines = text.splitlines()
     for number, line in enumerate(lines):
-        match = re.match(r"^( *)([\w-]+):\s*(.*?)\s*(?:#.*)?$", line)
+        match = re.match(r"^( *)([\w-]+):(?:[ \t]+(.*)|[ \t]*)$", line)
         if not match:
             continue
         indent = len(match[1])
         while parents and parents[-1][0] >= indent:
             parents.pop()
         if match[2] == "queue":
-            value = match[3].split("#", 1)[0].strip().strip("\"'")
+            literal = re.fullmatch(
+                r'''(single|max|'single'|'max'|"single"|"max")(?:[ \t]+#.*)?[ \t]*''',
+                match[3] or "",
+            )
             if not parents or parents[-1][1] != "concurrency":
                 errors.append(f"line {number + 1}: queue must be under concurrency")
-            elif value not in {"single", "max"}:
+            elif literal is None:
                 errors.append(f"line {number + 1}: queue must be literal single or max")
             else:
+                value = literal[1].strip("\"'")
+                if validated_lines is not None:
+                    validated_lines.append(number)
                 parent_line = parents[-1][2]
                 end = number + 1
                 while end < len(lines):
@@ -49,7 +55,7 @@ def validate(text: str) -> list[str]:
                 if len(re.findall(rf"^ {{{indent}}}queue:", block, re.M)) != 1:
                     errors.append(f"line {number + 1}: duplicate queue field")
                 if value == "max" and not re.search(
-                    rf"^ {{{indent}}}cancel-in-progress: false\s*(?:#.*)?$", block, re.M
+                    rf"^ {{{indent}}}cancel-in-progress: false(?:[ \t]+#.*)?[ \t]*$", block, re.M
                 ):
                     errors.append(f"line {number + 1}: queue max requires cancel-in-progress: false")
         parents.append((indent, match[2], number))
@@ -68,16 +74,23 @@ def main(argv=None) -> int:
         print("::error::No workflow files found")
         return 1
     failed = False
+    validated = {}
     for path in paths:
-        for error in validate(path.read_text(encoding="utf-8")):
+        text = path.read_text(encoding="utf-8")
+        queue_lines = []
+        validated[path] = (text, queue_lines)
+        for error in validate(text, queue_lines):
             print(f"::error::{path}: {error}")
             failed = True
     if not failed and args.actionlint_compat:
-        for path in paths:
-            text = path.read_text(encoding="utf-8")
-            text = re.sub(r"^( *)queue:.*$", r"\1# queue validated by check_workflow_concurrency.py", text,
-                          flags=re.M)
-            path.write_text(text, encoding="utf-8")
+        for path, (text, queue_lines) in validated.items():
+            lines = text.splitlines(keepends=True)
+            for number in queue_lines:
+                line = lines[number]
+                indent = len(line) - len(line.lstrip())
+                ending = "\n" if line.endswith("\n") else ""
+                lines[number] = " " * indent + "# queue validated by check_workflow_concurrency.py" + ending
+            path.write_text("".join(lines), encoding="utf-8")
     return int(failed)
 
 

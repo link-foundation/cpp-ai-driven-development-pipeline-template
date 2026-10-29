@@ -13,6 +13,8 @@ SCRIPT = Path(__file__).resolve().parents[1] / "check_workflow_concurrency.py"
     ("max", "false", True), ("single", "true", True),
     ("max", "true", False), ("maximum", "false", False),
     ("'max'", "false", True), ("${{ inputs.queue }}", "false", False),
+    ('"max\'', "false", False), ("max#not-a-comment", "false", False),
+    ("max", "false#not-a-comment", False), ("max # comment", "false # comment", True),
 ])
 def test_queue_value_and_cancel_policy(tmp_path, queue, cancel, valid):
     workflow = tmp_path / "workflow.yml"
@@ -64,3 +66,11 @@ def test_compatibility_does_not_rewrite_any_file_when_validation_fails(tmp_path)
                             capture_output=True, text=True)
     assert result.returncode != 0
     assert good.read_text() == text
+
+
+def test_compatibility_preserves_malformed_unvalidated_key(tmp_path):
+    workflow = tmp_path / "workflow.yml"
+    text = "concurrency:\n  group: writers\n  cancel-in-progress: false\n  queue:max\n"
+    workflow.write_text(text)
+    subprocess.run([sys.executable, str(SCRIPT), "--actionlint-compat", str(workflow)], check=True)
+    assert workflow.read_text() == text

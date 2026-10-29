@@ -16,7 +16,7 @@ were read before implementation; there were no additional comments.
    existing features and bounded push retries; commit useful atomic steps.
 5. [x] Run the full script suite, local C++ checks, workflow linters and
    security regressions within the container's memory budget.
-6. [ ] Fetch and merge main if needed, review the PR diff, update its title,
+6. [x] Fetch and merge main if needed, review the PR diff, update its title,
    analysis, tests and closing references, push only the prepared branch.
 7. [ ] Verify CI timestamps and head SHA, download and inspect non-passing
    logs, fix failures, confirm a clean tree and mark PR 17 ready.
@@ -97,8 +97,9 @@ experiment so it can be repeated with actionlint 1.7.12 and shellcheck.
   packages and propagation of each failed job to the terminal gate. Missing
   native authorization is tested on PR, push, weekly and manual events, in
   both single-language and `cpp/` layouts. All 120 focused security/workflow
-  tests pass. The full script suite passes (386 tests before the final six
-  malformed-graph regressions, which also pass in the focused suite).
+  tests pass. The full script suite passes all 392 tests. Four additional
+  queue edge-case failures found during review now pass, and the compatibility
+  experiment also checks mismatched quotes and missing YAML separators.
 - Debug, Release, ASan/UBSan and coverage presets each pass all ten C++ tests;
   line/function coverage is 100% (branch coverage 93.3%). Format, clang-tidy,
   cppcheck, all five consumer examples, required-document checks, Doxygen,
