@@ -61,6 +61,16 @@ run_is_superseded() {
   [[ -n "$branch_head" && "$branch_head" != "$run_sha" ]]
 }
 
+# Jobs GitHub never started (no runner, no steps, "not acquired" annotation)
+# are infrastructure, not code. The gate stays red because nothing was tested,
+# but it names the cause (issue #19 of the C++ template). Needs GH_TOKEN and
+# `actions: read` + `checks: read`; without them this is a silent no-op.
+report_unacquired_jobs() {
+  local reporter="$SCRIPT_DIR/unacquired_jobs.py"
+  [[ -f "$reporter" && -n "${GH_TOKEN:-}" && -n "${GITHUB_RUN_ID:-}" ]] || return 0
+  python3 "$reporter" report || true
+}
+
 failed_jobs="$(select_by_result failed)"
 cancelled_jobs="$(select_by_result cancelled)"
 
@@ -127,6 +137,7 @@ if (( ${#unexpected_jobs[@]} > 0 )); then
 fi
 
 if [[ -n "$failed_jobs" || ${#unexpected_jobs[@]} -gt 0 ]]; then
+  report_unacquired_jobs
   exit 1
 fi
 

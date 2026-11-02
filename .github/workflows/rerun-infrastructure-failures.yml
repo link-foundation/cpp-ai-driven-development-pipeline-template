@@ -1,0 +1,84 @@
+name: Rerun Infrastructure Failures
+
+# Re-runs a CI/CD Pipeline run whose failure is a job that GitHub never handed
+# to a hosted runner (issue #19). When hosted capacity runs out -- macOS arm64
+# is the usual case -- GitHub cancels the queued job with "The job was not
+# acquired by Runner of type hosted even after multiple attempts". No code
+# ran, but the build gate refuses to release and the Pipeline Status gate is
+# red, so on main the release would wait for someone to click "Re-run failed
+# jobs". scripts/unacquired_jobs.py does that click: only for jobs with no
+# runner, no steps and the "not acquired" annotation, and at most until the
+# run's third attempt. A job that ran steps and failed is never re-run.
+#
+# workflow_run is safe here: this workflow checks out only the default branch,
+# runs nothing from the triggering run, reads that run's numeric ids and its
+# job list through the API, and can only ask GitHub to re-run it.
+on: # zizmor: ignore[dangerous-triggers]
+  workflow_run:
+    workflows: ["CI/CD Pipeline"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+env:
+  # Set the initial branch before checkout invokes git init.
+  GIT_CONFIG_COUNT: '1'
+  GIT_CONFIG_KEY_0: init.defaultBranch
+  GIT_CONFIG_VALUE_0: main
+
+jobs:
+  rerun:
+    name: Rerun Unacquired Jobs
+    # A run with an unacquired job concludes `failure` (Pipeline Status fails);
+    # a fully cancelled run concludes `cancelled`. The attempt limit lives in
+    # the script, so the last attempt still reports why it was not re-run.
+    if: >-
+      github.event.workflow_run.conclusion == 'failure' ||
+      github.event.workflow_run.conclusion == 'cancelled'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.event.workflow_run.id }}
+      cancel-in-progress: false
+    permissions:
+      # `gh run rerun --failed` needs actions: write; the job annotations
+      # that identify a runner-acquisition failure need checks: read.
+      actions: write
+      checks: read
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Rerun jobs that never got a runner
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CI_VERBOSE: ${{ vars.CI_VERBOSE || 'false' }}
+          REPOSITORY: ${{ github.repository }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          ATTEMPT: ${{ github.event.workflow_run.run_attempt }}
+        run: >-
+          python3 scripts/unacquired_jobs.py rerun
+          --repository "$REPOSITORY" --run-id "$RUN_ID" --attempt "$ATTEMPT"
+
+  # Terminal status gate, as in every workflow of this template.
+  pipeline-status:
+    name: Pipeline Status
+    needs:
+      - rerun
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Check aggregate pipeline status
+        env:
+          NEEDS_JSON: ${{ toJSON(needs) }}
+          RUN_SHA: ${{ github.sha }}
+          BRANCH_NAME: ${{ github.ref_name }}
+        run: bash scripts/check-pipeline-status.sh
