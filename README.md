@@ -55,8 +55,8 @@ packages, Conan, GitHub Pages documentation).
   half-way.
 - **Hardened pipeline**: least-privilege permissions, hash-pinned third-party
   actions, credential preflight probes, CodeQL, dependency review, secret
-  scanning, actionlint, zizmor, a broken link checker and a terminal pipeline
-  status gate.
+  scanning, actionlint, zizmor, a broken link checker, a terminal pipeline
+  status gate, and automatic re-runs of jobs GitHub never gave a runner.
 
 ## Quick Start
 
@@ -177,6 +177,8 @@ on PRs and fails main/scheduled/manual security runs. Set repository
 | `RELEASE_ARCHIVE_BASENAME` | variable | release archive name, e.g. `platform.numbers_{version}` |
 | `CODECOV_TOKEN` | secret | uploads coverage to Codecov |
 | `DEPLOY_GITHUB_PAGES` | variable | `true` deploys the Doxygen reference to GitHub Pages |
+| `MACOS_NON_BLOCKING` | variable | `true` lets a failing or runner-less macOS test leg stop blocking releases; [runner-acquisition failures](docs/ci-cd.md#runner-acquisition-failures) |
+| `CI_VERBOSE` | variable | `true` prints every candidate job when re-running jobs that never got a hosted runner |
 
 The **Release Preflight** job checks credentials alongside the build and
 blocks releases on refused credentials. NuGet API keys are checked against

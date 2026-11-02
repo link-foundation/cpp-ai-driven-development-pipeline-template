@@ -357,6 +357,12 @@ jobs:
         github.event_name == 'workflow_dispatch' ||
         needs.detect-changes.outputs.any-code-changed == 'true'
       )
+    # Opt-in (issue #19): set the repository variable MACOS_NON_BLOCKING=true
+    # when macOS coverage is not needed to release. A failing macOS leg then
+    # no longer blocks the build and release, and the last step of this job
+    # annotates the failure, because needs.test.result reports success.
+    # Off by default: macOS is a supported platform of this template.
+    continue-on-error: ${{ startsWith(matrix.os, 'macos-') && vars.MACOS_NON_BLOCKING == 'true' }}
     strategy:
       fail-fast: false
       matrix:
@@ -421,6 +427,14 @@ jobs:
         run: >-
           bash scripts/run-with-budget-warning.sh "$CONSUMERS_BUDGET_SECONDS" "Consumer examples"
           python scripts/check_consumers.py
+
+      - name: Annotate a non-blocking macOS failure
+        if: failure() && startsWith(matrix.os, 'macos-') && vars.MACOS_NON_BLOCKING == 'true'
+        env:
+          LEG: ${{ matrix.name }}
+        run: >-
+          echo "::warning title=Non-blocking macOS leg failed::Test ($LEG) failed, but
+          MACOS_NON_BLOCKING=true lets the build and release continue. Fix it or unset the variable."
 
   # === SANITIZERS ===
   # AddressSanitizer and UndefinedBehaviorSanitizer over the whole test suite.
@@ -874,6 +888,12 @@ jobs:
     if: always()
     runs-on: ubuntu-24.04
     timeout-minutes: 5
+    permissions:
+      # Read this run's jobs and their annotations so a job GitHub never
+      # handed to a hosted runner is reported as such (issue #19).
+      actions: read
+      checks: read
+      contents: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -881,6 +901,7 @@ jobs:
 
       - name: Check aggregate pipeline status
         env:
+          GH_TOKEN: ${{ github.token }}
           NEEDS_JSON: ${{ toJSON(needs) }}
           RUN_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
           BRANCH_NAME: ${{ github.head_ref || github.ref_name }}

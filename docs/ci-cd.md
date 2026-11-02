@@ -1,8 +1,9 @@
 # CI/CD
 
-The pipeline is five workflows. `release.yml` (**CI/CD Pipeline**) builds,
-tests and releases; the other four check documentation, security, links and
-the workflows themselves. Every workflow ends with a **Pipeline Status** job,
+The pipeline is six workflows. `release.yml` (**CI/CD Pipeline**) builds,
+tests and releases; four others check documentation, security, links and
+the workflows themselves, and `rerun-infrastructure-failures.yml` re-runs
+jobs GitHub could not give a runner. Every workflow ends with a **Pipeline Status** job,
 the one check to require in the branch protection of `main`.
 
 The job graph, triggers, release model and hardening are the same as in the
@@ -38,7 +39,7 @@ release).
 | Auto Release | pushes to `main` | see [Release flow](#release-flow). |
 | Instant Release | manual, `instant` | bumps the chosen version part and publishes. |
 | Create Changelog PR | manual, `changelog-pr` | opens a PR that adds a fragment for the chosen bump. |
-| Pipeline Status | always | fails when any needed job failed or was cancelled (`check-pipeline-status.sh`). |
+| Pipeline Status | always | fails when any needed job failed or was cancelled (`check-pipeline-status.sh`); names jobs that never got a hosted runner (see [Runner-acquisition failures](#runner-acquisition-failures)). |
 
 Long steps run under `run-with-budget-warning.sh`: it warns at 70 % of the
 step's time budget and stops the step when the budget runs out, so a hang
@@ -55,7 +56,7 @@ fails with a clear message before the job timeout.
 - **Pinned actions**: every remote action uses a full commit hash and Docker
   images use digests. Zizmor enforces this without namespace exemptions;
   Dependabot proposes updates to the pins.
-- **Explicit runner images**: all five workflows use `ubuntu-24.04`; the
+- **Explicit runner images**: all six workflows use `ubuntu-24.04`; the
   compiler matrix also uses `macos-15` and `windows-2025`. These labels fix
   the OS generation while GitHub continues updating tools within the images.
   Policy tests reject floating `-latest` runner labels and require the Git
@@ -135,6 +136,7 @@ Locally: `doxygen Doxyfile` (output in `docs/api/`), or build the
 | `security.yml` (**Security**) | PRs, main pushes, weekly, manual | Fatal CodeQL SARIF gate for C/C++ and workflows; full Python/native dependency audits; additional PR dependency review. |
 | `links.yml` (**Broken Link Checker**) | markdown or HTML changes | lychee, a re-check of links that never answered, and a Web Archive fallback. `.lycheeignore` lists the exceptions. |
 | `workflows.yml` (**Workflows**) | workflow changes | actionlint, independent concurrency queue validation and zizmor; every remote action uses a full commit SHA (Docker uses a digest). |
+| `rerun-infrastructure-failures.yml` (**Rerun Infrastructure Failures**) | a CI/CD Pipeline run completed as failed or cancelled | re-runs the run's failed jobs when a job never got a hosted runner, at most until attempt 3. See below. |
 
 The C++ CodeQL job traces the real C++20 release build, all five consumer
 examples and Conan's package test in both repository layouts. Workflow analysis
@@ -182,6 +184,43 @@ Advanced Security → **Dependency graph**. Until then
 `scripts/check-dependency-review-support.sh` sees the API refuse the
 comparison (HTTP 403) and the job skips the review with a
 "Dependency review skipped" warning instead of failing every pull request.
+
+### Runner-acquisition failures
+
+When GitHub runs out of hosted capacity (macOS arm64 is the usual case; such
+runs carry the notice "Due to capacity constraints, jobs targeting macOS arm64
+runners may experience longer queue times"), it gives up on a queued job with
+the annotation "The job was not acquired by Runner of type hosted even after
+multiple attempts". The job ends `cancelled` (sometimes `failure`) with no
+steps and no runner. No code ran, yet **Build Packages** needs every test leg
+to succeed, so a push to `main` would not release until someone clicked
+"Re-run failed jobs" ([issue #19](https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/issues/19)).
+
+`scripts/unacquired_jobs.py` recognises such a job by all three signals: a
+`cancelled`/`failure` conclusion, no steps and no runner, and the "was not
+acquired by Runner" annotation. The annotation keeps a queued job that a newer
+push or a person cancelled from counting; a job that ran steps never counts.
+
+- **Pipeline Status** stays red, because nothing was tested, but adds a
+  `Hosted runner not acquired` error naming the jobs and the cause. It reads
+  the run's jobs with `actions: read` and `checks: read` and only when the
+  gate already fails; API errors become a warning.
+- **Rerun Infrastructure Failures** runs after every failed or cancelled
+  CI/CD Pipeline run. If the completed attempt has an unacquired job it runs
+  `gh run rerun <run> --failed`, which also re-runs the jobs that depend on
+  it (Build Packages, Auto Release, Pipeline Status). Attempts 1 and 2 are
+  re-run; attempt 3 fails the workflow with the manual command instead. It
+  checks out only the default branch and runs nothing from the triggering
+  run. `CI_VERBOSE=true` (repository variable) prints each candidate job.
+- **Optional non-blocking macOS**: when macOS coverage is not needed to
+  release, set the repository variable `MACOS_NON_BLOCKING=true`. The macOS
+  test leg then runs with `continue-on-error`, so a failure (or a missing
+  runner) no longer blocks Build Packages; because `needs.test.result` then
+  reports success, the leg adds its own `Non-blocking macOS leg failed`
+  warning. The default keeps macOS blocking.
+
+Manual workaround, for example after the third attempt:
+`gh run rerun <run-id> --failed --repo <owner>/<repo>`.
 
 ## Variables and secrets
 
