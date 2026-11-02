@@ -8,6 +8,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Unreleased changes are kept as fragments in [changelog.d/](changelog.d/) and
 collected here by the release pipeline.
 
+## [0.2.3] - 2026-11-02
+
+### Fixed
+- Re-run a CI/CD Pipeline run automatically, at most twice, when a job was
+  never acquired by a hosted runner (no steps, no runner, "not acquired"
+  annotation), so a macOS capacity shortage on `main` no longer blocks the
+  release until someone re-runs it by hand. Jobs that ran steps and failed
+  are never re-run.
+- Make the Pipeline Status gate name runner-acquisition failures as
+  infrastructure failures instead of reporting them as code failures.
+
+### Added
+- Opt-in `MACOS_NON_BLOCKING` repository variable that runs the macOS test leg
+  as a non-blocking, separately annotated signal.
+
 ## [0.2.2] - 2026-10-29
 
 ### Fixed
