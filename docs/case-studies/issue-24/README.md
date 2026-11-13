@@ -13,7 +13,7 @@ issues. Neither bug was already resolved.
 | #22: count CI/security requirements as code | Recognize `requirements*.txt` after project scope and folder exclusions | Pattern tests and requirements-only real-git PR tests, root and `cpp/` layouts |
 | #22: tool upgrades must run checks | Requirements enable all three detector outputs; Security already runs independently | Gate assertions; current PR CI |
 | #22: regression asserting `scripts/requirements-ci.txt` is code | Parameterized assertions cover both shared manifests | Tests fail against original classifier |
-| #22: rerun PR #21 so upgrades are exercised | Include PR #21's exact dependency updates here and align executable zizmor pins | Current PR CI runs the upgraded tools; historical rerun refused by GitHub (see below) |
+| #22: rerun PR #21 so upgrades are exercised | Include PR #21's exact dependency updates here and align executable zizmor pins | Current PR CI runs the upgraded tools; historical run rerun requested (see below) |
 | #23: configurable budget below about 250 MB | Standard-library checker, default 249,000,000 compressed bytes; positive integer environment/repository variable | Exact boundary, default/empty, invalid values, missing/corrupt ZIP tests |
 | #23: error annotation and largest ZIP entries | Reject over-budget archives, list top ten by compressed size with uncompressed sizes | Diagnostic and ordering assertions |
 | #23: gate on PRs | Enforce in `pack_nuget.pack` and before local NuGet push/restore | Packer regression, shell test proving dotnet is never called, Build Packages CI |
@@ -99,8 +99,7 @@ The size gate tests use byte-sized budgets to reproduce an oversized upload
 without writing a 250 MB fixture. CI supplies real package restoration and
 the C++ matrix instead of duplicating full builds locally.
 
-GitHub refused `gh run rerun 42463434826 --failed` with
-`This workflow run cannot be retried`. The historical run is therefore
-unavailable for rerun; its dependency updates are exercised in this PR
-instead. This external limitation does not replace verification of the
-updated dependencies on the current commit.
+GitHub refused `gh run rerun 42463434826 --failed` because the historical
+run had no failing jobs. A full `gh run rerun 42463434826` was accepted.
+It still uses PR #21's original commit and classifier, so the current PR
+is the verification of those updated dependencies with the corrected gates.
