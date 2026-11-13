@@ -124,3 +124,10 @@ Local validation: 455 script tests passed using pytest 9.2.0. After switching
 the zizmor integration, all 50 workflow policy tests pass, and zizmor 1.31.1
 reports no findings in regular/medium-confidence and pedantic/high-confidence
 high-severity offline checks. Full builds remain in CI.
+
+The subsequent online zizmor run (43400739222) also exposed two stale
+CodeQL `# v4` comments (log lines 376–377): the moving major tag no longer
+matched the pinned commit. GitHub's annotated `v4.39.1` tag resolves to the
+existing pinned SHA `9b3254085494b55a0f7c4c2b3d2d52cc712ce370`. Both comments
+now name `v4.39.1`; the action code is unchanged. Online validation matters
+because the ref-version-mismatch audit cannot run offline.
