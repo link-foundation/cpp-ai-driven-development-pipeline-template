@@ -5,9 +5,9 @@ Outputs (GITHUB_OUTPUT):
   any-code-changed  true when a file that can affect the build, tests,
                     packaging or the pipeline itself changed
   cpp-changed       true when a file under the C++ root changed (sources,
-                    headers, CMake, packaging)
+                    headers, CMake, packaging), or a shared requirements manifest changed
   docs-changed      true when markdown anywhere or anything under docs/ or
-                    the Doxyfile changed (drives the documentation jobs)
+                    the Doxyfile or requirements changed (drives documentation jobs)
 
 Not code: markdown, changelog.d/, docs/, dev/log/, experiments/. Unlike the
 Python and JavaScript templates, examples/ *is* code here: the C++ examples

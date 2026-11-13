@@ -95,21 +95,14 @@ jobs:
       # Annotations instead of SARIF: forks of this template do not necessarily
       # have code scanning enabled, and the job should fail loudly either way.
       #
-      # `version` is named rather than left at the default, because the
-      # action's `latest` entry is its own frozen table (v0.6.2 -> zizmor
-      # 1.29.0), not the latest zizmor -- the comment beside this step used to
-      # name 1.30.0, a version the action cannot install (python template issue #76). Naming
-      # the version keeps the next bump a visible line in the diff rather than
-      # a side effect of bumping the action, and documents exactly which
-      # analyser reproduces a finding.
+      # Run the audited PyPI pin directly: the action's frozen downloader
+      # table does not support every version released on PyPI.
       - name: Audit workflow files
-        uses: zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482 # v0.6.4
-        with:
-          advanced-security: false
-          annotations: true
-          config: .github/zizmor.yml
-          min-confidence: medium
-          version: 1.31.1
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          pipx run zizmor==1.31.1 --format=github --persona regular
+          --min-confidence medium --config .github/zizmor.yml .
 
       # The step above runs `--persona regular`, which is the right default:
       # pedantic surfaces dozens of stylistic findings. But the audits that

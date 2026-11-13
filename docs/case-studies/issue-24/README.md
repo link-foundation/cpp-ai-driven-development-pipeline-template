@@ -13,7 +13,7 @@ issues. Neither bug was already resolved.
 | #22: count CI/security requirements as code | Recognize `requirements*.txt` after project scope and folder exclusions | Pattern tests and requirements-only real-git PR tests, root and `cpp/` layouts |
 | #22: tool upgrades must run checks | Requirements enable all three detector outputs; Security already runs independently | Gate assertions; current PR CI |
 | #22: regression asserting `scripts/requirements-ci.txt` is code | Parameterized assertions cover both shared manifests | Tests fail against original classifier |
-| #22: rerun PR #21 so upgrades are exercised | Include PR #21's exact dependency updates here and align executable zizmor pins | Current PR CI runs the upgraded tools; historical run rerun requested (see below) |
+| #22: rerun PR #21 so upgrades are exercised | Include PR #21's exact dependency updates here and align executable zizmor pins and resolve upgrade findings | Current PR CI runs the upgraded tools; historical run rerun requested (see below) |
 | #23: configurable budget below about 250 MB | Standard-library checker, default 249,000,000 compressed bytes; positive integer environment/repository variable | Exact boundary, default/empty, invalid values, missing/corrupt ZIP tests |
 | #23: error annotation and largest ZIP entries | Reject over-budget archives, list top ten by compressed size with uncompressed sizes | Diagnostic and ordering assertions |
 | #23: gate on PRs | Enforce in `pack_nuget.pack` and before local NuGet push/restore | Packer regression, shell test proving dotnet is never called, Build Packages CI |
@@ -103,3 +103,24 @@ GitHub refused `gh run rerun 42463434826 --failed` because the historical
 run had no failing jobs. A full `gh run rerun 42463434826` was accepted.
 It still uses PR #21's original commit and classifier, so the current PR
 is the verification of those updated dependencies with the corrected gates.
+
+## Findings exposed by running the upgraded tools
+
+- Workflows run 43400020350 on f81e425: the preserved log
+  `ci-logs/workflows-43400020350.log`, line 400, reports
+  `Unknown version: 1.31.1`. The pinned zizmor action uses a frozen version
+  table. Run the audited PyPI version directly with `pipx run`, retaining
+  the regular persona, medium confidence floor, online token, configuration
+  and GitHub annotations. This follows zizmor's
+  [documented manual integration](https://docs.zizmor.sh/integrations/).
+  The separate pedantic high-severity/high-confidence check is retained.
+- CI/CD run 43400020323, lint job 131801296207: log
+  `ci-logs/lint-131801296207.log`, lines 431 and 435, reports
+  `misc-const-correctness` for both benchmark iteration values. clang-tidy
+  23.1.4 catches these; both loop variables are now `const`. No lint rule
+  is disabled. The existing CI lint command reproduces and guards the fix.
+
+Local validation: 455 script tests passed using pytest 9.2.0. After switching
+the zizmor integration, all 50 workflow policy tests pass, and zizmor 1.31.1
+reports no findings in regular/medium-confidence and pedantic/high-confidence
+high-severity offline checks. Full builds remain in CI.
