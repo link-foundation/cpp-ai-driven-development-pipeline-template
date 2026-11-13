@@ -76,7 +76,7 @@ jobs:
   # credential persistence, template injection or unpinned actions. zizmor
   # covers exactly those, so both linters run on every change under .github/.
   # Reproduce locally with:
-  #   pipx run zizmor==1.29.0 --min-confidence medium --persona regular \
+  #   pipx run zizmor==1.31.1 --min-confidence medium --persona regular \
   #     --config .github/zizmor.yml .github/workflows
   zizmor:
     name: Audit Workflows
@@ -109,7 +109,7 @@ jobs:
           annotations: true
           config: .github/zizmor.yml
           min-confidence: medium
-          version: 1.29.0
+          version: 1.31.1
 
       # The step above runs `--persona regular`, which is the right default:
       # pedantic surfaces dozens of stylistic findings. But the audits that
@@ -124,7 +124,7 @@ jobs:
       - name: Audit for pedantic-only high-severity findings
         timeout-minutes: 5
         run: |
-          pipx run zizmor==1.29.0 --config .github/zizmor.yml \
+          pipx run zizmor==1.31.1 --config .github/zizmor.yml \
             --persona pedantic --min-severity high --min-confidence high \
             .github/workflows
 

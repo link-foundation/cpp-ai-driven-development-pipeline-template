@@ -277,3 +277,14 @@ python3 scripts/package_release.py --out-dir dist --nuget   # Build Packages
 bash scripts/check-required-docs.sh           # Validate Documentation
 doxygen Doxyfile                              # Docs
 ```
+
+## Dependency manifest changes
+
+The change detector treats `requirements*.txt` as code within the C++ project
+and shared `scripts/` or `.github/` directories. These updates enable the test
+matrix, lint, sanitizers, release script tests, packaging, coverage, and
+documentation validation so pinned tool upgrades are exercised. The Security
+workflow already audits dependency updates independently of this detector.
+Documentation and experiment folders remain excluded, as do unrelated language
+roots when the C++ project lives under `cpp/`. Ordinary `.txt` files do not
+trigger builds.

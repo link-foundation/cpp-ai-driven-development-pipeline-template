@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import os
 import sys
+from fnmatch import fnmatchcase
 from typing import Dict, List, Optional
 
 import cpp_project as cp
@@ -39,6 +40,10 @@ CODE_FILENAMES = (
 )
 SHARED_PREFIXES = ("scripts/", ".github/")
 ZERO_SHA = "0" * 40
+
+
+def is_requirements_file(path: str) -> bool:
+    return fnmatchcase(path.rsplit("/", 1)[-1], "requirements*.txt")
 
 
 def _strip_root(path: str, cpp_prefix: str) -> Optional[str]:
@@ -62,10 +67,12 @@ def is_code_file(path: str, cpp_prefix: str = "") -> bool:
     if relative.startswith(EXCLUDED_FOLDERS):
         return False
     name = relative.rsplit("/", 1)[-1]
-    return name in CODE_FILENAMES or relative.endswith(CODE_EXTENSIONS)
+    return is_requirements_file(relative) or name in CODE_FILENAMES or relative.endswith(CODE_EXTENSIONS)
 
 
 def is_docs_change(path: str, cpp_prefix: str = "") -> bool:
+    if is_requirements_file(path) and is_code_file(path, cpp_prefix):
+        return True
     if path.endswith(".md"):
         return True
     relative = _strip_root(path, cpp_prefix)
@@ -74,6 +81,9 @@ def is_docs_change(path: str, cpp_prefix: str = "") -> bool:
 
 
 def is_cpp_change(path: str, cpp_prefix: str = "") -> bool:
+    # Shared tool upgrades affect coverage as well as the build/test matrix.
+    if is_requirements_file(path) and is_code_file(path, cpp_prefix):
+        return True
     relative = _strip_root(path, cpp_prefix)
     return relative is not None and is_code_file(path, cpp_prefix) and not relative.startswith(SHARED_PREFIXES)
 

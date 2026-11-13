@@ -160,3 +160,37 @@ def test_file_size_main_uses_tracked_files(make_repo, capsys) -> None:
     repo.commit("huge")
     assert check_file_size.main(["--root", str(repo.path)]) == 1
     assert "huge.hpp has 1001 lines" in capsys.readouterr().out
+
+
+@pytest.mark.parametrize("prefix", ["", "cpp/"])
+@pytest.mark.parametrize("path", ["scripts/requirements-ci.txt", "scripts/requirements-security.txt"])
+def test_shared_requirements_enable_every_validation_gate(prefix, path):
+    assert dcc.is_code_file(path, prefix)
+    assert dcc.classify([path], prefix) == {
+        "any-code-changed": True, "cpp-changed": True, "docs-changed": True,
+    }
+
+
+@pytest.mark.parametrize("path", ["requirements.txt", "requirements-dev.txt", "tools/requirements-lock.txt"])
+def test_requirements_patterns_respect_project_scope(path):
+    assert dcc.is_code_file(path)
+    assert dcc.is_code_file("cpp/" + path, "cpp/")
+    assert not dcc.is_code_file("python/" + path, "cpp/")
+    assert not dcc.is_code_file("docs/" + path)
+    assert not dcc.is_code_file("experiments/" + path)
+    assert not dcc.is_code_file("notes.txt")
+
+
+@pytest.mark.parametrize("multi", [False, True])
+def test_requirements_only_pull_request_outputs(make_repo, monkeypatch, github_output, multi):
+    repo = make_repo(multi=multi)
+    base = repo.git("rev-parse", "HEAD")
+    repo.write("scripts/requirements-ci.txt", "pytest==9.2.0\n")
+    repo.write("scripts/requirements-security.txt", "pip-audit==2.10.1\n")
+    head = repo.commit("upgrade CI tools")
+    monkeypatch.setenv("GITHUB_EVENT_NAME", "pull_request")
+    monkeypatch.setenv("GITHUB_BASE_SHA", base)
+    monkeypatch.setenv("GITHUB_HEAD_SHA", head)
+    assert dcc.main() == 0
+    assert all(github_output()[key] == "true" for key in
+               ("any-code-changed", "cpp-changed", "docs-changed"))
