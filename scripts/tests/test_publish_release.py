@@ -17,7 +17,7 @@ if [ "{name} $1" = "cmake --install" ]; then
   mkdir -p "$5/include" && echo installed > "$5/include/header.hpp"
 fi
 if [ "{name} $1 $2" = "gh release view" ]; then exit 1; fi
-if [ -n "$FAIL_STUB" ] && [ "$FAIL_STUB" = "{name}" ]; then exit 3; fi
+if [ -n "$FAIL_STUB" ] && [ "$FAIL_STUB" = "{name}" ]; then echo "$FAIL_MESSAGE"; exit 3; fi
 exit 0
 """
 
@@ -146,3 +146,47 @@ def test_uploads_the_conan_reference_of_the_recipe(publisher):
     result, calls = run(CONAN_REMOTE_URL="https://conan.example/api")
     assert result.returncode == 0, result.stderr
     assert "conan upload platform.numbers/0.1.0 --remote release --confirm" in calls
+
+
+def test_oversized_package_never_reaches_any_publisher(publisher):
+    _, run = publisher()
+    result, calls = run(NUGET_PUBLISH="true", NUGET_API_KEY="key", NUGET_MAX_PACKAGE_BYTES="1")
+    assert result.returncode != 0
+    assert "exceeding" in result.stderr
+    assert not any(call.startswith(("dotnet", "conan", "gh")) for call in calls)
+
+
+@pytest.mark.parametrize("message", [
+    "error: Response status code does not indicate success: 413 (too large)",
+    "RequestEntityTooLarge https://www.nuget.org/api/v2/package/",
+])
+def test_413_is_non_retryable_and_stops_publication(publisher, message):
+    _, run = publisher()
+    result, calls = run(NUGET_PUBLISH="true", NUGET_API_KEY="key", FAIL_STUB="dotnet",
+                        FAIL_MESSAGE=message, CONAN_REMOTE_URL="https://conan.example/api")
+    assert result.returncode == 3
+    assert "HTTP 413 is non-retryable" in result.stdout
+    assert len([call for call in calls if call.startswith("dotnet nuget push")]) == 1
+    assert not any(call.startswith(("conan", "gh")) for call in calls)
+
+
+def test_other_nuget_failure_keeps_exit_code_without_413_diagnostic(publisher):
+    _, run = publisher()
+    result, calls = run(NUGET_PUBLISH="true", NUGET_API_KEY="key", FAIL_STUB="dotnet",
+                        FAIL_MESSAGE="401 Unauthorized")
+    assert result.returncode == 3
+    assert "non-retryable" not in result.stdout
+    assert len([call for call in calls if call.startswith("dotnet")]) == 1
+    assert not any(call.startswith("gh") for call in calls)
+
+
+def test_pre_push_gate_checks_packages_from_an_alternate_packer(publisher):
+    repo, run = publisher()
+    # Simulate a packer that doesn't enforce our budget: publication must
+    # independently validate the final file before giving it to dotnet.
+    packer = repo.path / "scripts" / "pack_nuget.py"
+    packer.write_text(packer.read_text().replace("    check_nuget_size.check(output)\n", ""))
+    result, calls = run(NUGET_PUBLISH="true", NUGET_API_KEY="key", NUGET_MAX_PACKAGE_BYTES="1")
+    assert result.returncode == 1
+    assert "NuGet package size check failed" in result.stderr
+    assert not any(call.startswith(("dotnet", "conan", "gh")) for call in calls)

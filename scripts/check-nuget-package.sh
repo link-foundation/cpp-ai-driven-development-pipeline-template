@@ -20,6 +20,8 @@ else
   python3 scripts/pack_nuget.py --out-dir "$work/dist" > "$work/pack.log"
   nupkg="$(sed -n 's/^Output: nupkg=//p' "$work/pack.log")"
 fi
+python3 scripts/check_nuget_size.py "$nupkg"
+
 # <id>.<version>.nupkg; the version is the last three dot-separated fields.
 name="$(basename "$nupkg" .nupkg)"
 version="$(printf '%s\n' "$name" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+([-+].*)?$')"
