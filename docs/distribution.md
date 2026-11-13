@@ -212,6 +212,33 @@ exchange happens in the publishing job. Network errors and malformed
 responses never count as proof of access. See
 [credential checks](ci-cd.md#variables-and-secrets) for the verdict rules.
 
+### NuGet package size budget
+
+NuGet.org [limits packages to about 250 MB](https://learn.microsoft.com/en-us/nuget/nuget-org/publish-a-package#package-size-limits).
+`scripts/check_nuget_size.py` measures the compressed `.nupkg` file, with a
+conservative default budget of **249,000,000 bytes** (decimal bytes, not MiB).
+A package exactly at the budget passes. Configure a positive integer byte
+count with the repository variable `NUGET_MAX_PACKAGE_BYTES`, or export the
+environment variable of the same name for local commands or other feeds.
+An empty value uses the default; invalid or nonpositive values fail closed.
+
+The same gate runs inside `pack_nuget.py` (including `package_release.py
+--nuget`), in `check-nuget-package.sh` before the local feed push/restore on
+pull requests, and immediately before the release's `dotnet nuget push` in
+both automatic and instant releases. It also runs during release dry runs.
+An oversized file fails with a GitHub `::error` annotation and the ten largest
+ZIP entries ranked by compressed size, with uncompressed sizes for context.
+Only ZIP metadata is inspected; payloads are never extracted. Remove unused
+assets, publish symbols separately, or split platform binaries into dependency
+packages rather than raising the budget past the destination feed's limit.
+
+If the server still returns HTTP 413 (`RequestEntityTooLarge`), publication
+stops after one push attempt, labels the rejection as non-retryable, and leaves
+the GitHub release incomplete. Correct the package or feed budget before
+starting another release run. Other push errors also preserve the failing
+exit code and stop later publishing channels; `--skip-duplicate` continues to
+handle already published versions.
+
 ## Other channels
 
 These channels need a submission to a third-party repository rather than a

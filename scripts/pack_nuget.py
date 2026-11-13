@@ -34,6 +34,7 @@ from typing import Dict, List, Tuple
 from xml.sax.saxutils import escape
 
 import cpp_project as cp
+import check_nuget_size
 
 HEADER_SUFFIXES = {".h", ".hh", ".hpp", ".hxx", ".h++", ".ipp", ".inl", ".tpp"}
 NUGET_ID_RE = re.compile(r"^[A-Za-z0-9_][A-Za-z0-9_.-]{0,99}$")
@@ -152,6 +153,7 @@ def pack(layout: cp.CppLayout, out_dir: Path, values: Dict[str, str]) -> Path:
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o644 << 16
             archive.writestr(info, data)
+    check_nuget_size.check(output)
     return output
 
 

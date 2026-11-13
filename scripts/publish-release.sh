@@ -25,6 +25,7 @@
 #   CONAN_REMOTE_NAME                   name of the Conan remote (release)
 #   RELEASE_DRY_RUN                     true: build the assets, print the
 #                                       publish commands instead of running them
+#   NUGET_MAX_PACKAGE_BYTES             compressed .nupkg byte budget (249000000)
 #   RELEASE_OUT_DIR                     asset directory (dist)
 set -euo pipefail
 
@@ -76,8 +77,24 @@ if [ "${NUGET_PUBLISH:-false}" = true ]; then
     exit 1
   else
     # --skip-duplicate turns a re-run after a partial release into a no-op.
-    publish dotnet nuget push "$nupkg" --source "$nuget_source" \
-      --api-key "${NUGET_API_KEY:-}" --skip-duplicate
+    python3 scripts/check_nuget_size.py "$nupkg"
+    push_log="$(mktemp)"
+    trap 'rm -f "$push_log"' EXIT
+    if publish dotnet nuget push "$nupkg" --source "$nuget_source" \
+      --api-key "${NUGET_API_KEY:-}" --skip-duplicate --force-english-output > "$push_log" 2>&1; then
+      cat "$push_log"
+    else
+      status=$?
+      cat "$push_log"
+      if grep -Eq '(^|[^0-9])413([^0-9]|$)|RequestEntityTooLarge' "$push_log"; then
+        echo "::error title=NuGet upload rejected::HTTP 413 is non-retryable. Reduce or split the package, or lower NUGET_MAX_PACKAGE_BYTES for this feed before publishing again."
+      fi
+      # No upload failure is retried here; in particular a 413 can never
+      # succeed with the same payload. Leave the GitHub release incomplete.
+      exit "$status"
+    fi
+    rm -f "$push_log"
+    trap - EXIT
   fi
 else
   echo "NuGet: publishing disabled (set the NUGET_PUBLISH variable to true)"

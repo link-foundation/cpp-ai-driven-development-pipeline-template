@@ -166,6 +166,7 @@ on PRs and fails main/scheduled/manual security runs. Set repository
 
 | Name | Kind | Purpose |
 | --- | --- | --- |
+| `NUGET_MAX_PACKAGE_BYTES` | variable | Compressed NuGet package budget in bytes (default `249000000`); enforced on PRs and releases |
 | `NUGET_PUBLISH` | variable | `true` pushes the NuGet package on release |
 | `NUGET_PACKAGE_ID` | variable | NuGet package id, e.g. `Platform.Numbers.TemplateLibrary` |
 | `NUGET_USER` | variable | nuget.org profile name for trusted publishing; takes priority over the API key |

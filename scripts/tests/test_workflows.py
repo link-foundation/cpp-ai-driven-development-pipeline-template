@@ -237,3 +237,12 @@ def test_oidc_permission_is_limited_to_publishing_jobs() -> None:
                     path.name == "docs.yml" and name == "deploy")
     preflight = jobs(ROOT / ".github/workflows/release.yml")["release-preflight"]
     assert "NUGET_USER: ${{ vars.NUGET_USER }}" in preflight
+
+
+def test_nuget_budget_is_shared_by_pr_and_both_release_modes():
+    text = (ROOT / ".github/workflows/release.yml").read_text()
+    assert "NUGET_MAX_PACKAGE_BYTES: ${{ vars.NUGET_MAX_PACKAGE_BYTES }}" in text.split("\njobs:\n")[0]
+    workflow = jobs(ROOT / ".github/workflows/release.yml")
+    assert 'scripts/check-nuget-package.sh "$NUPKG"' in workflow["build"]
+    for mode in ("auto-release", "manual-release"):
+        assert "bash scripts/publish-release.sh" in workflow[mode]
