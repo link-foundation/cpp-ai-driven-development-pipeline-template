@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Unreleased changes are kept as fragments in [changelog.d/](changelog.d/) and
 collected here by the release pipeline.
 
+## [0.2.4] - 2026-11-13
+
+### Fixed
+- Run CI, coverage and documentation validation for Python requirements updates, including the CI tool upgrades proposed in Dependabot PR #21, and align the executable zizmor pins with the audited version.
+
+### Fixed
+- Reject NuGet packages above a configurable compressed byte budget during packaging, PR validation and immediately before publishing, with largest-entry diagnostics; identify HTTP 413 uploads as non-retryable.
+
 ## [0.2.3] - 2026-11-02
 
 ### Fixed
