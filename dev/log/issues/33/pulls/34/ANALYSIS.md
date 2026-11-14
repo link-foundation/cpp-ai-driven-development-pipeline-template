@@ -21,7 +21,9 @@ line 5050 reports `Native audit credentials unavailable` and the missing
 `CONAN_AUDIT_PROVIDER_TOKEN_CONANCENTER`; line 5051 records exit 1.
 This credential prerequisite also failed before PR 32 and is not a new
 compiler, parser or deprecation regression from that merge. Other main
-workflows were successful (`research/main-runs-initial.json`).
+workflows were successful (`research/main-runs-initial.json`). Every individual
+main CI/CD job was also inspected, including the potentially nonblocking macOS
+leg; all applicable jobs passed (`research/main-pipeline-jobs.json`).
 
 [Conan's supported audit service](https://docs.conan.io/2/devops/audit.html)
 requires registration and a provider token. The repository's secret-name
@@ -116,6 +118,22 @@ is in `research/dependency-update-best-practices.md.txt`. Major migration notes
 from the previous same-day update remain in issue 30 evidence; only rc-config-loader
 crosses a major in this PR. No obsolete local shim had a newly released replacement;
 this update removes the loader's old upstream loader path through the new release.
+
+## Dependency-review coverage restored
+
+The first PR Security run warned that GitHub's dependency graph was disabled,
+so differential dependency review was skipped despite the job passing. Repository
+admin access was available. The documented
+[enable-vulnerability-alerts API](https://docs.github.com/en/rest/repos/repos#enable-vulnerability-alerts)
+enables both alerts and the graph; the reversible PUT succeeded with HTTP 204.
+The comparison API now returns the two rc-config-loader version changes.
+Evidence is saved in `research/enable-dependency-graph.txt` and
+`dependency-graph-comparison.json`. The final-commit Security run must execute
+the real dependency review. This account-setting change does not bypass any gate.
+
+The CodeQL PR warning about overlay databases falling back to a full database
+is an optimization fallback for the existing manual build, not a deprecation or
+lost analysis coverage. Keep the manual build of all real C++ entry points.
 
 ## Audits and remaining external limits
 

@@ -41,7 +41,7 @@ The full commit identities and release notes are in `research/github-releases.js
 | GoogleTest | 1.18.0 | 1.18.0 | 1.18.0 | Current in FetchContent, Conan and vcpkg |
 | Google Benchmark | 1.10.0 | 1.10.0 | 1.10.0 | Existing overlay remains necessary; registry port is still 1.9.5 |
 | CPM.cmake | 0.43.2 | 0.43.2 | 0.43.2 | Bootstrap checksum retained |
-| vcpkg registry | 9eec002cb084bf6a06c955c895149715427129ed | 4702e381dbbd9b54d3f7e1eb565cd8981c1814cd | master at query time | 471 commits ahead of the newest monthly release 2026.10.16; this advances rather than reverts the merged update |
+| vcpkg registry | 9eec002df1cd109f8f104cd966a763daf9751489 | 4702e381dbbd9b54d3f7e1eb565cd8981c1814cd | master at query time | 471 commits ahead of the newest monthly release 2026.10.16; this advances rather than reverts the merged update |
 | vcpkg-tool | 2026-09-26 | 2026-10-29 | 2026-10-29 | Baseline metadata selects the current release and checksums |
 | vcpkg-cmake | 2025-08-07 | 2025-08-07 | 2025-08-07 | Current date-versioned registry port |
 | vcpkg-cmake-config | 2026-07-21 | 2026-07-21 | 2026-07-21 | Current date-versioned registry port |

@@ -42,7 +42,12 @@ def main():
             continue
         before = release.get('previous_version') or release['tag']
         lines.append(f"| {name} | {before} | [{release['tag']}]({release['url']}) |")
-    (OUT / 'DEPENDENCIES.md').write_text('\n'.join(lines) + '\n')
+    inventory = OUT / 'DEPENDENCIES.md'
+    # Keep the separately researched native/distribution decisions on rerender.
+    section = '## Native dependencies, runtimes, SDKs, tools and images'
+    existing = inventory.read_text() if inventory.exists() else ''
+    native = '\n' + section + existing.split(section, 1)[1] if section in existing else ''
+    inventory.write_text('\n'.join(lines) + '\n' + native)
     print('Rendered complete before/final/latest tables')
 
 
