@@ -147,3 +147,25 @@ def test_check_skips_automated_branches(make_repo, monkeypatch) -> None:
     _branch_with(repo, {"include/my_package/extra.hpp": "#pragma once\n"})
     monkeypatch.setenv("GITHUB_HEAD_REF", "changelog-manual-release-123")
     assert check_changelog_fragment.main() == 0
+
+
+@pytest.mark.parametrize("multi", [False, True])
+@pytest.mark.parametrize("path", ["scripts/requirements-security.txt", ".github/workflows/release.yml"])
+def test_dependabot_updates_need_no_fragment(make_repo, monkeypatch, capsys, multi, path):
+    repo = make_repo(multi=multi)
+    _branch_with(repo, {path: "# dependency update\n"})
+    # The actor of a rerun can be human; the PR author determines the exception.
+    monkeypatch.setenv("PR_AUTHOR", "dependabot[bot]")
+    monkeypatch.setenv("GITHUB_ACTOR", "maintainer")
+    assert check_changelog_fragment.main() == 0
+    assert "dependabot[bot]" in capsys.readouterr().out
+
+
+@pytest.mark.parametrize("author", ["", "contributor", "dependabot", "renovate[bot]"])
+def test_dependabot_branch_or_actor_does_not_exempt_human_prs(make_repo, monkeypatch, author):
+    repo = make_repo()
+    _branch_with(repo, {"scripts/requirements-security.txt": "zizmor==1.32.0\n"})
+    monkeypatch.setenv("PR_AUTHOR", author)
+    monkeypatch.setenv("GITHUB_ACTOR", "dependabot[bot]")
+    monkeypatch.setenv("GITHUB_HEAD_REF", "dependabot/pip/scripts/zizmor-1.32.0")
+    assert check_changelog_fragment.main() == 1

@@ -83,7 +83,9 @@ workflow, and how releases are made from changelog fragments.
 
 1. Make sure the checks above pass locally.
 2. Add a changelog fragment, unless the pull request only changes
-   documentation (markdown, `docs/`) or experiments.
+   documentation (markdown, `docs/`) or experiments. PRs authored by
+   `dependabot[bot]` are exempt because Dependabot cannot write fragments;
+   their dependency updates still run all applicable validation checks.
 3. Do not change the version in `CMakeLists.txt`, `vcpkg.json` or elsewhere:
    the **Version Modification Check** fails a pull request that does. The
    release pipeline bumps the version.

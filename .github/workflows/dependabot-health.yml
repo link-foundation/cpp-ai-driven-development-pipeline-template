@@ -1,0 +1,58 @@
+name: Dependabot Health
+
+# Successful Dependabot runs can hide PRs that never merge and hold up newer
+# grouped updates. Surface those PRs independently of their existing checks.
+on:
+  schedule:
+    - cron: '23 7 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  GIT_CONFIG_COUNT: '1'
+  GIT_CONFIG_KEY_0: init.defaultBranch
+  GIT_CONFIG_VALUE_0: main
+
+jobs:
+  stale-pull-requests:
+    name: Check Dependabot PR Age
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}-stale-pull-requests
+      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Report overdue Dependabot pull requests
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DEPENDABOT_MAX_OPEN_DAYS: ${{ vars.DEPENDABOT_MAX_OPEN_DAYS || '14' }}
+          CI_VERBOSE: ${{ vars.CI_VERBOSE || 'false' }}
+        run: python3 scripts/check_dependabot_health.py
+
+  pipeline-status:
+    name: Pipeline Status
+    needs:
+      - stale-pull-requests
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Check aggregate pipeline status
+        env:
+          NEEDS_JSON: ${{ toJSON(needs) }}
+          RUN_SHA: ${{ github.sha }}
+          BRANCH_NAME: ${{ github.ref_name }}
+        run: bash scripts/check-pipeline-status.sh

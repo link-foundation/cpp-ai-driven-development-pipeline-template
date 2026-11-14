@@ -1,9 +1,10 @@
 # CI/CD
 
-The pipeline is six workflows. `release.yml` (**CI/CD Pipeline**) builds,
+The pipeline is seven workflows. `release.yml` (**CI/CD Pipeline**) builds,
 tests and releases; four others check documentation, security, links and
-the workflows themselves, and `rerun-infrastructure-failures.yml` re-runs
-jobs GitHub could not give a runner. Every workflow ends with a **Pipeline Status** job,
+the workflows themselves, `rerun-infrastructure-failures.yml` re-runs
+jobs GitHub could not give a runner, and `dependabot-health.yml` monitors
+overdue dependency updates. Every workflow ends with a **Pipeline Status** job,
 the one check to require in the branch protection of `main`.
 
 The job graph, triggers, release model and hardening are the same as in the
@@ -26,7 +27,7 @@ release).
 | Detect Changes | PRs, pushes | `detect_code_changes.py`: did code, C++ sources or docs change? Markdown, `docs/`, `changelog.d/` and `experiments/` are not code. |
 | Validate Documentation | docs changed | `check-required-docs.sh`: README, CONTRIBUTING and the changelog exist and keep the sections other documents link to. |
 | Release Preflight | always | `preflight-credentials.sh`: checks credentials and reports verified, refused or unknown access (advisory on PRs, refusals block releases). |
-| Changelog Fragment Check | PRs with code changes | `check_changelog_fragment.py`: the PR adds a fragment to `changelog.d/`. |
+| Changelog Fragment Check | PRs with code changes | `check_changelog_fragment.py`: the PR adds a fragment to `changelog.d/`; PRs authored by `dependabot[bot]` are exempt. |
 | Version Modification Check | PRs | `check_version_modification.py`: the PR does not edit the version by hand. |
 | Secrets Scan | PRs, pushes | secretlint over the tracked files. |
 | Fresh Merge Simulation | PRs with code changes | merges the latest base branch and builds and tests the result (`dev` preset). |
@@ -56,7 +57,7 @@ fails with a clear message before the job timeout.
 - **Pinned actions**: every remote action uses a full commit hash and Docker
   images use digests. Zizmor enforces this without namespace exemptions;
   Dependabot proposes updates to the pins.
-- **Explicit runner images**: all six workflows use `ubuntu-24.04`; the
+- **Explicit runner images**: all seven workflows use `ubuntu-24.04`; the
   compiler matrix also uses `macos-15` and `windows-2025`. These labels fix
   the OS generation while GitHub continues updating tools within the images.
   Policy tests reject floating `-latest` runner labels and require the Git
@@ -76,7 +77,10 @@ fails with a clear message before the job timeout.
 
 1. Every pull request with code changes adds a changelog fragment,
    `changelog.d/*.md`, whose front matter sets the bump (`major`, `minor` or
-   `patch`). See [CONTRIBUTING.md](../CONTRIBUTING.md#changelog-management).
+   `patch`). Dependabot PRs are exempt by author login, independently of the
+   actor who triggers or reruns CI. These updates do not trigger a new release
+   on their own; the next fragment-driven release includes them.
+   See [CONTRIBUTING.md](../CONTRIBUTING.md#changelog-management).
 2. When the pull request is merged, **Auto Release** runs after **Build
    Packages** and **Release Preflight** passed:
    1. `get_bump_type.py` takes the highest bump of the pending fragments.
@@ -135,8 +139,9 @@ Locally: `doxygen Doxyfile` (output in `docs/api/`), or build the
 | --- | --- | --- |
 | `security.yml` (**Security**) | PRs, main pushes, weekly, manual | Fatal CodeQL SARIF gate for C/C++ and workflows; full Python/native dependency audits; additional PR dependency review. |
 | `links.yml` (**Broken Link Checker**) | markdown or HTML changes | lychee, a re-check of links that never answered, and a Web Archive fallback. `.lycheeignore` lists the exceptions. |
-| `workflows.yml` (**Workflows**) | workflow changes | actionlint, independent concurrency queue validation and zizmor; every remote action uses a full commit SHA (Docker uses a digest). |
+| `workflows.yml` (**Workflows**) | workflow or audit requirements changes | actionlint, independent concurrency queue validation and zizmor; every remote action uses a full commit SHA (Docker uses a digest). |
 | `rerun-infrastructure-failures.yml` (**Rerun Infrastructure Failures**) | a CI/CD Pipeline run completed as failed or cancelled | re-runs the run's failed jobs when a job never got a hosted runner, at most until attempt 3. See below. |
+| `dependabot-health.yml` (**Dependabot Health**) | daily at 07:23 UTC, manual | fails when an open Dependabot PR is older than the configured review budget (14 days by default). |
 
 The C++ CodeQL job traces the real C++20 release build, all five consumer
 examples and Conan's package test in both repository layouts. Workflow analysis
@@ -178,6 +183,29 @@ only those validated lines in the disposable checkout. Every other line goes
 unchanged to actionlint, including unsupported inline/quoted queue forms.
 No diagnostic category is suppressed; shell checks remain enabled.
 Dependabot maintains action pins.
+
+Both zizmor audit passes use `pipx run --spec` with the pin read from
+`scripts/requirements-security.txt`. This is the only zizmor version pin, so
+Dependabot updates the executable and audited versions together. Requirements
+changes also trigger **Workflows**, exercising the newly selected linter.
+
+### Dependabot health
+
+**Dependabot Health** lists every page of open PRs and checks those authored
+by `dependabot[bot]`, regardless of their CI status. PRs open for more than
+14 days fail the job with their number, title, URL and a reminder to review
+and merge current updates or close obsolete ones. Rebases and updates do not
+reset the creation date. Set the repository variable
+`DEPENDABOT_MAX_OPEN_DAYS` to a positive integer to change the budget.
+Exactly the configured age is still allowed. API failures, malformed responses
+and invalid configuration fail explicitly rather than reporting a healthy backlog.
+
+The daily/manual workflow uses only `contents: read` and `pull-requests: read`,
+never executes bot branch code, and never modifies or merges PRs. It runs from
+the default branch once this workflow is merged. For a read-only local check,
+run `python3 scripts/check_dependabot_health.py --repository owner/repo` with
+an authenticated `gh`; `--max-open-days` overrides the budget. Set
+`CI_VERBOSE=true` for per-PR age diagnostics (off by default).
 
 The dependency review needs the dependency graph: enable it in Settings →
 Advanced Security → **Dependency graph**. Until then
