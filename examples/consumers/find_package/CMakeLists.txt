@@ -2,7 +2,7 @@
 # a Conan package (CMakeDeps) or a vcpkg port all provide this package config.
 #
 #   cmake -S . -B build -DCMAKE_PREFIX_PATH=/path/to/install/prefix
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.25...4.5)
 project(my_package_find_package_consumer LANGUAGES CXX)
 
 find_package(my_package CONFIG REQUIRED)

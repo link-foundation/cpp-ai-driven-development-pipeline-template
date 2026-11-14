@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.25...4.5)
 project(test_package LANGUAGES CXX)
 
 find_package(my_package CONFIG REQUIRED)

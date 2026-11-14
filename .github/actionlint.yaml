@@ -1,0 +1,5 @@
+# Official GA images missing from actionlint 1.7.12's label catalog.
+# Remove when upstream https://github.com/rhysd/actionlint/issues/682 ships.
+self-hosted-runner:
+  labels:
+    - ubuntu-26.04

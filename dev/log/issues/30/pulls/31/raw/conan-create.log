@@ -1,0 +1,166 @@
+
+======== Exporting recipe to the cache ========
+my_package/0.2.5 export
+Exporting package recipe: /tmp/gh-issue-solver-1794646566828/conanfile.py
+Copied 1 '.py' file: conanfile.py
+Copied 1 '.txt' file: CMakeLists.txt
+Copied 1 file: LICENSE
+Copied 2 '.in' files: PackageConfig.cmake.in, package.pc.in
+Copied 4 '.cmake' files: PackageInstall.cmake, Dependencies.cmake, ProjectOptions.cmake, Documentation.cmake
+Copied 1 '.hpp' file: my_package.hpp
+Exported to cache folder: /home/box/.conan2/p/my_pa346a3754e3eeb/e
+Exported: my_package/0.2.5#9a432e1069bf8bdc7e514a0faabdfdf9 (2026-11-14 09:23:42 UTC)
+
+======== Input profiles ========
+Profile host:
+[settings]
+arch=x86_64
+build_type=Release
+compiler=gcc
+compiler.cppstd=20
+compiler.libcxx=libstdc++11
+compiler.version=13
+os=Linux
+
+Profile build:
+[settings]
+arch=x86_64
+build_type=Release
+compiler=gcc
+compiler.cppstd=gnu17
+compiler.libcxx=libstdc++11
+compiler.version=13
+os=Linux
+
+
+======== Computing dependency graph ========
+Graph root
+    cli
+Requirements
+    my_package/0.2.5#9a432e1069bf8bdc7e514a0faabdfdf9 - Cache
+
+======== Computing necessary packages ========
+Connecting to remote 'conancenter' anonymously
+Requirements
+    my_package/0.2.5#9a432e1069bf8bdc7e514a0faabdfdf9:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+
+======== Installing packages ========
+
+-------- Installing package my_package/0.2.5 (1 of 1) --------
+Building from source my_package/0.2.5:da39a3ee5e6b4b0d3255bfef95601890afd80709
+>>> Source step
+Getting sources for my_package/0.2.5
+Sources in /home/box/.conan2/p/my_pa346a3754e3eeb/s
+>>> Generate step for my_package/0.2.5
+Generators folder: /home/box/.conan2/p/b/my_paa72a7ec363f9c/b/build/Release/generators
+Calling generate() method in recipe
+CMakeToolchain generated: conan_toolchain.cmake
+CMakeToolchain generated: /home/box/.conan2/p/b/my_paa72a7ec363f9c/b/build/Release/generators/CMakePresets.json
+CMakeToolchain generated: /home/box/.conan2/p/my_pa346a3754e3eeb/s/CMakeUserPresets.json
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Building your package in /home/box/.conan2/p/b/my_paa72a7ec363f9c/b
+>>> Build step for my_package/0.2.5
+Calling build()
+Running CMake.configure()
+RUN: cmake -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE="generators/conan_toolchain.cmake" -DCMAKE_INSTALL_PREFIX="/home/box/.conan2/p/b/my_paa72a7ec363f9c/p" -DMY_PACKAGE_BUILD_TESTS="OFF" -DMY_PACKAGE_BUILD_EXAMPLES="OFF" -DMY_PACKAGE_BUILD_DOCS="OFF" -DMY_PACKAGE_INSTALL="ON" -DCMAKE_POLICY_DEFAULT_CMP0091="NEW" -DCMAKE_BUILD_TYPE="Release" "/home/box/.conan2/p/my_pa346a3754e3eeb/s"
+-- Using Conan toolchain: /home/box/.conan2/p/b/my_paa72a7ec363f9c/b/build/Release/generators/conan_toolchain.cmake
+-- Conan toolchain: Defining architecture flag: -m64
+-- Conan toolchain: C++ Standard 20 with extensions OFF
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.4s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/box/.conan2/p/b/my_paa72a7ec363f9c/b/build/Release
+
+my_package/0.2.5: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+my_package/0.2.5: Build folder /home/box/.conan2/p/b/my_paa72a7ec363f9c/b/build/Release
+>>> Package step for my_package/0.2.5:da39a3ee5e6b4b0d3255bfef95601890afd80709
+Packaging in folder /home/box/.conan2/p/b/my_paa72a7ec363f9c/p
+Calling package()
+Running CMake.install()
+RUN: cmake --install "/home/box/.conan2/p/b/my_paa72a7ec363f9c/b/build/Release" --prefix "/home/box/.conan2/p/b/my_paa72a7ec363f9c/p"
+-- Install configuration: "Release"
+-- Installing: /home/box/.conan2/p/b/my_paa72a7ec363f9c/p/include
+-- Installing: /home/box/.conan2/p/b/my_paa72a7ec363f9c/p/include/my_package
+-- Installing: /home/box/.conan2/p/b/my_paa72a7ec363f9c/p/include/my_package/my_package.hpp
+-- Installing: /home/box/.conan2/p/b/my_paa72a7ec363f9c/p/share/cmake/my_package/my_packageTargets.cmake
+-- Installing: /home/box/.conan2/p/b/my_paa72a7ec363f9c/p/share/cmake/my_package/my_packageConfig.cmake
+-- Installing: /home/box/.conan2/p/b/my_paa72a7ec363f9c/p/share/cmake/my_package/my_packageConfigVersion.cmake
+-- Installing: /home/box/.conan2/p/b/my_paa72a7ec363f9c/p/share/pkgconfig/my_package.pc
+-- Installing: /home/box/.conan2/p/b/my_paa72a7ec363f9c/p/share/licenses/my_package/LICENSE
+
+package(): Packaged 1 file: LICENSE
+package(): Packaged 1 '.hpp' file: my_package.hpp
+Created package revision ae928b26945fa107b81fe04fabc751d8
+Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+Full package reference: my_package/0.2.5#9a432e1069bf8bdc7e514a0faabdfdf9:da39a3ee5e6b4b0d3255bfef95601890afd80709#ae928b26945fa107b81fe04fabc751d8
+Package folder /home/box/.conan2/p/b/my_paa72a7ec363f9c/p
+
+======== Launching test_package ========
+
+======== Computing dependency graph ========
+Graph root
+    my_package/0.2.5 (test package): /tmp/gh-issue-solver-1794646566828/test_package/conanfile.py
+Requirements
+    my_package/0.2.5#9a432e1069bf8bdc7e514a0faabdfdf9 - Cache
+
+======== Computing necessary packages ========
+Requirements
+    my_package/0.2.5#9a432e1069bf8bdc7e514a0faabdfdf9:da39a3ee5e6b4b0d3255bfef95601890afd80709#ae928b26945fa107b81fe04fabc751d8 - Cache
+
+======== Installing packages ========
+my_package/0.2.5: Already installed! (1 of 1)
+
+======== Testing the package ========
+Removing previously existing 'test_package' build folder: /tmp/gh-issue-solver-1794646566828/test_package/build/gcc-13-x86_64-20-release
+my_package/0.2.5 (test package): Test package build: build/gcc-13-x86_64-20-release
+my_package/0.2.5 (test package): Test package build folder: /tmp/gh-issue-solver-1794646566828/test_package/build/gcc-13-x86_64-20-release
+>>> Generate step for my_package/0.2.5 (test package)
+Generators folder: /tmp/gh-issue-solver-1794646566828/test_package/build/gcc-13-x86_64-20-release/generators
+Generator 'CMakeDeps' calling 'generate()'
+CMakeDeps necessary find_package() and targets for your CMakeLists.txt
+    find_package(my_package)
+    target_link_libraries(... my_package::my_package)
+Generator 'CMakeToolchain' calling 'generate()'
+CMakeToolchain generated: conan_toolchain.cmake
+CMakeToolchain generated: /tmp/gh-issue-solver-1794646566828/test_package/build/gcc-13-x86_64-20-release/generators/CMakePresets.json
+CMakeToolchain generated: /tmp/gh-issue-solver-1794646566828/test_package/CMakeUserPresets.json
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanbuild.ps1', 'conanrun.sh', 'conanrun.ps1']
+
+======== Testing the package: Building ========
+>>> Build step for my_package/0.2.5 (test package)
+Calling build()
+Running CMake.configure()
+RUN: cmake -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE="generators/conan_toolchain.cmake" -DCMAKE_INSTALL_PREFIX="/tmp/gh-issue-solver-1794646566828/test_package" -DCMAKE_POLICY_DEFAULT_CMP0091="NEW" -DCMAKE_BUILD_TYPE="Release" "/tmp/gh-issue-solver-1794646566828/test_package"
+-- Using Conan toolchain: /tmp/gh-issue-solver-1794646566828/test_package/build/gcc-13-x86_64-20-release/generators/conan_toolchain.cmake
+-- Conan toolchain: Defining architecture flag: -m64
+-- Conan toolchain: C++ Standard 20 with extensions OFF
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Conan: Target declared 'my_package::my_package'
+-- Configuring done (0.4s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/gh-issue-solver-1794646566828/test_package/build/gcc-13-x86_64-20-release
+
+Running CMake.build()
+RUN: cmake --build "/tmp/gh-issue-solver-1794646566828/test_package/build/gcc-13-x86_64-20-release" -- -j6
+[ 50%] Building CXX object CMakeFiles/test_package.dir/test_package.cpp.o
+[100%] Linking CXX executable test_package
+[100%] Built target test_package
+
+
+======== Testing the package: Executing test ========
+my_package/0.2.5 (test package): Running test()
+my_package/0.2.5 (test package): RUN: ./test_package
+my_package test_package: fibonacci(10) = 55
+

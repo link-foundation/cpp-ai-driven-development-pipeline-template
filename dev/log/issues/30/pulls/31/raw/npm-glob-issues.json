@@ -1,0 +1,10 @@
+{
+  "items": [
+    {
+      "html_url": "https://github.com/npm/cli/issues/10299",
+      "number": 10299,
+      "title": "[BUG] npm 12.2.2 bundles glob and minimatch versions affected by October 2026 advisories"
+    }
+  ],
+  "total_count": 1
+}

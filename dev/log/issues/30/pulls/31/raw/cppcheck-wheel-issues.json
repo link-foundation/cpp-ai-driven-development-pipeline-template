@@ -1,0 +1,10 @@
+{
+  "items": [
+    {
+      "html_url": "https://github.com/msclock/cppcheck-wheel/pull/197",
+      "number": 197,
+      "title": "chore(cppcheck): update https://github.com/danmar/cppcheck.git to v2.22.0"
+    }
+  ],
+  "total_count": 1
+}

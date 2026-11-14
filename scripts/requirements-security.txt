@@ -1,4 +1,6 @@
-# Audited along with requirements-ci.txt; also supplies the Workflows zizmor pin.
+# Generated from requirements-security.in; see docs/dependencies.md.
+-c constraints.txt
 pip-audit==2.10.1
-# Also audit the Python-distributed workflow linter invoked through pipx.
+    # via -r scripts/requirements-security.in
 zizmor==1.32.0
+    # via -r scripts/requirements-security.in

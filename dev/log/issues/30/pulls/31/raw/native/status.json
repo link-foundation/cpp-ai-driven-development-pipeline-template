@@ -1,0 +1,14 @@
+{
+  "status": "incomplete",
+  "references": [
+    "benchmark/1.10.0",
+    "cmake/4.4.4",
+    "cpm-cmake/0.43.2",
+    "gtest/1.18.0",
+    "vcpkg-cmake-config/2026-07-21",
+    "vcpkg-cmake/2025-08-07"
+  ],
+  "errors": [
+    "Native audit INCOMPLETE: configure repository secret CONAN_AUDIT_PROVIDER_TOKEN_CONANCENTER after registering at https://audit.conan.io/register. Resolved coordinates are retained; no clean vulnerability verdict is available."
+  ]
+}

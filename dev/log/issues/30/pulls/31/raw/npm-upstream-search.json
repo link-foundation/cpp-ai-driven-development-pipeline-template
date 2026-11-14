@@ -1,0 +1,66 @@
+[
+  {
+    "repo": "secretlint/secretlint",
+    "query": "chalk dependencies",
+    "result": []
+  },
+  {
+    "repo": "textlint/textlint",
+    "query": "js-yaml string-width",
+    "result": []
+  },
+  {
+    "repo": "azu/rc-config-loader",
+    "query": "js-yaml 5",
+    "result": []
+  },
+  {
+    "repo": "sindresorhus/parse-json",
+    "query": "babel 8",
+    "result": [
+      {
+        "number": 8,
+        "state": "closed",
+        "title": "Does this package work in browser?",
+        "url": "https://github.com/sindresorhus/parse-json/issues/8"
+      }
+    ]
+  },
+  {
+    "repo": "gajus/table",
+    "query": "slice-ansi string-width",
+    "result": []
+  },
+  {
+    "repo": "jslicense/spdx-correct.js",
+    "query": "spdx-expression-parse 5",
+    "result": []
+  },
+  {
+    "repo": "kemitchell/validate-npm-package-license.js",
+    "query": "spdx-expression-parse 5",
+    "result": []
+  },
+  {
+    "repo": "sindresorhus/terminal-link",
+    "query": "supports-hyperlinks 5",
+    "result": []
+  },
+  {
+    "repo": "sindresorhus/read-pkg",
+    "query": "normalize-package-data 9",
+    "result": []
+  },
+  {
+    "repo": "ajv-validator/ajv",
+    "query": "fast-uri 4",
+    "result": [
+      {
+        "number": 4,
+        "state": "closed",
+        "title": "Enable validation of all schemas before compilation",
+        "url": "https://github.com/ajv-validator/ajv/issues/4"
+      }
+    ]
+  }
+]

@@ -57,8 +57,8 @@ fails with a clear message before the job timeout.
 - **Pinned actions**: every remote action uses a full commit hash and Docker
   images use digests. Zizmor enforces this without namespace exemptions;
   Dependabot proposes updates to the pins.
-- **Explicit runner images**: all seven workflows use `ubuntu-24.04`; the
-  compiler matrix also uses `macos-15` and `windows-2025`. These labels fix
+- **Explicit runner images**: all seven workflows use `ubuntu-26.04`; the
+  compiler matrix also uses `macos-26` and `windows-2025`. These labels fix
   the OS generation while GitHub continues updating tools within the images.
   Policy tests reject floating `-latest` runner labels and require the Git
   initial-branch environment configuration before checkout in every workflow.

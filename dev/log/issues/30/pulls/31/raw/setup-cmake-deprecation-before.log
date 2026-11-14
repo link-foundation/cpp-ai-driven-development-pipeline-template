@@ -1,0 +1,26 @@
+CodeQL (c-cpp)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:55:01.7069867Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-52935836\-783c\-4f92\-96a7\-0ae90c67748e\.config
+CodeQL (c-cpp)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:55:01.7096552Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+CodeQL (c-cpp)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:55:01.7312903Z Removing credentials config '/home/runner/work/_temp/git-credentials-52935836-783c-4f92-96a7-0ae90c67748e.config'
+CodeQL (c-cpp)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:55:01.7320723Z ##[endgroup]
+CodeQL (c-cpp)	Setup CMake	﻿2026-11-14T09:55:01.7558701Z ##[group]Run jwlawson/actions-setup-cmake@0d6a7d60b009d01c9e7523be22153ff8f19460d3
+CodeQL (c-cpp)	Setup CMake	2026-11-14T09:55:01.7559781Z with:
+CodeQL (c-cpp)	Setup CMake	2026-11-14T09:55:01.7560314Z   cmake-version: 4.5.0
+CodeQL (c-cpp)	Setup CMake	2026-11-14T09:55:01.7565509Z   github-api-token: ***
+CodeQL (c-cpp)	Setup CMake	2026-11-14T09:55:01.7566143Z   use-32bit: false
+CodeQL (c-cpp)	Setup CMake	2026-11-14T09:55:01.7566686Z env:
+CodeQL (c-cpp)	Setup CMake	2026-11-14T09:55:01.7567190Z   GIT_CONFIG_COUNT: 1
+CodeQL (c-cpp)	Setup CMake	2026-11-14T09:55:01.7567805Z   GIT_CONFIG_KEY_0: init.defaultBranch
+CodeQL (c-cpp)	Setup CMake	2026-11-14T09:55:01.7568529Z   GIT_CONFIG_VALUE_0: main
+CodeQL (c-cpp)	Setup CMake	2026-11-14T09:55:01.7569131Z ##[endgroup]
+CodeQL (c-cpp)	Setup CMake	2026-11-14T09:55:01.8213958Z (node:2273) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+CodeQL (c-cpp)	Setup CMake	2026-11-14T09:55:01.8217295Z (Use `node --trace-deprecation ...` to show where the warning was created)
+CodeQL (c-cpp)	Setup CMake	2026-11-14T09:55:08.5236442Z Using cmake version 4.5.0
+CodeQL (c-cpp)	Setup CMake	2026-11-14T09:55:09.0269182Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/bcd05d1f-df31-4017-aa82-ed90a5ec602c -f /home/runner/work/_temp/ee432214-b941-4a0b-83dc-53142c355344
+CodeQL (c-cpp)	Build pinned external libraries before compiler tracing	﻿2026-11-14T09:55:12.1581085Z ##[group]Run python3 scripts/build_codeql.py --prepare-dependencies --dependency-dir "$RUNNER_TEMP/codeql-dependencies"
+CodeQL (c-cpp)	Build pinned external libraries before compiler tracing	2026-11-14T09:55:12.1581722Z ^[[36;1mpython3 scripts/build_codeql.py --prepare-dependencies --dependency-dir "$RUNNER_TEMP/codeql-dependencies"^[[0m
+CodeQL (c-cpp)	Build pinned external libraries before compiler tracing	2026-11-14T09:55:12.1627440Z shell: /usr/bin/bash -e {0}
+CodeQL (c-cpp)	Build pinned external libraries before compiler tracing	2026-11-14T09:55:12.1627605Z env:
+CodeQL (c-cpp)	Build pinned external libraries before compiler tracing	2026-11-14T09:55:12.1627720Z   GIT_CONFIG_COUNT: 1
+CodeQL (c-cpp)	Build pinned external libraries before compiler tracing	2026-11-14T09:55:12.1627854Z   GIT_CONFIG_KEY_0: init.defaultBranch
+CodeQL (c-cpp)	Build pinned external libraries before compiler tracing	2026-11-14T09:55:12.1628010Z   GIT_CONFIG_VALUE_0: main
+CodeQL (c-cpp)	Build pinned external libraries before compiler tracing	2026-11-14T09:55:12.1628149Z   CMAKE_BUILD_PARALLEL_LEVEL: 2

@@ -99,3 +99,7 @@ coverage/
 .vscode/
 .idea/
 .DS_Store
+
+# Isolated pinned workflow tool checkouts
+.tools/
+node_modules/

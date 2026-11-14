@@ -1,0 +1,7 @@
++ clang-format --dry-run --Werror /tmp/gh-issue-solver-1794646566828/benchmarks/my_package_benchmarks.cpp /tmp/gh-issue-solver-1794646566828/examples/basic_usage.cpp /tmp/gh-issue-solver-1794646566828/examples/consumers/main.cpp /tmp/gh-issue-solver-1794646566828/include/my_package/my_package.hpp /tmp/gh-issue-solver-1794646566828/test_package/test_package.cpp /tmp/gh-issue-solver-1794646566828/tests/my_package_tests.cpp
++ clang-tidy -p /tmp/gh-issue-solver-1794646566828/build/lint --quiet /tmp/gh-issue-solver-1794646566828/benchmarks/my_package_benchmarks.cpp /tmp/gh-issue-solver-1794646566828/examples/basic_usage.cpp /tmp/gh-issue-solver-1794646566828/tests/my_package_tests.cpp
+[1/3] Processing file /tmp/gh-issue-solver-1794646566828/benchmarks/my_package_benchmarks.cpp.
+[2/3] Processing file /tmp/gh-issue-solver-1794646566828/examples/basic_usage.cpp.
+[3/3] Processing file /tmp/gh-issue-solver-1794646566828/tests/my_package_tests.cpp.
++ cppcheck --quiet --enable=warning,style,performance,portability --std=c++20 --language=c++ --library=googletest --inline-suppr --error-exitcode=1 --suppress=missingIncludeSystem -I/tmp/gh-issue-solver-1794646566828/include /tmp/gh-issue-solver-1794646566828/benchmarks/my_package_benchmarks.cpp /tmp/gh-issue-solver-1794646566828/examples/basic_usage.cpp /tmp/gh-issue-solver-1794646566828/examples/consumers/main.cpp /tmp/gh-issue-solver-1794646566828/test_package/test_package.cpp /tmp/gh-issue-solver-1794646566828/tests/my_package_tests.cpp
+C++ lint passed: format, tidy, cppcheck

@@ -1,10 +1,14 @@
-# Python-distributed tools of the CI jobs, pinned so a local run uses exactly
-# what CI uses:  python3 -m pip install -r scripts/requirements-ci.txt
-# The release scripts themselves need only the standard library.
-pytest==9.2.0
+# Generated from requirements-ci.in; see docs/dependencies.md.
+-c constraints.txt
 clang-format==23.1.5
+    # via -r scripts/requirements-ci.in
 clang-tidy==23.1.4
-# Cppcheck 2.17.1
-cppcheck==1.5.3
-gcovr==8.8
+    # via -r scripts/requirements-ci.in
 conan==2.34.0
+    # via -r scripts/requirements-ci.in
+cppcheck==1.5.3
+    # via -r scripts/requirements-ci.in
+gcovr==8.8
+    # via -r scripts/requirements-ci.in
+pytest==9.2.0
+    # via -r scripts/requirements-ci.in

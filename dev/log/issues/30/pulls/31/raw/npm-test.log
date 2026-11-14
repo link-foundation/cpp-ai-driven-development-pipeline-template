@@ -1,0 +1,33 @@
+
+> test
+> node --test scripts/test_secretlint.mjs && npm run lint:secrets
+
+✔ clean content passes (527.212255ms)
+✔ checkstyle reports a finding and preserves the failure status (650.832602ms)
+✔ compact reports a finding and preserves the failure status (688.354168ms)
+✔ github reports a finding and preserves the failure status (561.993409ms)
+✔ jslint-xml reports a finding and preserves the failure status (533.251933ms)
+✔ junit reports a finding and preserves the failure status (499.134869ms)
+✔ pretty-error reports a finding and preserves the failure status (456.073677ms)
+✔ stylish reports a finding and preserves the failure status (513.679095ms)
+✔ tap reports a finding and preserves the failure status (562.761952ms)
+✔ unix reports a finding and preserves the failure status (600.442075ms)
+✔ json reports a finding and preserves the failure status (465.172463ms)
+✔ table reports a finding and preserves the failure status (513.987288ms)
+✔ YAML configuration loads with the updated parser (604.186921ms)
+✔ malformed configuration remains a fatal error (407.313592ms)
+✔ invalid JSON retains the Babel code-frame diagnostic (17.361843ms)
+✔ package metadata and SPDX normalization still accept an MIT package (82.86166ms)
+✔ schema URI resolution retains validation and rejection (101.137789ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7935.374652
+
+> lint:secrets
+> secretlint --secretlintignore .gitignore "**/*"
+

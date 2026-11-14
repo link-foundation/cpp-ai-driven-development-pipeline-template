@@ -1,0 +1,116 @@
+{
+    "graph": {
+        "nodes": {
+            "0": {
+                "ref": "my_package/0.2.5",
+                "id": "0",
+                "recipe": "Consumer",
+                "package_id": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "prev": null,
+                "rrev": null,
+                "rrev_timestamp": null,
+                "prev_timestamp": null,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": null,
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "my_package",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template",
+                "license": "Unlicense",
+                "author": null,
+                "description": "Example header-only C++ library of the AI-driven development pipeline template",
+                "homepage": "https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": "0.2.5",
+                "topics": [
+                    "header-only",
+                    "template",
+                    "ci-cd"
+                ],
+                "package_type": "header-library",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/tmp/gh-issue-solver-1794646566828",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": null,
+                "immutable_package_folder": null,
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "lib"
+                        ],
+                        "resdirs": null,
+                        "bindirs": [
+                            "bin"
+                        ],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": null,
+                        "properties": null,
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "conanfile.py (my_package/0.2.5)",
+                "info": {},
+                "vendor": false,
+                "dependencies": {},
+                "context": "host",
+                "test": false
+            }
+        },
+        "root": {
+            "0": "my_package/0.2.5"
+        },
+        "overrides": {},
+        "resolved_ranges": {},
+        "replaced_requires": {},
+        "error": null
+    }
+}

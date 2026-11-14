@@ -1,0 +1,31 @@
+{
+  "name": "cpp-ai-driven-development-pipeline-template-ci",
+  "private": true,
+  "scripts": {
+    "lint:secrets": "secretlint --secretlintignore .gitignore \"**/*\"",
+    "test": "node --test scripts/test_secretlint.mjs && npm run lint:secrets"
+  },
+  "engines": {
+    "node": ">=26.13.1",
+    "npm": ">=11.20.0"
+  },
+  "packageManager": "npm@12.2.2",
+  "devDependencies": {
+    "secretlint": "13.1.0",
+    "@secretlint/secretlint-rule-preset-recommend": "13.1.0"
+  },
+  "overrides": {
+    "@babel/code-frame": "8.0.6",
+    "chalk": "6.0.1",
+    "fast-uri": "4.2.3",
+    "js-yaml": "5.5.0",
+    "normalize-package-data": "9.0.0",
+    "pluralize": "8.0.0",
+    "slice-ansi": "10.0.1",
+    "spdx-expression-parse": "5.0.0",
+    "string-width": "9.0.0",
+    "strip-ansi": "7.2.0",
+    "supports-hyperlinks": "5.0.0",
+    "type-fest": "5.10.0"
+  }
+}

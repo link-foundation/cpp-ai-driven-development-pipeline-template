@@ -36,7 +36,7 @@ env:
 jobs:
   actionlint:
     name: Lint Workflows
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     concurrency:
       group: check-${{ github.workflow }}-${{ github.ref }}-actionlint
@@ -44,7 +44,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
@@ -74,16 +74,11 @@ jobs:
         with:
           args: -color
 
-  # actionlint validates workflow schema and shell; it does not detect
-  # credential persistence, template injection or unpinned actions. zizmor
-  # covers exactly those, so both linters run on every change under .github/.
-  # Reproduce locally with:
-  #   zizmor_spec=$(grep '^zizmor==' scripts/requirements-security.txt)
-  #   pipx run --spec "$zizmor_spec" zizmor --min-confidence medium --persona regular \
-  #     --config .github/zizmor.yml .github/workflows
+  # Native action 0.8.1 supports our PyPI pin and verifies upstream wheel hashes.
+  # Both passes share the audited manifest pin and retain their failure policy.
   zizmor:
     name: Audit Workflows
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     concurrency:
       group: check-${{ github.workflow }}-${{ github.ref }}-zizmor
@@ -91,40 +86,40 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
-      # Annotations instead of SARIF: forks of this template do not necessarily
-      # have code scanning enabled, and the job should fail loudly either way.
-      #
-      # Run the audited PyPI pin directly: the action's frozen downloader
-      # table does not support every version released on PyPI.
-      - name: Audit workflow files
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Read the audited zizmor version
+        id: version
         run: |
-          zizmor_spec=$(grep '^zizmor==' scripts/requirements-security.txt)
-          pipx run --spec "$zizmor_spec" zizmor --format=github --persona regular \
-            --min-confidence medium --config .github/zizmor.yml .
+          version=$(grep '^zizmor==' scripts/requirements-security.txt)
+          echo "version=${version#zizmor==}" >> "$GITHUB_OUTPUT"
 
-      # The step above runs `--persona regular`, which is the right default:
-      # pedantic surfaces dozens of stylistic findings. But the audits that
-      # cover container image references (`unpinned-images` among them) are
-      # Pedantic-only, so the `'*': hash-pin` policy declared in
-      # .github/zizmor.yml is not enforced against `uses: docker://` or
-      # `container:` references by the regular pass. Narrowing this second
-      # pass to high severity *and* high confidence keeps that enforcement
-      # without importing the noise. Measured: after the digest pin of the
-      # actionlint image above it reports nothing, and stays silent until
-      # someone reintroduces a mutable image reference (python template issue #75).
+      - name: Audit workflow files
+        uses: zizmorcore/zizmor-action@45d7276c9ca790aabd705e31ca99c6185c3e76dd # v0.8.1
+        with:
+          version: ${{ steps.version.outputs.version }}
+          inputs: .
+          advanced-security: false
+          annotations: true
+          persona: regular
+          min-confidence: medium
+          config: .github/zizmor.yml
+
+      # Container hash-pin policy is pedantic-only; retain the narrow high gate.
       - name: Audit for pedantic-only high-severity findings
+        uses: zizmorcore/zizmor-action@45d7276c9ca790aabd705e31ca99c6185c3e76dd # v0.8.1
         timeout-minutes: 5
-        run: |
-          zizmor_spec=$(grep '^zizmor==' scripts/requirements-security.txt)
-          pipx run --spec "$zizmor_spec" zizmor --config .github/zizmor.yml \
-            --persona pedantic --min-severity high --min-confidence high \
-            .github/workflows
+        with:
+          version: ${{ steps.version.outputs.version }}
+          inputs: .github/workflows
+          advanced-security: false
+          annotations: true
+          persona: pedantic
+          min-severity: high
+          min-confidence: high
+          config: .github/zizmor.yml
 
   # Terminal status gate (python template issue #69): GitHub reports jobs killed by
   # timeout-minutes as cancelled. Observe every other job so a timeout on main
@@ -136,10 +131,10 @@ jobs:
       - actionlint
       - zizmor
     if: always()
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 

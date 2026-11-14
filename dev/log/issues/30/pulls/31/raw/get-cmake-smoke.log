@@ -1,0 +1,44 @@
+useCloudCache:false
+useLocalCache:false
+user defined cmake version:4.5.0
+user defined ninja version:1.13.2
+cmake version:4.5.0
+ninja version:1.13.2
+::debug::matchRange([object Object], 4.5.0, cmake)<<
+::debug::cmakePackages: {"linux-arm64":{"url":"https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-linux-aarch64.tar.gz","fileName":"cmake-4.5.0-linux-aarch64.tar.gz","binPath":"bin/","dropSuffix":".tar.gz","sha256":"0c8447e7bba9701467b5ac6155d157aa9e309e71af4981f78bd4b9176107f553"},"linux":{"url":"https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-linux-x86_64.tar.gz","fileName":"cmake-4.5.0-linux-x86_64.tar.gz","binPath":"bin/","dropSuffix":".tar.gz","sha256":"81f0d5b0960fb6adc8197030ffc827fba937640d51e73e39e0e9e40d88c66f6f"},"darwin":{"url":"https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-macos-universal.tar.gz","fileName":"cmake-4.5.0-macos-universal.tar.gz","binPath":"CMake.app/Contents/bin/","dropSuffix":".tar.gz","sha256":"a645d69fd21e521759cc0c64e7c60462d43faf0c7214ac05f75c80f7c5037dde"},"win32-arm64":{"url":"https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-windows-arm64.zip","fileName":"cmake-4.5.0-windows-arm64.zip","binPath":"bin/","dropSuffix":".zip","sha256":"7dba95db83ec1e8fa3f221c06454ebc692c8f06d93bf5fdf840113fa28018690"},"win32":{"url":"https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-windows-x86_64.zip","fileName":"cmake-4.5.0-windows-x86_64.zip","binPath":"bin/","dropSuffix":".zip","sha256":"301b1728317ccd84e984b02e366a8293735bc5ac618757d3d8f58b578f062411"}}
+::debug::matchRange([object Object], 1.13.2, ninja)<<
+::group::Computing cache key from the downloads' URLs and checksums
+Cache key: 'get-cmake-sha256-verified-v1-c110bb9f90d9143014c80f41077b624094e5e4b5019639429213352797ada65a'.
+::debug::sha256('get-cmake-sha256-verified-v1|https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-linux-x86_64.tar.gz|81f0d5b0960fb6adc8197030ffc827fba937640d51e73e39e0e9e40d88c66f6f|https://github.com/ninja-build/ninja/releases/download/v1.13.2/ninja-linux.zip|5749cbc4e668273514150a80e387a957f933c6ed3f5f11e03fb30955e2bbead6') === 'c110bb9f90d9143014c80f41077b624094e5e4b5019639429213352797ada65a'
+Local install root: '/tmp/gh-issue-solver-1794646566828/build/cmake-action-smoke/tmp/c110bb9f90d9143014c80f41077b6240''.
+::endgroup::
+::group::Downloading and extracting CMake
+::debug::Downloading https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-linux-x86_64.tar.gz
+::debug::Destination /tmp/gh-issue-solver-1794646566828/build/cmake-action-smoke/tmp/fd27d4e7-010f-4d76-a410-3a53d93cc880
+::debug::download complete
+SHA-256 checksum verified for cmake.
+::debug::Checking tar --version
+::debug::tar (GNU tar) 1.35%0ACopyright (C) 2023 Free Software Foundation, Inc.%0ALicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.%0AThis is free software: you are free to change and redistribute it.%0AThere is NO WARRANTY, to the extent permitted by law.%0A%0AWritten by John Gilmore and Jay Fenlason.
+[command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /tmp/gh-issue-solver-1794646566828/build/cmake-action-smoke/tmp/c110bb9f90d9143014c80f41077b6240 -f /tmp/gh-issue-solver-1794646566828/build/cmake-action-smoke/tmp/fd27d4e7-010f-4d76-a410-3a53d93cc880
+::endgroup::
+::group::Downloading and extracting Ninja
+::debug::Downloading https://github.com/ninja-build/ninja/releases/download/v1.13.2/ninja-linux.zip
+::debug::Destination /tmp/gh-issue-solver-1794646566828/build/cmake-action-smoke/tmp/961ebb91-702c-4938-99ed-e13cd43a97b7
+::debug::download complete
+SHA-256 checksum verified for ninja.
+[command]/usr/bin/unzip -o -q /tmp/gh-issue-solver-1794646566828/build/cmake-action-smoke/tmp/961ebb91-702c-4938-99ed-e13cd43a97b7
+::endgroup::
+::group::Add CMake and Ninja to PATH
+CMake path: '/tmp/gh-issue-solver-1794646566828/build/cmake-action-smoke/tmp/c110bb9f90d9143014c80f41077b6240/cmake-4.5.0-linux-x86_64/bin/'
+Ninja path: '/tmp/gh-issue-solver-1794646566828/build/cmake-action-smoke/tmp/c110bb9f90d9143014c80f41077b6240'
+::debug::fixUpNinjaExeName(/tmp/gh-issue-solver-1794646566828/build/cmake-action-smoke/tmp/c110bb9f90d9143014c80f41077b6240)<<<
+::debug::Processing: 'cmake-4.5.0-linux-x86_64'.
+::debug::Processing: 'ninja'.
+::debug::No rename occurred.
+::debug::fixUpNinjaExeName(/tmp/gh-issue-solver-1794646566828/build/cmake-action-smoke/tmp/c110bb9f90d9143014c80f41077b6240)>>>
+::group::Validating the installed CMake and Ninja
+CMake actual path is: '/tmp/gh-issue-solver-1794646566828/build/cmake-action-smoke/tmp/c110bb9f90d9143014c80f41077b6240/cmake-4.5.0-linux-x86_64/bin/cmake'
+Ninja actual path is: '/tmp/gh-issue-solver-1794646566828/build/cmake-action-smoke/tmp/c110bb9f90d9143014c80f41077b6240/ninja'
+::endgroup::
+::endgroup::
+get-cmake action execution succeeded

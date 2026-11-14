@@ -68,7 +68,7 @@ jobs:
   # === DETECT CHANGES - determines which jobs should run ===
   detect-changes:
     name: Detect Changes
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-detect-changes
@@ -79,7 +79,7 @@ jobs:
       cpp-changed: ${{ steps.changes.outputs.cpp-changed }}
       docs-changed: ${{ steps.changes.outputs.docs-changed }}
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           fetch-depth: 0
@@ -99,7 +99,7 @@ jobs:
   # contained the links go away. The .md size limit lives in the lint job.
   validate-docs:
     name: Validate Documentation
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-validate-docs
@@ -107,7 +107,7 @@ jobs:
     needs: [detect-changes]
     if: needs.detect-changes.outputs.docs-changed == 'true'
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
@@ -126,14 +126,14 @@ jobs:
   # run being green.
   release-preflight:
     name: Release Preflight
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       # The GitHub probe creates an invalid ref: 422 proves write access
       # without writing anything.
       contents: write
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
@@ -160,7 +160,7 @@ jobs:
   # Docs-only PRs (./docs folder, markdown files) don't require changelog fragments
   changelog:
     name: Changelog Fragment Check
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-changelog
@@ -168,7 +168,7 @@ jobs:
     needs: [detect-changes]
     if: github.event_name == 'pull_request' && needs.detect-changes.outputs.any-code-changed == 'true'
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           fetch-depth: 0
@@ -184,14 +184,14 @@ jobs:
   # Versions are only modified by the automated release pipeline.
   version-check:
     name: Version Modification Check
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-version-check
       cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
     if: github.event_name == 'pull_request'
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           fetch-depth: 0
@@ -203,28 +203,43 @@ jobs:
         run: python3 scripts/check_version_modification.py
 
   # === SECRETS SCAN ===
-  # Language-agnostic credential scan; runs via npx so no Node dependency is committed.
+  # Language-agnostic credential scan, with a committed npm resolution.
   secrets-scan:
     name: Secrets Scan
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-secrets-scan
       cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+
+      - name: Install pinned npm
+        # The CLI is a toolchain, separate from the project's audited dependencies.
+        run: npm install --global npm@12.2.2 # zizmor: ignore[adhoc-packages]
+
+      - name: Install locked secretlint and audit dependencies
+        run: |
+          npm ci --ignore-scripts
+          npm audit --audit-level=low
+
       - name: Run secretlint
-        run: npx --yes -p secretlint -p @secretlint/secretlint-rule-preset-recommend secretlint --secretlintignore .gitignore "**/*"
+        run: npm test
 
   # === FRESH MERGE SIMULATION ===
   # Catches semantic merge conflicts: a pull request that is green in isolation but
   # breaks the base branch once merged into its current tip.
   fresh-merge:
     name: Fresh Merge Simulation
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-fresh-merge
@@ -232,7 +247,7 @@ jobs:
     needs: [detect-changes]
     if: github.event_name == 'pull_request' && needs.detect-changes.outputs.any-code-changed == 'true'
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           fetch-depth: 0
@@ -249,6 +264,12 @@ jobs:
             echo "SCRIPTS_DIR=$PWD/scripts"
           } >> "$GITHUB_ENV"
 
+      - name: Setup CMake
+        uses: lukka/get-cmake@16e8153a8b4918849d92aad131befe67a3705daa # v4.5.0
+        with:
+          cmakeVersion: '4.5.0'
+          ninjaVersion: '1.13.2'
+
       - name: Build and test the merge result
         working-directory: ${{ env.CPP_DIR }}
         env:
@@ -262,7 +283,7 @@ jobs:
   # See: https://github.com/link-assistant/hive-mind/pull/1024 for why this dependency was removed
   lint:
     name: Lint and Format Check
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-lint
@@ -277,15 +298,21 @@ jobs:
         needs.detect-changes.outputs.any-code-changed == 'true'
       )
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           fetch-depth: 0
 
       - name: Setup Python
-        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
-          python-version: '3.13'
+          python-version: '3.15.2'
+
+      - name: Setup CMake
+        uses: lukka/get-cmake@16e8153a8b4918849d92aad131befe67a3705daa # v4.5.0
+        with:
+          cmakeVersion: '4.5.0'
+          ninjaVersion: '1.13.2'
 
       - name: Install pinned lint tools
         # clang-format, clang-tidy and cppcheck come from PyPI wheels pinned in
@@ -370,27 +397,38 @@ jobs:
       matrix:
         include:
           - name: linux-gcc
-            os: ubuntu-24.04
+            os: ubuntu-26.04
+            cc: gcc-15
+            cxx: g++-15
           - name: linux-clang
-            os: ubuntu-24.04
-            cc: clang
-            cxx: clang++
+            os: ubuntu-26.04
+            cc: clang-22
+            cxx: clang++-22
           - name: macos-appleclang
-            os: macos-15
+            os: macos-26
           - name: windows-msvc
             os: windows-2025
     defaults:
       run:
         shell: bash
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Setup Python
-        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
-          python-version: '3.13'
+          python-version: '3.15.2'
+
+      - name: Setup CMake
+        uses: lukka/get-cmake@16e8153a8b4918849d92aad131befe67a3705daa # v4.5.0
+        with:
+          cmakeVersion: '4.5.0'
+          ninjaVersion: '1.13.2'
+
+      - name: Install pinned build tools
+        run: python -m pip install --disable-pip-version-check -r scripts/requirements-toolchain.txt
 
       - name: Select the compiler and locate the C++ project
         env:
@@ -442,7 +480,7 @@ jobs:
   # AddressSanitizer and UndefinedBehaviorSanitizer over the whole test suite.
   sanitizers:
     name: Sanitizers (ASan + UBSan)
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-sanitizers
@@ -457,9 +495,15 @@ jobs:
         needs.detect-changes.outputs.any-code-changed == 'true'
       )
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+
+      - name: Setup CMake
+        uses: lukka/get-cmake@16e8153a8b4918849d92aad131befe67a3705daa # v4.5.0
+        with:
+          cmakeVersion: '4.5.0'
+          ninjaVersion: '1.13.2'
 
       - name: Locate the C++ project
         run: |
@@ -481,7 +525,7 @@ jobs:
   # package script only shows up at release time otherwise.
   script-tests:
     name: Release Script Tests
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-script-tests
@@ -496,14 +540,20 @@ jobs:
         needs.detect-changes.outputs.any-code-changed == 'true'
       )
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Setup Python
-        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
-          python-version: '3.13'
+          python-version: '3.15.2'
+
+      - name: Setup CMake
+        uses: lukka/get-cmake@16e8153a8b4918849d92aad131befe67a3705daa # v4.5.0
+        with:
+          cmakeVersion: '4.5.0'
+          ninjaVersion: '1.13.2'
 
       - name: Install pinned tools
         run: python -m pip install --disable-pip-version-check -r scripts/requirements-ci.txt
@@ -520,7 +570,7 @@ jobs:
   # report filter and the line-coverage floor.
   coverage:
     name: Code Coverage
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 20
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-coverage
@@ -537,14 +587,20 @@ jobs:
         needs.detect-changes.outputs.cpp-changed == 'true'
       )
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Setup Python
-        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
-          python-version: '3.13'
+          python-version: '3.15.2'
+
+      - name: Setup CMake
+        uses: lukka/get-cmake@16e8153a8b4918849d92aad131befe67a3705daa # v4.5.0
+        with:
+          cmakeVersion: '4.5.0'
+          ninjaVersion: '1.13.2'
 
       - name: Install gcovr
         run: python -m pip install --disable-pip-version-check -r scripts/requirements-ci.txt
@@ -588,7 +644,7 @@ jobs:
   # downloads the source archive, verifies its SHA512 and installs.
   build:
     name: Build Packages
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-build
@@ -596,16 +652,22 @@ jobs:
     needs: [lint, test, sanitizers, script-tests]
     if: ${{ !cancelled() && needs.lint.result == 'success' && needs.test.result == 'success' && needs.sanitizers.result == 'success' && needs.script-tests.result == 'success' }}
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           # git archive of HEAD needs the commit time; the tags are not needed.
           fetch-depth: 1
 
       - name: Setup Python
-        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
-          python-version: '3.13'
+          python-version: '3.15.2'
+
+      - name: Setup CMake
+        uses: lukka/get-cmake@16e8153a8b4918849d92aad131befe67a3705daa # v4.5.0
+        with:
+          cmakeVersion: '4.5.0'
+          ninjaVersion: '1.13.2'
 
       - name: Install pinned tools
         run: python -m pip install --disable-pip-version-check -r scripts/requirements-ci.txt
@@ -633,24 +695,36 @@ jobs:
           bash scripts/run-with-budget-warning.sh "$CONAN_BUDGET_SECONDS" "Conan package" \
             conan create "$CPP_DIR" -s compiler.cppstd=20 --build=missing
 
+      - name: Read the pinned vcpkg baseline
+        id: vcpkg
+        run: |
+          cpp_dir=$(python3 scripts/get_version.py --print cpp_root)
+          python3 -c 'import json, sys; print("baseline=" + json.load(open(sys.argv[1]))["builtin-baseline"])' "$cpp_dir/vcpkg.json" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout pinned vcpkg and its tool metadata
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: microsoft/vcpkg
+          ref: ${{ steps.vcpkg.outputs.baseline }}
+          path: .tools/vcpkg
+          persist-credentials: false
+
+      - name: Bootstrap the pinned vcpkg tool
+        run: |
+          .tools/vcpkg/bootstrap-vcpkg.sh -disableMetrics
+          echo "VCPKG_INSTALLATION_ROOT=$GITHUB_WORKSPACE/.tools/vcpkg" >> "$GITHUB_ENV"
+
       - name: Install the vcpkg port and build its consumer
         env:
           VCPKG_BUDGET_SECONDS: 900
         run: |
-          # GitHub-hosted Ubuntu images ship a bootstrapped vcpkg; bootstrap
-          # one for self-hosted runners that do not.
-          VCPKG_ROOT="${VCPKG_INSTALLATION_ROOT:-}"
-          if [ -z "$VCPKG_ROOT" ] || [ ! -x "$VCPKG_ROOT/vcpkg" ]; then
-            VCPKG_ROOT="$RUNNER_TEMP/vcpkg"
-            git clone --quiet --depth 1 https://github.com/microsoft/vcpkg.git "$VCPKG_ROOT"
-            "$VCPKG_ROOT/bootstrap-vcpkg.sh" -disableMetrics
-          fi
+          VCPKG_ROOT="$VCPKG_INSTALLATION_ROOT"
           export VCPKG_ROOT
           bash scripts/run-with-budget-warning.sh "$VCPKG_BUDGET_SECONDS" "vcpkg port" \
             bash scripts/check-vcpkg-port.sh
 
       - name: Upload release assets
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: release-assets
           path: dist
@@ -675,7 +749,7 @@ jobs:
       github.ref == 'refs/heads/main' &&
       needs.release-preflight.result == 'success' &&
       needs.build.result == 'success'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 45
     permissions:
       contents: write
@@ -684,16 +758,22 @@ jobs:
       # This job pushes the version bump commit and tag back to `main`, so the
       # checkout credentials have to stay in `.git/config` (no
       # `persist-credentials: false` here, unlike every read-only checkout).
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
           persist-credentials: true
 
       - name: Setup Python
-        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
-          python-version: '3.13'
+          python-version: '3.15.2'
+
+      - name: Setup CMake
+        uses: lukka/get-cmake@16e8153a8b4918849d92aad131befe67a3705daa # v4.5.0
+        with:
+          cmakeVersion: '4.5.0'
+          ninjaVersion: '1.13.2'
 
       - name: Install Conan
         if: vars.CONAN_REMOTE_URL != ''
@@ -725,7 +805,7 @@ jobs:
           steps.check.outputs.should_release == 'true' &&
           steps.check.outputs.nuget_published != 'true' &&
           vars.NUGET_PUBLISH == 'true' && vars.NUGET_USER != ''
-        uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1
+        uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1.2.0
         with:
           user: ${{ vars.NUGET_USER }}
 
@@ -762,7 +842,7 @@ jobs:
       github.event.inputs.release_mode == 'instant' &&
       needs.release-preflight.result == 'success' &&
       needs.build.result == 'success'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 45
     permissions:
       contents: write
@@ -771,16 +851,22 @@ jobs:
       # This job pushes the version bump commit and tag back to `main`, so the
       # checkout credentials have to stay in `.git/config` (no
       # `persist-credentials: false` here, unlike every read-only checkout).
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
           persist-credentials: true
 
       - name: Setup Python
-        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
-          python-version: '3.13'
+          python-version: '3.15.2'
+
+      - name: Setup CMake
+        uses: lukka/get-cmake@16e8153a8b4918849d92aad131befe67a3705daa # v4.5.0
+        with:
+          cmakeVersion: '4.5.0'
+          ninjaVersion: '1.13.2'
 
       - name: Install Conan
         if: vars.CONAN_REMOTE_URL != ''
@@ -798,7 +884,7 @@ jobs:
         if: >-
           (steps.version.outputs.version_committed == 'true' || steps.version.outputs.already_released == 'true') &&
           vars.NUGET_PUBLISH == 'true' && vars.NUGET_USER != ''
-        uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1
+        uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1.2.0
         with:
           user: ${{ vars.NUGET_USER }}
 
@@ -819,7 +905,7 @@ jobs:
   changelog-pr:
     name: Create Changelog PR
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.release_mode == 'changelog-pr'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     concurrency:
       group: repository-main-write
@@ -829,7 +915,7 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           fetch-depth: 0
@@ -841,7 +927,7 @@ jobs:
         run: python3 scripts/create_changelog_fragment.py --bump-type "$BUMP_TYPE" --description "$DESCRIPTION"
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@15733dbdfeedb4f7fdb73d13c6f5ac83b710fab8 # v8.1.2
+        uses: peter-evans/create-pull-request@3ffccacd46053766916f087ce41d627c0b8cf2d1 # v8.1.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'chore: add changelog for manual ${{ github.event.inputs.bump_type }} release'
@@ -888,7 +974,7 @@ jobs:
       - manual-release
       - changelog-pr
     if: always()
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       # Read this run's jobs and their annotations so a job GitHub never
@@ -897,7 +983,7 @@ jobs:
       checks: read
       contents: read
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 

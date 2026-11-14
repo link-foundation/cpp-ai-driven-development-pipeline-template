@@ -1,0 +1,505 @@
+{
+  "items": [
+    {
+      "html_url": "https://github.com/npm/cli/pull/11",
+      "number": 11,
+      "title": "Add support for requiring 2fa to publish specific packages."
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/10299",
+      "number": 10299,
+      "title": "[BUG] npm 12.2.2 bundles glob and minimatch versions affected by October 2026 advisories"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/10137",
+      "number": 10137,
+      "title": "[BUG] `npm ci` accepts a lockfile that violates `overrides` when a hoisted package is reached through multiple override scopes"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/2619",
+      "number": 2619,
+      "title": "[BUG] npm 7 + Azure Devops Artifacts"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/9944",
+      "number": 9944,
+      "title": "fix(libnpmexec): honor min-release-age-exclude when resolving specs"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/9024",
+      "number": 9024,
+      "title": "[BUG] `install --no-save` does not install anything"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/5743",
+      "number": 5743,
+      "title": "[BUG] Npm can't install most of the packages on arm64"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/7746",
+      "number": 7746,
+      "title": "[BUG] `npm install` sometimes removes indirect dependencies if a parent node was deleted from the lockfile"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/10111",
+      "number": 10111,
+      "title": "Bundled brace-expansion@5.0.9 and undici@6.28.0 are vulnerable (fixes published 2026-09-14 / 2026-09-04)"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/10093",
+      "number": 10093,
+      "title": "Dependencies with HIGH vulnerabilities"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/10062",
+      "number": 10062,
+      "title": "[BUG] v12.2.0 shipped a stale bundled lockfile after in-range security fixes were already published"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/4382",
+      "number": 4382,
+      "title": "[BUG] npm audit fails with 404 error"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/9869",
+      "number": 9869,
+      "title": "Bundled brace-expansion@5.0.7 is vulnerable to CVE-2026-14257 and CVE-2026-69152 (fixed in 5.0.9)"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/9587",
+      "number": 9587,
+      "title": "[BUG] <title> npm install"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/9558",
+      "number": 9558,
+      "title": "[BUG] \"npm approve-scripts --allow-scripts-pending\" shows approved depdencies"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/9548",
+      "number": 9548,
+      "title": "[BUG] Registry-tarball `allow-remote` exemption fails when the configured registry origin differs from the lockfile `resolved` origin (proxy/mirror)"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/9141",
+      "number": 9141,
+      "title": "[BUG] Takes forever to install or even create"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/9240",
+      "number": 9240,
+      "title": "chore: release 11.13.0"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/9194",
+      "number": 9194,
+      "title": "[BUG] Snyk is reporting security issues with npm 11.12.1 dependencies"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/9207",
+      "number": 9207,
+      "title": "deps updates"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/9208",
+      "number": 9208,
+      "title": "deps updates (v11)"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/9062",
+      "number": 9062,
+      "title": "[BUG] Overrides doesn't override versions of npm depdencies"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/8999",
+      "number": 8999,
+      "title": "[BUG] HIGH vulnerability in minimatch dependency"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/9037",
+      "number": 9037,
+      "title": "[BUG] CVE-2026-27903 , CVE-2026-27904 from minimatch 10.2.2"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/9047",
+      "number": 9047,
+      "title": "chore: release 11.11.1"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/9058",
+      "number": 9058,
+      "title": "fix: update minimatch to ^10.2.4"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/8987",
+      "number": 8987,
+      "title": "chore: release 11.10.1"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/9728",
+      "number": 9728,
+      "title": "Exit handler never called in npm ci"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/9229",
+      "number": 9229,
+      "title": "chore: release 12.0.0-pre.0.0"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/8950",
+      "number": 8950,
+      "title": "chore: release 11.9.0"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/8958",
+      "number": 8958,
+      "title": "GHSA-7h2j-956f-4vf2 @isaacs/brace-expansion has Uncontrolled Resource Consumption - Critical"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/9056",
+      "number": 9056,
+      "title": "v10 backport deps updates"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/9059",
+      "number": 9059,
+      "title": "chore: release 10.9.5"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/9018",
+      "number": 9018,
+      "title": "[BUG] exit handler never called"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/8671",
+      "number": 8671,
+      "title": "chore: release 11.6.3"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/3555",
+      "number": 3555,
+      "title": "[BUG] Running npm ci in GitHub Actions erroneously uses GitHub Package Registry"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/8723",
+      "number": 8723,
+      "title": "deps updates"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/8571",
+      "number": 8571,
+      "title": "chore: release 11.6.1"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/7704",
+      "number": 7704,
+      "title": "[DOCS] npm doesn't install the latest tagged version if engines are invalid"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/8366",
+      "number": 8366,
+      "title": "[BUG] v10 bundled dependency `brace-expansion@2.0.1` is vulnerable to ReDoS"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/8426",
+      "number": 8426,
+      "title": "[BUG] npx tries to install optional peer dependencies which don't exist, then hangs."
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/4839",
+      "number": 4839,
+      "title": "[BUG] svelte-prepocess install fails : npm ERR! Exit handler never called!"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/8183",
+      "number": 8183,
+      "title": "node-gyp Not Recognized as an Internal or External Command This happens with any global package."
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/8368",
+      "number": 8368,
+      "title": "[BUG] npm Freezes on macOS tahoe"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/8260",
+      "number": 8260,
+      "title": "Error while running npm install after creating a Vite project"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/8196",
+      "number": 8196,
+      "title": "[BUG] Installation of graphweaver CLI hangs (seemingly forever) due to repeated 404s while installing uWebSockets.js package"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/7543",
+      "number": 7543,
+      "title": "[BUG] My computer is a Surface based on Windows ARM architecture, and I also encountered the same problem. I have tried to delete `package-lock.json` and `node_modules`, and then re-executed the `npm install` command, but the result has not changed. The following are my relevant error reports:"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/8058",
+      "number": 8058,
+      "title": "chore: stop publish smoke from check git clean"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/6278",
+      "number": 6278,
+      "title": "chore: release 9.6.3"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/7575",
+      "number": 7575,
+      "title": "chore: release 10.8.2"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/7657",
+      "number": 7657,
+      "title": "[BUG] Exit handler never called during clean-install, with Node.js v22.5.0"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/7265",
+      "number": 7265,
+      "title": "chore: release 10.5.1"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/7231",
+      "number": 7231,
+      "title": "npm 10.4.0 fails \"npm install\" when using node 18.19.1 and running under slow multi platform ARM build"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/7314",
+      "number": 7314,
+      "title": "perf: avoid importing npm-registry-fetch for replace-info"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/7395",
+      "number": 7395,
+      "title": "[BUG] Cert issue with github hosted package on Windows"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/6650",
+      "number": 6650,
+      "title": "chore: release 9.8.1"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/3678",
+      "number": 3678,
+      "title": "NPM bug"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/6395",
+      "number": 6395,
+      "title": "chore: release 9.6.6"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/6534",
+      "number": 6534,
+      "title": "chore: release 9.7.2"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/6347",
+      "number": 6347,
+      "title": "chore: release 9.6.5"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/6140",
+      "number": 6140,
+      "title": "chore: release 9.4.2"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/6133",
+      "number": 6133,
+      "title": "Update Dependencies"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/5969",
+      "number": 5969,
+      "title": "[BUG] Install production dependencies for a single package in a workspace"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/5988",
+      "number": 5988,
+      "title": "Release v6.14.18"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/708",
+      "number": 708,
+      "title": "[BUG] npm update not updating package.json"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/3021",
+      "number": 3021,
+      "title": "[BUG] npx failed: Cannot read property 'spec' of undefined"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/4487",
+      "number": 4487,
+      "title": "chore: @npmcli/template-oss@2.9.1"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/2757",
+      "number": 2757,
+      "title": "[BUG] npm install attempts to fetch already bundled indirect dependency from registry"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/4497",
+      "number": 4497,
+      "title": "Release/v8.5.3"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/pull/4498",
+      "number": 4498,
+      "title": "Release/v8.5.3"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/3244",
+      "number": 3244,
+      "title": "[BUG] NGULAR CLI"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/3723",
+      "number": 3723,
+      "title": "[BUG] \"cb() never called!\""
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/3694",
+      "number": 3694,
+      "title": "[BUG] <Exit handler never called!>"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/3677",
+      "number": 3677,
+      "title": "[BUG] Infinite loop on \"npm sill placeDep\""
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/4188",
+      "number": 4188,
+      "title": "see this sh*t"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/3335",
+      "number": 3335,
+      "title": "[BUG] npm cli error when running npm -g install with various global packages "
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/1963",
+      "number": 1963,
+      "title": "[BUG] Error installing private GitLab repositories in v7"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/3908",
+      "number": 3908,
+      "title": "Can't install nodemon package on Android Termux"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/3924",
+      "number": 3924,
+      "title": "NPM Install taking long time[BUG] <title>"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/3926",
+      "number": 3926,
+      "title": "NPM Install taking long time[BUG] <title>"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/3925",
+      "number": 3925,
+      "title": "NPM Install taking long time[BUG] <title>"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/2471",
+      "number": 2471,
+      "title": "[BUG] npm install --only=dev leakly install package"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/292",
+      "number": 292,
+      "title": "[BUG] registry: Package metadata not updated right after publish"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/3012",
+      "number": 3012,
+      "title": "[BUG] npm update removes nested node_modules"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/394",
+      "number": 394,
+      "title": "npm update --depth command no longer working correctly (v6.9.0)"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/2104",
+      "number": 2104,
+      "title": "[BUG] npm link fails and deletes entire project"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/3213",
+      "number": 3213,
+      "title": "[BUG] Meshcentral Update error"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/3442",
+      "number": 3442,
+      "title": "are sudo apt install packages not up to date?"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/2404",
+      "number": 2404,
+      "title": "[BUG] trying to install npm install -g expo-cli"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/3289",
+      "number": 3289,
+      "title": "cb() never called"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/3414",
+      "number": 3414,
+      "title": "i have a problem when I create angular project"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/2801",
+      "number": 2801,
+      "title": "[BUG] error cb() never called!"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/1142",
+      "number": 1142,
+      "title": "error cb() never called!"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/1969",
+      "number": 1969,
+      "title": "[BUG]  npm install \u2013only=prod please do not prefetch devDependencies modules"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/1188",
+      "number": 1188,
+      "title": "npm ERR! cb() never called!"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/1209",
+      "number": 1209,
+      "title": "[BUG] \u00d7 Package install failed, see above. The Schematic workflow failed. See above."
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/2251",
+      "number": 2251,
+      "title": "[BUG] npm install followed by npm ci fails with no such file or directory (chmod failure)"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/2785",
+      "number": 2785,
+      "title": "Vue create command failed"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/998",
+      "number": 998,
+      "title": "cb() never called! when running npm install"
+    },
+    {
+      "html_url": "https://github.com/npm/cli/issues/2518",
+      "number": 2518,
+      "title": "error cb() never called!.................... i am facing this issue not able to create my angular app ...........................at the end of installation every time this error occurs.........< The Schematic workflow failed>"
+    }
+  ],
+  "total_count": 104
+}

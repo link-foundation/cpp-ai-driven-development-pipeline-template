@@ -24,3 +24,29 @@ updates:
     groups:
       ci-tools:
         patterns: ['*']
+
+  - package-ecosystem: pre-commit
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      hooks:
+        patterns: ['*']
+
+  - package-ecosystem: vcpkg
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      native:
+        patterns: ['*']
+
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      secret-scanner:
+        patterns: ['*']

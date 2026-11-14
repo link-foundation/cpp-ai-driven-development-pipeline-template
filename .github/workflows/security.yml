@@ -27,7 +27,7 @@ env:
 jobs:
   codeql:
     name: CodeQL (${{ matrix.language }})
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-codeql-${{ matrix.language }}
@@ -44,9 +44,15 @@ jobs:
           - language: actions
             build-mode: none
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+
+      - name: Setup CMake
+        uses: lukka/get-cmake@16e8153a8b4918849d92aad131befe67a3705daa # v4.5.0
+        with:
+          cmakeVersion: '4.5.0'
+          ninjaVersion: '1.13.2'
 
       - name: Build pinned external libraries before compiler tracing
         if: matrix.build-mode == 'manual'
@@ -79,7 +85,7 @@ jobs:
 
       - name: Retain CodeQL reports
         if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: codeql-${{ matrix.language }}
           path: security-reports/codeql
@@ -87,19 +93,19 @@ jobs:
 
   python-audit:
     name: Full Python Dependency Audit
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-python-audit
       cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
-      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
-          python-version: '3.13'
+          python-version: '3.15.2'
 
       - name: Install pinned audit tool
         run: python3 -m pip install --disable-pip-version-check -r scripts/requirements-security.txt
@@ -108,7 +114,7 @@ jobs:
         run: |
           mkdir -p security-reports/python
           python3 -m pip_audit --strict \
-            -r scripts/requirements-ci.txt -r scripts/requirements-security.txt \
+            -r scripts/requirements-ci.txt -r scripts/requirements-security.txt -r scripts/requirements-toolchain.txt \
             --format=json --output=security-reports/python/pip-audit.json
 
       - name: Validate full Python audit report
@@ -117,7 +123,7 @@ jobs:
 
       - name: Retain resolved Python coordinates and verdicts
         if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: python-dependency-audit
           path: security-reports/python
@@ -125,24 +131,43 @@ jobs:
 
   native-audit:
     name: Full Native Dependency Audit
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-native-audit
       cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
-      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
-          python-version: '3.13'
+          python-version: '3.15.2'
 
       - name: Install pinned Conan and detect profile
         run: |
-          python3 -m pip install --disable-pip-version-check -r <(sed -n '/^conan==/p' scripts/requirements-ci.txt)
+          python3 -m pip install --disable-pip-version-check -c scripts/constraints.txt -r <(sed -n '/^conan==/p' scripts/requirements-ci.txt)
           conan profile detect --force
+
+      - name: Read the pinned vcpkg baseline
+        id: vcpkg
+        run: |
+          cpp_dir=$(python3 scripts/get_version.py --print cpp_root)
+          python3 -c 'import json, sys; print("baseline=" + json.load(open(sys.argv[1]))["builtin-baseline"])' "$cpp_dir/vcpkg.json" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout pinned vcpkg and its tool metadata
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: microsoft/vcpkg
+          ref: ${{ steps.vcpkg.outputs.baseline }}
+          path: .tools/vcpkg
+          persist-credentials: false
+
+      - name: Bootstrap the pinned vcpkg tool
+        run: |
+          .tools/vcpkg/bootstrap-vcpkg.sh -disableMetrics
+          echo "VCPKG_INSTALLATION_ROOT=$GITHUB_WORKSPACE/.tools/vcpkg" >> "$GITHUB_ENV"
 
       - name: Resolve and audit every native dependency
         env:
@@ -151,7 +176,7 @@ jobs:
 
       - name: Retain native graphs, coordinates and coverage status
         if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: native-dependency-audit
           path: security-reports/native
@@ -160,7 +185,7 @@ jobs:
   dependency-review:
     name: Dependency Review
     if: github.event_name == 'pull_request'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-dependency-review
@@ -169,7 +194,7 @@ jobs:
       contents: read
       pull-requests: write
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
@@ -203,10 +228,10 @@ jobs:
       - native-audit
       - dependency-review
     if: always()
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 

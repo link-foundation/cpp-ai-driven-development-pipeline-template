@@ -15,7 +15,7 @@ PointerAlignment: Left
 ReferenceAlignment: Left
 AllowShortFunctionsOnASingleLine: Empty
 AllowShortLambdasOnASingleLine: All
-AlwaysBreakTemplateDeclarations: Yes
+BreakTemplateDeclarations: Yes
 BreakBeforeConceptDeclarations: Always
 RequiresClausePosition: OwnLine
 IncludeBlocks: Regroup
@@ -26,7 +26,9 @@ IncludeCategories:
     Priority: 3
   - Regex: '.*'
     Priority: 2
-SortIncludes: CaseSensitive
+SortIncludes:
+  Enabled: true
+  IgnoreCase: false
 SpaceAfterTemplateKeyword: true
 InsertNewlineAtEOF: true
 ...

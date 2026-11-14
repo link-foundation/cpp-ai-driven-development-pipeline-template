@@ -1,0 +1,819 @@
+{
+    "graph": {
+        "nodes": {
+            "0": {
+                "ref": "conanfile",
+                "id": "0",
+                "recipe": "Cli",
+                "package_id": null,
+                "prev": null,
+                "rrev": null,
+                "rrev_timestamp": null,
+                "prev_timestamp": null,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": null,
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": null,
+                "user": null,
+                "channel": null,
+                "url": null,
+                "license": null,
+                "author": null,
+                "description": null,
+                "homepage": null,
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": null,
+                "topics": null,
+                "package_type": "unknown",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": null,
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": null,
+                "immutable_package_folder": null,
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "lib"
+                        ],
+                        "resdirs": null,
+                        "bindirs": [
+                            "bin"
+                        ],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": null,
+                        "properties": null,
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "cli",
+                "vendor": false,
+                "dependencies": {
+                    "1": {
+                        "ref": "benchmark/1.10.0",
+                        "require": "benchmark/1.10.0",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    },
+                    "3": {
+                        "ref": "gtest/1.18.0",
+                        "require": "gtest/1.18.0",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    }
+                },
+                "context": "host",
+                "test": false
+            },
+            "1": {
+                "ref": "benchmark/1.10.0#7fcf1950d0dfaeb2456561a379daa894",
+                "id": "1",
+                "recipe": "Downloaded",
+                "package_id": "b9f787d17ef5bad341b94a8396aebe379bf83c14",
+                "prev": "ff99a90b6d98cc0028a06874d32b03d8",
+                "rrev": "7fcf1950d0dfaeb2456561a379daa894",
+                "rrev_timestamp": 1793610279.35,
+                "prev_timestamp": 1793610490.703,
+                "remote": "conancenter",
+                "binary_remote": "conancenter",
+                "build_id": null,
+                "binary": "Download",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "benchmark",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "Apache-2.0",
+                "author": null,
+                "description": "A microbenchmark support library.",
+                "homepage": "https://github.com/google/benchmark",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": {
+                    "shared": false,
+                    "fPIC": true,
+                    "enable_lto": false,
+                    "enable_exceptions": true,
+                    "enable_libpfm": false
+                },
+                "options_description": null,
+                "version": "1.10.0",
+                "topics": [
+                    "google",
+                    "microbenchmark"
+                ],
+                "package_type": "static-library",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "gnu17",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {
+                    "enable_exceptions": "True",
+                    "enable_libpfm": "False",
+                    "enable_lto": "False",
+                    "fPIC": "True",
+                    "shared": "False"
+                },
+                "options_definitions": {
+                    "shared": [
+                        "True",
+                        "False",
+                        "ANY"
+                    ],
+                    "fPIC": [
+                        "True",
+                        "False",
+                        "ANY"
+                    ],
+                    "enable_lto": [
+                        "True",
+                        "False",
+                        "ANY"
+                    ],
+                    "enable_exceptions": [
+                        "True",
+                        "False",
+                        "ANY"
+                    ],
+                    "enable_libpfm": [
+                        "True",
+                        "False",
+                        "ANY"
+                    ]
+                },
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/benchfecc52522db97/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": null,
+                "immutable_package_folder": null,
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "lib"
+                        ],
+                        "resdirs": null,
+                        "bindirs": [
+                            "bin"
+                        ],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": null,
+                        "properties": null,
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "benchmark/1.10.0",
+                "info": {
+                    "settings": {
+                        "os": "Linux",
+                        "arch": "x86_64",
+                        "compiler": "gcc",
+                        "compiler.cppstd": "gnu17",
+                        "compiler.libcxx": "libstdc++11",
+                        "compiler.version": "13",
+                        "build_type": "Release"
+                    },
+                    "options": {
+                        "enable_exceptions": "True",
+                        "enable_libpfm": "False",
+                        "enable_lto": "False",
+                        "fPIC": "True",
+                        "shared": "False"
+                    },
+                    "compatibility_delta": {
+                        "settings": [
+                            [
+                                "compiler.cppstd",
+                                "gnu17"
+                            ]
+                        ]
+                    }
+                },
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "1.10.0": {
+                            "sha256": "acc5c7c0fbed855c4aaa2d7c3c36fb82b0c15c28f4e151e3f679c2fc0aa404af",
+                            "url": "https://github.com/google/benchmark/archive/v1.10.0.tar.gz"
+                        }
+                    }
+                },
+                "dependencies": {
+                    "2": {
+                        "ref": "cmake/4.4.4",
+                        "require": "cmake/[>=3.16.3]",
+                        "run": true,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": true,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": false,
+                        "package_id_mode": null,
+                        "visible": false
+                    }
+                },
+                "context": "host",
+                "test": false
+            },
+            "2": {
+                "ref": "cmake/4.4.4#9009f1989569bdbc583e48ea6e132723",
+                "id": "2",
+                "recipe": "Downloaded",
+                "package_id": "63fead0844576fc02943e16909f08fcdddd6f44b",
+                "prev": "4d4766f0d30bec6434f5b4962831f86b",
+                "rrev": "9009f1989569bdbc583e48ea6e132723",
+                "rrev_timestamp": 1793881531.325,
+                "prev_timestamp": 1793881587.294,
+                "remote": "conancenter",
+                "binary_remote": "conancenter",
+                "build_id": null,
+                "binary": "Skip",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "cmake",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "BSD-3-Clause",
+                "author": null,
+                "description": "CMake, the cross-platform, open-source build system.",
+                "homepage": "https://github.com/Kitware/CMake",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": "4.4.4",
+                "topics": [
+                    "build",
+                    "installer"
+                ],
+                "package_type": "application",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/cmake2bfa3a72d571a/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": null,
+                "immutable_package_folder": null,
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "lib"
+                        ],
+                        "resdirs": null,
+                        "bindirs": [
+                            "bin"
+                        ],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": null,
+                        "properties": null,
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "cmake/4.4.4",
+                "info": {
+                    "settings": {
+                        "os": "Linux",
+                        "arch": "x86_64"
+                    }
+                },
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "4.4.4": {
+                            "Linux": {
+                                "armv8": {
+                                    "sha256": "a1b6cc63636a0e55c63257cf3315a8a5f129e42fade25db1afea4ff8ab06f25e",
+                                    "url": [
+                                        "https://github.com/Kitware/CMake/releases/download/v4.4.4/cmake-4.4.4-linux-aarch64.tar.gz",
+                                        "https://cmake.org/files/v4.4/cmake-4.4.4-linux-aarch64.tar.gz"
+                                    ]
+                                },
+                                "x86_64": {
+                                    "sha256": "e5bb807f7728cb60cd8b27ebc97a2edb469b68655f21e844a600c3575b76f5bb",
+                                    "url": [
+                                        "https://github.com/Kitware/CMake/releases/download/v4.4.4/cmake-4.4.4-linux-x86_64.tar.gz",
+                                        "https://cmake.org/files/v4.4/cmake-4.4.4-linux-x86_64.tar.gz"
+                                    ]
+                                }
+                            },
+                            "Macos": {
+                                "universal": {
+                                    "sha256": "4b7b73704b1db9b374e5c9ab8e17ac6148b817b6396ee75cd94a852cbac9d305",
+                                    "url": [
+                                        "https://github.com/Kitware/CMake/releases/download/v4.4.4/cmake-4.4.4-macos-universal.tar.gz",
+                                        "https://cmake.org/files/v4.4/cmake-4.4.4-macos-universal.tar.gz"
+                                    ]
+                                }
+                            },
+                            "Windows": {
+                                "armv8": {
+                                    "sha256": "ed673bbc4eb7c1e59b0407fd52f1680fc0ae3229a46b9b7b3ea9133764f07f67",
+                                    "url": [
+                                        "https://github.com/Kitware/CMake/releases/download/v4.4.4/cmake-4.4.4-windows-arm64.zip",
+                                        "https://cmake.org/files/v4.4/cmake-4.4.4-windows-arm64.zip"
+                                    ]
+                                },
+                                "x86_64": {
+                                    "sha256": "bace36e94b31c68ab6fa295f26dfa11219e0701cf7c94b0284a7d1cb13dac536",
+                                    "url": [
+                                        "https://github.com/Kitware/CMake/releases/download/v4.4.4/cmake-4.4.4-windows-x86_64.zip",
+                                        "https://cmake.org/files/v4.4/cmake-4.4.4-windows-x86_64.zip"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "dependencies": {},
+                "context": "build",
+                "test": false
+            },
+            "3": {
+                "ref": "gtest/1.18.0#e2507fc4efe2ec9e2db9e5c91eefab9f",
+                "id": "3",
+                "recipe": "Downloaded",
+                "package_id": "c961d8c62795395aeeebf1696bec18f00505c7ea",
+                "prev": null,
+                "rrev": "e2507fc4efe2ec9e2db9e5c91eefab9f",
+                "rrev_timestamp": 1786446847.733,
+                "prev_timestamp": null,
+                "remote": "conancenter",
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Missing",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "gtest",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "BSD-3-Clause",
+                "author": null,
+                "description": "Google's C++ test framework",
+                "homepage": "https://github.com/google/googletest",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": {
+                    "shared": false,
+                    "fPIC": true,
+                    "build_gmock": true,
+                    "no_main": false,
+                    "hide_symbols": false,
+                    "disable_pthreads": false
+                },
+                "options_description": null,
+                "version": "1.18.0",
+                "topics": [
+                    "testing",
+                    "google-testing",
+                    "unit-test"
+                ],
+                "package_type": "static-library",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {
+                    "build_gmock": "True",
+                    "disable_pthreads": "False",
+                    "fPIC": "True",
+                    "hide_symbols": "False",
+                    "no_main": "False",
+                    "shared": "False"
+                },
+                "options_definitions": {
+                    "shared": [
+                        "True",
+                        "False"
+                    ],
+                    "fPIC": [
+                        "True",
+                        "False"
+                    ],
+                    "build_gmock": [
+                        "True",
+                        "False"
+                    ],
+                    "no_main": [
+                        "True",
+                        "False"
+                    ],
+                    "hide_symbols": [
+                        "True",
+                        "False"
+                    ],
+                    "disable_pthreads": [
+                        "True",
+                        "False"
+                    ]
+                },
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/gtesta889918188a25/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": null,
+                "immutable_package_folder": null,
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "lib"
+                        ],
+                        "resdirs": null,
+                        "bindirs": [
+                            "bin"
+                        ],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": null,
+                        "properties": null,
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "gtest/1.18.0",
+                "info": {
+                    "settings": {
+                        "os": "Linux",
+                        "arch": "x86_64",
+                        "compiler": "gcc",
+                        "compiler.cppstd": "20",
+                        "compiler.libcxx": "libstdc++11",
+                        "compiler.version": "13",
+                        "build_type": "Release"
+                    },
+                    "options": {
+                        "build_gmock": "True",
+                        "disable_pthreads": "False",
+                        "fPIC": "True",
+                        "hide_symbols": "False",
+                        "shared": "False"
+                    }
+                },
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "1.18.0": {
+                            "sha256": "6e3191c1455468b3fc35a417fb565c1c5071aee1b7e7f85e30cf48a98d37d8b5",
+                            "url": "https://github.com/google/googletest/archive/v1.18.0.tar.gz"
+                        }
+                    }
+                },
+                "dependencies": {
+                    "4": {
+                        "ref": "cmake/4.4.4",
+                        "require": "cmake/[>=3.16]",
+                        "run": true,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": true,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": false,
+                        "package_id_mode": null,
+                        "visible": false
+                    }
+                },
+                "context": "host",
+                "test": false
+            },
+            "4": {
+                "ref": "cmake/4.4.4#9009f1989569bdbc583e48ea6e132723",
+                "id": "4",
+                "recipe": "Downloaded",
+                "package_id": "63fead0844576fc02943e16909f08fcdddd6f44b",
+                "prev": "4d4766f0d30bec6434f5b4962831f86b",
+                "rrev": "9009f1989569bdbc583e48ea6e132723",
+                "rrev_timestamp": 1793881531.325,
+                "prev_timestamp": 1793881587.294,
+                "remote": "conancenter",
+                "binary_remote": "conancenter",
+                "build_id": null,
+                "binary": "Skip",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "cmake",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "BSD-3-Clause",
+                "author": null,
+                "description": "CMake, the cross-platform, open-source build system.",
+                "homepage": "https://github.com/Kitware/CMake",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": "4.4.4",
+                "topics": [
+                    "build",
+                    "installer"
+                ],
+                "package_type": "application",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/cmake2bfa3a72d571a/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": null,
+                "immutable_package_folder": null,
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "lib"
+                        ],
+                        "resdirs": null,
+                        "bindirs": [
+                            "bin"
+                        ],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": null,
+                        "properties": null,
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "cmake/4.4.4",
+                "info": {
+                    "settings": {
+                        "os": "Linux",
+                        "arch": "x86_64"
+                    }
+                },
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "4.4.4": {
+                            "Linux": {
+                                "armv8": {
+                                    "sha256": "a1b6cc63636a0e55c63257cf3315a8a5f129e42fade25db1afea4ff8ab06f25e",
+                                    "url": [
+                                        "https://github.com/Kitware/CMake/releases/download/v4.4.4/cmake-4.4.4-linux-aarch64.tar.gz",
+                                        "https://cmake.org/files/v4.4/cmake-4.4.4-linux-aarch64.tar.gz"
+                                    ]
+                                },
+                                "x86_64": {
+                                    "sha256": "e5bb807f7728cb60cd8b27ebc97a2edb469b68655f21e844a600c3575b76f5bb",
+                                    "url": [
+                                        "https://github.com/Kitware/CMake/releases/download/v4.4.4/cmake-4.4.4-linux-x86_64.tar.gz",
+                                        "https://cmake.org/files/v4.4/cmake-4.4.4-linux-x86_64.tar.gz"
+                                    ]
+                                }
+                            },
+                            "Macos": {
+                                "universal": {
+                                    "sha256": "4b7b73704b1db9b374e5c9ab8e17ac6148b817b6396ee75cd94a852cbac9d305",
+                                    "url": [
+                                        "https://github.com/Kitware/CMake/releases/download/v4.4.4/cmake-4.4.4-macos-universal.tar.gz",
+                                        "https://cmake.org/files/v4.4/cmake-4.4.4-macos-universal.tar.gz"
+                                    ]
+                                }
+                            },
+                            "Windows": {
+                                "armv8": {
+                                    "sha256": "ed673bbc4eb7c1e59b0407fd52f1680fc0ae3229a46b9b7b3ea9133764f07f67",
+                                    "url": [
+                                        "https://github.com/Kitware/CMake/releases/download/v4.4.4/cmake-4.4.4-windows-arm64.zip",
+                                        "https://cmake.org/files/v4.4/cmake-4.4.4-windows-arm64.zip"
+                                    ]
+                                },
+                                "x86_64": {
+                                    "sha256": "bace36e94b31c68ab6fa295f26dfa11219e0701cf7c94b0284a7d1cb13dac536",
+                                    "url": [
+                                        "https://github.com/Kitware/CMake/releases/download/v4.4.4/cmake-4.4.4-windows-x86_64.zip",
+                                        "https://cmake.org/files/v4.4/cmake-4.4.4-windows-x86_64.zip"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "dependencies": {},
+                "context": "build",
+                "test": false
+            }
+        },
+        "root": {
+            "0": "None"
+        },
+        "overrides": {},
+        "resolved_ranges": {
+            "cmake/[>=3.16.3]": "cmake/4.4.4",
+            "cmake/[>=3.16]": "cmake/4.4.4"
+        },
+        "replaced_requires": {},
+        "error": null
+    }
+}

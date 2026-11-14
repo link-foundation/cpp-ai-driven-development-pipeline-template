@@ -1,0 +1,59 @@
+
+up to date in 766ms
+
+install exit: 0
+
+clean-file scan exit: 0
+
+Formatter: stylish
+
+/tmp/gh-issue-solver-1794646566828/build/npm-major-probe/finding.txt
+  1:0  error  [PrivateKey] found private key: ******************************************************************************************************************************************************************************  @secretlint/secretlint-rule-preset-recommend > @secretlint/secretlint-rule-privatekey
+
+✖ 1 problem (1 error, 0 warnings, 0 infos)
+
+finding scan exit: 1 (expected 1)
+
+Formatter: table
+
+/tmp/gh-issue-solver-1794646566828/build/npm-major-probe/finding.txt
+
+║ Line     │ Column   │ Type     │ Message                                                │ Rule ID              ║
+╟──────────┼──────────┼──────────┼────────────────────────────────────────────────────────┼──────────────────────╢
+║ 1        │ 0        │ error    │ found private key:                                     │ @secretlint/         ║
+║          │          │          │ **************************************************     │ secretlint-rule-     ║
+║          │          │          │ **************************************************     │ privatekey           ║
+║          │          │          │ **************************************************     │                      ║
+║          │          │          │ ************************                               │                      ║
+
+╔════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+║ 1 Error                                                                                                        ║
+╟────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢
+║ 0 Warnings                                                                                                     ║
+╚════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+
+finding scan exit: 1 (expected 1)
+
+Formatter: pretty-error
+[90m@secretlint/secretlint-rule-preset-recommend > @secretlint/secretlint-rule-privatekey: [31m[PrivateKey] found private key: ******************************************************************************************************************************************************************************[0m
+[90m/tmp/gh-issue-solver-1794646566828/build/npm-major-probe/finding.txt:1:0[0m
+    [31m   [0m
+    [90m0. [0m
+    [0m1. -----BEGIN PRIVATE KEY-----[0m
+    [90m2. MIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa[0m
+    [31m   [0m
+
+✖ 1 problem (1 error)
+
+finding scan exit: 1 (expected 1)
+
+Formatter: json
+[{"filePath":"/tmp/gh-issue-solver-1794646566828/build/npm-major-probe/finding.txt","sourceContent":"-----BEGIN PRIVATE KEY-----\nMIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n-----END PRIVATE KEY-----\n","sourceContentType":"text","messages":[{"message":"found private key: ******************************************************************************************************************************************************************************","range":[0,174],"type":"message","ruleId":"@secretlint/secretlint-rule-privatekey","ruleParentId":"@secretlint/secretlint-rule-preset-recommend","loc":{"start":{"line":1,"column":0},"end":{"line":3,"column":25}},"severity":"error","messageId":"PrivateKey","docsUrl":"https://github.com/secretlint/secretlint/blob/master/packages/%40secretlint/secretlint-rule-privatekey/README.md#PrivateKey","data":{"KEY":"******************************************************************************************************************************************************************************"}}]}]
+finding scan exit: 1 (expected 1)
+
+Formatter: github
+::group::/tmp/gh-issue-solver-1794646566828/build/npm-major-probe/finding.txt
+::error file=/tmp/gh-issue-solver-1794646566828/build/npm-major-probe/finding.txt,line=1,endLine=3,col=1,endColumn=25,title=TextLint [@secretlint/secretlint-rule-preset-recommend > @secretlint/secretlint-rule-privatekey]::[PrivateKey] found private key: ****************************************************************************************************************************************************************************** | 1:1
+::endgroup::
+
+finding scan exit: 1 (expected 1)

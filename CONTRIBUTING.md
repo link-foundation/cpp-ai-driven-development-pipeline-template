@@ -12,8 +12,8 @@ workflow, and how releases are made from changelog fragments.
    cd cpp-ai-driven-development-pipeline-template
    ```
 
-2. **Install the toolchain**: CMake 3.25 or newer, a C++20 compiler (GCC,
-   Clang, Apple Clang or MSVC), Python 3 and git. Ninja is optional; Doxygen
+2. **Install the toolchain**: CMake 3.25 or newer (CI uses 4.5.0), a C++20 compiler (GCC,
+   Clang, Apple Clang or MSVC), Python 3.15.2 and git. Ninja is optional; Doxygen
    is needed only for the documentation target.
 
 3. **Install the pinned CI tools** (clang-format, clang-tidy, cppcheck, gcovr,
@@ -21,7 +21,7 @@ workflow, and how releases are made from changelog fragments.
 
    ```bash
    python3 -m pip install -r scripts/requirements-ci.txt
-   python3 -m pip install pre-commit
+   python3 -m pip install -r scripts/requirements-toolchain.txt
    pre-commit install
    ```
 

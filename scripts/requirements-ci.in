@@ -1,0 +1,10 @@
+# Python-distributed tools of the CI jobs, pinned so a local run uses exactly
+# what CI uses:  python3 -m pip install -r scripts/requirements-ci.txt
+# The release scripts themselves need only the standard library.
+pytest==9.2.0
+clang-format==23.1.5
+clang-tidy==23.1.4
+# Cppcheck 2.22.0
+cppcheck==1.5.3
+gcovr==8.8
+conan==2.34.0

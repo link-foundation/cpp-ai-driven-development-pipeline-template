@@ -2,11 +2,11 @@
 #
 # CI replaces the download with the local checkout through CPM's override:
 #   cmake -S . -B build -DCPM_my_package_SOURCE=/path/to/checkout
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.25...4.5)
 project(my_package_cpm_consumer LANGUAGES CXX)
 
-set(CPM_VERSION 0.42.0)
-set(CPM_SHA256 2020b4fc42dba44817983e06342e682ecfc3d2f484a581f11cc5731fbe4dce8a)
+set(CPM_VERSION 0.43.2)
+set(CPM_SHA256 49a3bef91ceb65bb66d57255e12d1ffd22abc2f6408fa9fe4534c544a2f232aa)
 set(CPM_FILE "${CMAKE_BINARY_DIR}/cmake/CPM_${CPM_VERSION}.cmake")
 if(NOT EXISTS "${CPM_FILE}")
     file(DOWNLOAD "https://github.com/cpm-cmake/CPM.cmake/releases/download/v${CPM_VERSION}/CPM.cmake" "${CPM_FILE}"

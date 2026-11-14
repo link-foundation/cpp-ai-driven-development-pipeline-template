@@ -1,0 +1,92 @@
+author:	thomas-zahner
+association:	member
+edited:	false
+status:	none
+--
+Hi @konard, thank you for the report. Generally I'm not too thrilled about the verbose sloppy issue description. Nevertheless I could reproduce the issue and the provided fix might make sense.
+
+Here's a quick version of my observations, to spare any other reviewers from this verbose slop.
+
+Having a server which sends early RST and then using `https://` to connect to this server, prevents lychee from retrying.
+Interestingly enough with `http://` the behaviour differs. Applying the following diff makes lychee retry the connections in the HTTPS case as well. I didn't yet fully grasp what is going on, but it shouldn't hurt to examine the inner errors more closely.
+
+```patch
+diff --git a/lychee-lib/src/retry.rs b/lychee-lib/src/retry.rs
+index 0021c73a..ca059379 100644
+--- a/lychee-lib/src/retry.rs
++++ b/lychee-lib/src/retry.rs
+@@ -30,8 +30,8 @@ impl RetryExt for reqwest::Error {
+     fn should_retry(&self) -> bool {
+         if self.is_timeout() {
+             true
+-        } else if self.is_connect() {
+-            false
++        } else if dbg!(self).is_connect() {
++            get_source_error_type::<io::Error>(self).is_some_and(should_retry_io)
+         } else if self.is_body() || self.is_decode() || self.is_builder() || self.is_redirect() {
+             false
+         } else if self.is_request() {
+@@ -121,6 +121,13 @@ impl RetryExt for Status {
+ 
+ /// Classifies an `io::Error` into retryable or not.
+ fn should_retry_io(error: &io::Error) -> bool {
++    if let Some(inner) = error
++        .get_ref()
++        .and_then(|inner| inner.downcast_ref::<io::Error>())
++    {
++        return should_retry_io(inner);
++    }
++
+     matches!(
+         error.kind(),
+         io::ErrorKind::ConnectionReset | io::ErrorKind::ConnectionAborted | io::ErrorKind::TimedOut
+
+```
+
+
+Another good question is if and how we should/could test this with a new testcase. (reuse the python script?)
+@katrinafyi @mre Any thoughts on this?
+
+<details><summary>How to reproduce</summary>
+<p>
+
+Command: `python3 server.py` with below script and then running `echo 'https://127.0.0.1:8443' | cargo run - --host-stats`
+
+```python
+import socket
+import struct
+import time
+
+port = 8443
+
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+server.bind(("127.0.0.1", port))
+server.listen(16)
+print(f"listening on 127.0.0.1:{port}", flush=True)
+
+started = time.monotonic()
+attempts = 0
+while True:
+    connection, _ = server.accept()
+    attempts += 1
+    print(f"attempt {attempts} at +{time.monotonic() - started:.2f}s", flush=True)
+    connection.setsockopt(socket.SOL_SOCKET, socket.SO_LINGER, struct.pack("ii", 1, 0))
+    connection.close()
+```
+
+</p>
+</details> 
+--
+author:	konard
+association:	none
+edited:	false
+status:	none
+--
+Current downstream confirmation: the latest release endpoint still returns lychee 0.24.2 (2026-11-14). We retain a bounded external retry adapter in https://github.com/link-foundation/rust-ai-driven-development-pipeline-template/pull/248 for this reported connect-reset gap.
+
+The minimal HTTPS RST server in this issue remains the relevant reproduction. Our offline regression tests preserve failure for permanent 404 responses, bound retries for unanswered connections and transient 429/5xx statuses, and reuse the same accepted statuses and user agent. Increasing lychee's retry count alone cannot change the connect-phase classifier.
+
+The existing proposed fix that examines connect-phase I/O errors and unwraps nested `io::Error` values would let us remove the adapter once released. This records the consumer workaround rather than duplicate the report.
+
+--

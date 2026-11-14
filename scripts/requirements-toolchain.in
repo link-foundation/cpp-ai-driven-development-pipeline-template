@@ -1,0 +1,6 @@
+# Tool versions used for lock regeneration and cross-platform builds.
+uv==0.13.8
+pip==26.3
+ninja==1.13.2
+pre-commit==4.7.0
+pre-commit-hooks==6.0.0

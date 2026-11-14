@@ -1,0 +1,8 @@
+Detecting compiler hash for triplet x64-linux...
+Compiler found: /usr/bin/c++
+The following packages will be built and installed:
+    benchmark:x64-linux@1.10.0 -- /tmp/gh-issue-solver-1794646566828/packaging/vcpkg-overlays/benchmark
+    gtest:x64-linux@1.18.0
+  * vcpkg-cmake:x64-linux@2025-08-07
+  * vcpkg-cmake-config:x64-linux@2026-07-21
+Additional packages (*) will be modified to complete this operation.
