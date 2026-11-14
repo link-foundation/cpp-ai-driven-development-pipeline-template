@@ -1,0 +1,1 @@
+::warning::Native audit INCOMPLETE: configure repository secret CONAN_AUDIT_PROVIDER_TOKEN_CONANCENTER after registering at https://audit.conan.io/register. Resolved coordinates are retained; no clean vulnerability verdict is available.

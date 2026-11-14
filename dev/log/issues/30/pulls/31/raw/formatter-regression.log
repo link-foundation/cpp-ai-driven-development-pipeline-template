@@ -1,0 +1,2 @@
+PASS: regression detects baseline formatter mismatch (20.1.8 vs 23.1.5)
+PASS: regression accepts the updated matching formatter versions

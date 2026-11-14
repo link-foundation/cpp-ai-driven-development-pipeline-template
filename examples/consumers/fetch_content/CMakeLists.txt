@@ -3,7 +3,7 @@
 # CI replaces the download with the local checkout through the standard
 # FetchContent override:
 #   cmake -S . -B build -DFETCHCONTENT_SOURCE_DIR_MY_PACKAGE=/path/to/checkout
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.25...4.5)
 project(my_package_fetch_content_consumer LANGUAGES CXX)
 
 include(FetchContent)

@@ -1,0 +1,43 @@
+{
+  "total_count": 6,
+  "incomplete_results": false,
+  "items": [
+    {
+      "html_url": "https://github.com/microsoft/vcpkg/issues/55056",
+      "number": 55056,
+      "title": "[benchmark] Update port from 1.9.5 to upstream 1.10.0",
+      "state": "open"
+    },
+    {
+      "html_url": "https://github.com/microsoft/vcpkg/issues/45679",
+      "number": 45679,
+      "title": "[icu] Build error on arm64-android (as dependency of Qt Android port)",
+      "state": "closed"
+    },
+    {
+      "html_url": "https://github.com/microsoft/vcpkg/issues/38497",
+      "number": 38497,
+      "title": "[qtwebengine] Build failure on x64-linux-dynamic",
+      "state": "closed"
+    },
+    {
+      "html_url": "https://github.com/microsoft/vcpkg/pull/27740",
+      "number": 27740,
+      "title": "[spdlog] Fix the non-Windows build issue by scoping the define to Windows targets.",
+      "state": "closed"
+    },
+    {
+      "html_url": "https://github.com/microsoft/vcpkg/issues/25016",
+      "number": 25016,
+      "title": "Sequence issue with --x-packages-root and --x-buildtrees-root",
+      "state": "closed"
+    },
+    {
+      "html_url": "https://github.com/microsoft/vcpkg/pull/18687",
+      "number": 18687,
+      "title": "[Qt 6.2] Update Qt6 to 6.2",
+      "state": "closed"
+    }
+  ],
+  "search_type": "lexical"
+}

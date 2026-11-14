@@ -1,0 +1,135 @@
+author:	kolyshkin
+association:	none
+edited:	false
+status:	none
+--
+Being fixed by #683; PTAL @rhysd 
+--
+author:	gander
+association:	none
+edited:	false
+status:	none
+--
+@rhysd, I want to start by saying that maintaining a popular project is a heavy burden. Everyone depends on it, everyone has an opinion, and the complaints never stop, especially when life gets in the way and you simply don’t have the time. Nobody is owed free work, and I’m grateful for everything you’ve built here.
+
+But if you don’t have the time or energy anymore, it’s okay to say so. Honestly, it’s the best thing you can do for the people who rely on this tool. Please don’t wait until the last moment to decide. Silence leaves everyone guessing whether to wait for the next release or move on, and that uncertainty is harder on the community than a clear “I’m stepping back”.
+
+If you’re done, say it plainly and hand the project to someone who has the time and the motivation, whether that’s new co-maintainers with merge and release rights, or a fork you trust. If you’re still here, a short “I’m back, releases are coming” would be enough. Either answer is fine. Not knowing is the only bad one.
+
+Thank you for all the work so far, whatever you decide.
+--
+author:	kolyshkin
+association:	none
+edited:	true
+status:	none
+--
+@gander I suggest you to switch to the fork at https://github.com/kjanat/actionlint which fixes many issues found here (and keeps maintaining the scripts).
+--
+author:	Ultra-Solo
+association:	none
+edited:	false
+status:	none
+--
+**Workaround available today (verified end-to-end):** declare the labels through actionlint's own config, `.github/actionlint.yaml`:
+
+```yaml
+self-hosted-runner:
+  labels:
+    - ubuntu-26.04
+    - ubuntu-26.04-arm
+```
+
+This is the documented config for labels the runner-label data doesn't know yet (docs/config.md); the rule keeps checking everything else.
+
+Context: we run a project template whose full CI gate (its own chassis plus 7 generated projects, each linting its own workflows) moved to `ubuntu-26.04`/`-arm` ahead of the `ubuntu-latest` flip. On 1.7.12 (latest) every `runs-on: ubuntu-26.04` errors with "label ... is unknown"; with the config above the entire gate is green on both amd64 and arm64. Cross-referencing #761 (same error).
+--
+author:	kolyshkin
+association:	none
+edited:	true
+status:	none
+--
+@Ultra-Solo again, I suggest you to switch to the fork at https://github.com/kjanat/actionlint which fixes many issues found here (and keeps maintaining the scripts).
+--
+author:	JayDoubleu
+association:	none
+edited:	false
+status:	none
+--
+is there any ETA for this to be merged ? Thanks
+--
+author:	gander
+association:	none
+edited:	false
+status:	none
+--
+This is DEAD  ☠️
+--
+author:	kolyshkin
+association:	none
+edited:	true
+status:	none
+--
+@JayDoubleu I suggest you to switch to the fork at https://github.com/kjanat/actionlint which fixes many issues found here (and keeps maintaining the scripts).
+--
+author:	konard
+association:	none
+edited:	false
+status:	none
+--
+Revalidated against current actionlint 1.7.12 while updating https://github.com/link-foundation/meta-sovereign/pull/51 on 2026-10-28. `ubuntu-26.04` and `ubuntu-26.04-arm` still produce `label ... is unknown`. The same registry gap affects `windows-11-vs2026-arm`, now listed in https://github.com/actions/runner-images#available-images.
+
+Minimal repro: a workflow with `on: push`, one job using `runs-on: ubuntu-26.04` (repeat for the other two labels), and `steps: [{run: echo ok}]`; run actionlint 1.7.12. Locally reproduced all three errors. Our consumer uses the documented narrow workaround:
+
+```yaml
+self-hosted-runner:
+  labels:
+    - ubuntu-26.04
+    - ubuntu-26.04-arm
+    - windows-11-vs2026-arm
+```
+
+This permits only the verified hosted labels and keeps other workflow validation enabled. Suggested upstream change: add these three labels to the built-in runner-label table and its tests, then release the validator. Linking here rather than opening another duplicate of #682.
+
+--
+author:	kolyshkin
+association:	none
+edited:	false
+status:	none
+--
+> 26\. Revalidated against current actionlint 1.7.12 while updating [link-foundation/meta-sovereign#51](https://github.com/link-foundation/meta-sovereign/pull/51) on 2026-10-28. `ubuntu-26.04` and `ubuntu-26.04-arm` still produce `label ... is unknown`. The same registry gap affects `windows-11-vs2026-arm`, now listed in https://github.com/actions/runner-images#available-images.
+>      Minimal repro: a workflow with `on: push`, one job using `runs-on: ubuntu-26.04` (repeat for the other two labels), and `steps: [{run: echo ok}]`; run actionlint 1.7.12. Locally reproduced all three errors. Our consumer uses the documented narrow workaround:
+>      self-hosted-runner:
+>        labels:
+>          - ubuntu-26.04
+>          - ubuntu-26.04-arm
+>          - windows-11-vs2026-arm
+>          
+>            
+>          
+>      
+>            
+>          
+>      
+>          
+>        
+>      This permits only the verified hosted labels and keeps other workflow validation enabled. Suggested upstream change: add these three labels to the built-in runner-label table and its tests, then release the validator. Linking here rather than opening another duplicate of [#682](https://github.com/rhysd/actionlint/issues/682).
+
+This repo is no longer maintained; I suggest you to switch to the fork at https://github.com/kjanat/actionlint which fixes many issues found here (and keeps maintaining the scripts).
+--
+author:	konard
+association:	none
+edited:	false
+status:	none
+--
+Reproduced with the current released actionlint 1.7.12 (official image digest b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667): a minimal job with `runs-on: ubuntu-26.04` fails with `label "ubuntu-26.04" is unknown`. This hosted runner has been GA since September 17, 2026: https://github.blog/changelog/2026-09-17-ubuntu-26-generally-available-and-latest-migration/ .
+
+The downstream workaround in https://github.com/linksplatform/Data.Doublets/pull/557 uses the existing supported actionlint.yaml `self-hosted-runner.labels: [ubuntu-26.04]` configuration to extend known labels while retaining other syntax, expression and embedded ShellCheck/Pyflakes checks. The runner remains GitHub-hosted. Please add the label to the built-in runner schema and release the update (the existing related PRs appear to contain the necessary change).
+
+--
+author:	jrfnl
+association:	none
+edited:	false
+status:	none
+--
+@konard Please don't use the mansplaining machine to post low quality comments, reiterating what everyone already knows.
+--

@@ -179,43 +179,30 @@ def test_both_zizmor_passes_follow_the_manifest(tmp_path, pin) -> None:
     manifests = tmp_path / "scripts"
     manifests.mkdir()
     (manifests / "requirements-security.txt").write_text(f"pip-audit==2.10.1\n{pin}\n")
-    fake_pipx = tmp_path / "pipx"
-    fake_pipx.write_text(
-        f"#!{sys.executable}\nimport json, os, sys\n"
-        "with open(os.environ['PIPX_CALLS'], 'a') as log:\n"
-        "    log.write(json.dumps(sys.argv[1:]) + '\\n')\n"
-    )
-    fake_pipx.chmod(0o755)
-    calls = tmp_path / "calls.jsonl"
     workflow = ROOT / ".github/workflows/workflows.yml"
     audit = jobs(workflow)["zizmor"]
-    commands = []
-    for step in steps(audit):
-        if "run:" not in step:
-            continue
-        lines = step.split("run:", 1)[1].splitlines()
-        command = textwrap.dedent("\n".join(lines[1:]))
-        if lines[0].strip().startswith(">"):
-            command = " ".join(command.splitlines())
-        commands.append(command)
-        result = subprocess.run(
-            ["bash", "-e", "-c", command], cwd=tmp_path,
-            env={**os.environ, "PATH": f"{tmp_path}{os.pathsep}{os.environ['PATH']}",
-                 "PIPX_CALLS": str(calls)},
-            capture_output=True, text=True, timeout=15,
-        )
-        assert (result.returncode == 0) == bool(pin), result.stdout + result.stderr
-    assert len(commands) == 2
-    assert not re.search(r"zizmor==[0-9]", workflow.read_text())
-    if not pin:
-        assert not calls.exists()  # Never fall back to an unpinned latest version.
-        return
-    invocations = [json.loads(line) for line in calls.read_text().splitlines()]
-    assert len(invocations) == 2
-    for args in invocations:
-        assert args[:4] == ["run", "--spec", pin, "zizmor"]
-    assert "regular" in invocations[0] and "--format=github" in invocations[0]
-    assert "pedantic" in invocations[1] and "--min-severity" in invocations[1]
+    extractor = next(step for step in steps(audit) if "id: version" in step)
+    command = textwrap.dedent(extractor.split("run: |\n", 1)[1])
+    output = tmp_path / "output"
+    result = subprocess.run(
+        ["bash", "-e", "-c", command], cwd=tmp_path,
+        env={**os.environ, "GITHUB_OUTPUT": str(output)},
+        capture_output=True, text=True, timeout=15,
+    )
+    assert (result.returncode == 0) == bool(pin), result.stdout + result.stderr
+    passes = [step for step in steps(audit) if "uses: zizmorcore/zizmor-action@" in step]
+    assert len(passes) == 2
+    for step in passes:
+        assert "version: ${{ steps.version.outputs.version }}" in step
+        assert "advanced-security: false" in step and "annotations: true" in step
+        assert "config: .github/zizmor.yml" in step
+    assert "persona: regular" in passes[0] and "min-confidence: medium" in passes[0]
+    assert "persona: pedantic" in passes[1] and "min-severity: high" in passes[1]
+    assert "min-confidence: high" in passes[1]
+    if pin:
+        assert output.read_text() == f"version={pin.split('==')[1]}\n"
+    else:
+        assert not output.exists()  # Never fall back to an unpinned latest version.
 
 
 def test_workflow_audits_run_when_their_requirements_change() -> None:

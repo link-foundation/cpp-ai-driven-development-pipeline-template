@@ -1,0 +1,210 @@
+[
+  {
+    "name": "@babel/code-frame",
+    "version": "8.0.6",
+    "engines": {
+      "node": "^22.18.0 || >=24.11.0"
+    },
+    "repository": "https://github.com/babel/babel.git",
+    "url": "https://github.com/babel/babel/releases/tag/v8.0.0",
+    "notes": "## v8.0.0 (2026-06-16)\r\n\r\n**NOTE:** The changelog below is relative to v8.0.0-rc.6. You can find a summary of all the breaking changes shipped in the Babel 8 release line in the [migration guide for users](https://babeljs.io/docs/v8-migration) and [migration guide for plugin developers](https://babeljs.io/docs/v8-migration-api).\r\n\r\nRead the release blog post at http://babeljs.io/blog/2026/06/16/8.0.0!\r\n\r\n#### :eyeglasses: Spec Compliance\r\n* `babel-core`\r\n  * [#18039](https://github.com/babel/babel/pull/18039) perf: Only extract source map comments at the end of the file ([@liuxingbaoyu](https://github.com/liuxingbaoyu))\r\n\r\n#### :boom: Breaking Change\r\n* `babel-cli`, `babel-node`, `babel-plugin-proposal-decorators`, `babel-plugin-transform-classes`, `babel-plugin-transform-function-name`, `babel-plugin-transform-modules-commonjs`, `babel-plugin-transform-object-rest-spread`, `babel-plugin-transform-parameters`, `babel-plugin-transform-react-constant-elements`, `babel-plugin-transform-regenerator`, `babel-preset-env`, `babel-register`\r\n  * [#18069](https://github.com/babel/babel/pull/18069) Fallback to assuming ESM support with `modules: auto` ([@nicolo-ribaudo](https://github.com/nicolo-ribaudo))\r\n* `babel-plugin-transform-runtime`, `babel-runtime-corejs3`, `babel-runtime`\r\n  * [#18036](https://github.com/babel/babel/pull/18036) Remove corejs exports for `@babe/runtime-corejs3` ([@liuxingbaoyu](https://github.com/liuxingbaoyu))\r\n* `babel-parser`\r\n  * [#18034](https://github.com/babel/babel/pull/18034) Remove `locations: \"packed\"` ([@liuxingbaoyu](https://github.com/liuxingbaoyu))\r\n\r\n#### :bug: Bug Fix\r\n* `babel-generator`\r\n  * [#18046](https://github.com/babel/babel/pull/18046) fix(generator): improve new callee parens check ([@JLHwung](https://github.com/JLHwung))\r\n* `babel-plugin-transform-modules-systemjs`\r\n  * [#18032](https://github.com/babel/babel/pull/18032) fix(systemjs): support __proto__ as an export name ([@JLHwung](https://github.com/JLHwung))\r\n\r\n#### :memo: Documentation\r\n* [#18070](https://github.com/babel/babel/pull/18070) Add EOL date for Babel 7 (end of June 2027) to SECURITY.md ([@nicolo-ribaudo](https://github.com/nicolo-ribaudo))\r\n\r\n#### :house: Internal\r\n* [#18018](https://github.com/babel/babel/pull/18018) ci: enforce yarn integrity ([@JLHwung](https://github.com/JLHwung))\r\n\r\n#### :running_woman: Performance\r\n* `babel-core`\r\n  * [#18039](https://github.com/babel/babel/pull/18039) perf: Only extract source map comments at the end of the file ([@liuxingbaoyu](https://github.com/liuxingbaoyu))\r\n\r\n#### Committers: 6\r\n- Babel Bot ([@babel-bot](https://github.com/babel-bot))\r\n- Hu\u00e1ng J\u00f9nli\u00e0ng ([@JLHwung](https://github.com/JLHwung))\r\n- James Garbutt ([@43081j](https://github.com/43081j))\r\n- Nicol\u00f2 Ribaudo ([@nicolo-ribaudo](https://github.com/nicolo-ribaudo))\r\n- Sandy Chen ([@sandy2008](https://github.com/sandy2008))\r\n- [@liuxingbaoyu](https://github.com/liuxingbaoyu)"
+  },
+  {
+    "name": "@babel/helper-validator-identifier",
+    "version": "8.0.6",
+    "engines": {
+      "node": "^22.18.0 || >=24.11.0"
+    },
+    "repository": "https://github.com/babel/babel.git",
+    "url": "https://github.com/babel/babel/releases/tag/v8.0.0",
+    "notes": "## v8.0.0 (2026-06-16)\r\n\r\n**NOTE:** The changelog below is relative to v8.0.0-rc.6. You can find a summary of all the breaking changes shipped in the Babel 8 release line in the [migration guide for users](https://babeljs.io/docs/v8-migration) and [migration guide for plugin developers](https://babeljs.io/docs/v8-migration-api).\r\n\r\nRead the release blog post at http://babeljs.io/blog/2026/06/16/8.0.0!\r\n\r\n#### :eyeglasses: Spec Compliance\r\n* `babel-core`\r\n  * [#18039](https://github.com/babel/babel/pull/18039) perf: Only extract source map comments at the end of the file ([@liuxingbaoyu](https://github.com/liuxingbaoyu))\r\n\r\n#### :boom: Breaking Change\r\n* `babel-cli`, `babel-node`, `babel-plugin-proposal-decorators`, `babel-plugin-transform-classes`, `babel-plugin-transform-function-name`, `babel-plugin-transform-modules-commonjs`, `babel-plugin-transform-object-rest-spread`, `babel-plugin-transform-parameters`, `babel-plugin-transform-react-constant-elements`, `babel-plugin-transform-regenerator`, `babel-preset-env`, `babel-register`\r\n  * [#18069](https://github.com/babel/babel/pull/18069) Fallback to assuming ESM support with `modules: auto` ([@nicolo-ribaudo](https://github.com/nicolo-ribaudo))\r\n* `babel-plugin-transform-runtime`, `babel-runtime-corejs3`, `babel-runtime`\r\n  * [#18036](https://github.com/babel/babel/pull/18036) Remove corejs exports for `@babe/runtime-corejs3` ([@liuxingbaoyu](https://github.com/liuxingbaoyu))\r\n* `babel-parser`\r\n  * [#18034](https://github.com/babel/babel/pull/18034) Remove `locations: \"packed\"` ([@liuxingbaoyu](https://github.com/liuxingbaoyu))\r\n\r\n#### :bug: Bug Fix\r\n* `babel-generator`\r\n  * [#18046](https://github.com/babel/babel/pull/18046) fix(generator): improve new callee parens check ([@JLHwung](https://github.com/JLHwung))\r\n* `babel-plugin-transform-modules-systemjs`\r\n  * [#18032](https://github.com/babel/babel/pull/18032) fix(systemjs): support __proto__ as an export name ([@JLHwung](https://github.com/JLHwung))\r\n\r\n#### :memo: Documentation\r\n* [#18070](https://github.com/babel/babel/pull/18070) Add EOL date for Babel 7 (end of June 2027) to SECURITY.md ([@nicolo-ribaudo](https://github.com/nicolo-ribaudo))\r\n\r\n#### :house: Internal\r\n* [#18018](https://github.com/babel/babel/pull/18018) ci: enforce yarn integrity ([@JLHwung](https://github.com/JLHwung))\r\n\r\n#### :running_woman: Performance\r\n* `babel-core`\r\n  * [#18039](https://github.com/babel/babel/pull/18039) perf: Only extract source map comments at the end of the file ([@liuxingbaoyu](https://github.com/liuxingbaoyu))\r\n\r\n#### Committers: 6\r\n- Babel Bot ([@babel-bot](https://github.com/babel-bot))\r\n- Hu\u00e1ng J\u00f9nli\u00e0ng ([@JLHwung](https://github.com/JLHwung))\r\n- James Garbutt ([@43081j](https://github.com/43081j))\r\n- Nicol\u00f2 Ribaudo ([@nicolo-ribaudo](https://github.com/nicolo-ribaudo))\r\n- Sandy Chen ([@sandy2008](https://github.com/sandy2008))\r\n- [@liuxingbaoyu](https://github.com/liuxingbaoyu)"
+  },
+  {
+    "name": "ansi-regex",
+    "version": "6.6.0",
+    "engines": {
+      "node": ">=12"
+    },
+    "repository": "git+https://github.com/chalk/ansi-regex.git",
+    "url": "https://github.com/chalk/ansi-regex/releases/tag/v6.0.0",
+    "notes": "### Breaking\r\n\r\n- Require Node.js 12  1b337ad\r\n- This package is now pure ESM. Please [read this](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).\r\n\r\nhttps://github.com/chalk/ansi-regex/compare/v5.0.0...v6.0.0"
+  },
+  {
+    "name": "ansi-styles",
+    "version": "7.0.0",
+    "engines": {
+      "node": ">=22"
+    },
+    "repository": "git+https://github.com/chalk/ansi-styles.git",
+    "url": "https://github.com/chalk/ansi-styles/releases/tag/v7.0.0",
+    "notes": "### Breaking\r\n\r\n- Require Node.js 22  802582c\r\n\r\n### Improvements\r\n\r\n- Add extended underline styles and underline colors  af41a9e\r\n\r\n---\r\n\r\nhttps://github.com/chalk/ansi-styles/compare/v6.2.3...v7.0.0"
+  },
+  {
+    "name": "argparse",
+    "version": "3.0.4",
+    "engines": null,
+    "repository": "git+https://github.com/nodeca/argparse.git"
+  },
+  {
+    "name": "chalk",
+    "version": "6.0.1",
+    "engines": {
+      "node": ">=22"
+    },
+    "repository": "git+https://github.com/chalk/chalk.git",
+    "url": "https://github.com/chalk/chalk/releases/tag/v6.0.0",
+    "notes": "### Breaking\r\n\r\n- Require Node.js 22  8a94e0e\r\n\r\n### Improvements\r\n\r\n- Add underline styles and underline colors (#689)  4c304dd\r\n- Improve performance  5729845 fa5cff2\r\n\r\n### Fixes\r\n\r\n- Treat a numeric `FORCE_COLOR` as an exact level (#688)  e912931\r\n- Downsample `ansi256()` and `bgAnsi256()` to 16 colors at level 1 (#687)  ff549c5\r\n\r\n---\r\n\r\nhttps://github.com/chalk/chalk/compare/v5.6.2...v6.0.0"
+  },
+  {
+    "name": "color-convert",
+    "version": "3.1.3",
+    "engines": {
+      "node": ">=14.6"
+    },
+    "repository": "git+https://github.com/Qix-/color-convert.git",
+    "url": "https://github.com/Qix-/color-convert/releases/tag/3.0.0",
+    "notes": "## What's Changed\r\n* add common scales to README by @oclyke in https://github.com/Qix-/color-convert/pull/79\r\n* fix: better precision on xyz/srgb conversion by @Ignigena in https://github.com/Qix-/color-convert/pull/77\r\n* Use 4 largest bits for rgb->ansi256 gray check by @spenserblack in https://github.com/Qix-/color-convert/pull/75\r\n* Switch to GitHub Actions CI by @spenserblack in https://github.com/Qix-/color-convert/pull/91\r\n* Update readme by @jimmywarting in https://github.com/Qix-/color-convert/pull/107\r\n* Move to ESM by @LitoMore in https://github.com/Qix-/color-convert/pull/102\r\n\r\n## New Contributors\r\n* @oclyke made their first contribution in https://github.com/Qix-/color-convert/pull/79\r\n* @Ignigena made their first contribution in https://github.com/Qix-/color-convert/pull/77\r\n* @spenserblack made their first contribution in https://github.com/Qix-/color-convert/pull/75\r\n* @jimmywarting made their first contribution in https://github.com/Qix-/color-convert/pull/107\r\n* @LitoMore made their first contribution in https://github.com/Qix-/color-convert/pull/102\r\n\r\n**Full Changelog**: https://github.com/Qix-/color-convert/compare/2.0.1...3.0.0"
+  },
+  {
+    "name": "color-name",
+    "version": "2.1.1",
+    "engines": {
+      "node": ">=12.20"
+    },
+    "repository": "git+https://github.com/colorjs/color-name.git",
+    "url": "https://github.com/colorjs/color-name/releases/tag/v2.0.0",
+    "notes": "## What's Changed\r\n* converted to esm by @jimmywarting in https://github.com/colorjs/color-name/pull/19\r\n* updated tests\r\n\r\n## New Contributors\r\n* @jimmywarting made their first contribution in https://github.com/colorjs/color-name/pull/19\r\n\r\n**Full Changelog**: https://github.com/colorjs/color-name/compare/v1.1.4...v2.0.0"
+  },
+  {
+    "name": "emoji-regex",
+    "version": "11.0.0",
+    "engines": null,
+    "repository": "git+https://github.com/mathiasbynens/emoji-regex.git"
+  },
+  {
+    "name": "fast-uri",
+    "version": "4.2.3",
+    "engines": null,
+    "repository": "git+https://github.com/fastify/fast-uri.git",
+    "url": "https://github.com/fastify/fast-uri/releases/tag/v4.0.0",
+    "notes": "## What's Changed\r\n* refactor(types): migrate from tsd to tstyche by @Tony133 in https://github.com/fastify/fast-uri/pull/172\r\n* ci(ci): add node 26 to test matrices by @Fdawgs in https://github.com/fastify/fast-uri/pull/173\r\n* chore: removed types deprecated by @Tony133 in https://github.com/fastify/fast-uri/pull/174\r\n* fix: escape bug by @zekth in https://github.com/fastify/fast-uri/pull/181\r\n\r\n\r\n**Full Changelog**: https://github.com/fastify/fast-uri/compare/v3.1.2...v4.0.0"
+  },
+  {
+    "name": "hosted-git-info",
+    "version": "10.1.1",
+    "engines": {
+      "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
+    },
+    "repository": "git+https://github.com/npm/hosted-git-info.git",
+    "url": "https://github.com/npm/hosted-git-info/releases/tag/v10.0.0",
+    "notes": "## [10.0.0](https://github.com/npm/hosted-git-info/compare/v9.0.3...v10.0.0) (2026-05-08)\n### \u26a0\ufe0f BREAKING CHANGES\n* `hosted-git-info` now supports node `^22.22.2 || ^24.15.0 || >=26.0.0`\n* template-oss-apply\n### Features\n* [`12c898d`](https://github.com/npm/hosted-git-info/commit/12c898de6550c1cd7f96d5a2e72d2e0ba3f23bca) [#332](https://github.com/npm/hosted-git-info/pull/332) bump to new node engine range (@owlstronaut)\n* [`f9f3550`](https://github.com/npm/hosted-git-info/commit/f9f3550e07c2e8a1476344329c3eea70b4c3c0d5) [#332](https://github.com/npm/hosted-git-info/pull/332) template-oss-apply (@owlstronaut)\n### Chores\n* [`0feb6fa`](https://github.com/npm/hosted-git-info/commit/0feb6fa27268c86ae0eb0f128715eed549f2168f) [#332](https://github.com/npm/hosted-git-info/pull/332) template-oss-apply (@owlstronaut)"
+  },
+  {
+    "name": "is-fullwidth-code-point",
+    "version": "5.1.0",
+    "engines": {
+      "node": ">=18"
+    },
+    "repository": "git+https://github.com/sindresorhus/is-fullwidth-code-point.git",
+    "url": "https://github.com/sindresorhus/is-fullwidth-code-point/releases/tag/v5.0.0",
+    "notes": "### Breaking\r\n\r\n- Require Node.js 18  0967254\r\n\r\n### Improvements\r\n\r\n- It now uses the [most recent Unicode data](https://github.com/sindresorhus/get-east-asian-width), which fixes some false-positives 0967254\r\n\r\nhttps://github.com/sindresorhus/is-fullwidth-code-point/compare/v4.0.0...v5.0.0"
+  },
+  {
+    "name": "js-tokens",
+    "version": "10.0.0",
+    "engines": null,
+    "repository": "git+https://github.com/lydell/js-tokens.git"
+  },
+  {
+    "name": "js-yaml",
+    "version": "5.5.0",
+    "engines": null,
+    "repository": "git+https://github.com/nodeca/js-yaml.git"
+  },
+  {
+    "name": "normalize-package-data",
+    "version": "9.0.0",
+    "engines": {
+      "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
+    },
+    "repository": "git+https://github.com/npm/normalize-package-data.git",
+    "url": "https://github.com/npm/normalize-package-data/releases/tag/v9.0.0",
+    "notes": "## [9.0.0](https://github.com/npm/normalize-package-data/compare/v8.0.0...v9.0.0) (2026-05-15)\n### \u26a0\ufe0f BREAKING CHANGES\n* `normalize-package-data` now supports node `^22.22.2 || ^24.15.0 || >=26.0.0`\n* template-oss-apply\n### Features\n* [`cbaa5da`](https://github.com/npm/normalize-package-data/commit/cbaa5da307d633eaeba4cac093f1af5a4766e7c1) [#262](https://github.com/npm/normalize-package-data/pull/262) bump to new node engine range (@owlstronaut)\n* [`d000032`](https://github.com/npm/normalize-package-data/commit/d0000323f6b4a106cf2975c8c3d6302d9404f342) [#262](https://github.com/npm/normalize-package-data/pull/262) template-oss-apply (@owlstronaut)\n### Dependencies\n* [`afe6b48`](https://github.com/npm/normalize-package-data/commit/afe6b48a7fcbbd47a3968ba59014d08fa0dd9659) [#262](https://github.com/npm/normalize-package-data/pull/262) `hosted-git-info@10.1.0`\n### Chores\n* [`6e35b4b`](https://github.com/npm/normalize-package-data/commit/6e35b4b0493a42e065f618c7c0987381c22128b9) [#262](https://github.com/npm/normalize-package-data/pull/262) replace removed _stream_writable with stream for Node 26 compatibility (@owlstronaut)\n* [`0642c80`](https://github.com/npm/normalize-package-data/commit/0642c807cd4bf5e93628ec6da19e97a2fb3c5779) [#262](https://github.com/npm/normalize-package-data/pull/262) template-oss-apply (@owlstronaut)\n* [`93d9b37`](https://github.com/npm/normalize-package-data/commit/93d9b37b83f952f4b906d4c9de7ed11de51a7cfa) [#262](https://github.com/npm/normalize-package-data/pull/262) bumping @npmcli/template-oss from 4.30.0 to 5.1.0 (@owlstronaut)\n* [`aa01d03`](https://github.com/npm/normalize-package-data/commit/aa01d035e74a3d7d83d1cd5466ba4988e910c9e3) [#256](https://github.com/npm/normalize-package-data/pull/256) remove tap (@owlstronaut)\n* [`13311b5`](https://github.com/npm/normalize-package-data/commit/13311b5dfcd868c54a0f1120ad5c5a523b56ef52) [#256](https://github.com/npm/normalize-package-data/pull/256) swap from tap to built-in node:test (@owlstronaut)\n* [`0b5961e`](https://github.com/npm/normalize-package-data/commit/0b5961e53d9ed76b0a444f7d9e2d176939ae141a) [#253](https://github.com/npm/normalize-package-data/pull/253) bump @npmcli/eslint-config from 5.1.0 to 6.0.0 (#253) (@dependabot[bot])\n* [`e01f4b9`](https://github.com/npm/normalize-package-data/commit/e01f4b9d4ee78b5b98c8c7c44cda172e2fcc1461) [#258](https://github.com/npm/normalize-package-data/pull/258) bump @npmcli/template-oss from 4.29.0 to 4.30.0 (#258) (@dependabot[bot], @npm-cli-bot)"
+  },
+  {
+    "name": "pluralize",
+    "version": "8.0.0",
+    "engines": {
+      "node": ">=4"
+    },
+    "repository": "git+https://github.com/blakeembrey/pluralize.git",
+    "url": "https://github.com/plurals/pluralize/releases/tag/v8.0.0",
+    "notes": "**Changed**\r\n\r\n* Uncountable\r\n  * Transportation\r\n  * Mud\r\n  * Only\r\n  * Words ending in \"ware\"\r\n  * Analytics\r\n  * Aircraft\r\n  * Pokemon\r\n  * Personnel\r\n* Plural/Singular\r\n  * Christmas\r\n  * Words ending in \"[ml]ice\"\r\n  * Passerby\r\n  * Enterprise\r\n* Plural changes\r\n  * \"Octopi\" to \"octopuses\"\r\n  * \"Whiskies\" to \"whiskeys\" (_only_ when pluralized with \"whiskey\", opposed to \"whisky\")\r\n* Singular\r\n  * Words ending with \"bases\"\r\n  * Words ending with \"rises\"\r\n* Numbers and symbols will be suffixed with lowercase additions"
+  },
+  {
+    "name": "slice-ansi",
+    "version": "10.0.1",
+    "engines": {
+      "node": ">=22"
+    },
+    "repository": "git+https://github.com/chalk/slice-ansi.git",
+    "url": "https://github.com/chalk/slice-ansi/releases/tag/v10.0.0",
+    "notes": "### Breaking\r\n\r\n- Use `string-width` for grapheme widths  8e0c8f4\r\n  - This makes slicing more accurate, but could slightly change some outputs.\r\n- Count a trailing halfwidth form as a column of its own  48d757d\r\n\r\n---\r\n\r\nhttps://github.com/chalk/slice-ansi/compare/v9.0.1...v10.0.0"
+  },
+  {
+    "name": "spdx-expression-parse",
+    "version": "5.0.0",
+    "engines": null,
+    "repository": "git+https://github.com/jslicense/spdx-expression-parse.js.git"
+  },
+  {
+    "name": "string-width",
+    "version": "9.0.0",
+    "engines": {
+      "node": ">=22"
+    },
+    "repository": "git+https://github.com/sindresorhus/string-width.git",
+    "url": "https://github.com/sindresorhus/string-width/releases/tag/v9.0.0",
+    "notes": "### Breaking\r\n\r\n- Require Node.js 22  ede59cf\r\n\r\n### Improvements\r\n\r\n- Improve performance  2a7fa3e 429619c\r\n\r\n### Fixes\r\n\r\n- Fix emoji presentation, keycap, flag, and skin tone modifier widths  62a3bb3\r\n- Fix width calculation for Indic conjuncts and other text clusters  680e2c2\r\n- Fix Thai and Lao AM vowel widths  272f9f2\r\n- Measure Hangul clusters as single syllable blocks  a60d968\r\n- Count visible prepended concatenation signs  9db5f32\r\n- Measure lone surrogates as replacement characters  efb9e26\r\n- Fix decomposed Kirat Rai vowel widths  8a65123\r\n\r\n---\r\n\r\nhttps://github.com/sindresorhus/string-width/compare/v8.3.0...v9.0.0\r\n"
+  },
+  {
+    "name": "strip-ansi",
+    "version": "7.2.0",
+    "engines": {
+      "node": ">=12"
+    },
+    "repository": "git+https://github.com/chalk/strip-ansi.git",
+    "url": "https://github.com/chalk/strip-ansi/releases/tag/v7.0.0",
+    "notes": "### Breaking\r\n\r\n- Require Node.js 12  7cda68d\r\n- This package is now pure ESM. Please [read this](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).\r\n\r\nhttps://github.com/chalk/strip-ansi/compare/v6.0.0...v7.0.0"
+  },
+  {
+    "name": "supports-color",
+    "version": "11.0.0",
+    "engines": {
+      "node": ">=22"
+    },
+    "repository": "git+https://github.com/chalk/supports-color.git",
+    "url": "https://github.com/chalk/supports-color/releases/tag/v11.0.0",
+    "notes": "### Breaking\r\n\r\n- Require Node.js 22  53150a8\r\n\r\n### Fixes\r\n\r\n- Treat a numeric `FORCE_COLOR` as an exact level  b98103a\r\n\r\n---\r\n\r\nhttps://github.com/chalk/supports-color/compare/v10.2.2...v11.0.0"
+  },
+  {
+    "name": "supports-hyperlinks",
+    "version": "5.0.0",
+    "engines": {
+      "node": ">=22"
+    },
+    "repository": "git+https://github.com/chalk/supports-hyperlinks.git",
+    "url": "https://github.com/chalk/supports-hyperlinks/releases/tag/v5.0.0",
+    "notes": "### Breaking\r\n\r\n- Require Node.js 22  b1255f8\r\n\r\n### Improvements\r\n\r\n- Add herdr terminal support  b11be41\r\n\r\n---\r\n\r\nhttps://github.com/chalk/supports-hyperlinks/compare/v4.6.0...v5.0.0"
+  },
+  {
+    "name": "type-fest",
+    "version": "5.10.0",
+    "engines": {
+      "node": ">=20"
+    },
+    "repository": "git+https://github.com/sindresorhus/type-fest.git",
+    "url": "https://github.com/sindresorhus/type-fest/releases/tag/v5.0.0",
+    "notes": "### Breaking\r\n\r\n* This package is now pure ESM. **Please [read this](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).**\r\n* Require TypeScript 5.9 b5b0214\r\n* Require Node.js 20 cc2b0f2\r\n* Reminder: `type-fest` requires `strict: true` in your tsconfig.\r\n* `StringKeyOf`: Rename to [`KeyAsString`](https://github.com/sindresorhus/type-fest/blob/main/source/key-as-string.d.ts) e492c9c\r\n* [`ArrayTail`](https://github.com/sindresorhus/type-fest/blob/main/source/array-tail.d.ts): Enable [`preserveReadonly`](https://github.com/sindresorhus/type-fest/blob/68469722a9521122b6cb40376c4c4544aef28228/source/array-tail.d.ts#L8-L30) by default and remove the option b34b1d8\r\n* [`CamelCase`](https://github.com/sindresorhus/type-fest/blob/main/source/camel-case.d.ts) / [`CamelCasedProperties`](https://github.com/sindresorhus/type-fest/blob/main/source/camel-cased-properties.d.ts) / [`CamelCasedPropertiesDeep`](https://github.com/sindresorhus/type-fest/blob/main/source/camel-cased-properties-deep.d.ts) / [`PascalCase`](https://github.com/sindresorhus/type-fest/blob/main/source/pascal-case.d.ts) / [`PascalCasedProperties`](https://github.com/sindresorhus/type-fest/blob/main/source/pascal-cased-properties.d.ts) / [`PascalCasedPropertiesDeep`](https://github.com/sindresorhus/type-fest/blob/main/source/pascal-cased-properties-deep.d.ts): Disable `preserveConsecutiveUppercase` by default 8226c1b\r\n  - This aligns it with the general JavaScript naming convention.\r\n* [`PartialDeep`](https://github.com/sindresorhus/type-fest/blob/main/source/partial-deep.d.ts): Disable `allowUndefinedInNonTupleArrays` by default b3c4524\r\n* [`Split`](https://github.com/sindresorhus/type-fest/blob/main/source/split.d.ts): Enable `strictLiteralChecks` by default 544a846\r\n* [`Paths`](https://github.com/sindresorhus/type-fest/blob/main/source/paths.d.ts): Default `maxRecursionDepth` 5 (was 10) 2ab5dec\r\n* [`ObservableLike`](https://github.com/sindresorhus/type-fest/blob/main/source/globals/observable-like.d.ts): Move to sub-export 2a1072e\r\n* Deprecate `If*` types in favor of a single [`If`](https://github.com/sindresorhus/type-fest/blob/main/source/if.d.ts) 4c2151a\r\n\r\n### New types\r\n\r\n* [`Alphanumeric`](https://github.com/sindresorhus/type-fest/blob/fc14f87e7fbc89a5dd44291f2c1057d337c34bcd/source/characters.d.ts) \u2014 Single alphanumeric character (`A\u2013Z`, `a\u2013z`, `0\u20139`). 484e030\r\n* [`AllExtend`](https://github.com/sindresorhus/type-fest/blob/main/source/all-extend.d.ts) \u2014 Evaluates to `true` if every element of a tuple/array extends `U`. c8c6d55\r\n* [`ConditionalSimplify`](https://github.com/sindresorhus/type-fest/blob/main/source/conditional-simplify.d.ts) \u2014 Simplifies a type\u2019s unions/intersections with opt-in controls. b7a4771\r\n* [`ConditionalSimplifyDeep`](https://github.com/sindresorhus/type-fest/blob/main/source/conditional-simplify-deep.d.ts) \u2014 Deep version of `ConditionalSimplify` that recurses into objects. b7a4771\r\n* [`DigitCharacter`](https://github.com/sindresorhus/type-fest/blob/fc14f87e7fbc89a5dd44291f2c1057d337c34bcd/source/characters.d.ts) \u2014 Single ASCII digit character (`0\u20139`). 484e030\r\n* [`ExcludeStrict`](https://github.com/sindresorhus/type-fest/blob/main/source/exclude-strict.d.ts) \u2014 Non-distributive, stricter variant of `Exclude<T, U>`. e6f62a2\r\n* [`ExtendsStrict`](https://github.com/sindresorhus/type-fest/blob/main/source/extends-strict.d.ts) \u2014 Non-distributive `A extends B` check. d71242a\r\n* [`ExtractStrict`](https://github.com/sindresorhus/type-fest/blob/main/source/extract-strict.d.ts) \u2014 Non-distributive, stricter variant of `Extract<T, U>`. 98d24fa\r\n* [`IsLowercase`](https://github.com/sindresorhus/type-fest/blob/main/source/is-lowercase.d.ts) \u2014 Evaluates to `true` if a string literal is all lowercase. afe132c\r\n* [`IsNullable`](https://github.com/sindresorhus/type-fest/blob/main/source/is-nullable.d.ts) \u2014 Evaluates to `true` if `T` includes `null`. 5067e25\r\n* [`IsOptional`](https://github.com/sindresorhus/type-fest/blob/main/source/is-optional.d.ts) \u2014 Evaluates to `true` if `T` includes `undefined`. 5067e25\r\n* [`IsOptionalKeyOf`](https://github.com/sindresorhus/type-fest/blob/main/source/is-optional-key-of.d.ts) \u2014 Evaluates to `true` if property `K` of `T` is optional. 93728b5\r\n* [`IsReadonlyKeyOf`](https://github.com/sindresorhus/type-fest/blob/main/source/is-readonly-key-of.d.ts) \u2014 Evaluates to `true` if property `K` of `T` is readonly. 93728b5\r\n* [`IsRequiredKeyOf`](https://github.com/sindresorhus/type-fest/blob/main/source/is-required-key-of.d.ts) \u2014 Evaluates to `true` if property `K` of `T` is required. 93728b5\r\n* [`IsUnion`](https://github.com/sindresorhus/type-fest/blob/main/source/is-union.d.ts) \u2014 Evaluates to `true` if `T` is a union type. b3d92ed\r\n* [`IsUndefined`](https://github.com/sindresorhus/type-fest/blob/main/source/is-undefined.d.ts) \u2014 Evaluates to `true` if the type is exactly `undefined`. f7bc576\r\n* [`IsUppercase`](https://github.com/sindresorhus/type-fest/blob/main/source/is-uppercase.d.ts) \u2014 Evaluates to `true` if a string literal is all uppercase. afe132c\r\n* [`LowercaseLetter`](https://github.com/sindresorhus/type-fest/blob/fc14f87e7fbc89a5dd44291f2c1057d337c34bcd/source/characters.d.ts) \u2014 Single lowercase Latin letter (`a\u2013z`). 484e030\r\n* [`RemovePrefix`](https://github.com/sindresorhus/type-fest/blob/main/source/remove-prefix.d.ts) \u2014 Removes a specified prefix from a string literal. 18a1c04\r\n* [`UppercaseLetter`](https://github.com/sindresorhus/type-fest/blob/fc14f87e7fbc89a5dd44291f2c1057d337c34bcd/source/characters.d.ts) \u2014 Single uppercase Latin letter (`A\u2013Z`). 484e030\r\n\r\n### Improvements\r\n\r\n* [`Jsonify`](https://github.com/sindresorhus/type-fest/blob/main/source/jsonify.d.ts): Handle `unknown` as `JsonValue` 642bb13\r\n* [`SetRequired`](https://github.com/sindresorhus/type-fest/blob/main/source/set-required.d.ts) / [`SetOptional`](https://github.com/sindresorhus/type-fest/blob/main/source/set-optional.d.ts) / [`SetReadonly`](https://github.com/sindresorhus/type-fest/blob/main/source/set-readonly.d.ts): Handle functions with properties a5e45d4\r\n* [`Schema`](https://github.com/sindresorhus/type-fest/blob/main/source/schema.d.ts): Preserve arrays/remove extraneous unions 8a96def; drop `undefined` for `recurseIntoArrays` 1cb955b\r\n* [`ReadonlyKeysOf`](https://github.com/sindresorhus/type-fest/blob/main/source/readonly-keys-of.d.ts) / [`WritableKeysOf`](https://github.com/sindresorhus/type-fest/blob/main/source/writable-keys-of.d.ts): Add `object` constraint a6efbe0\r\n* [`TsConfigJson`](https://github.com/sindresorhus/type-fest/blob/main/source/tsconfig-json.d.ts): Add TypeScript 5.9 fields d2bda94\r\n\r\n### Fixes\r\n\r\n* [`Or`](https://github.com/sindresorhus/type-fest/blob/main/source/or.d.ts): Fix with `boolean`, `never`, `any` 42d6106\r\n* [`And`](https://github.com/sindresorhus/type-fest/blob/main/source/and.d.ts): Fix with `boolean`, `never`, `any` b38ac60\r\n* [`IsStringLiteral`](https://github.com/sindresorhus/type-fest/blob/main/source/is-literal.d.ts): Fix uncollapsed unions, and tagged types eb37799 / d1b35c7\r\n* [`Paths`](https://github.com/sindresorhus/type-fest/blob/main/source/paths.d.ts): Fix behavior with index signatures 9926e5d\r\n* [`ConditionalKeys`](https://github.com/sindresorhus/type-fest/blob/main/source/conditional-keys.d.ts): Fix behavior with arrays and unions 4d7cc50\r\n* [`RequiredDeep`](https://github.com/sindresorhus/type-fest/blob/main/source/required-deep.d.ts): Fix with `undefined` bfcdbc4\r\n* [`Split`](https://github.com/sindresorhus/type-fest/blob/main/source/split.d.ts): Fix template strings ending with interpolation 853b881\r\n* [`ArrayTail`](https://github.com/sindresorhus/type-fest/blob/main/source/array-tail.d.ts): Fix fix non-tuple arrays f3aabd8\r\n* Fix `UnionMin` and `UnionMax` d52d5e7\r\n\r\n### Meta\r\n\r\nHuge thanks to all the contributors to this release, especially @som-sm \ud83d\ude4c\r\n\r\n---\r\n\r\nhttps://github.com/sindresorhus/type-fest/compare/v4.41.0...v5.0.0"
+  }
+]

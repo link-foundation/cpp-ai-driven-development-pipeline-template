@@ -1,0 +1,12 @@
+# Generated from requirements-toolchain.in; see docs/dependencies.md.
+-c constraints.txt
+ninja==1.13.2
+    # via -r scripts/requirements-toolchain.in
+pip==26.3
+    # via -r scripts/requirements-toolchain.in
+pre-commit==4.7.0
+    # via -r scripts/requirements-toolchain.in
+pre-commit-hooks==6.0.0
+    # via -r scripts/requirements-toolchain.in
+uv==0.13.8
+    # via -r scripts/requirements-toolchain.in

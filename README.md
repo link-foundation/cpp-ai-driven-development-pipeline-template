@@ -81,7 +81,7 @@ For a multi-language repository, move the C++ project into `cpp/` (see
 
 ### Development Setup
 
-You need CMake 3.25 or newer, a C++20 compiler, Python 3 and git. Ninja is
+You need CMake 3.25 or newer (CI uses 4.5.0), a C++20 compiler, Python 3.15.2 and git. Ninja is
 optional. The tests download GoogleTest with `FetchContent` unless it is
 installed.
 

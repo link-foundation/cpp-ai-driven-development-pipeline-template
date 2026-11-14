@@ -1,0 +1,118 @@
+[
+  {
+    "repo": "secretlint/secretlint",
+    "parent": "@secretlint/formatter",
+    "version": "13.1.0",
+    "changes": {
+      "chalk": "^6.0.1"
+    },
+    "body": "The latest published `@secretlint/formatter@13.1.0` still restricts these dependencies to older major versions:\n\n| Dependency | Published range | Current stable |\n| --- | --- | --- |\n| chalk | ^5.6.2 | 6.0.1 |\n\nMinimal range reproduction (no stress input needed):\n\n```sh\nnpm view @secretlint/formatter@13.1.0 dependencies --json\n```\n\nWould you consider supporting the current majors in a release with an appropriate Node engine floor? A candidate dependency change is:\n\n```json\n{\n  \"chalk\": \"^6.0.1\"\n}\n```\n\nDownstream evidence: https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/pull/31 uses exact root overrides with Node 26.13.1. Its `scripts/test_secretlint.mjs` checks detection, every console formatter, YAML loading/error handling, JSON code frames, package/license normalization and schema URI resolution. The resulting scanner lock has 76 packages, all matching registry latest, with zero project audit findings. This is a support/range request, not a claim of an exploitable vulnerability in the old range; those integration checks do not replace your full upstream suite or compatibility policy.\n\nThe local workaround is the root override until a supporting parent release is available. The migration notes and exact lock are retained in that PR. Where the new release requires Node 22 or changes module loading, please use a major release/engine update rather than silently excluding an existing supported runtime.\n",
+    "url": "https://github.com/secretlint/secretlint/issues/1831",
+    "error": null
+  },
+  {
+    "repo": "textlint/textlint",
+    "parent": "@textlint/linter-formatter",
+    "version": "15.8.0",
+    "changes": {
+      "js-yaml": "^5.5.0",
+      "pluralize": "^8.0.0",
+      "string-width": "^9.0.0",
+      "strip-ansi": "^7.2.0"
+    },
+    "body": "The latest published `@textlint/linter-formatter@15.8.0` still restricts these dependencies to older major versions:\n\n| Dependency | Published range | Current stable |\n| --- | --- | --- |\n| js-yaml | ^4.3.0 | 5.5.0 |\n| pluralize | ^2.0.0 | 8.0.0 |\n| string-width | ^4.2.3 | 9.0.0 |\n| strip-ansi | ^6.0.1 | 7.2.0 |\n\nMinimal range reproduction (no stress input needed):\n\n```sh\nnpm view @textlint/linter-formatter@15.8.0 dependencies --json\n```\n\nWould you consider supporting the current majors in a release with an appropriate Node engine floor? A candidate dependency change is:\n\n```json\n{\n  \"js-yaml\": \"^5.5.0\",\n  \"pluralize\": \"^8.0.0\",\n  \"string-width\": \"^9.0.0\",\n  \"strip-ansi\": \"^7.2.0\"\n}\n```\n\nDownstream evidence: https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/pull/31 uses exact root overrides with Node 26.13.1. Its `scripts/test_secretlint.mjs` checks detection, every console formatter, YAML loading/error handling, JSON code frames, package/license normalization and schema URI resolution. The resulting scanner lock has 76 packages, all matching registry latest, with zero project audit findings. This is a support/range request, not a claim of an exploitable vulnerability in the old range; those integration checks do not replace your full upstream suite or compatibility policy.\n\nThe local workaround is the root override until a supporting parent release is available. The migration notes and exact lock are retained in that PR. Where the new release requires Node 22 or changes module loading, please use a major release/engine update rather than silently excluding an existing supported runtime.\n",
+    "url": "https://github.com/textlint/textlint/issues/2179",
+    "error": null
+  },
+  {
+    "repo": "azu/rc-config-loader",
+    "parent": "rc-config-loader",
+    "version": "4.1.4",
+    "changes": {
+      "js-yaml": "^5.5.0"
+    },
+    "body": "The latest published `rc-config-loader@4.1.4` still restricts these dependencies to older major versions:\n\n| Dependency | Published range | Current stable |\n| --- | --- | --- |\n| js-yaml | ^4.1.1 | 5.5.0 |\n\nMinimal range reproduction (no stress input needed):\n\n```sh\nnpm view rc-config-loader@4.1.4 dependencies --json\n```\n\nWould you consider supporting the current majors in a release with an appropriate Node engine floor? A candidate dependency change is:\n\n```json\n{\n  \"js-yaml\": \"^5.5.0\"\n}\n```\n\nDownstream evidence: https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/pull/31 uses exact root overrides with Node 26.13.1. Its `scripts/test_secretlint.mjs` checks detection, every console formatter, YAML loading/error handling, JSON code frames, package/license normalization and schema URI resolution. The resulting scanner lock has 76 packages, all matching registry latest, with zero project audit findings. This is a support/range request, not a claim of an exploitable vulnerability in the old range; those integration checks do not replace your full upstream suite or compatibility policy.\n\nThe local workaround is the root override until a supporting parent release is available. The migration notes and exact lock are retained in that PR. Where the new release requires Node 22 or changes module loading, please use a major release/engine update rather than silently excluding an existing supported runtime.\n",
+    "url": "https://github.com/azu/rc-config-loader/issues/30",
+    "error": null
+  },
+  {
+    "repo": "sindresorhus/parse-json",
+    "parent": "parse-json",
+    "version": "8.3.0",
+    "changes": {
+      "@babel/code-frame": "^8.0.6",
+      "type-fest": "^5.10.0"
+    },
+    "body": "The latest published `parse-json@8.3.0` still restricts these dependencies to older major versions:\n\n| Dependency | Published range | Current stable |\n| --- | --- | --- |\n| @babel/code-frame | ^7.26.2 | 8.0.6 |\n| type-fest | ^4.39.1 | 5.10.0 |\n\nMinimal range reproduction (no stress input needed):\n\n```sh\nnpm view parse-json@8.3.0 dependencies --json\n```\n\nWould you consider supporting the current majors in a release with an appropriate Node engine floor? A candidate dependency change is:\n\n```json\n{\n  \"@babel/code-frame\": \"^8.0.6\",\n  \"type-fest\": \"^5.10.0\"\n}\n```\n\nDownstream evidence: https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/pull/31 uses exact root overrides with Node 26.13.1. Its `scripts/test_secretlint.mjs` checks detection, every console formatter, YAML loading/error handling, JSON code frames, package/license normalization and schema URI resolution. The resulting scanner lock has 76 packages, all matching registry latest, with zero project audit findings. This is a support/range request, not a claim of an exploitable vulnerability in the old range; those integration checks do not replace your full upstream suite or compatibility policy.\n\nThe local workaround is the root override until a supporting parent release is available. The migration notes and exact lock are retained in that PR. Where the new release requires Node 22 or changes module loading, please use a major release/engine update rather than silently excluding an existing supported runtime.\n",
+    "url": "https://github.com/sindresorhus/parse-json/issues/54",
+    "error": null
+  },
+  {
+    "repo": "gajus/table",
+    "parent": "table",
+    "version": "6.10.1",
+    "changes": {
+      "slice-ansi": "^10.0.1",
+      "string-width": "^9.0.0",
+      "strip-ansi": "^7.2.0"
+    },
+    "body": "The latest published `table@6.10.1` still restricts these dependencies to older major versions:\n\n| Dependency | Published range | Current stable |\n| --- | --- | --- |\n| slice-ansi | ^4.0.0 | 10.0.1 |\n| string-width | ^4.2.3 | 9.0.0 |\n| strip-ansi | ^6.0.1 | 7.2.0 |\n\nMinimal range reproduction (no stress input needed):\n\n```sh\nnpm view table@6.10.1 dependencies --json\n```\n\nWould you consider supporting the current majors in a release with an appropriate Node engine floor? A candidate dependency change is:\n\n```json\n{\n  \"slice-ansi\": \"^10.0.1\",\n  \"string-width\": \"^9.0.0\",\n  \"strip-ansi\": \"^7.2.0\"\n}\n```\n\nDownstream evidence: https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/pull/31 uses exact root overrides with Node 26.13.1. Its `scripts/test_secretlint.mjs` checks detection, every console formatter, YAML loading/error handling, JSON code frames, package/license normalization and schema URI resolution. The resulting scanner lock has 76 packages, all matching registry latest, with zero project audit findings. This is a support/range request, not a claim of an exploitable vulnerability in the old range; those integration checks do not replace your full upstream suite or compatibility policy.\n\nThe local workaround is the root override until a supporting parent release is available. The migration notes and exact lock are retained in that PR. Where the new release requires Node 22 or changes module loading, please use a major release/engine update rather than silently excluding an existing supported runtime.\n",
+    "url": "https://github.com/gajus/table/issues/246",
+    "error": null
+  },
+  {
+    "repo": "jslicense/spdx-correct.js",
+    "parent": "spdx-correct",
+    "version": "3.2.0",
+    "changes": {
+      "spdx-expression-parse": "^5.0.0"
+    },
+    "body": "The latest published `spdx-correct@3.2.0` still restricts these dependencies to older major versions:\n\n| Dependency | Published range | Current stable |\n| --- | --- | --- |\n| spdx-expression-parse | ^3.0.0 | 5.0.0 |\n\nMinimal range reproduction (no stress input needed):\n\n```sh\nnpm view spdx-correct@3.2.0 dependencies --json\n```\n\nWould you consider supporting the current majors in a release with an appropriate Node engine floor? A candidate dependency change is:\n\n```json\n{\n  \"spdx-expression-parse\": \"^5.0.0\"\n}\n```\n\nDownstream evidence: https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/pull/31 uses exact root overrides with Node 26.13.1. Its `scripts/test_secretlint.mjs` checks detection, every console formatter, YAML loading/error handling, JSON code frames, package/license normalization and schema URI resolution. The resulting scanner lock has 76 packages, all matching registry latest, with zero project audit findings. This is a support/range request, not a claim of an exploitable vulnerability in the old range; those integration checks do not replace your full upstream suite or compatibility policy.\n\nThe local workaround is the root override until a supporting parent release is available. The migration notes and exact lock are retained in that PR. Where the new release requires Node 22 or changes module loading, please use a major release/engine update rather than silently excluding an existing supported runtime.\n",
+    "url": "https://github.com/jslicense/spdx-correct.js/issues/46",
+    "error": null
+  },
+  {
+    "repo": "kemitchell/validate-npm-package-license.js",
+    "parent": "validate-npm-package-license",
+    "version": "3.0.4",
+    "changes": {
+      "spdx-expression-parse": "^5.0.0"
+    },
+    "body": "The latest published `validate-npm-package-license@3.0.4` still restricts these dependencies to older major versions:\n\n| Dependency | Published range | Current stable |\n| --- | --- | --- |\n| spdx-expression-parse | ^3.0.0 | 5.0.0 |\n\nMinimal range reproduction (no stress input needed):\n\n```sh\nnpm view validate-npm-package-license@3.0.4 dependencies --json\n```\n\nWould you consider supporting the current majors in a release with an appropriate Node engine floor? A candidate dependency change is:\n\n```json\n{\n  \"spdx-expression-parse\": \"^5.0.0\"\n}\n```\n\nDownstream evidence: https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/pull/31 uses exact root overrides with Node 26.13.1. Its `scripts/test_secretlint.mjs` checks detection, every console formatter, YAML loading/error handling, JSON code frames, package/license normalization and schema URI resolution. The resulting scanner lock has 76 packages, all matching registry latest, with zero project audit findings. This is a support/range request, not a claim of an exploitable vulnerability in the old range; those integration checks do not replace your full upstream suite or compatibility policy.\n\nThe local workaround is the root override until a supporting parent release is available. The migration notes and exact lock are retained in that PR. Where the new release requires Node 22 or changes module loading, please use a major release/engine update rather than silently excluding an existing supported runtime.\n",
+    "url": "https://github.com/kemitchell/validate-npm-package-license.js/issues/16",
+    "error": null
+  },
+  {
+    "repo": "sindresorhus/terminal-link",
+    "parent": "terminal-link",
+    "version": "5.0.0",
+    "changes": {
+      "supports-hyperlinks": "^5.0.0"
+    },
+    "body": "The latest published `terminal-link@5.0.0` still restricts these dependencies to older major versions:\n\n| Dependency | Published range | Current stable |\n| --- | --- | --- |\n| supports-hyperlinks | ^4.1.0 | 5.0.0 |\n\nMinimal range reproduction (no stress input needed):\n\n```sh\nnpm view terminal-link@5.0.0 dependencies --json\n```\n\nWould you consider supporting the current majors in a release with an appropriate Node engine floor? A candidate dependency change is:\n\n```json\n{\n  \"supports-hyperlinks\": \"^5.0.0\"\n}\n```\n\nDownstream evidence: https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/pull/31 uses exact root overrides with Node 26.13.1. Its `scripts/test_secretlint.mjs` checks detection, every console formatter, YAML loading/error handling, JSON code frames, package/license normalization and schema URI resolution. The resulting scanner lock has 76 packages, all matching registry latest, with zero project audit findings. This is a support/range request, not a claim of an exploitable vulnerability in the old range; those integration checks do not replace your full upstream suite or compatibility policy.\n\nThe local workaround is the root override until a supporting parent release is available. The migration notes and exact lock are retained in that PR. Where the new release requires Node 22 or changes module loading, please use a major release/engine update rather than silently excluding an existing supported runtime.\n",
+    "url": "https://github.com/sindresorhus/terminal-link/issues/29",
+    "error": null
+  },
+  {
+    "repo": "sindresorhus/read-pkg",
+    "parent": "read-pkg",
+    "version": "10.1.0",
+    "changes": {
+      "normalize-package-data": "^9.0.0"
+    },
+    "body": "The latest published `read-pkg@10.1.0` still restricts these dependencies to older major versions:\n\n| Dependency | Published range | Current stable |\n| --- | --- | --- |\n| normalize-package-data | ^8.0.0 | 9.0.0 |\n\nMinimal range reproduction (no stress input needed):\n\n```sh\nnpm view read-pkg@10.1.0 dependencies --json\n```\n\nWould you consider supporting the current majors in a release with an appropriate Node engine floor? A candidate dependency change is:\n\n```json\n{\n  \"normalize-package-data\": \"^9.0.0\"\n}\n```\n\nDownstream evidence: https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/pull/31 uses exact root overrides with Node 26.13.1. Its `scripts/test_secretlint.mjs` checks detection, every console formatter, YAML loading/error handling, JSON code frames, package/license normalization and schema URI resolution. The resulting scanner lock has 76 packages, all matching registry latest, with zero project audit findings. This is a support/range request, not a claim of an exploitable vulnerability in the old range; those integration checks do not replace your full upstream suite or compatibility policy.\n\nThe local workaround is the root override until a supporting parent release is available. The migration notes and exact lock are retained in that PR. Where the new release requires Node 22 or changes module loading, please use a major release/engine update rather than silently excluding an existing supported runtime.\n",
+    "url": "https://github.com/sindresorhus/read-pkg/issues/35",
+    "error": null
+  },
+  {
+    "repo": "ajv-validator/ajv",
+    "parent": "ajv",
+    "version": "8.20.0",
+    "changes": {
+      "fast-uri": "^4.2.3"
+    },
+    "body": "The latest published `ajv@8.20.0` still restricts these dependencies to older major versions:\n\n| Dependency | Published range | Current stable |\n| --- | --- | --- |\n| fast-uri | ^3.0.1 | 4.2.3 |\n\nMinimal range reproduction (no stress input needed):\n\n```sh\nnpm view ajv@8.20.0 dependencies --json\n```\n\nWould you consider supporting the current majors in a release with an appropriate Node engine floor? A candidate dependency change is:\n\n```json\n{\n  \"fast-uri\": \"^4.2.3\"\n}\n```\n\nDownstream evidence: https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/pull/31 uses exact root overrides with Node 26.13.1. Its `scripts/test_secretlint.mjs` checks detection, every console formatter, YAML loading/error handling, JSON code frames, package/license normalization and schema URI resolution. The resulting scanner lock has 76 packages, all matching registry latest, with zero project audit findings. This is a support/range request, not a claim of an exploitable vulnerability in the old range; those integration checks do not replace your full upstream suite or compatibility policy.\n\nThe local workaround is the root override until a supporting parent release is available. The migration notes and exact lock are retained in that PR. Where the new release requires Node 22 or changes module loading, please use a major release/engine update rather than silently excluding an existing supported runtime.\n",
+    "url": "https://github.com/ajv-validator/ajv/issues/2705",
+    "error": null
+  }
+]

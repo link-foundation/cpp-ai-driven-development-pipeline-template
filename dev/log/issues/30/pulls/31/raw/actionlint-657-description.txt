@@ -1,0 +1,21 @@
+title:	Actionlint does not know about `queue:` key for concurrency
+state:	OPEN
+author:	karlosss (Karel Jílek)
+labels:	
+comments:	7
+assignees:	
+projects:	
+milestone:	
+issue-type:	
+parent:	
+sub-issues:	
+sub-issues-completed:	
+blocked-by:	
+blocking:	
+number:	657
+--
+docs:
+https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency#example-queueing-multiple-pending-runs
+
+if you use it:
+<img width="2192" height="134" alt="Image" src="https://github.com/user-attachments/assets/088d4459-fd2f-4ead-bd42-2676d9539677" />

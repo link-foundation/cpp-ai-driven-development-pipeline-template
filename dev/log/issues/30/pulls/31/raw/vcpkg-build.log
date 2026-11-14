@@ -1,0 +1,122 @@
+Detecting compiler hash for triplet x64-linux...
+Compiler found: /usr/bin/c++
+The following packages will be built and installed:
+    benchmark:x64-linux@1.10.0 -- /tmp/gh-issue-solver-1794646566828/packaging/vcpkg-overlays/benchmark
+    gtest:x64-linux@1.18.0
+  * vcpkg-cmake:x64-linux@2025-08-07
+  * vcpkg-cmake-config:x64-linux@2026-07-21
+Additional packages (*) will be modified to complete this operation.
+Restored 0 package(s) from /home/box/.cache/vcpkg/archives in 2.03 ms. Use --debug to see more details.
+Installing 1/4 vcpkg-cmake-config:x64-linux@2026-07-21...
+vcpkg-cmake-config:x64-linux@2026-07-21 package ABI: 3a90d460fd061bed41d6fa9dbfda365734747bc199915187c5a9b31b6d8616a3
+Building vcpkg-cmake-config:x64-linux@2026-07-21...
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/vcpkg-cmake-config_x64-linux/share/vcpkg-cmake-config/vcpkg_cmake_config_fixup.cmake
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/vcpkg-cmake-config_x64-linux/share/vcpkg-cmake-config/vcpkg-port-config.cmake
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/vcpkg-cmake-config_x64-linux/share/vcpkg-cmake-config/copyright
+-- Skipping post-build validation due to VCPKG_POLICY_EMPTY_PACKAGE
+Starting submission of vcpkg-cmake-config:x64-linux@2026-07-21 to 1 binary cache(s) in the background
+Elapsed time to handle vcpkg-cmake-config:x64-linux: 40.7 ms
+Installing 2/4 vcpkg-cmake:x64-linux@2025-08-07...
+vcpkg-cmake:x64-linux@2025-08-07 package ABI: 8952ff77d44baf02b429d20350f9a0088ef50447dd5b62b037baab57a08b29f1
+Building vcpkg-cmake:x64-linux@2025-08-07...
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/vcpkg-cmake_x64-linux/share/vcpkg-cmake/vcpkg_cmake_configure.cmake
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/vcpkg-cmake_x64-linux/share/vcpkg-cmake/vcpkg_cmake_build.cmake
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/vcpkg-cmake_x64-linux/share/vcpkg-cmake/vcpkg_cmake_install.cmake
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/vcpkg-cmake_x64-linux/share/vcpkg-cmake/vcpkg-port-config.cmake
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/vcpkg-cmake_x64-linux/share/vcpkg-cmake/copyright
+-- Performing post-build validation
+Starting submission of vcpkg-cmake:x64-linux@2025-08-07 to 1 binary cache(s) in the background
+Elapsed time to handle vcpkg-cmake:x64-linux: 37.5 ms
+Completed submission of vcpkg-cmake-config:x64-linux@2026-07-21 to 1 binary cache(s) in 19.5 ms
+Installing 3/4 benchmark:x64-linux@1.10.0...
+benchmark:x64-linux@1.10.0 package ABI: ce29fbb2b0c554c281d995ebe018aef8205d5df66e68efffd49fd92c19bdcd35
+Building benchmark:x64-linux@1.10.0...
+/tmp/gh-issue-solver-1794646566828/packaging/vcpkg-overlays/benchmark: info: installing overlay port from here
+Downloading https://github.com/google/benchmark/archive/v1.10.0.tar.gz -> google-benchmark-v1.10.0.tar.gz
+Successfully downloaded google-benchmark-v1.10.0.tar.gz
+-- Extracting source /tmp/gh-issue-solver-1794646566828/build/vcpkg/downloads/google-benchmark-v1.10.0.tar.gz
+-- Using source at /tmp/gh-issue-solver-1794646566828/build/vcpkg/buildtrees/benchmark/src/v1.10.0-7913079aff.clean
+-- Configuring x64-linux
+-- Building x64-linux-dbg
+-- Building x64-linux-rel
+-- Fixing pkgconfig file: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/benchmark_x64-linux/lib/pkgconfig/benchmark.pc
+-- Fixing pkgconfig file: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/benchmark_x64-linux/lib/pkgconfig/benchmark_main.pc
+-- Fixing pkgconfig file: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/benchmark_x64-linux/debug/lib/pkgconfig/benchmark.pc
+-- Fixing pkgconfig file: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/benchmark_x64-linux/debug/lib/pkgconfig/benchmark_main.pc
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/benchmark_x64-linux/share/benchmark/copyright
+Downloading https://github.com/NixOS/patchelf/releases/download/0.19.2/patchelf-0.19.2-x86_64.tar.gz -> patchelf-0.19.2-x86_64.tar.gz
+Successfully downloaded patchelf-0.19.2-x86_64.tar.gz
+-- Performing post-build validation
+Starting submission of benchmark:x64-linux@1.10.0 to 1 binary cache(s) in the background
+Elapsed time to handle benchmark:x64-linux: 1.5 min
+Completed submission of vcpkg-cmake:x64-linux@2025-08-07 to 1 binary cache(s) in 8.58 ms
+Installing 4/4 gtest:x64-linux@1.18.0...
+gtest:x64-linux@1.18.0 package ABI: 02aa3a0391d0868ad9f53f1821c60e0462e900d1bc7dce055d0714f956ae396a
+Building gtest:x64-linux@1.18.0...
+Downloading https://github.com/google/googletest/archive/v1.18.0.tar.gz -> google-googletest-v1.18.0.tar.gz
+Successfully downloaded google-googletest-v1.18.0.tar.gz
+-- Extracting source /tmp/gh-issue-solver-1794646566828/build/vcpkg/downloads/google-googletest-v1.18.0.tar.gz
+-- Applying patch 001-fix-UWP-death-test.patch
+-- Applying patch clang-tidy-no-lint.patch
+-- Applying patch fix-main-lib-path.patch
+-- Using source at /tmp/gh-issue-solver-1794646566828/build/vcpkg/buildtrees/gtest/src/v1.18.0-e6987f02b9.clean
+-- Configuring x64-linux
+-- Building x64-linux-dbg
+-- Building x64-linux-rel
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/src/gtest.cc
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/src/gtest_main.cc
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/src/gtest-all.cc
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/src/gtest-assertion-result.cc
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/src/gtest-death-test.cc
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/src/gtest-filepath.cc
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/src/gtest-internal-inl.h
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/src/gtest-matchers.cc
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/src/gtest-port.cc
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/src/gtest-printers.cc
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/src/gtest-test-part.cc
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/src/gtest-typed-test.cc
+-- Fixing pkgconfig file: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/lib/pkgconfig/gmock.pc
+-- Fixing pkgconfig file: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/lib/pkgconfig/gmock_main.pc
+-- Fixing pkgconfig file: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/lib/pkgconfig/gtest.pc
+-- Fixing pkgconfig file: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/lib/pkgconfig/gtest_main.pc
+-- Fixing pkgconfig file: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/debug/lib/pkgconfig/gmock.pc
+-- Fixing pkgconfig file: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/debug/lib/pkgconfig/gmock_main.pc
+-- Fixing pkgconfig file: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/debug/lib/pkgconfig/gtest.pc
+-- Fixing pkgconfig file: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/debug/lib/pkgconfig/gtest_main.pc
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/share/gtest/copyright
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/gtest_x64-linux/share/gtest/usage
+-- Performing post-build validation
+Starting submission of gtest:x64-linux@1.18.0 to 1 binary cache(s) in the background
+Elapsed time to handle gtest:x64-linux: 44 s
+Installed contents are licensed to you by owners. Microsoft is not responsible for, nor does it grant any licenses to, third-party packages.
+Packages installed in this vcpkg installation declare the following licenses:
+Apache-2.0
+BSD-3-Clause
+MIT
+benchmark provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(benchmark CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE benchmark::benchmark benchmark::benchmark_main)
+
+benchmark provides pkg-config modules:
+
+  # Google microbenchmark framework
+  benchmark
+
+  # Google microbenchmark framework (with main() function)
+  benchmark_main
+
+The package gtest is compatible with built-in CMake targets:
+
+    enable_testing()
+    
+    find_package(GTest CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE GTest::gtest GTest::gtest_main GTest::gmock GTest::gmock_main)
+    
+    add_test(AllTestsInMain main)
+
+Completed submission of benchmark:x64-linux@1.10.0 to 1 binary cache(s) in 696 ms
+Waiting for 1 remaining binary cache submissions...
+Completed submission of gtest:x64-linux@1.18.0 to 1 binary cache(s) in 456 ms (1/1)
+All requested installations completed successfully in: 2.2 min

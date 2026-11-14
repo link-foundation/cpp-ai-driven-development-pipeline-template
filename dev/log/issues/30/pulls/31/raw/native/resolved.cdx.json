@@ -1,0 +1,37 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "components": [
+    {
+      "type": "library",
+      "name": "benchmark",
+      "purl": "pkg:conan/benchmark@1.10.0"
+    },
+    {
+      "type": "library",
+      "name": "cmake",
+      "purl": "pkg:conan/cmake@4.4.4"
+    },
+    {
+      "type": "library",
+      "name": "cpm-cmake",
+      "purl": "pkg:conan/cpm-cmake@0.43.2"
+    },
+    {
+      "type": "library",
+      "name": "gtest",
+      "purl": "pkg:conan/gtest@1.18.0"
+    },
+    {
+      "type": "library",
+      "name": "vcpkg-cmake-config",
+      "purl": "pkg:conan/vcpkg-cmake-config@2026-07-21"
+    },
+    {
+      "type": "library",
+      "name": "vcpkg-cmake",
+      "purl": "pkg:conan/vcpkg-cmake@2025-08-07"
+    }
+  ]
+}

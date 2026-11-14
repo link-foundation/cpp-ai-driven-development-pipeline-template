@@ -42,8 +42,25 @@ def main():
         actions.setdefault(repo, {})
     releases = {}
     for repo, previous in actions.items():
+        # /releases/latest is a CodeQL bundle, not the action's vN release.
+        if repo == 'github/codeql-action':
+            release = next(item for item in api(f'repos/{repo}/releases?per_page=100')
+                           if re.fullmatch(r'v\d+\.\d+\.\d+', item['tag_name'])
+                           and not item['prerelease'] and not item['draft'])
+        elif repo == 'python/cpython':
+            # CPython publishes tags, including newer alpha/development tags.
+            tags = api(f'repos/{repo}/tags?per_page=100')
+            stable = [item for item in tags
+                      if re.fullmatch(r'v\d+\.\d+\.\d+', item['name'])]
+            tag_name = max(stable, key=lambda item: tuple(map(int, item['name'][1:].split('.'))))['name']
+            release = {'tag_name': tag_name, 'body': 'Newest stable CPython tag',
+                       'html_url': f'https://github.com/{repo}/releases/tag/{tag_name}'}
+        else:
+            release = None
         response = subprocess.run(['gh', 'api', f'repos/{repo}/releases/latest'], capture_output=True, text=True)
-        if response.returncode:
+        if release is not None:
+            pass
+        elif response.returncode:
             tags = api(f'repos/{repo}/tags?per_page=5')
             release = {'tag_name': tags[0]['name'], 'body': 'No GitHub release; newest tag',
                        'html_url': f'https://github.com/{repo}/tags'}

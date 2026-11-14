@@ -18,7 +18,7 @@ Queried 2026-11-14 UTC. `raw/pypi-direct.json` and `raw/github-releases.json` re
 | pip | not pinned | 26.3 |
 | pip-tools | not pinned | 7.6.2 |
 | uv | not pinned | 0.13.8 |
-| cmake | not pinned | 4.4.4 |
+| cmake (PyPI distribution, not selected for CI) | not pinned | 4.4.4 |
 | ninja | not pinned | 1.13.2 |
 
 ## GitHub Actions and native tools
@@ -49,14 +49,57 @@ Queried 2026-11-14 UTC. `raw/pypi-direct.json` and `raw/github-releases.json` re
 | python/cpython | 3.13 | [v3.15.2](https://www.python.org/downloads/release/python-3152/) |
 | Kitware/CMake | runner bundled; floor 3.21/3.25 | [v4.5.0](https://github.com/Kitware/CMake/releases/tag/v4.5.0) |
 | ninja-build/ninja | runner bundled | [v1.13.2](https://github.com/ninja-build/ninja/releases/tag/v1.13.2) |
-| dotnet/sdk | runner bundled | [v10.0.404](https://github.com/dotnet/sdk/releases/tag/v10.0.404) |
+| .NET SDK (official release index) | runner bundled | [11.0.100](https://dotnet.microsoft.com/en-us/download/dotnet/11.0) |
 | llvm/llvm-project | runner bundled compiler | [llvmorg-23.1.5](https://github.com/llvm/llvm-project/releases/tag/llvmorg-23.1.5) |
 
 ## Scope and decisions to verify
 
 - No runtime library dependencies; C++ development dependencies are GoogleTest and Google Benchmark. CPM is a consumer example dependency. vcpkg brings native build helpers through its baseline.
 - Existing case studies, archived workflow copies, and experiment diffs are historical evidence, not active pins. Preserve their accuracy.
-- No Dockerfile, npm, Rust, Terraform, Helm or git-submodule manifest exists. The only container dependency is the actionlint workflow image.
+- Initially no Dockerfile, npm, Rust, Terraform, Helm or git-submodule manifest existed; this PR adds npm manifests for the previously unpinned secret scanner. The only container dependency is the actionlint workflow image.
 - CMake PyPI currently distributes 4.4.4 while upstream has 4.5.0: investigate portable installation before choosing a documented exception.
 - Conan audit requires registration/token. Missing credentials must remain an explicit incomplete verdict; do not manufacture a clean scan.
 - All existing direct Python pins are already current. Missing transitive locks and older hooks/toolchains still need work.
+
+## Final resolution and distribution exceptions
+
+Every Python package (including transitives and hook dependencies) is compared in
+[PYTHON-LOCK.md](PYTHON-LOCK.md); all 60 resolved versions equal PyPI's latest.
+The npm scanner's full resolution is compared in [NPM-LOCK.md](NPM-LOCK.md).
+The package-manager CLI is a separate distribution, with its own recorded audit.
+
+| Dependency / distribution | Before | Selected | Latest upstream | Reason if different |
+| --- | --- | --- | --- | --- |
+| Node.js | runner bundled | 26.13.1 | 26.13.1 | 27 alpha is excluded; official download checksum verified |
+| npm CLI | runner bundled | 12.2.2 | 12.2.2 | Two unresolved public advisory families in its upstream bundle; see ANALYSIS.md |
+| secretlint / recommended rules | unpinned npx | 13.1.0 | 13.1.0 | Exact direct pins and npm lock |
+| actions/setup-node | absent | 7.1.0 | 7.1.0 | Commit 949feb2413d6458794dcd2491c4babbbce0c15c1 |
+| zizmorcore/zizmor-action | absent (pipx workaround) | 0.8.1 | 0.8.1 | Commit 45d7276c9ca790aabd705e31ca99c6185c3e76dd; now supports zizmor 1.32.0 |
+| jwlawson/actions-setup-cmake | absent | 2.2.0 | 2.2.0 | Commit 0d6a7d60b009d01c9e7523be22153ff8f19460d3 |
+| CMake CI binary | runner bundled | 4.5.0 | 4.5.0 | Upstream distribution avoids PyPI lag |
+| Conan Center CMake build requirement | implicitly resolved | 4.4.4 | 4.5.0 | Registry has not published 4.5.0; upstream PR 31443; audit retains the real version |
+| .NET SDK / NuGet CLI | runner bundled | 11.0.100 | 11.0.100 | Official release index, rather than stale SDK GitHub release |
+| vcpkg registry | 07f4812200df3d3c931c0c8a6081d3b21fe2bf9f | 4702e381dbbd9b54d3f7e1eb565cd8981c1814cd | master at query time | Newer than the latest monthly tag; checkout and tool bootstrap use this same baseline |
+| vcpkg tool | runner bundled | 2026-10-29 | 2026-10-29 | Baseline's metadata pins release and platform SHA512 hashes |
+| vcpkg Benchmark | 1.9.5 | 1.10.0 | 1.10.0 | Overlay until microsoft/vcpkg#55056 is released |
+| vcpkg GoogleTest | 1.18.0 | 1.18.0 | 1.18.0 | No change needed |
+| vcpkg-cmake | baseline resolved | 2025-08-07 | 2025-08-07 | Latest registry port; date is its version, not an unmaintained compiler |
+| vcpkg-cmake-config | baseline resolved | 2026-07-21 | 2026-07-21 | Latest registry port |
+| Cppcheck native binary | 2.22.0 via wheel 1.5.3 | 2.22.0 via wheel 1.5.3 | 2.22.0 | Old requirements comment incorrectly said 2.17.1; actual --version confirms 2.22.0 |
+| clang-tidy wheel | 23.1.4 | 23.1.4 | LLVM 23.1.5 | Current PyPI wheel lags the upstream native patch release; explicit distribution exception |
+| Ubuntu hosted image | 24.04 | 26.04 | 26.04 GA | Current maintained GA image; no preview label |
+| macOS hosted image | 15 | 26 | 26 GA | Current Apple toolchain; Xcode 27 preview excluded |
+| Windows hosted image | 2025 | 2025 | 2025 GA | Latest stable hosted Windows label, now includes VS 2026 |
+| GNU / LLVM compilers on Ubuntu | previous runner bundle | GA image's GCC 15.2 / Clang 22.1.2 | GCC 16.2 / LLVM 23.1.5 | Runner distribution lag; no claim that the image ships latest upstream compilers |
+| AppleClang / MSVC | previous runner bundle | current macos-26 / windows-2025 bundle | platform distribution | Vendor toolchain versions are not interchangeable with upstream LLVM numbers |
+
+Hosted image component snapshots are retained in `raw/*-software.txt`. System
+shells, curl, git, pkg-config, tar and other OS components follow those current
+GA distributions; we do not rebuild or mix operating-system packages manually.
+Action runtimes and their JavaScript dependencies follow the immutable upstream
+action distributions. Their pins are all the latest stable action releases.
+
+The Conan CMake and clang-tidy distribution lag, compiler distribution lag,
+and npm CLI advisories are explicit remaining limits of a literal
+"every upstream component current and no advisory" acceptance criterion.
+They are not hidden by the clean Python/application audits.

@@ -1,0 +1,125 @@
++ cmake --preset install
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.4s)
+-- Generating done (0.0s)
+CMake Warning (unused-cli):
+  Manually-specified variables were not used by the project:
+
+    CMAKE_EXPORT_COMPILE_COMMANDS
+
+
+-- Build files have been written to: /tmp/gh-issue-solver-1794646566828/build/install
++ cmake --build --preset install
++ cmake --install /tmp/gh-issue-solver-1794646566828/build/install --prefix /tmp/gh-issue-solver-1794646566828/build/consumers/prefix --config Release
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/consumers/prefix/include
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/consumers/prefix/include/my_package
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/consumers/prefix/include/my_package/my_package.hpp
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/consumers/prefix/share/cmake/my_package/my_packageTargets.cmake
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/consumers/prefix/share/cmake/my_package/my_packageConfig.cmake
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/consumers/prefix/share/cmake/my_package/my_packageConfigVersion.cmake
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/consumers/prefix/share/pkgconfig/my_package.pc
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/consumers/prefix/share/licenses/my_package/LICENSE
++ cmake -S /tmp/gh-issue-solver-1794646566828/examples/consumers/add_subdirectory -B /tmp/gh-issue-solver-1794646566828/build/consumers/add_subdirectory -DCMAKE_BUILD_TYPE=Release -DMY_PACKAGE_DIR=/tmp/gh-issue-solver-1794646566828
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.4s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/gh-issue-solver-1794646566828/build/consumers/add_subdirectory
++ cmake --build /tmp/gh-issue-solver-1794646566828/build/consumers/add_subdirectory --config Release
+[ 50%] Building CXX object CMakeFiles/consumer.dir/tmp/gh-issue-solver-1794646566828/examples/consumers/main.cpp.o
+[100%] Linking CXX executable consumer
+[100%] Built target consumer
++ ctest --test-dir /tmp/gh-issue-solver-1794646566828/build/consumers/add_subdirectory -C Release --output-on-failure --no-tests=error
+Test project /tmp/gh-issue-solver-1794646566828/build/consumers/add_subdirectory
+    Start 1: consumer
+1/1 Test #1: consumer .........................   Passed    0.00 sec
+
+100% tests passed out of 1
+
+Total Test time (real) =   0.01 sec
++ cmake -S /tmp/gh-issue-solver-1794646566828/examples/consumers/fetch_content -B /tmp/gh-issue-solver-1794646566828/build/consumers/fetch_content -DCMAKE_BUILD_TYPE=Release -DFETCHCONTENT_SOURCE_DIR_MY_PACKAGE=/tmp/gh-issue-solver-1794646566828
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.4s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/gh-issue-solver-1794646566828/build/consumers/fetch_content
++ cmake --build /tmp/gh-issue-solver-1794646566828/build/consumers/fetch_content --config Release
+[ 50%] Building CXX object CMakeFiles/consumer.dir/tmp/gh-issue-solver-1794646566828/examples/consumers/main.cpp.o
+[100%] Linking CXX executable consumer
+[100%] Built target consumer
++ ctest --test-dir /tmp/gh-issue-solver-1794646566828/build/consumers/fetch_content -C Release --output-on-failure --no-tests=error
+Test project /tmp/gh-issue-solver-1794646566828/build/consumers/fetch_content
+    Start 1: consumer
+1/1 Test #1: consumer .........................   Passed    0.00 sec
+
+100% tests passed out of 1
+
+Total Test time (real) =   0.01 sec
++ cmake -S /tmp/gh-issue-solver-1794646566828/examples/consumers/cpm -B /tmp/gh-issue-solver-1794646566828/build/consumers/cpm -DCMAKE_BUILD_TYPE=Release -DCPM_my_package_SOURCE=/tmp/gh-issue-solver-1794646566828
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Warning at /tmp/gh-issue-solver-1794646566828/build/consumers/cpm/cmake/CPM_0.43.2.cmake:784 (message):
+  CPM: 'my_package' version overridden by CMake variable
+  CPM_my_package_SOURCE='/tmp/gh-issue-solver-1794646566828'
+Call Stack (most recent call first):
+  CMakeLists.txt:18 (CPMAddPackage)
+
+
+-- CPM: Adding package my_package@ (/tmp/gh-issue-solver-1794646566828)
+-- Configuring done (0.9s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/gh-issue-solver-1794646566828/build/consumers/cpm
++ cmake --build /tmp/gh-issue-solver-1794646566828/build/consumers/cpm --config Release
+[ 50%] Building CXX object CMakeFiles/consumer.dir/tmp/gh-issue-solver-1794646566828/examples/consumers/main.cpp.o
+[100%] Linking CXX executable consumer
+[100%] Built target consumer
++ ctest --test-dir /tmp/gh-issue-solver-1794646566828/build/consumers/cpm -C Release --output-on-failure --no-tests=error
+Test project /tmp/gh-issue-solver-1794646566828/build/consumers/cpm
+    Start 1: consumer
+1/1 Test #1: consumer .........................   Passed    0.00 sec
+
+100% tests passed out of 1
+
+Total Test time (real) =   0.00 sec
++ cmake -S /tmp/gh-issue-solver-1794646566828/examples/consumers/find_package -B /tmp/gh-issue-solver-1794646566828/build/consumers/find_package -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=/tmp/gh-issue-solver-1794646566828/build/consumers/prefix
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/gh-issue-solver-1794646566828/build/consumers/find_package
++ cmake --build /tmp/gh-issue-solver-1794646566828/build/consumers/find_package --config Release
+[ 50%] Building CXX object CMakeFiles/consumer.dir/tmp/gh-issue-solver-1794646566828/examples/consumers/main.cpp.o
+[100%] Linking CXX executable consumer
+[100%] Built target consumer
++ ctest --test-dir /tmp/gh-issue-solver-1794646566828/build/consumers/find_package -C Release --output-on-failure --no-tests=error
+Test project /tmp/gh-issue-solver-1794646566828/build/consumers/find_package
+    Start 1: consumer
+1/1 Test #1: consumer .........................   Passed    0.00 sec
+
+100% tests passed out of 1
+
+Total Test time (real) =   0.01 sec
++ bash /tmp/gh-issue-solver-1794646566828/examples/consumers/pkg_config/build.sh /tmp/gh-issue-solver-1794646566828/build/consumers/pkg_config
+pkg-config consumer: OK
+Consumer examples passed: add_subdirectory, fetch_content, cpm, find_package, pkg_config

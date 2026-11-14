@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.25...4.5)
 
 # The version below is the single source of truth for every distribution
 # channel (CMake package config, pkg-config, Conan, vcpkg, NuGet, GitHub

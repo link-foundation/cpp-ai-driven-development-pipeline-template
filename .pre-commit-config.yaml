@@ -1,21 +1,31 @@
 # pre-commit install  -- runs the fast subset of the CI lint job on every commit.
 # The full lint (clang-tidy, cppcheck) needs a build tree:
 #   cmake --preset lint && python3 scripts/lint_cpp.py
+# Preserve collected upstream evidence byte for byte.
+exclude: ^(dev/log/|docs/case-studies/|\.gitkeep$)
+minimum_pre_commit_version: '4.7.0'
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
+        additional_dependencies: [ruamel.yaml==0.19.1]
       - id: end-of-file-fixer
+        additional_dependencies: [ruamel.yaml==0.19.1]
       - id: check-yaml
+        additional_dependencies: [ruamel.yaml==0.19.1]
       - id: check-json
+        additional_dependencies: [ruamel.yaml==0.19.1]
       - id: check-added-large-files
+        additional_dependencies: [ruamel.yaml==0.19.1]
       - id: check-merge-conflict
+        additional_dependencies: [ruamel.yaml==0.19.1]
       - id: mixed-line-ending
+        additional_dependencies: [ruamel.yaml==0.19.1]
         args: [--fix=lf]
 
   - repo: https://github.com/pre-commit/mirrors-clang-format
-    rev: v20.1.8
+    rev: v23.1.5
     hooks:
       - id: clang-format
         types_or: [c, c++]
@@ -25,12 +35,12 @@ repos:
       - id: check-file-size
         name: check file size
         entry: python3 scripts/check_file_size.py
-        language: system
+        language: unsupported
         pass_filenames: false
 
       - id: script-tests
         name: release script tests
         entry: python3 -m pytest -q scripts/tests
-        language: system
+        language: unsupported
         files: ^scripts/
         pass_filenames: false

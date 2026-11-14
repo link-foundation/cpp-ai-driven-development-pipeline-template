@@ -1,0 +1,4 @@
+# Audited along with requirements-ci.txt; also supplies the Workflows zizmor pin.
+pip-audit==2.10.1
+# Also audit the Python-distributed workflow linter invoked by zizmor-action.
+zizmor==1.32.0

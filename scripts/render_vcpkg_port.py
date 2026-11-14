@@ -33,11 +33,8 @@ TEMPLATES = {"portfile.cmake.in": "portfile.cmake", "vcpkg.json.in": "vcpkg.json
 
 
 def sha512_of(path: Path) -> str:
-    digest = hashlib.sha512()
     with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1 << 20), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+        return hashlib.file_digest(handle, "sha512").hexdigest()
 
 
 def cmake_quote(value: str) -> str:

@@ -1,0 +1,100 @@
+{
+  "items": [
+    {
+      "html_url": "https://github.com/zizmorcore/zizmor-action/pull/175",
+      "number": 175,
+      "title": "Sync zizmor versions"
+    },
+    {
+      "html_url": "https://github.com/zizmorcore/zizmor-action/issues/181",
+      "number": 181,
+      "title": "Bug: Pip not installed"
+    },
+    {
+      "html_url": "https://github.com/zizmorcore/zizmor-action/pull/194",
+      "number": 194,
+      "title": "chore(deps): bump astral-sh/setup-uv from 10.3.2 to 10.3.3 in the github-actions group"
+    },
+    {
+      "html_url": "https://github.com/zizmorcore/zizmor-action/pull/169",
+      "number": 169,
+      "title": "Bootstrap zizmor without Docker"
+    },
+    {
+      "html_url": "https://github.com/zizmorcore/zizmor-action/pull/188",
+      "number": 188,
+      "title": "chore(deps): bump github/codeql-action/upload-sarif from 4.38.3 to 4.39.0 in the github-actions group"
+    },
+    {
+      "html_url": "https://github.com/zizmorcore/zizmor-action/pull/189",
+      "number": 189,
+      "title": "chore(deps): bump the github-actions group across 1 directory with 2 updates"
+    },
+    {
+      "html_url": "https://github.com/zizmorcore/zizmor-action/pull/173",
+      "number": 173,
+      "title": "chore(deps): bump the github-actions group with 2 updates"
+    },
+    {
+      "html_url": "https://github.com/zizmorcore/zizmor-action/pull/170",
+      "number": 170,
+      "title": "chore(deps): bump the github-actions group with 2 updates"
+    },
+    {
+      "html_url": "https://github.com/zizmorcore/zizmor-action/pull/180",
+      "number": 180,
+      "title": "chore(deps): bump the github-actions group with 2 updates"
+    },
+    {
+      "html_url": "https://github.com/zizmorcore/zizmor-action/pull/165",
+      "number": 165,
+      "title": "chore(deps): bump the github-actions group with 2 updates"
+    },
+    {
+      "html_url": "https://github.com/zizmorcore/zizmor-action/pull/156",
+      "number": 156,
+      "title": "chore(deps): bump github/codeql-action/upload-sarif from 4.37.3 to 4.37.5 in the github-actions group"
+    },
+    {
+      "html_url": "https://github.com/zizmorcore/zizmor-action/pull/161",
+      "number": 161,
+      "title": "chore(deps): bump github/codeql-action/upload-sarif from 4.37.6 to 4.37.7 in the github-actions group"
+    },
+    {
+      "html_url": "https://github.com/zizmorcore/zizmor-action/pull/160",
+      "number": 160,
+      "title": "chore(deps): bump github/codeql-action/upload-sarif from 4.37.5 to 4.37.6 in the github-actions group"
+    },
+    {
+      "html_url": "https://github.com/zizmorcore/zizmor-action/pull/164",
+      "number": 164,
+      "title": "chore(deps): bump the github-actions group with 2 updates"
+    },
+    {
+      "html_url": "https://github.com/zizmorcore/zizmor-action/issues/136",
+      "number": 136,
+      "title": "Feature: Allow using custom docker registries for the image"
+    },
+    {
+      "html_url": "https://github.com/zizmorcore/zizmor-action/issues/119",
+      "number": 119,
+      "title": "zizmor-action reports completely different errors to the CLI version"
+    },
+    {
+      "html_url": "https://github.com/zizmorcore/zizmor-action/pull/151",
+      "number": 151,
+      "title": "chore(deps): bump github/codeql-action/upload-sarif from 4.37.1 to 4.37.3 in the github-actions group"
+    },
+    {
+      "html_url": "https://github.com/zizmorcore/zizmor-action/issues/23",
+      "number": 23,
+      "title": "Issues with GHE - `github/codeql-action` is a 404"
+    },
+    {
+      "html_url": "https://github.com/zizmorcore/zizmor-action/pull/17",
+      "number": 17,
+      "title": "chore(deps): bump the github-actions group with 2 updates"
+    }
+  ],
+  "total_count": 19
+}
