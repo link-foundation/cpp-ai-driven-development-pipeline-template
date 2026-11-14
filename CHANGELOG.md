@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Unreleased changes are kept as fragments in [changelog.d/](changelog.d/) and
 collected here by the release pipeline.
 
+## [0.2.5] - 2026-11-14
+
+### Fixed
+- Exempt Dependabot-authored PRs from changelog fragments and read both zizmor audit versions from the audited requirements file.
+
+### Added
+- A daily, read-only Dependabot health check that reports PRs older than a configurable 14-day review budget.
+
 ## [0.2.4] - 2026-11-13
 
 ### Fixed
