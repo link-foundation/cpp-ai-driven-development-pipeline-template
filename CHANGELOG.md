@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Unreleased changes are kept as fragments in [changelog.d/](changelog.d/) and
 collected here by the release pipeline.
 
+## [0.2.6] - 2026-11-14
+
+### Changed
+- Update Python, Node.js, npm, CMake, Doxygen, CI runner images, Google Benchmark, CPM.cmake,
+  the vcpkg baseline, pre-commit hooks and GitHub Actions to current releases.
+- Lock Python and npm tool dependencies across platforms and enable Dependabot updates
+  for npm, pre-commit and vcpkg.
+
 ## [0.2.5] - 2026-11-14
 
 ### Fixed
