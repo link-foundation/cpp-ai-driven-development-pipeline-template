@@ -45,3 +45,41 @@ def test_vcpkg_overlay_matches_fetchcontent_benchmark():
     assert manifest["version-semver"] == version
     config = json.loads((ROOT / "vcpkg-configuration.json").read_text())
     assert "packaging/vcpkg-overlays" in config["overlay-ports"]
+
+
+def test_benchmark_overlay_forwards_feature_options(tmp_path):
+    """Exercise the port/configure boundary without downloading or compiling C++."""
+    import shutil
+    import subprocess
+
+    import pytest
+
+    cmake = shutil.which('cmake')
+    if cmake is None:
+        pytest.skip('CMake is required to exercise the vcpkg port')
+    port = ROOT / 'packaging/vcpkg-overlays/benchmark/portfile.cmake'
+    output = tmp_path / 'options.txt'
+    probe = tmp_path / 'probe.cmake'
+    # Stub the upstream download/feature APIs and capture the configure call.
+    # return() in the configure macro stops the port before build/install steps.
+    probe.write_text('''
+function(vcpkg_from_github)
+endfunction()
+function(vcpkg_check_features)
+    set(FEATURE_OPTIONS "-DBENCHMARK_INSTALL_TOOLS=${TOOLS}" PARENT_SCOPE)
+endfunction()
+macro(vcpkg_cmake_configure)
+    file(WRITE "${OUTPUT}" "${ARGV}")
+    return()
+endmacro()
+include("${PORT}")
+''')
+    for features, enabled in (('core', 'OFF'), ('core;tools', 'ON')):
+        subprocess.run([
+            cmake, f'-DFEATURES={features}', f'-DTOOLS={enabled}',
+            f'-DOUTPUT={output}', f'-DPORT={port}', '-P', str(probe),
+        ], check=True, capture_output=True, text=True)
+        options = output.read_text().split(';')
+        assert f'-DBENCHMARK_INSTALL_TOOLS={enabled}' in options
+        assert 'core' not in options
+        assert 'tools' not in options

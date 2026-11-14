@@ -34,7 +34,7 @@ def main():
              "| Dependency | Before | Locked | Latest stable npm dist-tag |",
              "| --- | --- | --- | --- |"]
     for row in records:
-        lines.append(f"| [{row['name']}](https://www.npmjs.com/package/{row['name']}) | "
+        lines.append(f"| [{row['name']}](https://registry.npmjs.org/{row['name']}) | "
                      f"unlocked | {row['resolved']} | {row['latest']} |")
     (OUT / "NPM-LOCK.md").write_text("\n".join(lines) + "\n")
     mismatches = [row for row in records if row["resolved"] != row["latest"]]

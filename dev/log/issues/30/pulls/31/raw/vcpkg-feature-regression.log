@@ -1,0 +1,2 @@
+PASS: regression detects missing CMake feature options in copied port
+PASS: updated port forwards ON/OFF options and omits feature names

@@ -1,0 +1,76 @@
+Computing installation plan...
+A suitable version of cmake was not found (required v4.4.4).
+Downloading https://github.com/Kitware/CMake/releases/download/v4.4.4/cmake-4.4.4-linux-x86_64.tar.gz -> cmake-4.4.4-linux-x86_64.tar.gz
+Successfully downloaded cmake-4.4.4-linux-x86_64.tar.gz
+Extracting cmake...
+The following packages will be built and installed:
+    benchmark[core,tools]:x64-linux@1.10.0 -- /tmp/gh-issue-solver-1794646566828/packaging/vcpkg-overlays/benchmark
+  * vcpkg-cmake:x64-linux@2025-08-07
+  * vcpkg-cmake-config:x64-linux@2026-07-21
+Additional packages (*) will be modified to complete this operation.
+Detecting compiler hash for triplet x64-linux...
+Compiler found: /usr/bin/c++
+Restored 0 package(s) from /home/box/.cache/vcpkg/archives in 145 us. Use --debug to see more details.
+Installing 1/3 vcpkg-cmake:x64-linux@2025-08-07...
+vcpkg-cmake:x64-linux@2025-08-07 package ABI: faaeff1d60fac1090e8504a9b6d93e0ebf4531f5f0f32e70e2cc27e59e5c177a
+Building vcpkg-cmake:x64-linux@2025-08-07...
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/vcpkg-cmake_x64-linux/share/vcpkg-cmake/vcpkg_cmake_configure.cmake
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/vcpkg-cmake_x64-linux/share/vcpkg-cmake/vcpkg_cmake_build.cmake
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/vcpkg-cmake_x64-linux/share/vcpkg-cmake/vcpkg_cmake_install.cmake
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/vcpkg-cmake_x64-linux/share/vcpkg-cmake/vcpkg-port-config.cmake
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/vcpkg-cmake_x64-linux/share/vcpkg-cmake/copyright
+-- Performing post-build validation
+Starting submission of vcpkg-cmake:x64-linux@2025-08-07 to 1 binary cache(s) in the background
+Elapsed time to handle vcpkg-cmake:x64-linux: 47.1 ms
+Installing 2/3 vcpkg-cmake-config:x64-linux@2026-07-21...
+vcpkg-cmake-config:x64-linux@2026-07-21 package ABI: 4af1abc5d30cf972154457dfe1dde58f6d068bf22b5597d6235ea2b80df4d1c8
+Building vcpkg-cmake-config:x64-linux@2026-07-21...
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/vcpkg-cmake-config_x64-linux/share/vcpkg-cmake-config/vcpkg_cmake_config_fixup.cmake
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/vcpkg-cmake-config_x64-linux/share/vcpkg-cmake-config/vcpkg-port-config.cmake
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/vcpkg-cmake-config_x64-linux/share/vcpkg-cmake-config/copyright
+-- Skipping post-build validation due to VCPKG_POLICY_EMPTY_PACKAGE
+Starting submission of vcpkg-cmake-config:x64-linux@2026-07-21 to 1 binary cache(s) in the background
+Elapsed time to handle vcpkg-cmake-config:x64-linux: 40.9 ms
+Completed submission of vcpkg-cmake:x64-linux@2025-08-07 to 1 binary cache(s) in 11.7 ms
+Installing 3/3 benchmark[core,tools]:x64-linux@1.10.0...
+benchmark[core,tools]:x64-linux@1.10.0 package ABI: a57a6c583a944938e73d2b45e50786f75b50ff9336828358a21889b54db77cc6
+Building benchmark[core,tools]:x64-linux@1.10.0...
+/tmp/gh-issue-solver-1794646566828/packaging/vcpkg-overlays/benchmark: info: installing overlay port from here
+-- Using cached google-benchmark-v1.10.0.tar.gz
+-- Cleaning sources at /tmp/gh-issue-solver-1794646566828/build/vcpkg/buildtrees/benchmark/src/v1.10.0-7913079aff.clean. Use --editable to skip cleaning for the packages you specify.
+-- Extracting source /tmp/gh-issue-solver-1794646566828/build/vcpkg/downloads/google-benchmark-v1.10.0.tar.gz
+-- Using source at /tmp/gh-issue-solver-1794646566828/build/vcpkg/buildtrees/benchmark/src/v1.10.0-7913079aff.clean
+-- Configuring x64-linux
+-- Building x64-linux-dbg
+-- Building x64-linux-rel
+-- Fixing pkgconfig file: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/benchmark_x64-linux/lib/pkgconfig/benchmark.pc
+-- Fixing pkgconfig file: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/benchmark_x64-linux/lib/pkgconfig/benchmark_main.pc
+-- Fixing pkgconfig file: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/benchmark_x64-linux/debug/lib/pkgconfig/benchmark.pc
+-- Fixing pkgconfig file: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/benchmark_x64-linux/debug/lib/pkgconfig/benchmark_main.pc
+-- Installing: /tmp/gh-issue-solver-1794646566828/build/vcpkg/packages/benchmark_x64-linux/share/benchmark/copyright
+-- Performing post-build validation
+Starting submission of benchmark[core,tools]:x64-linux@1.10.0 to 1 binary cache(s) in the background
+Elapsed time to handle benchmark:x64-linux: 1.4 min
+Total install time: 1.4 min
+Installed contents are licensed to you by owners. Microsoft is not responsible for, nor does it grant any licenses to, third-party packages.
+Packages installed in this vcpkg installation declare the following licenses:
+Apache-2.0
+MIT
+benchmark provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(benchmark CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE benchmark::benchmark benchmark::benchmark_main)
+
+benchmark provides pkg-config modules:
+
+  # Google microbenchmark framework
+  benchmark
+
+  # Google microbenchmark framework (with main() function)
+  benchmark_main
+
+Completed submission of vcpkg-cmake-config:x64-linux@2026-07-21 to 1 binary cache(s) in 8.33 ms
+Waiting for 1 remaining binary cache submissions...
+Completed submission of benchmark[core,tools]:x64-linux@1.10.0 to 1 binary cache(s) in 656 ms (1/1)
+All requested installations completed successfully in: 1.4 min

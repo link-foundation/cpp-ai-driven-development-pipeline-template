@@ -17,7 +17,7 @@ vcpkg_cmake_configure(
         -DBENCHMARK_ENABLE_TESTING=OFF
         -DBENCHMARK_INSTALL_DOCS=OFF
         -DBENCHMARK_ENABLE_WERROR=OFF
-        ${FEATURES}
+        ${FEATURE_OPTIONS}
 )
 
 vcpkg_cmake_install()
@@ -33,7 +33,7 @@ if(BENCHMARK_INSTALL_TOOLS)
       cmake_path(GET script FILENAME filename)
       file(RENAME "${script}" "${CURRENT_PACKAGES_DIR}/tools/${PORT}/${filename}")
     endforeach()
-	file(RENAME "${CURRENT_PACKAGES_DIR}/share/googlebenchmark/tools/gbench" "${CURRENT_PACKAGES_DIR}/tools/${PORT}/gbench")
+    file(RENAME "${CURRENT_PACKAGES_DIR}/share/googlebenchmark/tools/gbench" "${CURRENT_PACKAGES_DIR}/tools/${PORT}/gbench")
     file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/share/googlebenchmark")
 endif()
 

@@ -1,0 +1,1209 @@
+Check Links	Set up job	﻿2026-11-14T09:39:15.2929522Z Current runner version: '2.338.2'
+Check Links	Set up job	2026-11-14T09:39:15.2951102Z ##[group]Runner Image Provisioner
+Check Links	Set up job	2026-11-14T09:39:15.2951844Z Hosted Compute Agent
+Check Links	Set up job	2026-11-14T09:39:15.2952314Z Version: 20261103.629
+Check Links	Set up job	2026-11-14T09:39:15.2952907Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+Check Links	Set up job	2026-11-14T09:39:15.2953505Z Build Date: 2026-11-03T17:26:59Z
+Check Links	Set up job	2026-11-14T09:39:15.2954115Z Worker ID: {0ba6a6ba-db68-4937-9cb4-b6db9193ebf5}
+Check Links	Set up job	2026-11-14T09:39:15.2954770Z Region: westus2
+Check Links	Set up job	2026-11-14T09:39:15.2955216Z Cloud: Azure
+Check Links	Set up job	2026-11-14T09:39:15.2955712Z ##[endgroup]
+Check Links	Set up job	2026-11-14T09:39:15.2956787Z ##[group]Operating System
+Check Links	Set up job	2026-11-14T09:39:15.2957331Z Ubuntu
+Check Links	Set up job	2026-11-14T09:39:15.2957806Z 26.04.1
+Check Links	Set up job	2026-11-14T09:39:15.2958234Z LTS
+Check Links	Set up job	2026-11-14T09:39:15.2958884Z ##[endgroup]
+Check Links	Set up job	2026-11-14T09:39:15.2959342Z ##[group]Runner Image
+Check Links	Set up job	2026-11-14T09:39:15.2959902Z Image: ubuntu-26.04
+Check Links	Set up job	2026-11-14T09:39:15.2960416Z Version: 20261111.196.1
+Check Links	Set up job	2026-11-14T09:39:15.2961275Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261111.196/images/ubuntu/Ubuntu2604-Readme.md
+Check Links	Set up job	2026-11-14T09:39:15.2962814Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261111.196
+Check Links	Set up job	2026-11-14T09:39:15.2963663Z ##[endgroup]
+Check Links	Set up job	2026-11-14T09:39:15.2964599Z ##[group]GITHUB_TOKEN Permissions
+Check Links	Set up job	2026-11-14T09:39:15.2966222Z Contents: read
+Check Links	Set up job	2026-11-14T09:39:15.2966732Z Metadata: read
+Check Links	Set up job	2026-11-14T09:39:15.2967192Z ##[endgroup]
+Check Links	Set up job	2026-11-14T09:39:15.2969167Z Secret source: Actions
+Check Links	Set up job	2026-11-14T09:39:15.2969954Z Cache mode: write
+Check Links	Set up job	2026-11-14T09:39:15.2970551Z Prepare workflow directory
+Check Links	Set up job	2026-11-14T09:39:15.3276531Z Prepare all required actions
+Check Links	Set up job	2026-11-14T09:39:15.3314854Z Getting action download info
+Check Links	Set up job	2026-11-14T09:39:15.6598973Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Check Links	Set up job	2026-11-14T09:39:15.8810452Z Download action repository 'lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8' (SHA:e7477775783ea5526144ba13e8db5eec57747ce8)
+Check Links	Set up job	2026-11-14T09:39:16.1307700Z Complete job name: Check Links
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-11-14T09:39:16.1992400Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.1993233Z with:
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.1993613Z   persist-credentials: false
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.1994198Z   repository: link-foundation/cpp-ai-driven-development-pipeline-template
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.1997638Z   token: ***
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.1998005Z   ssh-strict: true
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.1998533Z   ssh-user: git
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.1998891Z   clean: true
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.1999270Z   sparse-checkout-cone-mode: true
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.1999701Z   fetch-depth: 1
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.2000064Z   fetch-tags: false
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.2000441Z   show-progress: true
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.2000807Z   lfs: false
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.2001148Z   submodules: false
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.2001519Z   set-safe-directory: true
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.2001931Z   allow-unsafe-pr-checkout: false
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.2002508Z env:
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.2002847Z   GIT_CONFIG_COUNT: 1
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.2003263Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.2003755Z   GIT_CONFIG_VALUE_0: main
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.2004142Z ##[endgroup]
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.4702057Z Syncing repository: link-foundation/cpp-ai-driven-development-pipeline-template
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.4703948Z ##[group]Getting Git version info
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.4704888Z Working directory is '/home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template'
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.4735801Z [command]/usr/bin/git version
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.4778694Z git version 2.56.1
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.4794768Z ##[endgroup]
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.4804053Z Temporarily overriding HOME='/home/runner/work/_temp/a5886a0a-5215-48c5-8fe7-2802868320b2' before making global git config changes
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.4806253Z Adding repository directory to the temporary git global config as a safe directory
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.4809713Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.5219837Z Deleting the contents of '/home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template'
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.5222070Z ##[group]Determining repository object format
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.5223667Z ##[endgroup]
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.5224542Z ##[group]Initializing the repository
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.5228073Z [command]/usr/bin/git init /home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.5323607Z Initialized empty Git repository in /home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template/.git/
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.5334747Z [command]/usr/bin/git remote add origin https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.5521306Z ##[endgroup]
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.5521992Z ##[group]Disabling automatic garbage collection
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.5524109Z [command]/usr/bin/git config --local gc.auto 0
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.5553648Z ##[endgroup]
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.5554572Z ##[group]Setting up auth
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.5555130Z Removing SSH command configuration
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.5558290Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.5586020Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.5926068Z Removing HTTP extra header
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.5931185Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.5962266Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.6196752Z Removing includeIf entries pointing to credentials config files
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.6201438Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.6230783Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.6464831Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-0809bb85-b2b1-408b-9012-9603c0b198e0.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.6497100Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template/.git.path /home/runner/work/_temp/git-credentials-0809bb85-b2b1-408b-9012-9603c0b198e0.config
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.6524316Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-0809bb85-b2b1-408b-9012-9603c0b198e0.config
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.6553820Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-0809bb85-b2b1-408b-9012-9603c0b198e0.config
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.6581449Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-0809bb85-b2b1-408b-9012-9603c0b198e0.config
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.6606870Z ##[endgroup]
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.6607496Z ##[group]Fetching the repository
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:16.6612030Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +fde756d04386a7ed95e9f517d8c1069a6535a3b3:refs/remotes/pull/31/merge
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0541695Z From https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0543811Z  * [new ref]         fde756d04386a7ed95e9f517d8c1069a6535a3b3 -> pull/31/merge
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0547269Z ##[endgroup]
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0548321Z ##[group]Determining the checkout info
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0549965Z ##[endgroup]
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0550675Z [command]/usr/bin/git sparse-checkout disable
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0597038Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0625568Z ##[group]Checking out the ref
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0628471Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/31/merge
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0966035Z Note: switching to 'refs/remotes/pull/31/merge'.
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0966740Z 
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0967318Z You are in 'detached HEAD' state. You can look around, make experimental
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0968885Z changes and commit them, and you can discard any commits you make in this
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0970196Z state without impacting any branches by switching back to a branch.
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0971100Z 
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0971888Z If you want to create a new branch to retain commits you create, you may
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0973745Z do so (now or later) by using -c with the switch command. Example:
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0974814Z 
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0975349Z   git switch -c <new-branch-name>
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0976264Z 
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0976891Z Or undo this operation with:
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0977806Z 
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0978588Z   git switch -
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0979371Z 
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0980402Z Turn off this advice by setting config variable advice.detachedHead to false
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0981883Z 
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0983450Z HEAD is now at fde756d Merge 2d96810e569d89e8411fd636203909da63fdf8dd into 256589058fd5cdc1659391be4011b506f62d657b
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.0988833Z ##[endgroup]
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1019268Z [command]/usr/bin/git log -1 --format=%H
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1042510Z fde756d04386a7ed95e9f517d8c1069a6535a3b3
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1050982Z ##[group]Removing auth
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1052175Z Removing SSH command configuration
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1053956Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1080477Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1324811Z Removing HTTP extra header
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1327478Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1355584Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1586092Z Removing includeIf entries pointing to credentials config files
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1588807Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1610995Z includeif.gitdir:/home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template/.git.path
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1615054Z includeif.gitdir:/home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template/.git/worktrees/*.path
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1618070Z includeif.gitdir:/github/workspace/.git.path
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1619793Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1624330Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template/.git.path
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1638889Z /home/runner/work/_temp/git-credentials-0809bb85-b2b1-408b-9012-9603c0b198e0.config
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1652275Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-0809bb85\-b2b1\-408b\-9012\-9603c0b198e0\.config
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1687878Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template/.git/worktrees/*.path
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1714998Z /home/runner/work/_temp/git-credentials-0809bb85-b2b1-408b-9012-9603c0b198e0.config
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1722879Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-0809bb85\-b2b1\-408b\-9012\-9603c0b198e0\.config
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1752016Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1775102Z /github/runner_temp/git-credentials-0809bb85-b2b1-408b-9012-9603c0b198e0.config
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1783364Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-0809bb85\-b2b1\-408b\-9012\-9603c0b198e0\.config
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1813043Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1897483Z /github/runner_temp/git-credentials-0809bb85-b2b1-408b-9012-9603c0b198e0.config
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1918683Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-0809bb85\-b2b1\-408b\-9012\-9603c0b198e0\.config
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.1923979Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.2111263Z Removing credentials config '/home/runner/work/_temp/git-credentials-0809bb85-b2b1-408b-9012-9603c0b198e0.config'
+Check Links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:39:17.2119857Z ##[endgroup]
+Check Links	Check links with lychee	﻿2026-11-14T09:39:17.2548018Z ##[group]Run lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8
+Check Links	Check links with lychee	2026-11-14T09:39:17.2549635Z with:
+Check Links	Check links with lychee	2026-11-14T09:39:17.2551364Z   args: --verbose --no-progress --cache --max-cache-age 1d --max-retries 3 --timeout 30 --exclude-path docs/case-studies './**/*.md' './**/*.html'
+Check Links	Check links with lychee	2026-11-14T09:39:17.2553243Z   fail: false
+Check Links	Check links with lychee	2026-11-14T09:39:17.2553975Z   output: lychee/out.md
+Check Links	Check links with lychee	2026-11-14T09:39:17.2554776Z   jobSummary: true
+Check Links	Check links with lychee	2026-11-14T09:39:17.2555516Z   debug: false
+Check Links	Check links with lychee	2026-11-14T09:39:17.2556245Z   failIfEmpty: true
+Check Links	Check links with lychee	2026-11-14T09:39:17.2557004Z   format: markdown
+Check Links	Check links with lychee	2026-11-14T09:39:17.2557758Z   lycheeVersion: v0.24.2
+Check Links	Check links with lychee	2026-11-14T09:39:17.2558673Z   checkbox: true
+Check Links	Check links with lychee	2026-11-14T09:39:17.2566234Z   token: ***
+Check Links	Check links with lychee	2026-11-14T09:39:17.2566987Z   workingDirectory: .
+Check Links	Check links with lychee	2026-11-14T09:39:17.2567765Z env:
+Check Links	Check links with lychee	2026-11-14T09:39:17.2568542Z   GIT_CONFIG_COUNT: 1
+Check Links	Check links with lychee	2026-11-14T09:39:17.2569373Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Check Links	Check links with lychee	2026-11-14T09:39:17.2570313Z   GIT_CONFIG_VALUE_0: main
+Check Links	Check links with lychee	2026-11-14T09:39:17.2577915Z   GITHUB_TOKEN: ***
+Check Links	Check links with lychee	2026-11-14T09:39:17.2578790Z ##[endgroup]
+Check Links	Check links with lychee	2026-11-14T09:39:17.2632804Z ##[start-action display=Set up environment;id=lychee.__run]
+Check Links	Check links with lychee	2026-11-14T09:39:17.2687222Z ##[group]Run # Install into $RUNNER_TEMP (not $HOME) so the install path is stable
+Check Links	Check links with lychee	2026-11-14T09:39:17.2689142Z ^[[36;1m# Install into $RUNNER_TEMP (not $HOME) so the install path is stable^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2690798Z ^[[36;1m# across composite steps. On some runners $HOME is overridden per step^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2692406Z ^[[36;1m# (e.g. actions/checkout temporarily sets it), which made the PATH^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2693920Z ^[[36;1m# entry from one step and the install in another step diverge.^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2695267Z ^[[36;1mecho "$RUNNER_TEMP/lychee/bin" >> "$GITHUB_PATH"^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2696407Z ^[[36;1mmkdir -p "$RUNNER_TEMP/lychee/bin"^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2746327Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+Check Links	Check links with lychee	2026-11-14T09:39:17.2747439Z env:
+Check Links	Check links with lychee	2026-11-14T09:39:17.2748102Z   GIT_CONFIG_COUNT: 1
+Check Links	Check links with lychee	2026-11-14T09:39:17.2749174Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Check Links	Check links with lychee	2026-11-14T09:39:17.2750087Z   GIT_CONFIG_VALUE_0: main
+Check Links	Check links with lychee	2026-11-14T09:39:17.2757866Z   GITHUB_TOKEN: ***
+Check Links	Check links with lychee	2026-11-14T09:39:17.2758780Z ##[endgroup]
+Check Links	Check links with lychee	2026-11-14T09:39:17.2891285Z ##[end-action id=lychee.__run;outcome=success;conclusion=success;duration_ms=25]
+Check Links	Check links with lychee	2026-11-14T09:39:17.2897939Z ##[start-action display=Download and extract lychee in temp directory;id=lychee.lychee-setup]
+Check Links	Check links with lychee	2026-11-14T09:39:17.2937748Z ##[group]Run # Create a temporary directory for downloads and extraction
+Check Links	Check links with lychee	2026-11-14T09:39:17.2939438Z ^[[36;1m# Create a temporary directory for downloads and extraction^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2940703Z ^[[36;1mTEMP_DIR="${RUNNER_TEMP}/lychee-download"^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2941827Z ^[[36;1mrm -rf "${TEMP_DIR}" && mkdir -p "${TEMP_DIR}"^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2942848Z ^[[36;1mcd "${TEMP_DIR}"^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2943622Z ^[[36;1m^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2944298Z ^[[36;1mARCH=$(uname -m)^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2945293Z ^[[36;1m# Determine filename and download URL based on version^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2946586Z ^[[36;1mif [[ "${LYCHEE_VERSION}" =~ ^v0\.0|^v0\.1[0-5]\. ]]; then^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2948018Z ^[[36;1m  FILENAME="lychee-${LYCHEE_VERSION}-${ARCH}-unknown-linux-gnu.tar.gz"^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2950110Z ^[[36;1m  DOWNLOAD_URL="https://github.com/lycheeverse/lychee/releases/download/${LYCHEE_VERSION}/${FILENAME}"^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2951683Z ^[[36;1melse^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2952577Z ^[[36;1m  FILENAME="lychee-${ARCH}-unknown-linux-gnu.tar.gz"^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2953782Z ^[[36;1m  if [[ "${LYCHEE_VERSION}" == 'nightly' ]]; then^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2955375Z ^[[36;1m    DOWNLOAD_URL="https://github.com/lycheeverse/lychee/releases/download/nightly/${FILENAME}"^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2957008Z ^[[36;1m  elif [[ "${LYCHEE_VERSION}" == 'latest' ]]; then^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2958765Z ^[[36;1m    DOWNLOAD_URL="https://github.com/lycheeverse/lychee/releases/latest/download/${FILENAME}"^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2960246Z ^[[36;1m  else^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2961996Z ^[[36;1m    DOWNLOAD_URL="https://github.com/lycheeverse/lychee/releases/download/lychee-${LYCHEE_VERSION}/${FILENAME}"^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2963732Z ^[[36;1m  fi^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2964422Z ^[[36;1mfi^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2965101Z ^[[36;1m^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2965870Z ^[[36;1mecho "Downloading from: ${DOWNLOAD_URL}"^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2966900Z ^[[36;1mcurl -sfLO "${DOWNLOAD_URL}"^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2967768Z ^[[36;1m^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2968668Z ^[[36;1mecho "Extracting ${FILENAME}"^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2969601Z ^[[36;1mtar -xvzf "${FILENAME}"^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2970465Z ^[[36;1mrm -rv "${FILENAME}"^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2971262Z ^[[36;1m^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2972179Z ^[[36;1m# Detect if lychee binary is in a subfolder within the tar.gz^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2973418Z ^[[36;1mif ! [[ -f "${TEMP_DIR}/lychee" ]]; then^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2974682Z ^[[36;1m  TEMP_DIR="$(echo "${TEMP_DIR}"/lychee-*)"  # need `echo` to evaluate glob^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2975891Z ^[[36;1mfi^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2976666Z ^[[36;1mif ! [[ -f "${TEMP_DIR}/lychee" ]]; then^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2978081Z ^[[36;1m  echo "Cannot find lychee binary in $TEMP_DIR. Did the archive structure change?" >&2^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2979645Z ^[[36;1m  exit 1^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2980381Z ^[[36;1mfi^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2981058Z ^[[36;1m^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2981886Z ^[[36;1m# Output temp directory for use in later steps^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.2983034Z ^[[36;1mecho "temp_dir=${TEMP_DIR}" >> $GITHUB_OUTPUT^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.3027075Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+Check Links	Check links with lychee	2026-11-14T09:39:17.3028163Z env:
+Check Links	Check links with lychee	2026-11-14T09:39:17.3028989Z   GIT_CONFIG_COUNT: 1
+Check Links	Check links with lychee	2026-11-14T09:39:17.3029789Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Check Links	Check links with lychee	2026-11-14T09:39:17.3030704Z   GIT_CONFIG_VALUE_0: main
+Check Links	Check links with lychee	2026-11-14T09:39:17.3038283Z   GITHUB_TOKEN: ***
+Check Links	Check links with lychee	2026-11-14T09:39:17.3039195Z   LYCHEE_VERSION: v0.24.2
+Check Links	Check links with lychee	2026-11-14T09:39:17.3039971Z ##[endgroup]
+Check Links	Check links with lychee	2026-11-14T09:39:17.3170141Z Downloading from: https://github.com/lycheeverse/lychee/releases/download/lychee-v0.24.2/lychee-x86_64-unknown-linux-gnu.tar.gz
+Check Links	Check links with lychee	2026-11-14T09:39:17.5475812Z Extracting lychee-x86_64-unknown-linux-gnu.tar.gz
+Check Links	Check links with lychee	2026-11-14T09:39:17.5499522Z lychee-x86_64-unknown-linux-gnu/
+Check Links	Check links with lychee	2026-11-14T09:39:17.5500085Z lychee-x86_64-unknown-linux-gnu/README.md
+Check Links	Check links with lychee	2026-11-14T09:39:17.5500565Z lychee-x86_64-unknown-linux-gnu/docs/
+Check Links	Check links with lychee	2026-11-14T09:39:17.5501038Z lychee-x86_64-unknown-linux-gnu/docs/lychee.1
+Check Links	Check links with lychee	2026-11-14T09:39:17.5501585Z lychee-x86_64-unknown-linux-gnu/docs/TROUBLESHOOTING.md
+Check Links	Check links with lychee	2026-11-14T09:39:17.5505482Z lychee-x86_64-unknown-linux-gnu/docs/PRE_COMMIT.md
+Check Links	Check links with lychee	2026-11-14T09:39:17.5506014Z lychee-x86_64-unknown-linux-gnu/complete/
+Check Links	Check links with lychee	2026-11-14T09:39:17.5506485Z lychee-x86_64-unknown-linux-gnu/complete/_lychee.ps1
+Check Links	Check links with lychee	2026-11-14T09:39:17.5506859Z lychee-x86_64-unknown-linux-gnu/complete/lychee.elv
+Check Links	Check links with lychee	2026-11-14T09:39:17.5507223Z lychee-x86_64-unknown-linux-gnu/complete/lychee.fish
+Check Links	Check links with lychee	2026-11-14T09:39:17.5507586Z lychee-x86_64-unknown-linux-gnu/complete/lychee.bash
+Check Links	Check links with lychee	2026-11-14T09:39:17.5507977Z lychee-x86_64-unknown-linux-gnu/complete/_lychee
+Check Links	Check links with lychee	2026-11-14T09:39:17.5508296Z lychee-x86_64-unknown-linux-gnu/lychee
+Check Links	Check links with lychee	2026-11-14T09:39:17.6280287Z removed 'lychee-x86_64-unknown-linux-gnu.tar.gz'
+Check Links	Check links with lychee	2026-11-14T09:39:17.6310338Z ##[end-action id=lychee.lychee-setup;outcome=success;conclusion=success;duration_ms=341]
+Check Links	Check links with lychee	2026-11-14T09:39:17.6315345Z ##[start-action display=Install lychee;id=lychee.__run_2]
+Check Links	Check links with lychee	2026-11-14T09:39:17.6356041Z ##[group]Run # Install lychee from the temporary directory
+Check Links	Check links with lychee	2026-11-14T09:39:17.6356469Z ^[[36;1m# Install lychee from the temporary directory^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.6357097Z ^[[36;1minstall -t "$RUNNER_TEMP/lychee/bin" -D "/home/runner/work/_temp/lychee-download/lychee-x86_64-unknown-linux-gnu/lychee"^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.6402569Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+Check Links	Check links with lychee	2026-11-14T09:39:17.6402950Z env:
+Check Links	Check links with lychee	2026-11-14T09:39:17.6403179Z   GIT_CONFIG_COUNT: 1
+Check Links	Check links with lychee	2026-11-14T09:39:17.6403444Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Check Links	Check links with lychee	2026-11-14T09:39:17.6403918Z   GIT_CONFIG_VALUE_0: main
+Check Links	Check links with lychee	2026-11-14T09:39:17.6406399Z   GITHUB_TOKEN: ***
+Check Links	Check links with lychee	2026-11-14T09:39:17.6406652Z ##[endgroup]
+Check Links	Check links with lychee	2026-11-14T09:39:17.6549913Z ##[end-action id=lychee.__run_2;outcome=success;conclusion=success;duration_ms=23]
+Check Links	Check links with lychee	2026-11-14T09:39:17.6557370Z ##[start-action display=Run Lychee;id=lychee.run-lychee]
+Check Links	Check links with lychee	2026-11-14T09:39:17.6582061Z ##[group]Run /home/runner/work/_actions/lycheeverse/lychee-action/e7477775783ea5526144ba13e8db5eec57747ce8/entrypoint.sh
+Check Links	Check links with lychee	2026-11-14T09:39:17.6582926Z ^[[36;1m/home/runner/work/_actions/lycheeverse/lychee-action/e7477775783ea5526144ba13e8db5eec57747ce8/entrypoint.sh^[[0m
+Check Links	Check links with lychee	2026-11-14T09:39:17.6626193Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+Check Links	Check links with lychee	2026-11-14T09:39:17.6626575Z env:
+Check Links	Check links with lychee	2026-11-14T09:39:17.6626808Z   GIT_CONFIG_COUNT: 1
+Check Links	Check links with lychee	2026-11-14T09:39:17.6627084Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Check Links	Check links with lychee	2026-11-14T09:39:17.6627389Z   GIT_CONFIG_VALUE_0: main
+Check Links	Check links with lychee	2026-11-14T09:39:17.6630016Z   GITHUB_TOKEN: ***
+Check Links	Check links with lychee	2026-11-14T09:39:17.6632257Z   INPUT_TOKEN: ***
+Check Links	Check links with lychee	2026-11-14T09:39:17.6632853Z   INPUT_ARGS: --verbose --no-progress --cache --max-cache-age 1d --max-retries 3 --timeout 30 --exclude-path docs/case-studies './**/*.md' './**/*.html'
+Check Links	Check links with lychee	2026-11-14T09:39:17.6633481Z   INPUT_DEBUG: false
+Check Links	Check links with lychee	2026-11-14T09:39:17.6633729Z   INPUT_FAIL: false
+Check Links	Check links with lychee	2026-11-14T09:39:17.6633982Z   INPUT_FAILIFEMPTY: true
+Check Links	Check links with lychee	2026-11-14T09:39:17.6634255Z   INPUT_FORMAT: markdown
+Check Links	Check links with lychee	2026-11-14T09:39:17.6634523Z   INPUT_JOBSUMMARY: true
+Check Links	Check links with lychee	2026-11-14T09:39:17.6634777Z   INPUT_CHECKBOX: true
+Check Links	Check links with lychee	2026-11-14T09:39:17.6635036Z   INPUT_OUTPUT: lychee/out.md
+Check Links	Check links with lychee	2026-11-14T09:39:17.6635686Z   SUMMARY_URL: https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/actions/runs/43581561688#summary-132407199005
+Check Links	Check links with lychee	2026-11-14T09:39:17.6636322Z ##[endgroup]
+Check Links	Check links with lychee	2026-11-14T09:39:17.9548748Z   [WARN] ./**/*.html: No files found for this input source
+Check Links	Check links with lychee	2026-11-14T09:39:18.0318127Z [403] https://www.npmjs.com/package/@azu/format-text (at 8:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:18.0319271Z [403] https://www.npmjs.com/package/@secretlint/profiler (at 17:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:18.0710954Z [403] https://www.npmjs.com/package/@azu/style-format (at 9:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:18.1209240Z [403] https://www.npmjs.com/package/@secretlint/secretlint-rule-preset-recommend (at 19:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:18.1723503Z [403] https://www.npmjs.com/package/@secretlint/source-creator (at 20:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:18.2234269Z [403] https://www.npmjs.com/package/@secretlint/node (at 16:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:18.2717807Z [403] https://www.npmjs.com/package/@babel/helper-validator-identifier (at 11:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:18.3235899Z [403] https://www.npmjs.com/package/@secretlint/config-creator (at 12:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:18.3755089Z [403] https://www.npmjs.com/package/@babel/code-frame (at 10:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:18.4223789Z [403] https://www.npmjs.com/package/@textlint/module-interop (at 25:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:18.4710390Z [403] https://www.npmjs.com/package/@secretlint/types (at 21:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:18.5201868Z [403] https://www.npmjs.com/package/@textlint/linter-formatter (at 24:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:18.5700879Z [403] https://www.npmjs.com/package/@secretlint/config-loader (at 13:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:18.6213501Z [403] https://www.npmjs.com/package/@secretlint/core (at 14:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:18.6727364Z [403] https://www.npmjs.com/package/@types/normalize-package-data (at 28:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:18.7212487Z [403] https://www.npmjs.com/package/@textlint/ast-node-types (at 23:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:18.7723186Z [403] https://www.npmjs.com/package/@textlint/types (at 27:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:18.8215097Z [403] https://www.npmjs.com/package/argparse (at 33:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:18.8727892Z [403] https://www.npmjs.com/package/binaryextensions (at 34:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:18.9229999Z [403] https://www.npmjs.com/package/chalk (at 36:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:18.9712279Z [403] https://www.npmjs.com/package/ajv (at 29:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:19.0243692Z [403] https://www.npmjs.com/package/ansi-regex (at 31:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:19.0715880Z [403] https://www.npmjs.com/package/ansi-styles (at 32:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:19.1224837Z [403] https://www.npmjs.com/package/@secretlint/formatter (at 15:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:19.1720626Z [403] https://www.npmjs.com/package/@secretlint/resolver (at 18:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:19.2240985Z [403] https://www.npmjs.com/package/ansi-escapes (at 30:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:19.2721172Z [403] https://www.npmjs.com/package/@secretlint/walker (at 22:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:19.3224433Z [403] https://www.npmjs.com/package/fast-deep-equal (at 40:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:19.3729708Z [403] https://www.npmjs.com/package/hosted-git-info (at 44:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:19.4229244Z [403] https://www.npmjs.com/package/editions (at 38:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:19.4743256Z [403] https://www.npmjs.com/package/fast-uri (at 41:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:19.5227564Z [403] https://www.npmjs.com/package/ignore (at 45:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:19.5739727Z [403] https://www.npmjs.com/package/has-flag (at 43:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:19.6240677Z [403] https://www.npmjs.com/package/environment (at 39:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:19.6735738Z [403] https://www.npmjs.com/package/boundary (at 35:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:19.7233586Z [403] https://www.npmjs.com/package/lodash (at 52:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:19.7735665Z [403] https://www.npmjs.com/package/index-to-position (at 46:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:19.8239933Z [403] https://www.npmjs.com/package/json-schema-traverse (at 50:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:19.8737693Z [403] https://www.npmjs.com/package/js-tokens (at 48:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:19.9242735Z [403] https://www.npmjs.com/package/js-yaml (at 49:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:19.9741307Z [403] https://www.npmjs.com/package/normalize-package-data (at 55:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:20.0246796Z [403] https://www.npmjs.com/package/istextorbinary (at 47:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:20.0741504Z [403] https://www.npmjs.com/package/debug (at 37:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:20.1242901Z [403] https://www.npmjs.com/package/pluralize (at 59:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:20.1745180Z [403] https://www.npmjs.com/package/json5 (at 51:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:20.2254809Z [403] https://www.npmjs.com/package/parse-json (at 57:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:20.2755832Z [403] https://www.npmjs.com/package/rc-config-loader (at 60:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:20.3249204Z [403] https://www.npmjs.com/package/get-east-asian-width (at 42:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:20.3755687Z [403] https://www.npmjs.com/package/p-map (at 56:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:20.4275254Z [403] https://www.npmjs.com/package/read-pkg (at 61:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:20.4769535Z [403] https://www.npmjs.com/package/secretlint (at 63:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:20.5268909Z [403] https://www.npmjs.com/package/require-from-string (at 62:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:20.5765097Z [403] https://www.npmjs.com/package/semver (at 64:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:20.6267523Z [403] https://www.npmjs.com/package/lru-cache (at 53:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:20.6906282Z [403] https://www.npmjs.com/package/ms (at 54:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:20.7275785Z [403] https://www.npmjs.com/package/structured-source (at 72:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:20.7761318Z [403] https://www.npmjs.com/package/spdx-exceptions (at 67:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:20.8261548Z [403] https://www.npmjs.com/package/string-width (at 70:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:20.8768963Z [403] https://www.npmjs.com/package/picomatch (at 58:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:20.9269733Z [403] https://www.npmjs.com/package/supports-color (at 73:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:20.9771946Z [403] https://www.npmjs.com/package/slice-ansi (at 65:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:21.0276156Z [403] https://www.npmjs.com/package/spdx-correct (at 66:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:21.0772342Z [403] https://www.npmjs.com/package/terminal-link (at 77:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:21.1278802Z [403] https://www.npmjs.com/package/tagged-tag (at 76:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:21.1772063Z [403] https://www.npmjs.com/package/textextensions (at 79:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:21.2277458Z [403] https://www.npmjs.com/package/unicorn-magic (at 81:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:21.2775063Z [403] https://www.npmjs.com/package/text-table (at 78:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:21.3279105Z [403] https://www.npmjs.com/package/type-fest (at 80:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:21.3788821Z [403] https://www.npmjs.com/package/validate-npm-package-license (at 82:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:21.4279598Z [403] https://www.npmjs.com/package/@textlint/resolver (at 26:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:21.4779747Z [403] https://www.npmjs.com/package/table (at 75:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:21.5282529Z [403] https://www.npmjs.com/package/spdx-license-ids (at 69:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:21.5783585Z [403] https://www.npmjs.com/package/version-range (at 83:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:21.6279512Z [403] https://www.npmjs.com/package/strip-ansi (at 71:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:21.6784080Z [403] https://www.npmjs.com/package/supports-hyperlinks (at 74:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:21.7287725Z [403] https://www.npmjs.com/package/spdx-expression-parse (at 68:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:21.9171638Z [404] https://github.com/ssciwr/cppcheck-wheel/pull/197 (at 16:94) | Rejected status code: 404 Not Found
+Check Links	Check links with lychee	2026-11-14T09:39:24.0923967Z Hint: You can configure accepted/rejected response codes with `-a` or `--accept`
+Check Links	Check links with lychee	2026-11-14T09:39:24.1075814Z # Summary
+Check Links	Check links with lychee	2026-11-14T09:39:24.1076071Z 
+Check Links	Check links with lychee	2026-11-14T09:39:24.1076365Z | Status         | Count |
+Check Links	Check links with lychee	2026-11-14T09:39:24.1076676Z |----------------|-------|
+Check Links	Check links with lychee	2026-11-14T09:39:24.1077328Z | 🔍 Total       | 289   |
+Check Links	Check links with lychee	2026-11-14T09:39:24.1083165Z | 🔗 Unique      | 260   |
+Check Links	Check links with lychee	2026-11-14T09:39:24.1083536Z | ✅ Successful  | 212   |
+Check Links	Check links with lychee	2026-11-14T09:39:24.1083876Z | ⏳ Timeouts    | 0     |
+Check Links	Check links with lychee	2026-11-14T09:39:24.1084512Z | 🔀 Redirected  | 12    |
+Check Links	Check links with lychee	2026-11-14T09:39:24.1084824Z | 👻 Excluded    | 0     |
+Check Links	Check links with lychee	2026-11-14T09:39:24.1085158Z | ❓ Unknown     | 0     |
+Check Links	Check links with lychee	2026-11-14T09:39:24.1085463Z | 🚫 Errors      | 77    |
+Check Links	Check links with lychee	2026-11-14T09:39:24.1085776Z | ⛔ Unsupported | 0     |
+Check Links	Check links with lychee	2026-11-14T09:39:24.1085968Z 
+Check Links	Check links with lychee	2026-11-14T09:39:24.1086081Z ## Errors per input
+Check Links	Check links with lychee	2026-11-14T09:39:24.1086230Z 
+Check Links	Check links with lychee	2026-11-14T09:39:24.1105350Z ### Errors in dev/log/issues/30/pulls/31/NPM-LOCK.md
+Check Links	Check links with lychee	2026-11-14T09:39:24.1105699Z 
+Check Links	Check links with lychee	2026-11-14T09:39:24.1106123Z * [403] <https://www.npmjs.com/package/@azu/format-text> (at 8:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1106985Z * [403] <https://www.npmjs.com/package/@azu/style-format> (at 9:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1107843Z * [403] <https://www.npmjs.com/package/@babel/code-frame> (at 10:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1109169Z * [403] <https://www.npmjs.com/package/@babel/helper-validator-identifier> (at 11:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1110199Z * [403] <https://www.npmjs.com/package/@secretlint/config-creator> (at 12:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1110995Z * [403] <https://www.npmjs.com/package/@secretlint/config-loader> (at 13:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1111581Z * [403] <https://www.npmjs.com/package/@secretlint/core> (at 14:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1112106Z * [403] <https://www.npmjs.com/package/@secretlint/formatter> (at 15:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1112609Z * [403] <https://www.npmjs.com/package/@secretlint/node> (at 16:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1113110Z * [403] <https://www.npmjs.com/package/@secretlint/profiler> (at 17:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1113825Z * [403] <https://www.npmjs.com/package/@secretlint/resolver> (at 18:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1114830Z * [403] <https://www.npmjs.com/package/@secretlint/secretlint-rule-preset-recommend> (at 19:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1116269Z * [403] <https://www.npmjs.com/package/@secretlint/source-creator> (at 20:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1116962Z * [403] <https://www.npmjs.com/package/@secretlint/types> (at 21:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1117478Z * [403] <https://www.npmjs.com/package/@secretlint/walker> (at 22:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1118009Z * [403] <https://www.npmjs.com/package/@textlint/ast-node-types> (at 23:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1118862Z * [403] <https://www.npmjs.com/package/@textlint/linter-formatter> (at 24:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1119677Z * [403] <https://www.npmjs.com/package/@textlint/module-interop> (at 25:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1120201Z * [403] <https://www.npmjs.com/package/@textlint/resolver> (at 26:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1120702Z * [403] <https://www.npmjs.com/package/@textlint/types> (at 27:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1121231Z * [403] <https://www.npmjs.com/package/@types/normalize-package-data> (at 28:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1121719Z * [403] <https://www.npmjs.com/package/ajv> (at 29:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1122163Z * [403] <https://www.npmjs.com/package/ansi-escapes> (at 30:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1122615Z * [403] <https://www.npmjs.com/package/ansi-regex> (at 31:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1123070Z * [403] <https://www.npmjs.com/package/ansi-styles> (at 32:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1123585Z * [403] <https://www.npmjs.com/package/argparse> (at 33:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1124226Z * [403] <https://www.npmjs.com/package/binaryextensions> (at 34:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1124698Z * [403] <https://www.npmjs.com/package/boundary> (at 35:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1125128Z * [403] <https://www.npmjs.com/package/chalk> (at 36:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1125540Z * [403] <https://www.npmjs.com/package/debug> (at 37:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1125966Z * [403] <https://www.npmjs.com/package/editions> (at 38:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1126416Z * [403] <https://www.npmjs.com/package/environment> (at 39:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1126882Z * [403] <https://www.npmjs.com/package/fast-deep-equal> (at 40:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1127335Z * [403] <https://www.npmjs.com/package/fast-uri> (at 41:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1127811Z * [403] <https://www.npmjs.com/package/get-east-asian-width> (at 42:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1128280Z * [403] <https://www.npmjs.com/package/has-flag> (at 43:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1129015Z * [403] <https://www.npmjs.com/package/hosted-git-info> (at 44:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1129473Z * [403] <https://www.npmjs.com/package/ignore> (at 45:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1129942Z * [403] <https://www.npmjs.com/package/index-to-position> (at 46:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1130434Z * [403] <https://www.npmjs.com/package/istextorbinary> (at 47:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1130904Z * [403] <https://www.npmjs.com/package/js-tokens> (at 48:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1131341Z * [403] <https://www.npmjs.com/package/js-yaml> (at 49:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1131830Z * [403] <https://www.npmjs.com/package/json-schema-traverse> (at 50:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1132416Z * [403] <https://www.npmjs.com/package/json5> (at 51:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1132851Z * [403] <https://www.npmjs.com/package/lodash> (at 52:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1133285Z * [403] <https://www.npmjs.com/package/lru-cache> (at 53:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1133717Z * [403] <https://www.npmjs.com/package/ms> (at 54:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1134190Z * [403] <https://www.npmjs.com/package/normalize-package-data> (at 55:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1134666Z * [403] <https://www.npmjs.com/package/p-map> (at 56:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1135109Z * [403] <https://www.npmjs.com/package/parse-json> (at 57:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1135562Z * [403] <https://www.npmjs.com/package/picomatch> (at 58:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1136012Z * [403] <https://www.npmjs.com/package/pluralize> (at 59:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1136472Z * [403] <https://www.npmjs.com/package/rc-config-loader> (at 60:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1136930Z * [403] <https://www.npmjs.com/package/read-pkg> (at 61:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1137430Z * [403] <https://www.npmjs.com/package/require-from-string> (at 62:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1137942Z * [403] <https://www.npmjs.com/package/secretlint> (at 63:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1138560Z * [403] <https://www.npmjs.com/package/semver> (at 64:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1139304Z * [403] <https://www.npmjs.com/package/slice-ansi> (at 65:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1139993Z * [403] <https://www.npmjs.com/package/spdx-correct> (at 66:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1140482Z * [403] <https://www.npmjs.com/package/spdx-exceptions> (at 67:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1140991Z * [403] <https://www.npmjs.com/package/spdx-expression-parse> (at 68:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1141496Z * [403] <https://www.npmjs.com/package/spdx-license-ids> (at 69:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1141968Z * [403] <https://www.npmjs.com/package/string-width> (at 70:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1142420Z * [403] <https://www.npmjs.com/package/strip-ansi> (at 71:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1142894Z * [403] <https://www.npmjs.com/package/structured-source> (at 72:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1143381Z * [403] <https://www.npmjs.com/package/supports-color> (at 73:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1143880Z * [403] <https://www.npmjs.com/package/supports-hyperlinks> (at 74:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1144350Z * [403] <https://www.npmjs.com/package/table> (at 75:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1144788Z * [403] <https://www.npmjs.com/package/tagged-tag> (at 76:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1145244Z * [403] <https://www.npmjs.com/package/terminal-link> (at 77:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1145691Z * [403] <https://www.npmjs.com/package/text-table> (at 78:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1146147Z * [403] <https://www.npmjs.com/package/textextensions> (at 79:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1146617Z * [403] <https://www.npmjs.com/package/type-fest> (at 80:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1147073Z * [403] <https://www.npmjs.com/package/unicorn-magic> (at 81:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1147595Z * [403] <https://www.npmjs.com/package/validate-npm-package-license> (at 82:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1148229Z * [403] <https://www.npmjs.com/package/version-range> (at 83:3) | Rejected status code: 403 Forbidden
+Check Links	Check links with lychee	2026-11-14T09:39:24.1148663Z 
+Check Links	Check links with lychee	2026-11-14T09:39:24.1148774Z ### Errors in dev/log/issues/30/pulls/31/UPSTREAM.md
+Check Links	Check links with lychee	2026-11-14T09:39:24.1148950Z 
+Check Links	Check links with lychee	2026-11-14T09:39:24.1149189Z * [404] <https://github.com/ssciwr/cppcheck-wheel/pull/197> (at 16:94) | Rejected status code: 404 Not Found
+Check Links	Check links with lychee	2026-11-14T09:39:24.1149499Z 
+Check Links	Check links with lychee	2026-11-14T09:39:24.1149580Z ## Redirects per input
+Check Links	Check links with lychee	2026-11-14T09:39:24.1149691Z 
+Check Links	Check links with lychee	2026-11-14T09:39:24.1149782Z ### Redirects in changelog.d/README.md
+Check Links	Check links with lychee	2026-11-14T09:39:24.1149929Z 
+Check Links	Check links with lychee	2026-11-14T09:39:24.1150129Z * https://scriv.readthedocs.io/ --[302]--> https://scriv.readthedocs.io/en/latest/
+Check Links	Check links with lychee	2026-11-14T09:39:24.1150378Z 
+Check Links	Check links with lychee	2026-11-14T09:39:24.1150496Z ### Redirects in dev/log/issues/30/pulls/31/ANALYSIS.md
+Check Links	Check links with lychee	2026-11-14T09:39:24.1150676Z 
+Check Links	Check links with lychee	2026-11-14T09:39:24.1150837Z * https://audit.conan.io/register --[301]--> https://conan.io/audit/register
+Check Links	Check links with lychee	2026-11-14T09:39:24.1151256Z * https://github.com/jazzband/pip-tools --[301]--> https://github.com/pypa/pip-tools
+Check Links	Check links with lychee	2026-11-14T09:39:24.1151507Z 
+Check Links	Check links with lychee	2026-11-14T09:39:24.1151621Z ### Redirects in dev/log/issues/30/pulls/31/PYTHON-LOCK.md
+Check Links	Check links with lychee	2026-11-14T09:39:24.1151804Z 
+Check Links	Check links with lychee	2026-11-14T09:39:24.1152003Z * https://pypi.org/project/boolean-py/ --[301]--> https://pypi.org/project/boolean.py/
+Check Links	Check links with lychee	2026-11-14T09:39:24.1152450Z * https://pypi.org/project/cachecontrol/ --[301]--> https://pypi.org/project/CacheControl/
+Check Links	Check links with lychee	2026-11-14T09:39:24.1152877Z * https://pypi.org/project/jinja2/ --[301]--> https://pypi.org/project/Jinja2/
+Check Links	Check links with lychee	2026-11-14T09:39:24.1153279Z * https://pypi.org/project/markupsafe/ --[301]--> https://pypi.org/project/MarkupSafe/
+Check Links	Check links with lychee	2026-11-14T09:39:24.1153698Z * https://pypi.org/project/pygments/ --[301]--> https://pypi.org/project/Pygments/
+Check Links	Check links with lychee	2026-11-14T09:39:24.1154112Z * https://pypi.org/project/pyyaml/ --[301]--> https://pypi.org/project/PyYAML/
+Check Links	Check links with lychee	2026-11-14T09:39:24.1154643Z * https://pypi.org/project/ruamel-yaml/ --[301]--> https://pypi.org/project/ruamel.yaml/
+Check Links	Check links with lychee	2026-11-14T09:39:24.1154908Z 
+Check Links	Check links with lychee	2026-11-14T09:39:24.1155017Z ### Redirects in dev/log/issues/30/pulls/31/UPSTREAM.md
+Check Links	Check links with lychee	2026-11-14T09:39:24.1155181Z 
+Check Links	Check links with lychee	2026-11-14T09:39:24.1155460Z * https://github.com/zizmorcore/zizmor-action/issues/175 --[302]--> https://github.com/zizmorcore/zizmor-action/pull/175
+Check Links	Check links with lychee	2026-11-14T09:39:24.1155794Z 
+Check Links	Check links with lychee	2026-11-14T09:39:24.1155879Z ### Redirects in README.md
+Check Links	Check links with lychee	2026-11-14T09:39:24.1155999Z 
+Check Links	Check links with lychee	2026-11-14T09:39:24.1156116Z * http://unlicense.org/ --[301]--> https://unlicense.org/
+Check Links	Check links with lychee	2026-11-14T09:39:24.1156307Z 
+Check Links	Check links with lychee	2026-11-14T09:39:24.1156310Z 
+Check Links	Check links with lychee	2026-11-14T09:39:24.1170282Z ##[notice]Summary report available at: https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/actions/runs/43581561688#summary-132407199005
+Check Links	Check links with lychee	2026-11-14T09:39:24.1204509Z ##[end-action id=lychee.run-lychee;outcome=success;conclusion=success;duration_ms=6464]
+Check Links	Re-check links that never got an answer	﻿2026-11-14T09:39:24.1289432Z ##[group]Run python3 scripts/recheck_broken_links.py
+Check Links	Re-check links that never got an answer	2026-11-14T09:39:24.1289756Z ^[[36;1mpython3 scripts/recheck_broken_links.py^[[0m
+Check Links	Re-check links that never got an answer	2026-11-14T09:39:24.1336597Z shell: /usr/bin/bash -e {0}
+Check Links	Re-check links that never got an answer	2026-11-14T09:39:24.1336813Z env:
+Check Links	Re-check links that never got an answer	2026-11-14T09:39:24.1336980Z   GIT_CONFIG_COUNT: 1
+Check Links	Re-check links that never got an answer	2026-11-14T09:39:24.1337180Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Check Links	Re-check links that never got an answer	2026-11-14T09:39:24.1337407Z   GIT_CONFIG_VALUE_0: main
+Check Links	Re-check links that never got an answer	2026-11-14T09:39:24.1337609Z   LYCHEE_OUTPUT: lychee/out.md
+Check Links	Re-check links that never got an answer	2026-11-14T09:39:24.1337828Z   RECOVERED_OUTPUT: lychee/recovered.txt
+Check Links	Re-check links that never got an answer	2026-11-14T09:39:24.1338044Z ##[endgroup]
+Check Links	Re-check links that never got an answer	2026-11-14T09:39:24.1852693Z Re-check: 77 lychee failure(s), 77 answered and final, 0 never got an answer
+Check Links	Re-check links that never got an answer	2026-11-14T09:39:24.1853244Z Re-check: nothing to re-ask.
+Check Links	Check broken links against Web Archive	﻿2026-11-14T09:39:24.1973180Z ##[group]Run python3 scripts/check_web_archive.py
+Check Links	Check broken links against Web Archive	2026-11-14T09:39:24.1973500Z ^[[36;1mpython3 scripts/check_web_archive.py^[[0m
+Check Links	Check broken links against Web Archive	2026-11-14T09:39:24.2019259Z shell: /usr/bin/bash -e {0}
+Check Links	Check broken links against Web Archive	2026-11-14T09:39:24.2019479Z env:
+Check Links	Check broken links against Web Archive	2026-11-14T09:39:24.2019646Z   GIT_CONFIG_COUNT: 1
+Check Links	Check broken links against Web Archive	2026-11-14T09:39:24.2019867Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Check Links	Check broken links against Web Archive	2026-11-14T09:39:24.2020297Z   GIT_CONFIG_VALUE_0: main
+Check Links	Check broken links against Web Archive	2026-11-14T09:39:24.2020497Z   LYCHEE_OUTPUT: lychee/out.md
+Check Links	Check broken links against Web Archive	2026-11-14T09:39:24.2020701Z   RECOVERED_URLS: lychee/recovered.txt
+Check Links	Check broken links against Web Archive	2026-11-14T09:39:24.2020906Z ##[endgroup]
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3015879Z === Web Archive Fallback Check ===
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3016377Z Reading lychee output from: lychee/out.md
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3016750Z Found 77 broken URL(s). Checking Web Archive...
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3017192Z Checking: https://www.npmjs.com/package/@azu/format-text
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3017936Z   Archived on 2025-08-12: https://web.archive.org/web/20250812193602/https://www.npmjs.com/package/@azu/format-text
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3021068Z ##[notice]Broken link detected: https://www.npmjs.com/package/@azu/format-text
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3022437Z A Web Archive snapshot from 2025-08-12 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3022915Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3023525Z   https://web.archive.org/web/20250812193602/https://www.npmjs.com/package/@azu/format-text
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3024154Z Checking: https://www.npmjs.com/package/@azu/style-format
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3024828Z   Archived on 2025-08-04: https://web.archive.org/web/20250804140923/https://www.npmjs.com/package/@azu/style-format
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3026182Z ##[notice]Broken link detected: https://www.npmjs.com/package/@azu/style-format
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3027135Z A Web Archive snapshot from 2025-08-04 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3027591Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3028215Z   https://web.archive.org/web/20250804140923/https://www.npmjs.com/package/@azu/style-format
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3028970Z Checking: https://www.npmjs.com/package/@babel/code-frame
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3029666Z   Archived on 2026-04-23: https://web.archive.org/web/20260423123710/https://www.npmjs.com/package/@babel/code-frame
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3030960Z ##[notice]Broken link detected: https://www.npmjs.com/package/@babel/code-frame
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3032014Z A Web Archive snapshot from 2026-04-23 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3032481Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3033198Z   https://web.archive.org/web/20260423123710/https://www.npmjs.com/package/@babel/code-frame
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3033846Z Checking: https://www.npmjs.com/package/@babel/helper-validator-identifier
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3034675Z   Archived on 2026-04-23: https://web.archive.org/web/20260423123714/https://www.npmjs.com/package/@babel/helper-validator-identifier
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3036275Z ##[notice]Broken link detected: https://www.npmjs.com/package/@babel/helper-validator-identifier
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3037337Z A Web Archive snapshot from 2026-04-23 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3037777Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3038615Z   https://web.archive.org/web/20260423123714/https://www.npmjs.com/package/@babel/helper-validator-identifier
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3039364Z Checking: https://www.npmjs.com/package/@secretlint/config-creator
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3039871Z   Not found in Web Archive
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3042297Z ##[error]Broken link detected: https://www.npmjs.com/package/@secretlint/config-creator
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3043518Z No archived version was found in the Wayback Machine.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3044142Z Find an updated URL, remove the link, or add it to .lycheeignore if it is a known false positive.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3044829Z Checking: https://www.npmjs.com/package/@secretlint/config-loader
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3045656Z   Archived on 2024-08-09: https://web.archive.org/web/20240809135357/https://www.npmjs.com/package/@secretlint/config-loader
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3047716Z ##[notice]Broken link detected: https://www.npmjs.com/package/@secretlint/config-loader
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3049206Z A Web Archive snapshot from 2024-08-09 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3049718Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3050632Z   https://web.archive.org/web/20240809135357/https://www.npmjs.com/package/@secretlint/config-loader
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3051298Z Checking: https://www.npmjs.com/package/@secretlint/core
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3051994Z   Archived on 2025-04-22: https://web.archive.org/web/20250422001647/https://www.npmjs.com/package/@secretlint/core
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3053345Z ##[notice]Broken link detected: https://www.npmjs.com/package/@secretlint/core
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3054415Z A Web Archive snapshot from 2025-04-22 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3054869Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3055493Z   https://web.archive.org/web/20250422001647/https://www.npmjs.com/package/@secretlint/core
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3056151Z Checking: https://www.npmjs.com/package/@secretlint/formatter
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3056970Z   Archived on 2025-03-18: https://web.archive.org/web/20250318050205/https://www.npmjs.com/package/@secretlint/formatter
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3058662Z ##[notice]Broken link detected: https://www.npmjs.com/package/@secretlint/formatter
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3059882Z A Web Archive snapshot from 2025-03-18 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3060409Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3061128Z   https://web.archive.org/web/20250318050205/https://www.npmjs.com/package/@secretlint/formatter
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3061833Z Checking: https://www.npmjs.com/package/@secretlint/node
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3062574Z   Archived on 2025-09-09: https://web.archive.org/web/20250909144255/https://www.npmjs.com/package/@secretlint/node
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3064078Z ##[notice]Broken link detected: https://www.npmjs.com/package/@secretlint/node
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3065217Z A Web Archive snapshot from 2025-09-09 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3065733Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3066419Z   https://web.archive.org/web/20250909144255/https://www.npmjs.com/package/@secretlint/node
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3067063Z Checking: https://www.npmjs.com/package/@secretlint/profiler
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3067760Z   Archived on 2024-08-09: https://web.archive.org/web/20240809133722/https://www.npmjs.com/package/@secretlint/profiler
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3069438Z ##[notice]Broken link detected: https://www.npmjs.com/package/@secretlint/profiler
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3070530Z A Web Archive snapshot from 2024-08-09 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3071048Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3071773Z   https://web.archive.org/web/20240809133722/https://www.npmjs.com/package/@secretlint/profiler
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3072493Z Checking: https://www.npmjs.com/package/@secretlint/resolver
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3073239Z   Archived on 2025-08-11: https://web.archive.org/web/20250811180932/https://www.npmjs.com/package/@secretlint/resolver
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3074582Z ##[notice]Broken link detected: https://www.npmjs.com/package/@secretlint/resolver
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3075606Z A Web Archive snapshot from 2025-08-11 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3076074Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3076710Z   https://web.archive.org/web/20250811180932/https://www.npmjs.com/package/@secretlint/resolver
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3077463Z Checking: https://www.npmjs.com/package/@secretlint/secretlint-rule-preset-recommend
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3078560Z   Archived on 2026-01-14: https://web.archive.org/web/20260114053116/https://www.npmjs.com/package/@secretlint/secretlint-rule-preset-recommend
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3080326Z ##[notice]Broken link detected: https://www.npmjs.com/package/@secretlint/secretlint-rule-preset-recommend
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3081712Z A Web Archive snapshot from 2026-01-14 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3082149Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3082883Z   https://web.archive.org/web/20260114053116/https://www.npmjs.com/package/@secretlint/secretlint-rule-preset-recommend
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3083796Z Checking: https://www.npmjs.com/package/@secretlint/source-creator
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3084237Z   Not found in Web Archive
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3085303Z ##[error]Broken link detected: https://www.npmjs.com/package/@secretlint/source-creator
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3086360Z No archived version was found in the Wayback Machine.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3086942Z Find an updated URL, remove the link, or add it to .lycheeignore if it is a known false positive.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3087589Z Checking: https://www.npmjs.com/package/@secretlint/types
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3088325Z   Archived on 2025-04-27: https://web.archive.org/web/20250427111353/https://www.npmjs.com/package/@secretlint/types
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3089942Z ##[notice]Broken link detected: https://www.npmjs.com/package/@secretlint/types
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3091042Z A Web Archive snapshot from 2025-04-27 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3091512Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3092151Z   https://web.archive.org/web/20250427111353/https://www.npmjs.com/package/@secretlint/types
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3092798Z Checking: https://www.npmjs.com/package/@secretlint/walker
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3093197Z   Not found in Web Archive
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3094227Z ##[error]Broken link detected: https://www.npmjs.com/package/@secretlint/walker
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3095316Z No archived version was found in the Wayback Machine.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3095918Z Find an updated URL, remove the link, or add it to .lycheeignore if it is a known false positive.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3096579Z Checking: https://www.npmjs.com/package/@textlint/ast-node-types
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3097398Z   Archived on 2025-08-28: https://web.archive.org/web/20250828174730/https://www.npmjs.com/package/@textlint/ast-node-types
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3099050Z ##[notice]Broken link detected: https://www.npmjs.com/package/@textlint/ast-node-types
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3100157Z A Web Archive snapshot from 2025-08-28 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3100635Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3101315Z   https://web.archive.org/web/20250828174730/https://www.npmjs.com/package/@textlint/ast-node-types
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3102033Z Checking: https://www.npmjs.com/package/@textlint/linter-formatter
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3102776Z   Archived on 2024-10-21: https://web.archive.org/web/20241021170331/https://www.npmjs.com/package/@textlint/linter-formatter
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3104262Z ##[notice]Broken link detected: https://www.npmjs.com/package/@textlint/linter-formatter
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3105486Z A Web Archive snapshot from 2024-10-21 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3106001Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3106777Z   https://web.archive.org/web/20241021170331/https://www.npmjs.com/package/@textlint/linter-formatter
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3107543Z Checking: https://www.npmjs.com/package/@textlint/module-interop
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3108456Z   Archived on 2025-09-02: https://web.archive.org/web/20250902085317/https://www.npmjs.com/package/@textlint/module-interop
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3110065Z ##[notice]Broken link detected: https://www.npmjs.com/package/@textlint/module-interop
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3111181Z A Web Archive snapshot from 2025-09-02 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3111670Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3112346Z   https://web.archive.org/web/20250902085317/https://www.npmjs.com/package/@textlint/module-interop
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3113036Z Checking: https://www.npmjs.com/package/@textlint/resolver
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3113751Z   Archived on 2025-08-27: https://web.archive.org/web/20250827092631/https://www.npmjs.com/package/@textlint/resolver
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3115383Z ##[notice]Broken link detected: https://www.npmjs.com/package/@textlint/resolver
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3116587Z A Web Archive snapshot from 2025-08-27 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3117113Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3118002Z   https://web.archive.org/web/20250827092631/https://www.npmjs.com/package/@textlint/resolver
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3118884Z Checking: https://www.npmjs.com/package/@textlint/types
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3119621Z   Archived on 2025-09-18: https://web.archive.org/web/20250918010222/https://www.npmjs.com/package/@textlint/types
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3121049Z ##[notice]Broken link detected: https://www.npmjs.com/package/@textlint/types
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3122163Z A Web Archive snapshot from 2025-09-18 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3122661Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3123336Z   https://web.archive.org/web/20250918010222/https://www.npmjs.com/package/@textlint/types
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3124040Z Checking: https://www.npmjs.com/package/@types/normalize-package-data
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3125009Z   Archived on 2026-04-24: https://web.archive.org/web/20260424025928/https://www.npmjs.com/package/@types/normalize-package-data
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3126612Z ##[notice]Broken link detected: https://www.npmjs.com/package/@types/normalize-package-data
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3127856Z A Web Archive snapshot from 2026-04-24 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3128322Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3129174Z   https://web.archive.org/web/20260424025928/https://www.npmjs.com/package/@types/normalize-package-data
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3129856Z Checking: https://www.npmjs.com/package/ajv
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3130426Z   Archived on 2025-09-03: https://web.archive.org/web/20250903065811/https://www.npmjs.com/package/ajv
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3131683Z ##[notice]Broken link detected: https://www.npmjs.com/package/ajv
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3132780Z A Web Archive snapshot from 2025-09-03 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3133247Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3133814Z   https://web.archive.org/web/20250903065811/https://www.npmjs.com/package/ajv
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3134332Z Checking: https://www.npmjs.com/package/ansi-escapes
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3134945Z   Archived on 2025-09-06: https://web.archive.org/web/20250906054442/https://www.npmjs.com/package/ansi-escapes
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3136182Z ##[notice]Broken link detected: https://www.npmjs.com/package/ansi-escapes
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3137297Z A Web Archive snapshot from 2025-09-06 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3137775Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3138559Z   https://web.archive.org/web/20250906054442/https://www.npmjs.com/package/ansi-escapes
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3139168Z Checking: https://www.npmjs.com/package/ansi-regex
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3139819Z   Archived on 2025-09-10: https://web.archive.org/web/20250910070117/https://www.npmjs.com/package/ansi-regex
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3141059Z ##[notice]Broken link detected: https://www.npmjs.com/package/ansi-regex
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3142013Z A Web Archive snapshot from 2025-09-10 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3142502Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3143101Z   https://web.archive.org/web/20250910070117/https://www.npmjs.com/package/ansi-regex
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3143664Z Checking: https://www.npmjs.com/package/ansi-styles
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3144345Z   Archived on 2025-09-10: https://web.archive.org/web/20250910071013/https://www.npmjs.com/package/ansi-styles
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3145706Z ##[notice]Broken link detected: https://www.npmjs.com/package/ansi-styles
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3146836Z A Web Archive snapshot from 2025-09-10 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3147415Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3148543Z   https://web.archive.org/web/20250910071013/https://www.npmjs.com/package/ansi-styles
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3149248Z Checking: https://www.npmjs.com/package/argparse
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3150082Z   Archived on 2025-09-05: https://web.archive.org/web/20250905101350/https://www.npmjs.com/package/argparse
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3151910Z ##[notice]Broken link detected: https://www.npmjs.com/package/argparse
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3153331Z A Web Archive snapshot from 2025-09-05 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3153902Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3154720Z   https://web.archive.org/web/20250905101350/https://www.npmjs.com/package/argparse
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3155409Z Checking: https://www.npmjs.com/package/binaryextensions
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3156223Z   Archived on 2025-07-31: https://web.archive.org/web/20250731190401/https://www.npmjs.com/package/binaryextensions
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3212279Z ##[notice]Broken link detected: https://www.npmjs.com/package/binaryextensions
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3213447Z A Web Archive snapshot from 2025-07-31 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3213869Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3214469Z   https://web.archive.org/web/20250731190401/https://www.npmjs.com/package/binaryextensions
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3215050Z Checking: https://www.npmjs.com/package/boundary
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3215680Z   Archived on 2015-03-22: https://web.archive.org/web/20150322132345/https://www.npmjs.com/package/boundary
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3216947Z ##[notice]Broken link detected: https://www.npmjs.com/package/boundary
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3217660Z A Web Archive snapshot from 2015-03-22 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3217984Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3218642Z   https://web.archive.org/web/20150322132345/https://www.npmjs.com/package/boundary
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3219067Z Checking: https://www.npmjs.com/package/chalk
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3219476Z   Archived on 2026-05-19: https://web.archive.org/web/20260519003601/https://www.npmjs.com/package/chalk
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3220364Z ##[notice]Broken link detected: https://www.npmjs.com/package/chalk
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3221034Z A Web Archive snapshot from 2026-05-19 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3221360Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3221741Z   https://web.archive.org/web/20260519003601/https://www.npmjs.com/package/chalk
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3222085Z Checking: https://www.npmjs.com/package/debug
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3222461Z   Archived on 2026-07-22: https://web.archive.org/web/20260722191232/https://www.npmjs.com/package/debug
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3223288Z ##[notice]Broken link detected: https://www.npmjs.com/package/debug
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3223918Z A Web Archive snapshot from 2026-07-22 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3224216Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3224583Z   https://web.archive.org/web/20260722191232/https://www.npmjs.com/package/debug
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3224919Z Checking: https://www.npmjs.com/package/editions
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3225304Z   Archived on 2025-08-23: https://web.archive.org/web/20250823192338/https://www.npmjs.com/package/editions
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3226091Z ##[notice]Broken link detected: https://www.npmjs.com/package/editions
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3226701Z A Web Archive snapshot from 2025-08-23 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3226993Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3227363Z   https://web.archive.org/web/20250823192338/https://www.npmjs.com/package/editions
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3227707Z Checking: https://www.npmjs.com/package/environment
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3228119Z   Archived on 2025-08-30: https://web.archive.org/web/20250830161320/https://www.npmjs.com/package/environment
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3229095Z ##[notice]Broken link detected: https://www.npmjs.com/package/environment
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3229957Z A Web Archive snapshot from 2025-08-30 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3230264Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3230648Z   https://web.archive.org/web/20250830161320/https://www.npmjs.com/package/environment
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3231146Z Checking: https://www.npmjs.com/package/fast-deep-equal
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3231601Z   Archived on 2025-07-06: https://web.archive.org/web/20250706113644/https://www.npmjs.com/package/fast-deep-equal
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3232449Z ##[notice]Broken link detected: https://www.npmjs.com/package/fast-deep-equal
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3233109Z A Web Archive snapshot from 2025-07-06 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3233410Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3233800Z   https://web.archive.org/web/20250706113644/https://www.npmjs.com/package/fast-deep-equal
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3234169Z Checking: https://www.npmjs.com/package/fast-uri
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3234568Z   Archived on 2025-07-15: https://web.archive.org/web/20250715000155/https://www.npmjs.com/package/fast-uri
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3235361Z ##[notice]Broken link detected: https://www.npmjs.com/package/fast-uri
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3235974Z A Web Archive snapshot from 2025-07-15 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3236281Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3236660Z   https://web.archive.org/web/20250715000155/https://www.npmjs.com/package/fast-uri
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3237035Z Checking: https://www.npmjs.com/package/get-east-asian-width
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3237499Z   Archived on 2026-04-23: https://web.archive.org/web/20260423123914/https://www.npmjs.com/package/get-east-asian-width
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3238577Z ##[notice]Broken link detected: https://www.npmjs.com/package/get-east-asian-width
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3239261Z A Web Archive snapshot from 2026-04-23 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3239568Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3239993Z   https://web.archive.org/web/20260423123914/https://www.npmjs.com/package/get-east-asian-width
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3240398Z Checking: https://www.npmjs.com/package/has-flag
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3240791Z   Archived on 2025-09-05: https://web.archive.org/web/20250905101348/https://www.npmjs.com/package/has-flag
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3241601Z ##[notice]Broken link detected: https://www.npmjs.com/package/has-flag
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3242225Z A Web Archive snapshot from 2025-09-05 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3242523Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3242899Z   https://web.archive.org/web/20250905101348/https://www.npmjs.com/package/has-flag
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3243306Z Checking: https://www.npmjs.com/package/hosted-git-info
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3243750Z   Archived on 2025-08-30: https://web.archive.org/web/20250830125729/https://www.npmjs.com/package/hosted-git-info
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3244615Z ##[notice]Broken link detected: https://www.npmjs.com/package/hosted-git-info
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3245289Z A Web Archive snapshot from 2025-08-30 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3245604Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3246026Z   https://web.archive.org/web/20250830125729/https://www.npmjs.com/package/hosted-git-info
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3246414Z Checking: https://www.npmjs.com/package/ignore
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3246802Z   Archived on 2025-12-08: https://web.archive.org/web/20251208203341/https://www.npmjs.com/package/ignore
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3247602Z ##[notice]Broken link detected: https://www.npmjs.com/package/ignore
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3248239Z A Web Archive snapshot from 2025-12-08 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3248693Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3249079Z   https://web.archive.org/web/20251208203341/https://www.npmjs.com/package/ignore
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3249442Z Checking: https://www.npmjs.com/package/index-to-position
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3250028Z   Archived on 2026-04-23: https://web.archive.org/web/20260423123716/https://www.npmjs.com/package/index-to-position
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3250912Z ##[notice]Broken link detected: https://www.npmjs.com/package/index-to-position
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3251571Z A Web Archive snapshot from 2026-04-23 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3251979Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3252386Z   https://web.archive.org/web/20260423123716/https://www.npmjs.com/package/index-to-position
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3252774Z Checking: https://www.npmjs.com/package/istextorbinary
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3253221Z   Archived on 2025-08-10: https://web.archive.org/web/20250810020827/https://www.npmjs.com/package/istextorbinary
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3254062Z ##[notice]Broken link detected: https://www.npmjs.com/package/istextorbinary
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3254707Z A Web Archive snapshot from 2025-08-10 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3255007Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3255397Z   https://web.archive.org/web/20250810020827/https://www.npmjs.com/package/istextorbinary
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3255763Z Checking: https://www.npmjs.com/package/js-tokens
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3256160Z   Archived on 2025-10-28: https://web.archive.org/web/20251028234440/https://www.npmjs.com/package/js-tokens
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3256968Z ##[notice]Broken link detected: https://www.npmjs.com/package/js-tokens
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3257584Z A Web Archive snapshot from 2025-10-28 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3257878Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3258244Z   https://web.archive.org/web/20251028234440/https://www.npmjs.com/package/js-tokens
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3258853Z Checking: https://www.npmjs.com/package/js-yaml
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3259248Z   Archived on 2026-01-13: https://web.archive.org/web/20260113000024/https://www.npmjs.com/package/js-yaml
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3260065Z ##[notice]Broken link detected: https://www.npmjs.com/package/js-yaml
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3260707Z A Web Archive snapshot from 2026-01-13 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3261005Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3261377Z   https://web.archive.org/web/20260113000024/https://www.npmjs.com/package/js-yaml
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3261778Z Checking: https://www.npmjs.com/package/json-schema-traverse
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3262234Z   Archived on 2025-07-20: https://web.archive.org/web/20250720124443/https://www.npmjs.com/package/json-schema-traverse
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3263161Z ##[notice]Broken link detected: https://www.npmjs.com/package/json-schema-traverse
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3263830Z A Web Archive snapshot from 2025-07-20 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3264136Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3264641Z   https://web.archive.org/web/20250720124443/https://www.npmjs.com/package/json-schema-traverse
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3265044Z Checking: https://www.npmjs.com/package/json5
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3265428Z   Archived on 2025-08-28: https://web.archive.org/web/20250828044031/https://www.npmjs.com/package/json5
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3266235Z ##[notice]Broken link detected: https://www.npmjs.com/package/json5
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3266875Z A Web Archive snapshot from 2025-08-28 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3267185Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3267553Z   https://web.archive.org/web/20250828044031/https://www.npmjs.com/package/json5
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3267891Z Checking: https://www.npmjs.com/package/lodash
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3268270Z   Archived on 2026-02-11: https://web.archive.org/web/20260211003952/https://www.npmjs.com/package/lodash
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3269221Z ##[notice]Broken link detected: https://www.npmjs.com/package/lodash
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3269877Z A Web Archive snapshot from 2026-02-11 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3270183Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3270703Z   https://web.archive.org/web/20260211003952/https://www.npmjs.com/package/lodash
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3271054Z Checking: https://www.npmjs.com/package/lru-cache
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3271450Z   Archived on 2025-10-04: https://web.archive.org/web/20251004123807/https://www.npmjs.com/package/lru-cache
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3272360Z ##[notice]Broken link detected: https://www.npmjs.com/package/lru-cache
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3272989Z A Web Archive snapshot from 2025-10-04 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3273286Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3273659Z   https://web.archive.org/web/20251004123807/https://www.npmjs.com/package/lru-cache
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3274002Z Checking: https://www.npmjs.com/package/ms
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3274368Z   Archived on 2026-03-25: https://web.archive.org/web/20260325022252/https://www.npmjs.com/package/ms
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3275123Z ##[notice]Broken link detected: https://www.npmjs.com/package/ms
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3275755Z A Web Archive snapshot from 2026-03-25 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3276063Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3276427Z   https://web.archive.org/web/20260325022252/https://www.npmjs.com/package/ms
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3276808Z Checking: https://www.npmjs.com/package/normalize-package-data
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3277291Z   Archived on 2025-08-11: https://web.archive.org/web/20250811235218/https://www.npmjs.com/package/normalize-package-data
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3278190Z ##[notice]Broken link detected: https://www.npmjs.com/package/normalize-package-data
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3279064Z A Web Archive snapshot from 2025-08-11 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3279371Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3279783Z   https://web.archive.org/web/20250811235218/https://www.npmjs.com/package/normalize-package-data
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3280175Z Checking: https://www.npmjs.com/package/p-map
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3280549Z   Archived on 2025-08-29: https://web.archive.org/web/20250829203128/https://www.npmjs.com/package/p-map
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3281329Z ##[notice]Broken link detected: https://www.npmjs.com/package/p-map
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3281940Z A Web Archive snapshot from 2025-08-29 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3282240Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3282613Z   https://web.archive.org/web/20250829203128/https://www.npmjs.com/package/p-map
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3282966Z Checking: https://www.npmjs.com/package/parse-json
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3283367Z   Archived on 2025-09-01: https://web.archive.org/web/20250901145452/https://www.npmjs.com/package/parse-json
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3284173Z ##[notice]Broken link detected: https://www.npmjs.com/package/parse-json
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3284778Z A Web Archive snapshot from 2025-09-01 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3285067Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3285440Z   https://web.archive.org/web/20250901145452/https://www.npmjs.com/package/parse-json
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3285791Z Checking: https://www.npmjs.com/package/picomatch
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3286193Z   Archived on 2025-09-18: https://web.archive.org/web/20250918004620/https://www.npmjs.com/package/picomatch
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3286992Z ##[notice]Broken link detected: https://www.npmjs.com/package/picomatch
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3287614Z A Web Archive snapshot from 2025-09-18 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3287905Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3288269Z   https://web.archive.org/web/20250918004620/https://www.npmjs.com/package/picomatch
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3288727Z Checking: https://www.npmjs.com/package/pluralize
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3289127Z   Archived on 2025-07-20: https://web.archive.org/web/20250720124332/https://www.npmjs.com/package/pluralize
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3289946Z ##[notice]Broken link detected: https://www.npmjs.com/package/pluralize
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3290713Z A Web Archive snapshot from 2025-07-20 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3291015Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3291384Z   https://web.archive.org/web/20250720124332/https://www.npmjs.com/package/pluralize
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3291862Z Checking: https://www.npmjs.com/package/rc-config-loader
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3292294Z   Archived on 2025-09-17: https://web.archive.org/web/20250917024627/https://www.npmjs.com/package/rc-config-loader
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3293151Z ##[notice]Broken link detected: https://www.npmjs.com/package/rc-config-loader
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3293792Z A Web Archive snapshot from 2025-09-17 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3294088Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3294486Z   https://web.archive.org/web/20250917024627/https://www.npmjs.com/package/rc-config-loader
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3294867Z Checking: https://www.npmjs.com/package/read-pkg
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3295118Z   Not found in Web Archive
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3295743Z ##[error]Broken link detected: https://www.npmjs.com/package/read-pkg
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3296377Z No archived version was found in the Wayback Machine.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3296754Z Find an updated URL, remove the link, or add it to .lycheeignore if it is a known false positive.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3297167Z Checking: https://www.npmjs.com/package/require-from-string
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3297623Z   Archived on 2025-09-10: https://web.archive.org/web/20250910100624/https://www.npmjs.com/package/require-from-string
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3298710Z ##[notice]Broken link detected: https://www.npmjs.com/package/require-from-string
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3299376Z A Web Archive snapshot from 2025-09-10 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3299680Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3300088Z   https://web.archive.org/web/20250910100624/https://www.npmjs.com/package/require-from-string
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3300477Z Checking: https://www.npmjs.com/package/secretlint
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3300874Z   Archived on 2025-09-06: https://web.archive.org/web/20250906070944/https://www.npmjs.com/package/secretlint
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3301691Z ##[notice]Broken link detected: https://www.npmjs.com/package/secretlint
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3302426Z A Web Archive snapshot from 2025-09-06 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3302734Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3303110Z   https://web.archive.org/web/20250906070944/https://www.npmjs.com/package/secretlint
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3303459Z Checking: https://www.npmjs.com/package/semver
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3303839Z   Archived on 2025-09-11: https://web.archive.org/web/20250911165515/https://www.npmjs.com/package/semver
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3304622Z ##[notice]Broken link detected: https://www.npmjs.com/package/semver
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3305240Z A Web Archive snapshot from 2025-09-11 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3305542Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3305908Z   https://web.archive.org/web/20250911165515/https://www.npmjs.com/package/semver
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3306249Z Checking: https://www.npmjs.com/package/slice-ansi
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3306646Z   Archived on 2026-04-01: https://web.archive.org/web/20260401014210/https://www.npmjs.com/package/slice-ansi
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3307425Z ##[notice]Broken link detected: https://www.npmjs.com/package/slice-ansi
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3308057Z A Web Archive snapshot from 2026-04-01 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3308512Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3308886Z   https://web.archive.org/web/20260401014210/https://www.npmjs.com/package/slice-ansi
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3309239Z Checking: https://www.npmjs.com/package/spdx-correct
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3309642Z   Archived on 2025-08-12: https://web.archive.org/web/20250812060627/https://www.npmjs.com/package/spdx-correct
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3310624Z ##[notice]Broken link detected: https://www.npmjs.com/package/spdx-correct
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3311278Z A Web Archive snapshot from 2025-08-12 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3311574Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3312063Z   https://web.archive.org/web/20250812060627/https://www.npmjs.com/package/spdx-correct
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3312448Z Checking: https://www.npmjs.com/package/spdx-exceptions
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3312861Z   Archived on 2025-11-13: https://web.archive.org/web/20251113013724/https://www.npmjs.com/package/spdx-exceptions
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3313696Z ##[notice]Broken link detected: https://www.npmjs.com/package/spdx-exceptions
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3314330Z A Web Archive snapshot from 2025-11-13 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3314628Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3315021Z   https://web.archive.org/web/20251113013724/https://www.npmjs.com/package/spdx-exceptions
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3315435Z Checking: https://www.npmjs.com/package/spdx-expression-parse
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3315890Z   Archived on 2025-08-20: https://web.archive.org/web/20250820204958/https://www.npmjs.com/package/spdx-expression-parse
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3316768Z ##[notice]Broken link detected: https://www.npmjs.com/package/spdx-expression-parse
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3317430Z A Web Archive snapshot from 2025-08-20 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3317731Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3318137Z   https://web.archive.org/web/20250820204958/https://www.npmjs.com/package/spdx-expression-parse
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3318737Z Checking: https://www.npmjs.com/package/spdx-license-ids
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3319158Z   Archived on 2025-11-13: https://web.archive.org/web/20251113020726/https://www.npmjs.com/package/spdx-license-ids
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3319995Z ##[notice]Broken link detected: https://www.npmjs.com/package/spdx-license-ids
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3320658Z A Web Archive snapshot from 2025-11-13 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3320952Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3321339Z   https://web.archive.org/web/20251113020726/https://www.npmjs.com/package/spdx-license-ids
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3321713Z Checking: https://www.npmjs.com/package/string-width
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3322120Z   Archived on 2026-06-30: https://web.archive.org/web/20260630151808/https://www.npmjs.com/package/string-width
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3322924Z ##[notice]Broken link detected: https://www.npmjs.com/package/string-width
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3323549Z A Web Archive snapshot from 2026-06-30 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3323835Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3324212Z   https://web.archive.org/web/20260630151808/https://www.npmjs.com/package/string-width
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3324571Z Checking: https://www.npmjs.com/package/strip-ansi
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3324975Z   Archived on 2026-05-21: https://web.archive.org/web/20260521025124/https://www.npmjs.com/package/strip-ansi
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3325789Z ##[notice]Broken link detected: https://www.npmjs.com/package/strip-ansi
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3326416Z A Web Archive snapshot from 2026-05-21 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3326721Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3327097Z   https://web.archive.org/web/20260521025124/https://www.npmjs.com/package/strip-ansi
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3327465Z Checking: https://www.npmjs.com/package/structured-source
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3327902Z   Archived on 2025-08-30: https://web.archive.org/web/20250830074407/https://www.npmjs.com/package/structured-source
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3328854Z ##[notice]Broken link detected: https://www.npmjs.com/package/structured-source
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3329497Z A Web Archive snapshot from 2025-08-30 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3329786Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3330320Z   https://web.archive.org/web/20250830074407/https://www.npmjs.com/package/structured-source
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3330706Z Checking: https://www.npmjs.com/package/supports-color
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3331152Z   Archived on 2025-09-05: https://web.archive.org/web/20250905101343/https://www.npmjs.com/package/supports-color
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3332100Z ##[notice]Broken link detected: https://www.npmjs.com/package/supports-color
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3332741Z A Web Archive snapshot from 2025-09-05 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3333037Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3333423Z   https://web.archive.org/web/20250905101343/https://www.npmjs.com/package/supports-color
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3333815Z Checking: https://www.npmjs.com/package/supports-hyperlinks
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3334088Z   Not found in Web Archive
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3334739Z ##[error]Broken link detected: https://www.npmjs.com/package/supports-hyperlinks
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3335402Z No archived version was found in the Wayback Machine.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3335769Z Find an updated URL, remove the link, or add it to .lycheeignore if it is a known false positive.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3336136Z Checking: https://www.npmjs.com/package/table
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3336512Z   Archived on 2025-08-05: https://web.archive.org/web/20250805134308/https://www.npmjs.com/package/table
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3337279Z ##[notice]Broken link detected: https://www.npmjs.com/package/table
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3337891Z A Web Archive snapshot from 2025-08-05 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3338182Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3338727Z   https://web.archive.org/web/20250805134308/https://www.npmjs.com/package/table
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3339065Z Checking: https://www.npmjs.com/package/tagged-tag
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3339463Z   Archived on 2026-05-08: https://web.archive.org/web/20260508022940/https://www.npmjs.com/package/tagged-tag
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3340273Z ##[notice]Broken link detected: https://www.npmjs.com/package/tagged-tag
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3340884Z A Web Archive snapshot from 2026-05-08 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3341172Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3341550Z   https://web.archive.org/web/20260508022940/https://www.npmjs.com/package/tagged-tag
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3341916Z Checking: https://www.npmjs.com/package/terminal-link
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3342314Z   Archived on 2025-07-14: https://web.archive.org/web/20250714042533/https://www.npmjs.com/package/terminal-link
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3343123Z ##[notice]Broken link detected: https://www.npmjs.com/package/terminal-link
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3343756Z A Web Archive snapshot from 2025-07-14 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3344041Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3344417Z   https://web.archive.org/web/20250714042533/https://www.npmjs.com/package/terminal-link
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3344785Z Checking: https://www.npmjs.com/package/text-table
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3345171Z   Archived on 2025-09-06: https://web.archive.org/web/20250906104602/https://www.npmjs.com/package/text-table
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3345958Z ##[notice]Broken link detected: https://www.npmjs.com/package/text-table
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3346576Z A Web Archive snapshot from 2025-09-06 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3346865Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3347227Z   https://web.archive.org/web/20250906104602/https://www.npmjs.com/package/text-table
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3347581Z Checking: https://www.npmjs.com/package/textextensions
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3347996Z   Archived on 2025-07-31: https://web.archive.org/web/20250731191127/https://www.npmjs.com/package/textextensions
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3348948Z ##[notice]Broken link detected: https://www.npmjs.com/package/textextensions
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3349592Z A Web Archive snapshot from 2025-07-31 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3350018Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3350403Z   https://web.archive.org/web/20250731191127/https://www.npmjs.com/package/textextensions
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3350765Z Checking: https://www.npmjs.com/package/type-fest
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3351160Z   Archived on 2025-09-16: https://web.archive.org/web/20250916222638/https://www.npmjs.com/package/type-fest
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3352058Z ##[notice]Broken link detected: https://www.npmjs.com/package/type-fest
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3352692Z A Web Archive snapshot from 2025-09-16 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3352986Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3353347Z   https://web.archive.org/web/20250916222638/https://www.npmjs.com/package/type-fest
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3353699Z Checking: https://www.npmjs.com/package/unicorn-magic
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3354106Z   Archived on 2026-04-23: https://web.archive.org/web/20260423123659/https://www.npmjs.com/package/unicorn-magic
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3354925Z ##[notice]Broken link detected: https://www.npmjs.com/package/unicorn-magic
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3355539Z A Web Archive snapshot from 2026-04-23 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3355826Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3356212Z   https://web.archive.org/web/20260423123659/https://www.npmjs.com/package/unicorn-magic
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3356626Z Checking: https://www.npmjs.com/package/validate-npm-package-license
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3357137Z   Archived on 2025-09-14: https://web.archive.org/web/20250914065612/https://www.npmjs.com/package/validate-npm-package-license
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3358097Z ##[notice]Broken link detected: https://www.npmjs.com/package/validate-npm-package-license
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3358972Z A Web Archive snapshot from 2025-09-14 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3359281Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3359723Z   https://web.archive.org/web/20250914065612/https://www.npmjs.com/package/validate-npm-package-license
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3360139Z Checking: https://www.npmjs.com/package/version-range
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3360547Z   Archived on 2025-08-30: https://web.archive.org/web/20250830074332/https://www.npmjs.com/package/version-range
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3361381Z ##[notice]Broken link detected: https://www.npmjs.com/package/version-range
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3362017Z A Web Archive snapshot from 2025-08-30 is available.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3362308Z Suggested fix: replace the broken link with the archived version:
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3362690Z   https://web.archive.org/web/20250830074332/https://www.npmjs.com/package/version-range
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3363072Z Checking: https://github.com/ssciwr/cppcheck-wheel/pull/197
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3363346Z   Not found in Web Archive
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3363998Z ##[error]Broken link detected: https://github.com/ssciwr/cppcheck-wheel/pull/197
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3364662Z No archived version was found in the Wayback Machine.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3365029Z Find an updated URL, remove the link, or add it to .lycheeignore if it is a known false positive.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3365366Z all_archived=false
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3365593Z Action required: fix or remove the broken links listed above.
+Check Links	Check broken links against Web Archive	2026-11-14T09:40:55.3368277Z ##[error]Process completed with exit code 1.
+Check Links	Fail if broken links were found	﻿2026-11-14T09:40:55.3408497Z ##[group]Run echo "::error::Broken live links were detected."
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3408911Z ^[[36;1mecho "::error::Broken live links were detected."^[[0m
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3409164Z ^[[36;1mecho ""^[[0m
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3409351Z ^[[36;1mecho "What happened:"^[[0m
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3409704Z ^[[36;1mecho "  lychee found one or more broken links in the *.md and *.html files of this repository."^[[0m
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3410254Z ^[[36;1mecho "  An available Web Archive snapshot is a suggested replacement; it does not make the live link valid."^[[0m
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3410653Z ^[[36;1mecho ""^[[0m
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3410826Z ^[[36;1mecho "How to fix:"^[[0m
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3411126Z ^[[36;1mecho "  1. Review the 'Check links with lychee' step above for the broken links."^[[0m
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3411544Z ^[[36;1mecho "  2. Replace links with suggested archive.org URLs when available."^[[0m
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3412020Z ^[[36;1mecho "  3. Otherwise find an updated URL, remove the link, or add a known false positive to .lycheeignore."^[[0m
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3412564Z ^[[36;1mecho ""^[[0m
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3412757Z ^[[36;1mecho "Report location: lychee/out.md."^[[0m
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3412986Z ^[[36;1mexit 1^[[0m
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3458757Z shell: /usr/bin/bash -e {0}
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3458977Z env:
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3459149Z   GIT_CONFIG_COUNT: 1
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3459453Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3459752Z   GIT_CONFIG_VALUE_0: main
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3460024Z ##[endgroup]
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3518772Z ##[error]Broken live links were detected.
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3519589Z 
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3519703Z What happened:
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3520028Z   lychee found one or more broken links in the *.md and *.html files of this repository.
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3520884Z   An available Web Archive snapshot is a suggested replacement; it does not make the live link valid.
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3521359Z 
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3521458Z How to fix:
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3521831Z   1. Review the 'Check links with lychee' step above for the broken links.
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3522341Z   2. Replace links with suggested archive.org URLs when available.
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3522761Z   3. Otherwise find an updated URL, remove the link, or add a known false positive to .lycheeignore.
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3523047Z 
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3523132Z Report location: lychee/out.md.
+Check Links	Fail if broken links were found	2026-11-14T09:40:55.3523878Z ##[error]Process completed with exit code 1.
+Check Links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-11-14T09:40:55.3617705Z Post job cleanup.
+Check Links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:40:55.4336220Z [command]/usr/bin/git version
+Check Links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:40:55.4374570Z git version 2.56.1
+Check Links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:40:55.4406214Z Temporarily overriding HOME='/home/runner/work/_temp/863e3fe0-074a-454b-a37e-13253267192e' before making global git config changes
+Check Links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:40:55.4407416Z Adding repository directory to the temporary git global config as a safe directory
+Check Links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:40:55.4410588Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template
+Check Links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:40:55.4441471Z Removing SSH command configuration
+Check Links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:40:55.4446385Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Check Links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:40:55.4477269Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Check Links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:40:55.4730182Z Removing HTTP extra header
+Check Links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:40:55.4736258Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Check Links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:40:55.4775264Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Check Links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:40:55.5054465Z Removing includeIf entries pointing to credentials config files
+Check Links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:40:55.5060415Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Check Links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:40:55.5094929Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Check Links	Complete job	﻿2026-11-14T09:40:55.5507470Z Cleaning up orphan processes
+Pipeline Status	Set up job	﻿2026-11-14T09:41:01.8244401Z Current runner version: '2.338.2'
+Pipeline Status	Set up job	2026-11-14T09:41:01.8266885Z ##[group]Runner Image Provisioner
+Pipeline Status	Set up job	2026-11-14T09:41:01.8267761Z Hosted Compute Agent
+Pipeline Status	Set up job	2026-11-14T09:41:01.8268303Z Version: 20261103.629
+Pipeline Status	Set up job	2026-11-14T09:41:01.8269026Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+Pipeline Status	Set up job	2026-11-14T09:41:01.8269727Z Build Date: 2026-11-03T17:26:59Z
+Pipeline Status	Set up job	2026-11-14T09:41:01.8270380Z Worker ID: {540c5562-bd44-4479-822d-8bfc6a6bd343}
+Pipeline Status	Set up job	2026-11-14T09:41:01.8271044Z Region: westus2
+Pipeline Status	Set up job	2026-11-14T09:41:01.8271594Z Cloud: Azure
+Pipeline Status	Set up job	2026-11-14T09:41:01.8272175Z ##[endgroup]
+Pipeline Status	Set up job	2026-11-14T09:41:01.8273403Z ##[group]Operating System
+Pipeline Status	Set up job	2026-11-14T09:41:01.8273985Z Ubuntu
+Pipeline Status	Set up job	2026-11-14T09:41:01.8274488Z 26.04.1
+Pipeline Status	Set up job	2026-11-14T09:41:01.8275425Z LTS
+Pipeline Status	Set up job	2026-11-14T09:41:01.8275999Z ##[endgroup]
+Pipeline Status	Set up job	2026-11-14T09:41:01.8276561Z ##[group]Runner Image
+Pipeline Status	Set up job	2026-11-14T09:41:01.8277150Z Image: ubuntu-26.04
+Pipeline Status	Set up job	2026-11-14T09:41:01.8277735Z Version: 20261111.196.1
+Pipeline Status	Set up job	2026-11-14T09:41:01.8278780Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261111.196/images/ubuntu/Ubuntu2604-Readme.md
+Pipeline Status	Set up job	2026-11-14T09:41:01.8280452Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261111.196
+Pipeline Status	Set up job	2026-11-14T09:41:01.8281351Z ##[endgroup]
+Pipeline Status	Set up job	2026-11-14T09:41:01.8282380Z ##[group]GITHUB_TOKEN Permissions
+Pipeline Status	Set up job	2026-11-14T09:41:01.8284873Z Contents: read
+Pipeline Status	Set up job	2026-11-14T09:41:01.8285511Z Metadata: read
+Pipeline Status	Set up job	2026-11-14T09:41:01.8286034Z ##[endgroup]
+Pipeline Status	Set up job	2026-11-14T09:41:01.8288099Z Secret source: Actions
+Pipeline Status	Set up job	2026-11-14T09:41:01.8289072Z Cache mode: write
+Pipeline Status	Set up job	2026-11-14T09:41:01.8289766Z Prepare workflow directory
+Pipeline Status	Set up job	2026-11-14T09:41:01.8640033Z Prepare all required actions
+Pipeline Status	Set up job	2026-11-14T09:41:01.8686595Z Getting action download info
+Pipeline Status	Set up job	2026-11-14T09:41:02.1879973Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Pipeline Status	Set up job	2026-11-14T09:41:02.3620297Z Complete job name: Pipeline Status
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-11-14T09:41:02.4458275Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.4459377Z with:
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.4459931Z   persist-credentials: false
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.4460703Z   repository: link-foundation/cpp-ai-driven-development-pipeline-template
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.4464784Z   token: ***
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.4465322Z   ssh-strict: true
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.4465896Z   ssh-user: git
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.4466396Z   clean: true
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.4466908Z   sparse-checkout-cone-mode: true
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.4467506Z   fetch-depth: 1
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.4468024Z   fetch-tags: false
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.4468530Z   show-progress: true
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.4469073Z   lfs: false
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.4469553Z   submodules: false
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.4470069Z   set-safe-directory: true
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.4470647Z   allow-unsafe-pr-checkout: false
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.4471407Z env:
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.4472068Z   GIT_CONFIG_COUNT: 1
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.4472615Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.4473329Z   GIT_CONFIG_VALUE_0: main
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.4473882Z ##[endgroup]
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7355088Z Syncing repository: link-foundation/cpp-ai-driven-development-pipeline-template
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7358937Z ##[group]Getting Git version info
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7361074Z Working directory is '/home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template'
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7363804Z [command]/usr/bin/git version
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7365154Z git version 2.56.1
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7379992Z ##[endgroup]
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7387717Z Temporarily overriding HOME='/home/runner/work/_temp/bb767a8f-2c87-4036-8ada-2b90a9e7a8dc' before making global git config changes
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7390340Z Adding repository directory to the temporary git global config as a safe directory
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7395362Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7462873Z Deleting the contents of '/home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template'
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7466839Z ##[group]Determining repository object format
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7469128Z ##[endgroup]
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7470907Z ##[group]Initializing the repository
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7473213Z [command]/usr/bin/git init /home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7579832Z Initialized empty Git repository in /home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template/.git/
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7588176Z [command]/usr/bin/git remote add origin https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7644911Z ##[endgroup]
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7646504Z ##[group]Disabling automatic garbage collection
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7648070Z [command]/usr/bin/git config --local gc.auto 0
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7681559Z ##[endgroup]
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7682962Z ##[group]Setting up auth
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7684036Z Removing SSH command configuration
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7688279Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.7718590Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.8144230Z Removing HTTP extra header
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.8152711Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.8187979Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.8398266Z Removing includeIf entries pointing to credentials config files
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.8402367Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.8428889Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.8636080Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-2cc8a75e-96f5-437c-bd94-e08189f83b4d.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.8667658Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template/.git.path /home/runner/work/_temp/git-credentials-2cc8a75e-96f5-437c-bd94-e08189f83b4d.config
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.8695770Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-2cc8a75e-96f5-437c-bd94-e08189f83b4d.config
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.8727994Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-2cc8a75e-96f5-437c-bd94-e08189f83b4d.config
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.8757240Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-2cc8a75e-96f5-437c-bd94-e08189f83b4d.config
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.8782434Z ##[endgroup]
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.8783531Z ##[group]Fetching the repository
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:02.8789552Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +fde756d04386a7ed95e9f517d8c1069a6535a3b3:refs/remotes/pull/31/merge
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.2906795Z From https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.2908439Z  * [new ref]         fde756d04386a7ed95e9f517d8c1069a6535a3b3 -> pull/31/merge
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.2911398Z ##[endgroup]
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.2912426Z ##[group]Determining the checkout info
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.2913444Z ##[endgroup]
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.2917488Z [command]/usr/bin/git sparse-checkout disable
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.2970134Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3000425Z ##[group]Checking out the ref
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3004276Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/31/merge
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3245255Z Note: switching to 'refs/remotes/pull/31/merge'.
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3245897Z 
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3246330Z You are in 'detached HEAD' state. You can look around, make experimental
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3247518Z changes and commit them, and you can discard any commits you make in this
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3248612Z state without impacting any branches by switching back to a branch.
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3249179Z 
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3249703Z If you want to create a new branch to retain commits you create, you may
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3250681Z do so (now or later) by using -c with the switch command. Example:
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3251261Z 
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3251570Z   git switch -c <new-branch-name>
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3252093Z 
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3252365Z Or undo this operation with:
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3252769Z 
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3252999Z   git switch -
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3253312Z 
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3253802Z Turn off this advice by setting config variable advice.detachedHead to false
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3254488Z 
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3255546Z HEAD is now at fde756d Merge 2d96810e569d89e8411fd636203909da63fdf8dd into 256589058fd5cdc1659391be4011b506f62d657b
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3262602Z ##[endgroup]
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3304438Z [command]/usr/bin/git log -1 --format=%H
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3325155Z fde756d04386a7ed95e9f517d8c1069a6535a3b3
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3339260Z ##[group]Removing auth
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3346210Z Removing SSH command configuration
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3347705Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3364057Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3578874Z Removing HTTP extra header
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3582502Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3608998Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3814072Z Removing includeIf entries pointing to credentials config files
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3817459Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3837346Z includeif.gitdir:/home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template/.git.path
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3840713Z includeif.gitdir:/home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template/.git/worktrees/*.path
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3843100Z includeif.gitdir:/github/workspace/.git.path
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3844389Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3848219Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template/.git.path
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3863916Z /home/runner/work/_temp/git-credentials-2cc8a75e-96f5-437c-bd94-e08189f83b4d.config
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3873972Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-2cc8a75e\-96f5\-437c\-bd94\-e08189f83b4d\.config
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3910694Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template/.git/worktrees/*.path
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3935133Z /home/runner/work/_temp/git-credentials-2cc8a75e-96f5-437c-bd94-e08189f83b4d.config
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3947474Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-2cc8a75e\-96f5\-437c\-bd94\-e08189f83b4d\.config
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3972132Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.3995921Z /github/runner_temp/git-credentials-2cc8a75e-96f5-437c-bd94-e08189f83b4d.config
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.4008077Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-2cc8a75e\-96f5\-437c\-bd94\-e08189f83b4d\.config
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.4041068Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.4062014Z /github/runner_temp/git-credentials-2cc8a75e-96f5-437c-bd94-e08189f83b4d.config
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.4069309Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-2cc8a75e\-96f5\-437c\-bd94\-e08189f83b4d\.config
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.4116793Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.4320939Z Removing credentials config '/home/runner/work/_temp/git-credentials-2cc8a75e-96f5-437c-bd94-e08189f83b4d.config'
+Pipeline Status	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.4330385Z ##[endgroup]
+Pipeline Status	Check aggregate pipeline status	﻿2026-11-14T09:41:03.4589597Z ##[group]Run bash scripts/check-pipeline-status.sh
+Pipeline Status	Check aggregate pipeline status	2026-11-14T09:41:03.4590654Z ^[[36;1mbash scripts/check-pipeline-status.sh^[[0m
+Pipeline Status	Check aggregate pipeline status	2026-11-14T09:41:03.4627348Z shell: /usr/bin/bash -e {0}
+Pipeline Status	Check aggregate pipeline status	2026-11-14T09:41:03.4628090Z env:
+Pipeline Status	Check aggregate pipeline status	2026-11-14T09:41:03.4628618Z   GIT_CONFIG_COUNT: 1
+Pipeline Status	Check aggregate pipeline status	2026-11-14T09:41:03.4629254Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Pipeline Status	Check aggregate pipeline status	2026-11-14T09:41:03.4630238Z   GIT_CONFIG_VALUE_0: main
+Pipeline Status	Check aggregate pipeline status	2026-11-14T09:41:03.4631100Z   NEEDS_JSON: {
+Pipeline Status	Check aggregate pipeline status	  "link-checker": {
+Pipeline Status	Check aggregate pipeline status	    "result": "failure",
+Pipeline Status	Check aggregate pipeline status	    "outputs": {}
+Pipeline Status	Check aggregate pipeline status	  }
+Pipeline Status	Check aggregate pipeline status	}
+Pipeline Status	Check aggregate pipeline status	2026-11-14T09:41:03.4632086Z   RUN_SHA: 2d96810e569d89e8411fd636203909da63fdf8dd
+Pipeline Status	Check aggregate pipeline status	2026-11-14T09:41:03.4632828Z   BRANCH_NAME: issue-30-fb8c705cf350
+Pipeline Status	Check aggregate pipeline status	2026-11-14T09:41:03.4633482Z ##[endgroup]
+Pipeline Status	Check aggregate pipeline status	2026-11-14T09:41:03.5199229Z ##[error]Failed jobs: link-checker
+Pipeline Status	Check aggregate pipeline status	2026-11-14T09:41:03.5210395Z ##[error]Process completed with exit code 1.
+Pipeline Status	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-11-14T09:41:03.5393273Z Post job cleanup.
+Pipeline Status	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.6209797Z [command]/usr/bin/git version
+Pipeline Status	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.6245914Z git version 2.56.1
+Pipeline Status	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.6279202Z Temporarily overriding HOME='/home/runner/work/_temp/a8ec0b3c-f3ee-49f2-86b7-233abfeab89d' before making global git config changes
+Pipeline Status	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.6281912Z Adding repository directory to the temporary git global config as a safe directory
+Pipeline Status	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.6284942Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cpp-ai-driven-development-pipeline-template/cpp-ai-driven-development-pipeline-template
+Pipeline Status	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.6313810Z Removing SSH command configuration
+Pipeline Status	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.6320305Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Pipeline Status	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.6351015Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Pipeline Status	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.6601475Z Removing HTTP extra header
+Pipeline Status	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.6607130Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Pipeline Status	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.6637071Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Pipeline Status	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.6870221Z Removing includeIf entries pointing to credentials config files
+Pipeline Status	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.6874454Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Pipeline Status	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-14T09:41:03.6912503Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Pipeline Status	Complete job	﻿2026-11-14T09:41:03.7260047Z Cleaning up orphan processes

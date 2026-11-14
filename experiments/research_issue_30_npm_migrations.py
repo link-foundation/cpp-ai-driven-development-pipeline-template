@@ -1,21 +1,52 @@
-import concurrent.futures, json, re, subprocess, urllib.parse, urllib.request
+#!/usr/bin/env python3
+"""Collect release notes for the scanner's explicitly overridden npm majors."""
+
+import concurrent.futures
+import json
+import re
+import subprocess
+import urllib.parse
+import urllib.request
 from pathlib import Path
-out=Path('dev/log/issues/30/pulls/31/raw')
-def get(item):
- name,version=item
- with urllib.request.urlopen('https://registry.npmjs.org/'+urllib.parse.quote(name,safe='')+'/latest') as r: meta=json.load(r)
- repo=meta.get('repository',{})
- repo=repo.get('url','') if isinstance(repo,dict) else repo
- match=re.search(r'github.com[:/]([^/]+/[^/#]+)',repo)
- result={'name':name,'version':version,'engines':meta.get('engines'),'repository':repo}
- if match:
-  slug=match.group(1).removesuffix('.git'); major=version.split('.')[0]
-  for tag in ('v'+major+'.0.0',major+'.0.0','v'+version):
-   p=subprocess.run(['gh','api',f'repos/{slug}/releases/tags/{tag}'],capture_output=True,text=True)
-   if p.returncode==0:
-    release=json.loads(p.stdout); result.update(url=release['html_url'],notes=release.get('body')); break
- return result
-items=json.loads(Path('package.json').read_text())['overrides'].items()
-with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool: data=list(pool.map(get,items))
-(out/'npm-major-migrations.json').write_text(json.dumps(data,indent=2)+'\n')
-for d in data: print(d['name'],d['version'],d.get('url','NO RELEASE NOTES'), '\n',d.get('notes','')[:2500], '\n')
+
+ROOT = Path(__file__).resolve().parents[1]
+OUT = ROOT / 'dev/log/issues/30/pulls/31/raw'
+
+
+def release_notes(item):
+    name, version = item
+    url = 'https://registry.npmjs.org/' + urllib.parse.quote(name, safe='') + '/latest'
+    with urllib.request.urlopen(url) as response:
+        metadata = json.load(response)
+    repository = metadata.get('repository', {})
+    repository = repository.get('url', '') if isinstance(repository, dict) else repository
+    match = re.search(r'github.com[:/]([^/]+/[^/#]+)', repository)
+    result = {'name': name, 'version': version, 'engines': metadata.get('engines'),
+              'repository': repository}
+    if match:
+        slug = match.group(1).removesuffix('.git')
+        major = version.split('.')[0]
+        for tag in (f'v{major}.0.0', f'{major}.0.0', f'v{version}'):
+            process = subprocess.run(
+                ['gh', 'api', f'repos/{slug}/releases/tags/{tag}'],
+                capture_output=True, text=True, check=False,
+            )
+            if process.returncode == 0:
+                release = json.loads(process.stdout)
+                result.update(url=release['html_url'], notes=release.get('body'))
+                break
+    return result
+
+
+def main():
+    items = json.loads((ROOT / 'package.json').read_text())['overrides'].items()
+    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
+        records = list(pool.map(release_notes, items))
+    (OUT / 'npm-major-migrations.json').write_text(json.dumps(records, indent=2) + '\n')
+    for record in records:
+        print(record['name'], record['version'], record.get('url', 'NO RELEASE NOTES'))
+        print((record.get('notes') or '')[:2500])
+
+
+if __name__ == '__main__':
+    main()
