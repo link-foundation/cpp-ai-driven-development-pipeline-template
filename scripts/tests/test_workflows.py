@@ -7,7 +7,12 @@ Python template does, so the tests need no YAML library.
 
 from __future__ import annotations
 
+import json
+import os
 import re
+import subprocess
+import sys
+import textwrap
 from pathlib import Path
 from typing import Dict, List
 
@@ -160,6 +165,74 @@ def test_python_audit_covers_explicit_pipx_tools() -> None:
     for path in WORKFLOWS:
         for tool in re.findall(r"pipx run ([\w-]+==[\w.]+)", path.read_text()):
             assert tool in requirements.splitlines(), f"Unaudited workflow tool: {tool}"
+
+
+def test_changelog_exception_receives_pr_author_not_workflow_actor() -> None:
+    job = jobs(ROOT / ".github/workflows/release.yml")["changelog"]
+    check = next(step for step in steps(job) if "scripts/check_changelog_fragment.py" in step)
+    assert "PR_AUTHOR: ${{ github.event.pull_request.user.login }}" in check
+
+
+@pytest.mark.parametrize("pin", ["zizmor==1.32.0", "zizmor==9.8.7", ""])
+def test_both_zizmor_passes_follow_the_manifest(tmp_path, pin) -> None:
+    """Run the actual workflow shell commands without installing a linter."""
+    manifests = tmp_path / "scripts"
+    manifests.mkdir()
+    (manifests / "requirements-security.txt").write_text(f"pip-audit==2.10.1\n{pin}\n")
+    fake_pipx = tmp_path / "pipx"
+    fake_pipx.write_text(
+        f"#!{sys.executable}\nimport json, os, sys\n"
+        "with open(os.environ['PIPX_CALLS'], 'a') as log:\n"
+        "    log.write(json.dumps(sys.argv[1:]) + '\\n')\n"
+    )
+    fake_pipx.chmod(0o755)
+    calls = tmp_path / "calls.jsonl"
+    workflow = ROOT / ".github/workflows/workflows.yml"
+    audit = jobs(workflow)["zizmor"]
+    commands = []
+    for step in steps(audit):
+        if "run:" not in step:
+            continue
+        lines = step.split("run:", 1)[1].splitlines()
+        command = textwrap.dedent("\n".join(lines[1:]))
+        if lines[0].strip().startswith(">"):
+            command = " ".join(command.splitlines())
+        commands.append(command)
+        result = subprocess.run(
+            ["bash", "-e", "-c", command], cwd=tmp_path,
+            env={**os.environ, "PATH": f"{tmp_path}{os.pathsep}{os.environ['PATH']}",
+                 "PIPX_CALLS": str(calls)},
+            capture_output=True, text=True, timeout=15,
+        )
+        assert (result.returncode == 0) == bool(pin), result.stdout + result.stderr
+    assert len(commands) == 2
+    assert not re.search(r"zizmor==[0-9]", workflow.read_text())
+    if not pin:
+        assert not calls.exists()  # Never fall back to an unpinned latest version.
+        return
+    invocations = [json.loads(line) for line in calls.read_text().splitlines()]
+    assert len(invocations) == 2
+    for args in invocations:
+        assert args[:4] == ["run", "--spec", pin, "zizmor"]
+    assert "regular" in invocations[0] and "--format=github" in invocations[0]
+    assert "pedantic" in invocations[1] and "--min-severity" in invocations[1]
+
+
+def test_workflow_audits_run_when_their_requirements_change() -> None:
+    triggers = (ROOT / ".github/workflows/workflows.yml").read_text().split("\npermissions:", 1)[0]
+    assert triggers.count("- 'scripts/requirements-security.txt'") == 2
+
+
+def test_dependabot_health_is_scheduled_read_only_and_gated() -> None:
+    path = ROOT / ".github/workflows/dependabot-health.yml"
+    text = path.read_text()
+    assert "  schedule:" in text and "  workflow_dispatch:" in text
+    assert "pull_request_target" not in text
+    assert ": write" not in text
+    job = jobs(path)["stale-pull-requests"]
+    assert "pull-requests: read" in job
+    assert "DEPENDABOT_MAX_OPEN_DAYS: ${{ vars.DEPENDABOT_MAX_OPEN_DAYS || '14' }}" in job
+    assert "run: python3 scripts/check_dependabot_health.py" in job
 
 
 def test_cpp_codeql_uses_the_real_build_instead_of_inferred_compiler_flags() -> None:

@@ -12,12 +12,14 @@ on:
       - main
     paths:
       - '.github/**'
+      - 'scripts/requirements-security.txt'
       - 'scripts/check_workflow_concurrency.py'
       - 'scripts/tests/test_check_workflow_concurrency.py'
   pull_request:
     types: [opened, synchronize, reopened]
     paths:
       - '.github/**'
+      - 'scripts/requirements-security.txt'
       - 'scripts/check_workflow_concurrency.py'
       - 'scripts/tests/test_check_workflow_concurrency.py'
   workflow_dispatch:
@@ -76,7 +78,8 @@ jobs:
   # credential persistence, template injection or unpinned actions. zizmor
   # covers exactly those, so both linters run on every change under .github/.
   # Reproduce locally with:
-  #   pipx run zizmor==1.31.1 --min-confidence medium --persona regular \
+  #   zizmor_spec=$(grep '^zizmor==' scripts/requirements-security.txt)
+  #   pipx run --spec "$zizmor_spec" zizmor --min-confidence medium --persona regular \
   #     --config .github/zizmor.yml .github/workflows
   zizmor:
     name: Audit Workflows
@@ -100,9 +103,10 @@ jobs:
       - name: Audit workflow files
         env:
           GH_TOKEN: ${{ github.token }}
-        run: >-
-          pipx run zizmor==1.31.1 --format=github --persona regular
-          --min-confidence medium --config .github/zizmor.yml .
+        run: |
+          zizmor_spec=$(grep '^zizmor==' scripts/requirements-security.txt)
+          pipx run --spec "$zizmor_spec" zizmor --format=github --persona regular \
+            --min-confidence medium --config .github/zizmor.yml .
 
       # The step above runs `--persona regular`, which is the right default:
       # pedantic surfaces dozens of stylistic findings. But the audits that
@@ -117,7 +121,8 @@ jobs:
       - name: Audit for pedantic-only high-severity findings
         timeout-minutes: 5
         run: |
-          pipx run zizmor==1.31.1 --config .github/zizmor.yml \
+          zizmor_spec=$(grep '^zizmor==' scripts/requirements-security.txt)
+          pipx run --spec "$zizmor_spec" zizmor --config .github/zizmor.yml \
             --persona pedantic --min-severity high --min-confidence high \
             .github/workflows
 

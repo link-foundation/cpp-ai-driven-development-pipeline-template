@@ -7,7 +7,10 @@ fragments of other unreleased pull requests cannot satisfy it. Every added
 fragment is also parsed, so an invalid ``bump:`` fails here rather than at
 release time.
 
-Environment: GITHUB_BASE_REF (default main), GITHUB_HEAD_REF, CPP_ROOT.
+Dependabot cannot supply fragments. PR_AUTHOR must come from the pull request's
+user.login, not the workflow actor or a branch name.
+
+Environment: PR_AUTHOR, GITHUB_BASE_REF (default main), GITHUB_HEAD_REF, CPP_ROOT.
 """
 
 from __future__ import annotations
@@ -61,6 +64,9 @@ def evaluate(files: List[str], cpp_prefix: str) -> Tuple[List[str], List[str]]:
 
 
 def main() -> int:
+    if os.environ.get("PR_AUTHOR") == "dependabot[bot]":
+        print("Skipping the changelog check for a pull request authored by dependabot[bot]")
+        return 0
     head_ref = os.environ.get("GITHUB_HEAD_REF", "")
     if head_ref.startswith(AUTOMATED_BRANCH_PREFIXES):
         print(f"Skipping the changelog check for automated branch {head_ref}")

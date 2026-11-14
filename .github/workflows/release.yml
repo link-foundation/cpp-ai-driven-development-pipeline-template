@@ -175,6 +175,7 @@ jobs:
 
       - name: Check for changelog fragments
         env:
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
           GITHUB_BASE_REF: ${{ github.base_ref }}
           GITHUB_HEAD_REF: ${{ github.head_ref }}
         run: python3 scripts/check_changelog_fragment.py
