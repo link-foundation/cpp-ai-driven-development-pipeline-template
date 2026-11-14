@@ -7,7 +7,7 @@
   },
   "engines": {
     "node": ">=26.13.1",
-    "npm": ">=11.20.0"
+    "npm": ">=12.2.2"
   },
   "packageManager": "npm@12.2.2",
   "devDependencies": {
@@ -21,6 +21,7 @@
     "js-yaml": "5.5.0",
     "normalize-package-data": "9.0.0",
     "pluralize": "8.0.0",
+    "rc-config-loader": "5.0.0",
     "slice-ansi": "10.0.1",
     "spdx-expression-parse": "5.0.0",
     "string-width": "9.0.0",

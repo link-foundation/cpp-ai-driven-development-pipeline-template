@@ -25,7 +25,7 @@ uv pip compile --upgrade --universal --python-version 3.15 scripts/requirements-
 for group in ci security toolchain; do
   uv pip compile --no-deps --no-header "scripts/requirements-$group.in" --output-file "scripts/requirements-$group.txt"
   # Insert the shared constraints before the generated pins.
-  sed -i '1i-c constraints.txt' "scripts/requirements-$group.txt"
+  sed -i "1i# Generated from requirements-$group.in; see docs/dependencies.md.\n-c constraints.txt" "scripts/requirements-$group.txt"
 done
 ```
 
@@ -58,13 +58,18 @@ gate to make the default branch green.
 ## Automated updates
 
 Dependabot covers Actions at `/`, all Python inputs/resolutions in `/scripts`,
-pre-commit, npm and the vcpkg manifest at `/`. CMake archive pins, CPM,
+pre-commit, npm, the vcpkg manifest and the .NET SDK in `global.json` at `/`.
+There are no managed projects or NuGet dependency manifests to update separately.
+The vcpkg baseline includes the 2026-10-29 tool; monthly tags through 2026.10.16
+are excluded from automated updates because they predate it. Newer monthly
+releases remain eligible. CMake archive pins, CPM,
 Doxygen, Python and the hosted image labels require periodic release review;
 Dependabot has no manager that updates these literals. Historical case
 studies and saved investigation logs intentionally retain original versions.
 
 See the [issue 30 evidence](../dev/log/issues/30/pulls/31/DEPENDENCIES.md) for
-registry-derived before/latest tables, migration decisions and exceptions.
+the original migrations and the [issue 33 evidence](../dev/log/issues/33/pulls/34/DEPENDENCIES.md)
+for refreshed registry-derived before/latest tables and remaining exceptions.
 
 ## Credential scanner
 
@@ -74,6 +79,13 @@ formatters and parser migrations before scanning the repository. The npm lock
 and tested overrides keep the scanner's transitive packages current while
 upstream dependency-range requests are pending. Remove overrides when the
 upstream parent ranges support those releases.
+
+The rc-config-loader 5 override uses Node's native module and TypeScript loading
+instead of its former require-from-string loader. JSON/YAML and explicit CommonJS
+configuration continue to work; ESM `.mjs` and erasable `.ts` configurations are
+covered by scanner integration tests. Version 5 searches JSON, YAML, JS and TS by
+default; use `--secretlintrc path/to/config.cjs` for a CommonJS file. Its default
+discovery priority favors JSON over JS. No module-unwrapping shim is needed.
 
 The project scanner audit has zero findings. The latest npm CLI 12.2.2 itself
 still bundles affected glob/minimatch packages; its separate audit and

@@ -37,6 +37,11 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    # This monthly tag predates our baseline and would downgrade vcpkg-tool.
+    # Keep newer monthly releases eligible while upstream fixes ancestry checks.
+    ignore:
+      - dependency-name: github.com/microsoft/vcpkg
+        versions: ['<=2026.10.16']
     groups:
       native:
         patterns: ['*']
@@ -50,3 +55,12 @@ updates:
     groups:
       secret-scanner:
         patterns: ['*']
+
+  # global.json pins the SDK used for native NuGet packaging. There are no
+  # managed projects or NuGet dependency manifests requiring a nuget entry.
+  - package-ecosystem: dotnet-sdk
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
