@@ -56,6 +56,22 @@ test("malformed configuration remains a fatal error", () => {
   assert.equal(result.status, 2, result.stderr);
 });
 
+for (const [extension, content] of [
+  ["cjs", "module.exports = { rules: [{ id: '@secretlint/secretlint-rule-preset-recommend' }] };\n"],
+  ["mjs", "export default { rules: [{ id: '@secretlint/secretlint-rule-preset-recommend' }] };\n"],
+  ["ts", "const config: { rules: { id: string }[] } = { rules: [{ id: '@secretlint/secretlint-rule-preset-recommend' }] };\nexport default config;\n"],
+]) {
+  test(`${extension} configuration loads through the scanner`, () => {
+    // Explicit filenames retain CommonJS support with v5's narrower default
+    // discovery list. ESM and erasable TypeScript use Node's native loader.
+    const config = join(scratch, `config.${extension}`);
+    writeFileSync(config, content);
+    const result = scan(finding, "--secretlintrc", config, "--format", "json");
+    assert.equal(result.status, 1, result.stderr);
+    assert.equal(JSON.parse(result.stdout)[0].messages[0].messageId, "PrivateKey");
+  });
+}
+
 test("invalid JSON retains the Babel code-frame diagnostic", async () => {
   const { default: parseJson } = await import("parse-json");
   assert.throws(() => parseJson('{"rules": [],}'), error => {

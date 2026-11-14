@@ -1,0 +1,872 @@
+[
+  {
+    "name": "@gar/promise-retry",
+    "before": "1.0.3",
+    "resolved": "1.0.3",
+    "latest": "1.0.3"
+  },
+  {
+    "name": "@isaacs/fs-minipass",
+    "before": "4.0.1",
+    "resolved": "4.0.1",
+    "latest": "4.0.1"
+  },
+  {
+    "name": "@isaacs/string-locale-compare",
+    "before": "1.1.0",
+    "resolved": "1.1.0",
+    "latest": "1.1.0"
+  },
+  {
+    "name": "@npmcli/agent",
+    "before": "5.0.2",
+    "resolved": "5.0.2",
+    "latest": "5.0.2"
+  },
+  {
+    "name": "@npmcli/arborist",
+    "before": "10.0.4",
+    "resolved": "10.0.4",
+    "latest": "10.0.4"
+  },
+  {
+    "name": "@npmcli/config",
+    "before": "11.2.0",
+    "resolved": "11.2.0",
+    "latest": "11.2.0"
+  },
+  {
+    "name": "@npmcli/fs",
+    "before": "6.0.0",
+    "resolved": "6.0.0",
+    "latest": "6.0.0"
+  },
+  {
+    "name": "@npmcli/git",
+    "before": "8.0.0",
+    "resolved": "8.0.0",
+    "latest": "8.0.0"
+  },
+  {
+    "name": "@npmcli/installed-package-contents",
+    "before": "5.0.0",
+    "resolved": "5.0.0",
+    "latest": "5.0.0"
+  },
+  {
+    "name": "@npmcli/map-workspaces",
+    "before": "6.0.0",
+    "resolved": "6.0.0",
+    "latest": "6.0.0"
+  },
+  {
+    "name": "@npmcli/metavuln-calculator",
+    "before": "10.0.0",
+    "resolved": "10.0.0",
+    "latest": "10.0.0"
+  },
+  {
+    "name": "@npmcli/name-from-folder",
+    "before": "5.0.0",
+    "resolved": "5.0.0",
+    "latest": "5.0.0"
+  },
+  {
+    "name": "@npmcli/node-gyp",
+    "before": "6.0.0",
+    "resolved": "6.0.0",
+    "latest": "6.0.0"
+  },
+  {
+    "name": "@npmcli/package-json",
+    "before": "8.0.0",
+    "resolved": "8.0.0",
+    "latest": "8.0.1"
+  },
+  {
+    "name": "@npmcli/promise-spawn",
+    "before": "10.0.1",
+    "resolved": "10.0.1",
+    "latest": "10.0.1"
+  },
+  {
+    "name": "@npmcli/query",
+    "before": "5.0.0",
+    "resolved": "5.0.0",
+    "latest": "6.0.0"
+  },
+  {
+    "name": "@npmcli/redact",
+    "before": "5.0.0",
+    "resolved": "5.0.0",
+    "latest": "5.0.0"
+  },
+  {
+    "name": "@npmcli/run-script",
+    "before": "11.0.0",
+    "resolved": "11.0.0",
+    "latest": "11.0.0"
+  },
+  {
+    "name": "@sigstore/bundle",
+    "before": "5.0.0",
+    "resolved": "5.0.0",
+    "latest": "5.0.1"
+  },
+  {
+    "name": "@sigstore/core",
+    "before": "4.0.1",
+    "resolved": "4.0.1",
+    "latest": "4.0.1"
+  },
+  {
+    "name": "@sigstore/protobuf-specs",
+    "before": "0.5.1",
+    "resolved": "0.5.1",
+    "latest": "0.5.2"
+  },
+  {
+    "name": "@sigstore/sign",
+    "before": "5.0.0",
+    "resolved": "5.0.0",
+    "latest": "5.1.0"
+  },
+  {
+    "name": "@sigstore/tuf",
+    "before": "5.0.0",
+    "resolved": "5.0.0",
+    "latest": "5.0.1"
+  },
+  {
+    "name": "@sigstore/verify",
+    "before": "4.1.0",
+    "resolved": "4.1.0",
+    "latest": "4.1.3"
+  },
+  {
+    "name": "@tufjs/canonical-json",
+    "before": "2.0.0",
+    "resolved": "2.0.0",
+    "latest": "2.0.0"
+  },
+  {
+    "name": "@tufjs/models",
+    "before": "5.0.0",
+    "resolved": "5.0.0",
+    "latest": "5.0.2"
+  },
+  {
+    "name": "abbrev",
+    "before": "5.0.0",
+    "resolved": "5.0.0",
+    "latest": "5.0.0"
+  },
+  {
+    "name": "agent-base",
+    "before": "9.0.0",
+    "resolved": "9.0.0",
+    "latest": "9.0.0"
+  },
+  {
+    "name": "aproba",
+    "before": "2.1.0",
+    "resolved": "2.1.0",
+    "latest": "2.1.0"
+  },
+  {
+    "name": "archy",
+    "before": "1.0.0",
+    "resolved": "1.0.0",
+    "latest": "1.0.0"
+  },
+  {
+    "name": "balanced-match",
+    "before": "4.0.4",
+    "resolved": "4.0.4",
+    "latest": "5.0.0"
+  },
+  {
+    "name": "bin-links",
+    "before": "7.0.1",
+    "resolved": "7.0.1",
+    "latest": "7.0.1"
+  },
+  {
+    "name": "binary-extensions",
+    "before": "3.1.0",
+    "resolved": "3.1.0",
+    "latest": "3.2.0"
+  },
+  {
+    "name": "brace-expansion",
+    "before": "5.0.12",
+    "resolved": "5.0.12",
+    "latest": "5.0.13"
+  },
+  {
+    "name": "cacache",
+    "before": "21.0.1",
+    "resolved": "21.0.1",
+    "latest": "21.0.2"
+  },
+  {
+    "name": "chalk",
+    "before": "5.6.2",
+    "resolved": "5.6.2",
+    "latest": "6.0.1"
+  },
+  {
+    "name": "chownr",
+    "before": "3.0.0",
+    "resolved": "3.0.0",
+    "latest": "3.0.0"
+  },
+  {
+    "name": "ci-info",
+    "before": "4.4.0",
+    "resolved": "4.4.0",
+    "latest": "4.5.0"
+  },
+  {
+    "name": "cidr-regex",
+    "before": "6.0.0",
+    "resolved": "6.0.0",
+    "latest": "7.1.2"
+  },
+  {
+    "name": "cmd-shim",
+    "before": "9.0.2",
+    "resolved": "9.0.2",
+    "latest": "9.0.2"
+  },
+  {
+    "name": "common-ancestor-path",
+    "before": "2.0.0",
+    "resolved": "2.0.0",
+    "latest": "2.0.0"
+  },
+  {
+    "name": "cssesc",
+    "before": "3.0.0",
+    "resolved": "3.0.0",
+    "latest": "3.0.0"
+  },
+  {
+    "name": "debug",
+    "before": "4.4.3",
+    "resolved": "4.4.3",
+    "latest": "4.4.3"
+  },
+  {
+    "name": "diff",
+    "before": "8.0.4",
+    "resolved": "8.0.4",
+    "latest": "9.0.0"
+  },
+  {
+    "name": "env-paths",
+    "before": "2.2.1",
+    "resolved": "2.2.1",
+    "latest": "4.0.0"
+  },
+  {
+    "name": "exponential-backoff",
+    "before": "3.1.3",
+    "resolved": "3.1.3",
+    "latest": "3.1.3"
+  },
+  {
+    "name": "fastest-levenshtein",
+    "before": "1.0.16",
+    "resolved": "1.0.16",
+    "latest": "1.0.16"
+  },
+  {
+    "name": "fdir",
+    "before": "6.5.0",
+    "resolved": "6.5.0",
+    "latest": "6.5.0"
+  },
+  {
+    "name": "fs-minipass",
+    "before": "3.0.3",
+    "resolved": "3.0.3",
+    "latest": "3.0.3"
+  },
+  {
+    "name": "glob",
+    "before": "13.0.6",
+    "resolved": "13.0.6",
+    "latest": "14.0.6"
+  },
+  {
+    "name": "graceful-fs",
+    "before": "4.2.11",
+    "resolved": "4.2.11",
+    "latest": "4.2.12"
+  },
+  {
+    "name": "hosted-git-info",
+    "before": "10.1.1",
+    "resolved": "10.1.1",
+    "latest": "10.1.1"
+  },
+  {
+    "name": "http-cache-semantics",
+    "before": "4.3.0",
+    "resolved": "4.3.0",
+    "latest": "4.3.0"
+  },
+  {
+    "name": "http-proxy-agent",
+    "before": "9.1.0",
+    "resolved": "9.1.0",
+    "latest": "9.1.0"
+  },
+  {
+    "name": "https-proxy-agent",
+    "before": "9.1.0",
+    "resolved": "9.1.0",
+    "latest": "9.1.0"
+  },
+  {
+    "name": "iconv-lite",
+    "before": "0.7.3",
+    "resolved": "0.7.3",
+    "latest": "0.7.3"
+  },
+  {
+    "name": "ignore-walk",
+    "before": "9.0.0",
+    "resolved": "9.0.0",
+    "latest": "9.0.0"
+  },
+  {
+    "name": "ini",
+    "before": "7.0.0",
+    "resolved": "7.0.0",
+    "latest": "7.0.0"
+  },
+  {
+    "name": "init-package-json",
+    "before": "9.0.0",
+    "resolved": "9.0.0",
+    "latest": "9.0.0"
+  },
+  {
+    "name": "ip-address",
+    "before": "10.7.5",
+    "resolved": "10.7.5",
+    "latest": "10.7.6"
+  },
+  {
+    "name": "is-cidr",
+    "before": "7.0.0",
+    "resolved": "7.0.0",
+    "latest": "7.0.3"
+  },
+  {
+    "name": "isexe",
+    "before": "4.0.0",
+    "resolved": "4.0.0",
+    "latest": "4.0.0"
+  },
+  {
+    "name": "json-parse-even-better-errors",
+    "before": "6.0.0",
+    "resolved": "6.0.0",
+    "latest": "6.0.0"
+  },
+  {
+    "name": "json-stringify-nice",
+    "before": "1.1.4",
+    "resolved": "1.1.4",
+    "latest": "1.1.4"
+  },
+  {
+    "name": "jsonparse",
+    "before": "1.3.1",
+    "resolved": "1.3.1",
+    "latest": "1.3.1"
+  },
+  {
+    "name": "just-diff",
+    "before": "6.0.2",
+    "resolved": "6.0.2",
+    "latest": "6.0.2"
+  },
+  {
+    "name": "just-diff-apply",
+    "before": "5.5.0",
+    "resolved": "5.5.0",
+    "latest": "5.5.0"
+  },
+  {
+    "name": "libnpmaccess",
+    "before": "11.0.0",
+    "resolved": "11.0.0",
+    "latest": "11.0.0"
+  },
+  {
+    "name": "libnpmdiff",
+    "before": "9.0.4",
+    "resolved": "9.0.4",
+    "latest": "9.0.4"
+  },
+  {
+    "name": "libnpmexec",
+    "before": "11.0.5",
+    "resolved": "11.0.5",
+    "latest": "11.0.5"
+  },
+  {
+    "name": "libnpmfund",
+    "before": "8.0.4",
+    "resolved": "8.0.4",
+    "latest": "8.0.4"
+  },
+  {
+    "name": "libnpmorg",
+    "before": "9.0.0",
+    "resolved": "9.0.0",
+    "latest": "9.0.0"
+  },
+  {
+    "name": "libnpmpack",
+    "before": "10.0.4",
+    "resolved": "10.0.4",
+    "latest": "10.0.4"
+  },
+  {
+    "name": "libnpmpublish",
+    "before": "12.0.1",
+    "resolved": "12.0.1",
+    "latest": "12.0.1"
+  },
+  {
+    "name": "libnpmsearch",
+    "before": "10.0.0",
+    "resolved": "10.0.0",
+    "latest": "10.0.0"
+  },
+  {
+    "name": "libnpmteam",
+    "before": "9.0.0",
+    "resolved": "9.0.0",
+    "latest": "9.0.0"
+  },
+  {
+    "name": "libnpmversion",
+    "before": "9.0.0",
+    "resolved": "9.0.0",
+    "latest": "9.0.0"
+  },
+  {
+    "name": "lru-cache",
+    "before": "11.5.2",
+    "resolved": "11.5.2",
+    "latest": "11.5.3"
+  },
+  {
+    "name": "make-fetch-happen",
+    "before": "16.0.1",
+    "resolved": "16.0.1",
+    "latest": "16.0.1"
+  },
+  {
+    "name": "minimatch",
+    "before": "10.2.5",
+    "resolved": "10.2.5",
+    "latest": "11.0.8"
+  },
+  {
+    "name": "minipass",
+    "before": "3.3.6",
+    "resolved": "3.3.6",
+    "latest": "7.1.3"
+  },
+  {
+    "name": "minipass",
+    "before": "7.1.3",
+    "resolved": "7.1.3",
+    "latest": "7.1.3"
+  },
+  {
+    "name": "minipass-collect",
+    "before": "2.0.1",
+    "resolved": "2.0.1",
+    "latest": "2.0.1"
+  },
+  {
+    "name": "minipass-fetch",
+    "before": "6.0.0",
+    "resolved": "6.0.0",
+    "latest": "6.0.1"
+  },
+  {
+    "name": "minipass-flush",
+    "before": "1.0.6",
+    "resolved": "1.0.6",
+    "latest": "2.0.1"
+  },
+  {
+    "name": "minipass-pipeline",
+    "before": "1.2.4",
+    "resolved": "1.2.4",
+    "latest": "3.0.1"
+  },
+  {
+    "name": "minipass-sized",
+    "before": "2.0.0",
+    "resolved": "2.0.0",
+    "latest": "2.0.0"
+  },
+  {
+    "name": "minizlib",
+    "before": "3.1.0",
+    "resolved": "3.1.0",
+    "latest": "3.1.0"
+  },
+  {
+    "name": "ms",
+    "before": "2.1.3",
+    "resolved": "2.1.3",
+    "latest": "2.1.3"
+  },
+  {
+    "name": "mute-stream",
+    "before": "4.0.0",
+    "resolved": "4.0.0",
+    "latest": "4.0.0"
+  },
+  {
+    "name": "negotiator",
+    "before": "1.0.0",
+    "resolved": "1.0.0",
+    "latest": "1.1.0"
+  },
+  {
+    "name": "node-gyp",
+    "before": "13.0.0",
+    "resolved": "13.0.0",
+    "latest": "13.1.0"
+  },
+  {
+    "name": "nopt",
+    "before": "10.0.1",
+    "resolved": "10.0.1",
+    "latest": "10.0.1"
+  },
+  {
+    "name": "npm",
+    "before": "12.2.2",
+    "resolved": "12.2.2",
+    "latest": "12.2.2"
+  },
+  {
+    "name": "npm-audit-report",
+    "before": "8.0.0",
+    "resolved": "8.0.0",
+    "latest": "8.0.0"
+  },
+  {
+    "name": "npm-bundled",
+    "before": "6.0.0",
+    "resolved": "6.0.0",
+    "latest": "6.0.0"
+  },
+  {
+    "name": "npm-install-checks",
+    "before": "9.0.0",
+    "resolved": "9.0.0",
+    "latest": "9.0.0"
+  },
+  {
+    "name": "npm-normalize-package-bin",
+    "before": "6.0.0",
+    "resolved": "6.0.0",
+    "latest": "6.0.0"
+  },
+  {
+    "name": "npm-package-arg",
+    "before": "14.0.0",
+    "resolved": "14.0.0",
+    "latest": "14.0.0"
+  },
+  {
+    "name": "npm-packlist",
+    "before": "11.3.0",
+    "resolved": "11.3.0",
+    "latest": "11.3.1"
+  },
+  {
+    "name": "npm-pick-manifest",
+    "before": "12.0.0",
+    "resolved": "12.0.0",
+    "latest": "12.0.0"
+  },
+  {
+    "name": "npm-profile",
+    "before": "13.0.1",
+    "resolved": "13.0.1",
+    "latest": "13.0.1"
+  },
+  {
+    "name": "npm-registry-fetch",
+    "before": "20.0.1",
+    "resolved": "20.0.1",
+    "latest": "20.0.1"
+  },
+  {
+    "name": "npm-user-validate",
+    "before": "5.0.0",
+    "resolved": "5.0.0",
+    "latest": "5.0.0"
+  },
+  {
+    "name": "p-map",
+    "before": "7.0.5",
+    "resolved": "7.0.5",
+    "latest": "7.1.1"
+  },
+  {
+    "name": "pacote",
+    "before": "22.0.1",
+    "resolved": "22.0.1",
+    "latest": "22.0.1"
+  },
+  {
+    "name": "parse-conflict-json",
+    "before": "6.0.0",
+    "resolved": "6.0.0",
+    "latest": "6.0.0"
+  },
+  {
+    "name": "path-scurry",
+    "before": "2.0.2",
+    "resolved": "2.0.2",
+    "latest": "3.0.0"
+  },
+  {
+    "name": "picomatch",
+    "before": "4.0.5",
+    "resolved": "4.0.5",
+    "latest": "4.0.7"
+  },
+  {
+    "name": "postcss-selector-parser",
+    "before": "7.1.6",
+    "resolved": "7.1.6",
+    "latest": "7.2.1"
+  },
+  {
+    "name": "proc-log",
+    "before": "7.0.0",
+    "resolved": "7.0.0",
+    "latest": "7.0.0"
+  },
+  {
+    "name": "proggy",
+    "before": "4.0.0",
+    "resolved": "4.0.0",
+    "latest": "5.0.0"
+  },
+  {
+    "name": "promise-all-reject-late",
+    "before": "1.0.1",
+    "resolved": "1.0.1",
+    "latest": "1.0.1"
+  },
+  {
+    "name": "promise-call-limit",
+    "before": "3.0.2",
+    "resolved": "3.0.2",
+    "latest": "3.0.2"
+  },
+  {
+    "name": "promzard",
+    "before": "4.0.0",
+    "resolved": "4.0.0",
+    "latest": "4.0.0"
+  },
+  {
+    "name": "proxy-agent-negotiate",
+    "before": "1.1.0",
+    "resolved": "1.1.0",
+    "latest": "1.1.0"
+  },
+  {
+    "name": "qrcode-terminal",
+    "before": "0.12.0",
+    "resolved": "0.12.0",
+    "latest": "0.12.0"
+  },
+  {
+    "name": "read",
+    "before": "6.0.0",
+    "resolved": "6.0.0",
+    "latest": "6.0.0"
+  },
+  {
+    "name": "read-cmd-shim",
+    "before": "7.0.0",
+    "resolved": "7.0.0",
+    "latest": "7.0.1"
+  },
+  {
+    "name": "safer-buffer",
+    "before": "2.1.2",
+    "resolved": "2.1.2",
+    "latest": "2.1.2"
+  },
+  {
+    "name": "semver",
+    "before": "7.8.6",
+    "resolved": "7.8.6",
+    "latest": "7.8.6"
+  },
+  {
+    "name": "signal-exit",
+    "before": "4.1.0",
+    "resolved": "4.1.0",
+    "latest": "4.1.0"
+  },
+  {
+    "name": "sigstore",
+    "before": "5.0.0",
+    "resolved": "5.0.0",
+    "latest": "5.0.1"
+  },
+  {
+    "name": "smart-buffer",
+    "before": "4.2.0",
+    "resolved": "4.2.0",
+    "latest": "4.2.0"
+  },
+  {
+    "name": "socks",
+    "before": "2.8.9",
+    "resolved": "2.8.9",
+    "latest": "2.8.10"
+  },
+  {
+    "name": "socks-proxy-agent",
+    "before": "10.1.0",
+    "resolved": "10.1.0",
+    "latest": "10.1.0"
+  },
+  {
+    "name": "spdx-exceptions",
+    "before": "2.5.0",
+    "resolved": "2.5.0",
+    "latest": "2.5.0"
+  },
+  {
+    "name": "spdx-expression-parse",
+    "before": "4.0.0",
+    "resolved": "4.0.0",
+    "latest": "5.0.0"
+  },
+  {
+    "name": "spdx-license-ids",
+    "before": "3.0.23",
+    "resolved": "3.0.23",
+    "latest": "3.0.24"
+  },
+  {
+    "name": "ssri",
+    "before": "14.0.0",
+    "resolved": "14.0.0",
+    "latest": "14.0.0"
+  },
+  {
+    "name": "supports-color",
+    "before": "10.2.2",
+    "resolved": "10.2.2",
+    "latest": "11.0.0"
+  },
+  {
+    "name": "tar",
+    "before": "7.5.22",
+    "resolved": "7.5.22",
+    "latest": "7.5.23"
+  },
+  {
+    "name": "text-table",
+    "before": "0.2.0",
+    "resolved": "0.2.0",
+    "latest": "0.2.0"
+  },
+  {
+    "name": "tiny-relative-date",
+    "before": "2.0.2",
+    "resolved": "2.0.2",
+    "latest": "2.0.2"
+  },
+  {
+    "name": "tinyglobby",
+    "before": "0.2.17",
+    "resolved": "0.2.17",
+    "latest": "0.2.17"
+  },
+  {
+    "name": "treeverse",
+    "before": "3.0.0",
+    "resolved": "3.0.0",
+    "latest": "3.0.0"
+  },
+  {
+    "name": "tuf-js",
+    "before": "6.0.0",
+    "resolved": "6.0.0",
+    "latest": "6.0.2"
+  },
+  {
+    "name": "undici",
+    "before": "6.29.1",
+    "resolved": "6.29.1",
+    "latest": "8.12.4"
+  },
+  {
+    "name": "util-deprecate",
+    "before": "1.0.2",
+    "resolved": "1.0.2",
+    "latest": "1.0.2"
+  },
+  {
+    "name": "validate-npm-package-name",
+    "before": "8.0.0",
+    "resolved": "8.0.0",
+    "latest": "8.0.0"
+  },
+  {
+    "name": "walk-up-path",
+    "before": "4.0.0",
+    "resolved": "4.0.0",
+    "latest": "4.0.0"
+  },
+  {
+    "name": "which",
+    "before": "7.0.0",
+    "resolved": "7.0.0",
+    "latest": "7.0.0"
+  },
+  {
+    "name": "write-file-atomic",
+    "before": "8.0.0",
+    "resolved": "8.0.0",
+    "latest": "8.0.0"
+  },
+  {
+    "name": "yallist",
+    "before": "4.0.0",
+    "resolved": "4.0.0",
+    "latest": "5.0.0"
+  },
+  {
+    "name": "yallist",
+    "before": "5.0.0",
+    "resolved": "5.0.0",
+    "latest": "5.0.0"
+  }
+]

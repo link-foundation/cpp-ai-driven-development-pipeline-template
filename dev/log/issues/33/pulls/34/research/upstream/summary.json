@@ -1,0 +1,149 @@
+[
+  {
+    "repository": "ajv-validator/ajv",
+    "number": "2705",
+    "title": "Support current dependency majors: fast-uri",
+    "state": "OPEN",
+    "url": "https://github.com/ajv-validator/ajv/issues/2705"
+  },
+  {
+    "repository": "azu/rc-config-loader",
+    "number": "30",
+    "title": "Support current dependency majors: js-yaml",
+    "state": "CLOSED",
+    "url": "https://github.com/azu/rc-config-loader/issues/30"
+  },
+  {
+    "repository": "conan-io/conan-center-index",
+    "number": "31443",
+    "title": "CMake: update to version 4.5.0",
+    "state": "OPEN",
+    "url": "https://github.com/conan-io/conan-center-index/pull/31443"
+  },
+  {
+    "repository": "gajus/table",
+    "number": "246",
+    "title": "Support current dependency majors: slice-ansi, string-width, strip-ansi",
+    "state": "OPEN",
+    "url": "https://github.com/gajus/table/issues/246"
+  },
+  {
+    "repository": "jslicense/spdx-correct.js",
+    "number": "46",
+    "title": "Support current dependency majors: spdx-expression-parse",
+    "state": "OPEN",
+    "url": "https://github.com/jslicense/spdx-correct.js/issues/46"
+  },
+  {
+    "repository": "jwlawson/actions-setup-cmake",
+    "number": "97",
+    "title": "Warning",
+    "state": "OPEN",
+    "url": "https://github.com/jwlawson/actions-setup-cmake/issues/97"
+  },
+  {
+    "repository": "kemitchell/validate-npm-package-license.js",
+    "number": "16",
+    "title": "Support current dependency majors: spdx-expression-parse",
+    "state": "OPEN",
+    "url": "https://github.com/kemitchell/validate-npm-package-license.js/issues/16"
+  },
+  {
+    "repository": "lycheeverse/lychee",
+    "number": "2297",
+    "title": "A connection reset during connect or the TLS handshake is never retried, at any --max-retries",
+    "state": "OPEN",
+    "url": "https://github.com/lycheeverse/lychee/issues/2297"
+  },
+  {
+    "repository": "microsoft/vcpkg",
+    "number": "55056",
+    "title": "[benchmark] Update port from 1.9.5 to upstream 1.10.0",
+    "state": "OPEN",
+    "url": "https://github.com/microsoft/vcpkg/issues/55056"
+  },
+  {
+    "repository": "msclock/cppcheck-wheel",
+    "number": "197",
+    "title": "chore(cppcheck): update https://github.com/danmar/cppcheck.git to v2.22.0",
+    "state": "MERGED",
+    "url": "https://github.com/msclock/cppcheck-wheel/pull/197"
+  },
+  {
+    "repository": "npm/cli",
+    "number": "10299",
+    "title": "[BUG] npm 12.2.2 bundles glob and minimatch versions affected by October 2026 advisories",
+    "state": "OPEN",
+    "url": "https://github.com/npm/cli/issues/10299"
+  },
+  {
+    "repository": "rhysd/actionlint",
+    "number": "657",
+    "title": "Actionlint does not know about `queue:` key for concurrency",
+    "state": "OPEN",
+    "url": "https://github.com/rhysd/actionlint/issues/657"
+  },
+  {
+    "repository": "rhysd/actionlint",
+    "number": "682",
+    "title": "Add support for `ubuntu-26.04`",
+    "state": "OPEN",
+    "url": "https://github.com/rhysd/actionlint/issues/682"
+  },
+  {
+    "repository": "rhysd/actionlint",
+    "number": "654",
+    "title": "concurrency: Add support for `queue` key",
+    "state": "OPEN",
+    "url": "https://github.com/rhysd/actionlint/pull/654"
+  },
+  {
+    "repository": "secretlint/secretlint",
+    "number": "1831",
+    "title": "Support current dependency majors: chalk",
+    "state": "CLOSED",
+    "url": "https://github.com/secretlint/secretlint/issues/1831"
+  },
+  {
+    "repository": "sindresorhus/parse-json",
+    "number": "54",
+    "title": "Support current dependency majors: @babel/code-frame, type-fest",
+    "state": "OPEN",
+    "url": "https://github.com/sindresorhus/parse-json/issues/54"
+  },
+  {
+    "repository": "sindresorhus/read-pkg",
+    "number": "35",
+    "title": "Support current dependency majors: normalize-package-data",
+    "state": "OPEN",
+    "url": "https://github.com/sindresorhus/read-pkg/issues/35"
+  },
+  {
+    "repository": "sindresorhus/terminal-link",
+    "number": "29",
+    "title": "Support current dependency majors: supports-hyperlinks",
+    "state": "OPEN",
+    "url": "https://github.com/sindresorhus/terminal-link/issues/29"
+  },
+  {
+    "repository": "ssciwr/clang-tidy-wheel",
+    "number": "133",
+    "title": "Publish wheels for LLVM clang-tidy 23.1.5",
+    "state": "OPEN",
+    "url": "https://github.com/ssciwr/clang-tidy-wheel/issues/133"
+  },
+  {
+    "repository": "textlint/textlint",
+    "number": "2179",
+    "title": "Support current dependency majors: js-yaml, pluralize, string-width, strip-ansi",
+    "state": "OPEN",
+    "url": "https://github.com/textlint/textlint/issues/2179"
+  },
+  {
+    "repository": "zizmorcore/zizmor-action",
+    "number": "175",
+    "title": "Sync zizmor versions",
+    "state": "MERGED",
+    "url": "https://github.com/zizmorcore/zizmor-action/pull/175"
+  }
+]

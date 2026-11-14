@@ -1,0 +1,23 @@
+{
+  "body": "I'm seeing this warning:\n\n```\n(node:2504) [DEP0169] DeprecationWarning: `url.parse()` behavior is not\n standardized and prone to errors that have security implications. Use the\n WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n```",
+  "comments": [
+    {
+      "id": "IC_kwDODens0M8AAAABmdMGqw",
+      "author": {
+        "login": "konard"
+      },
+      "authorAssociation": "NONE",
+      "body": "Confirmed with the current `v2.2.0` release (commit `0d6a7d60b009d01c9e7523be22153ff8f19460d3`), setting `cmake-version: '4.5.0'` on GitHub's current Ubuntu runner. A minimal workflow step is:\n\n```yaml\n- uses: jwlawson/actions-setup-cmake@0d6a7d60b009d01c9e7523be22153ff8f19460d3\n  with:\n    cmake-version: '4.5.0'\n```\n\nThe same DEP0169 warning occurs in the Setup CMake step of both CodeQL jobs here: https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/actions/runs/43582428645 (job `132409803510`; downloaded full log line 664). The action completes, so a green job alone does not detect this regression.\n\nThe published package still uses `@actions/tool-cache ^1.7.1`, `@actions/core ^1.9.1` and `typed-rest-client ^1.8.4`. A candidate fix is migrating to the current Actions toolkit (`@actions/tool-cache ^3.0.1`, `@actions/core ^2.0.0`), replacing any direct deprecated URL parsing with `new URL()`, then regenerating `dist/` and running Node 24/26 smoke downloads with `--trace-deprecation` and a check that stderr contains no `DeprecationWarning`. This should retain checksum/platform behavior and should not suppress warnings through NODE_OPTIONS.\n\nDownstream https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/pull/31 retains the exact CMake/Ninja versions and uses the current `lukka/get-cmake` action (which has the newer toolkit), rather than filtering the warning. Its native action smoke probe, before log excerpt and workflow consistency regression are retained in that PR.\n",
+      "createdAt": "2026-11-14T10:10:55Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/jwlawson/actions-setup-cmake/issues/97#issuecomment-6875711147",
+      "viewerDidAuthor": true
+    }
+  ],
+  "state": "OPEN",
+  "title": "Warning",
+  "url": "https://github.com/jwlawson/actions-setup-cmake/issues/97"
+}
