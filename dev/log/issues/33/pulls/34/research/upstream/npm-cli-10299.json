@@ -1,0 +1,38 @@
+{
+  "body": "### Problem\n\nThe registry `latest` release, npm 12.2.2 (published November 4, 2026), still bundles `glob@13.0.6` and `minimatch@10.2.5`. Both match public reviewed advisory ranges:\n\n- https://github.com/advisories/GHSA-3g3m-2fjr-6pw4 \u2014 glob cancellation can leave filesystem traversal running; patched in 14.0.2.\n- https://github.com/advisories/GHSA-g3hv-75wg-m249 \u2014 minimatch pattern preprocessing can amplify CPU/memory use; patched in 11.0.1 (current latest 11.0.8).\n\nThis is a dependency inventory/audit reproduction, not a claim that every npm command exposes an exploitable path. No resource-exhaustion payload is necessary to reproduce the audit result.\n\n### Minimal reproduction\n\nWith supported Node.js (tested on Node 26), create this package.json in an empty directory:\n\n```json\n{\n  \"private\": true,\n  \"dependencies\": { \"npm\": \"12.2.2\" },\n  \"overrides\": { \"glob\": \"14.0.2\", \"minimatch\": \"11.0.8\" }\n}\n```\n\nRun `npm install --package-lock-only --ignore-scripts`, then `npm audit --package-lock-only --json --audit-level=low` (the metadata-only reproduction uses npm 11.20.0 to inspect the npm 12.2.2 package). Inspect the lockfile entries `node_modules/npm/node_modules/glob` and `node_modules/npm/node_modules/minimatch`: they remain 13.0.6 and 10.2.5 despite the consumer overrides. The audit identifies the two advisories and propagates them through npm's internal parents (21 moderate package findings, not 21 independent vulnerabilities).\n\nThe same two bundled versions are present in the published npm tarball. An application's ordinary audit does not cover a separately installed global npm CLI, so an otherwise clean application audit cannot establish that the package-manager tool is clean.\n\n### Expected / suggested change\n\nPlease migrate npm's internal glob/minimatch consumers to compatible patched versions, regenerate the bundled dependency tree, and publish a new CLI release. Updating the top-level declarations alone will not replace nested bundled copies. Validate install, ci, pack, and publish dry-run behavior with the refreshed bundle; preserve supported Node patch floors. If a supported consumer repair procedure exists for bundled npm dependencies, documenting it would also help.\n\n### Local handling\n\nIn https://github.com/link-foundation/lino-i18n/pull/44 we retain the latest official npm CLI for its CI/release behavior and keep it outside the application dependency lock. We tried consumer overrides as above; they do not repair the bundle. We have not replaced incompatible npm internals in place or downgraded to the old npm version proposed by audit. The requirement that all tooling have no unresolved advisories remains explicitly unfinished pending a supported upstream fix.\n\nRelated issue searches for the two exact advisory IDs returned no results on November 13, 2026. Older minimatch/brace-expansion reports concern different advisory IDs.\n",
+  "comments": [
+    {
+      "id": "IC_kwDOCFbcVc8AAAABmcxDpw",
+      "author": {
+        "login": "konard"
+      },
+      "authorAssociation": "NONE",
+      "body": "Confirmed independently in https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/pull/31 with Node 26.13.1. Latest npm 12.2.2 still produces the same two advisory families / 21 propagated moderate findings. Updating the project's scanner tree to all latest versions gives zero project findings, but does not change the npm CLI's bundled glob/minimatch copies. The separate CLI audit is preserved in that PR as `dev/log/issues/30/pulls/31/raw/npm-cli-audit.json`; the requirement to audit all build tooling remains explicitly unfinished pending an upstream bundle rebuild. No stress payload was run.\n",
+      "createdAt": "2026-11-14T09:33:14Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/npm/cli/issues/10299#issuecomment-6875268007",
+      "viewerDidAuthor": true
+    },
+    {
+      "id": "IC_kwDOCFbcVc8AAAABmgoTMg",
+      "author": {
+        "login": "konard"
+      },
+      "authorAssociation": "NONE",
+      "body": "Confirmed independently in https://github.com/link-foundation/lino-objects-codec/pull/87 on Node 26.13.1/npm 12.2.2 (2026-11-14). A root devDependency on the current official npm CLI lets us preserve and audit the complete package-manager bundle in a lockfile. `npm audit --package-lock-only --json` reports the same two advisory families / 21 propagated moderate findings, with bundled glob 13.0.6 and minimatch 10.2.5. Current registry releases are glob 14.0.6 and minimatch 11.0.8; ordinary consumer overrides do not replace the released CLI's bundled copies.\n\nMinimal reproduction remains the package.json and commands in the opening report. No resource exhaustion payload is needed or was run. Our necessary handling is to retain the current official CLI and explicitly leave the \u201call tooling has zero advisories\u201d acceptance criterion unfinished; the audit remains enforced. Suggested upstream fix: migrate npm's internal consumers to the patched APIs, refresh the bundled graph, and validate install/ci/pack/publish-dry-run before publishing the replacement CLI. We do not downgrade to npm 9 as suggested by the audit's automated fix and do not silently modify npm internals in place.\n\nUpdate for the PR CI repair: both root and application lockfiles remain audited. Under an explicit request to pass PR CI when only an external maintainer action can resolve a failure, we now narrowly defer enforcement of only these two advisory URLs in the exact official npm 12.2.2 bundle on pull_request events, with an UNRESOLVED warning. Default-branch CI still fails with instructions to publish the repaired upstream CLI and update all repository pins/lockfiles. New/application advisories, changed bundles, other events and audit/report errors fail closed. The zero-unresolved-advisories criterion remains unfinished. We reviewed glob v14 and minimatch v11 migration notes; their removed matcher/AST APIs require npm consumer migrations rather than blind bundled-major overrides.\n",
+      "createdAt": "2026-11-14T15:01:54Z",
+      "includesCreatedEdit": true,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/npm/cli/issues/10299#issuecomment-6879318834",
+      "viewerDidAuthor": true
+    }
+  ],
+  "state": "OPEN",
+  "title": "[BUG] npm 12.2.2 bundles glob and minimatch versions affected by October 2026 advisories",
+  "url": "https://github.com/npm/cli/issues/10299"
+}

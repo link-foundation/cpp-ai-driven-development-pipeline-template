@@ -1,0 +1,18 @@
+A vcpkg baseline newer than the latest monthly release is proposed as an "update" to that older release. This downgrades the vcpkg tool bundled by the baseline.
+
+Affected implementation: current `vcpkg/lib/dependabot/vcpkg/update_checker.rb` and `update_checker/latest_version_finder.rb`. `sha1_version_up_to_date?` checks SHA equality/prefix only, while the finder selects the largest monthly release tag; it does not establish whether the baseline already descends from that tag.
+
+Minimal evidence/reproduction:
+
+```sh
+gh api repos/microsoft/vcpkg/compare/9eec002df1cd109f8f104cd966a763daf9751489...4702e381dbbd9b54d3f7e1eb565cd8981c1814cd --jq '{status,ahead_by,behind_by}'
+# {"status":"ahead","ahead_by":471,"behind_by":0}
+```
+
+Start a manifest with `builtin-baseline` = `4702e381dbbd9b54d3f7e1eb565cd8981c1814cd` (registry head on 2026-11-14). The newest monthly tag is `2026.10.16`, SHA `9eec002df1cd109f8f104cd966a763daf9751489`. A version-update run proposes the older SHA. An actual generated/merged example is https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/pull/32, titled "from master to 2026.10.16". Its parent manifest already used the newer head.
+
+The older baseline's `scripts/vcpkg-tool-metadata.txt` selects tool `2026-09-26`; the newer head selects released tool `2026-10-29` and its verified platform hashes. No failing build is required to demonstrate this downgrade.
+
+Local workaround: advance back to the newer baseline in PR https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/pull/34 and temporarily ignore monthly versions `<=2026.10.16`. Newer monthly releases remain eligible.
+
+Suggested fix: before proposing a registry-baseline update, compare current SHA to release SHA with the GitHub compare API (or git ancestry). Treat identical SHA and an existing baseline that descends from the latest release as current. Propose the release only when it descends from the existing baseline. Handle diverged/unknown ancestry explicitly. Add tests for equal SHA, current baseline ahead of latest tag, latest tag ahead of current baseline, and divergence. This keeps the generic ancestry logic in Dependabot rather than requiring downstream ignore entries.

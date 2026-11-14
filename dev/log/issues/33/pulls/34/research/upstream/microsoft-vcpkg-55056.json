@@ -1,0 +1,38 @@
+{
+  "body": "The current vcpkg master baseline `414b5330a184ea5fbc6ca29f7960b189f6b0392f` contains benchmark 1.9.5, while google/benchmark has released v1.10.0.\n\nReproduction:\n\n```json\n{\n  \"name\": \"benchmark-version-repro\",\n  \"version-string\": \"0.1.0\",\n  \"builtin-baseline\": \"414b5330a184ea5fbc6ca29f7960b189f6b0392f\",\n  \"dependencies\": [\"benchmark\"]\n}\n```\n\nResolving this manifest selects 1.9.5. The upstream release is https://github.com/google/benchmark/releases/tag/v1.10.0 .\n\nWould you update the benchmark port and version database to 1.10.0, including its source hash and platform checks? In link-foundation/links-notation#406 we update the archived template to the current official baseline and document the registry lag, retaining the supported port rather than introducing an unreviewed local overlay.\n",
+  "comments": [
+    {
+      "id": "IC_kwDOBBJcqc8AAAABmcxChA",
+      "author": {
+        "login": "konard"
+      },
+      "authorAssociation": "NONE",
+      "body": "The newer baseline `4702e381dbbd9b54d3f7e1eb565cd8981c1814cd` still selects Benchmark 1.9.5. Additional build evidence: the existing official port, with only its version and source SHA512 changed to 1.10.0, installs successfully on Linux x64 alongside gtest 1.18.0. The upstream archive SHA512 is `2e024135fb814b888d2232105e0417b38ca555169ae17aa16c714d7de8bb30211ea2b0ff109eb4e04ff2a04de35b4f26e2c18c0cb39e23c8739af7512d3bcd427`.\n\nTested overlay and build log: https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/pull/31 . We use this overlay temporarily to keep Conan, FetchContent and vcpkg on 1.10.0; an official port/version database update would remove that duplication.\n",
+      "createdAt": "2026-11-14T09:33:12Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/microsoft/vcpkg/issues/55056#issuecomment-6875267716",
+      "viewerDidAuthor": true
+    },
+    {
+      "id": "IC_kwDOBBJcqc8AAAABmc7G2A",
+      "author": {
+        "login": "konard"
+      },
+      "authorAssociation": "NONE",
+      "body": "A separate portfile correctness issue surfaced while testing the 1.10.0 overlay copied from baseline `4702e381dbbd9b54d3f7e1eb565cd8981c1814cd` (the same logic is in the current 1.9.5 port):\n\n`vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS ...)` produces `-DBENCHMARK_INSTALL_TOOLS=OFF/ON`, but `vcpkg_cmake_configure` receives `${FEATURES}` instead. Those are port feature names (`core`, `tools`), not CMake definitions. Consequently the default/core-only install leaves upstream's default `BENCHMARK_INSTALL_TOOLS=ON`; tools are installed even when the tools feature is omitted.\n\nMinimal reproduction with the current port:\n\n```sh\nVCPKG_MAX_CONCURRENCY=1 vcpkg install benchmark:x64-linux --classic --x-install-root=./installed-core-probe\nrg BENCHMARK_INSTALL_TOOLS buildtrees/benchmark/x64-linux-rel/CMakeCache.txt\n```\n\nExpected: `BENCHMARK_INSTALL_TOOLS:BOOL=OFF`; observed before the correction: `ON`. A tools-enabled install should still set `ON` and relocate its scripts as before. No stress input or extra test dependency is needed.\n\nSuggested code change in `ports/benchmark/portfile.cmake`:\n\n```diff\n-        ${FEATURES}\n+        ${FEATURE_OPTIONS}\n```\n\nThe downstream overlay keeps this one-line correction until an upstream port release. PR https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/pull/31 includes a small CMake boundary regression (`test_benchmark_overlay_forwards_feature_options`) that fails on the copied port and checks both ON and OFF on the correction; its native build logs are retained under `dev/log/issues/30/pulls/31/raw/`. This feature forwarding correction is independent of the version/hash update above.\n",
+      "createdAt": "2026-11-14T09:46:28Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/microsoft/vcpkg/issues/55056#issuecomment-6875432664",
+      "viewerDidAuthor": true
+    }
+  ],
+  "state": "OPEN",
+  "title": "[benchmark] Update port from 1.9.5 to upstream 1.10.0",
+  "url": "https://github.com/microsoft/vcpkg/issues/55056"
+}

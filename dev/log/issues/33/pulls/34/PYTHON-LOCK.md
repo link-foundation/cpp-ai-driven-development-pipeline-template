@@ -1,0 +1,66 @@
+# Complete PYTHON registry comparison
+
+Queried live registries on 2026-11-14 UTC. Latest means stable, not prerelease.
+
+| Dependency | Before | Final | Registry latest |
+| --- | --- | --- | --- |
+| boolean-py | 5.0 | 5.0 | 5.0 |
+| cachecontrol | 0.14.4 | 0.14.4 | 0.14.4 |
+| certifi | 2026.10.23 | 2026.10.23 | 2026.10.23 |
+| cfgv | 3.5.0 | 3.5.0 | 3.5.0 |
+| charset-normalizer | 3.5.2 | 3.5.2 | 3.5.2 |
+| clang-format | 23.1.5 | 23.1.5 | 23.1.5 |
+| clang-tidy | 23.1.4 | 23.1.4 | 23.1.4 |
+| colorama | 0.4.6 | 0.4.6 | 0.4.6 |
+| colorlog | 6.12.0 | 6.12.0 | 6.12.0 |
+| conan | 2.34.0 | 2.34.0 | 2.34.0 |
+| cppcheck | 1.5.3 | 1.5.3 | 1.5.3 |
+| cyclonedx-python-lib | 11.12.0 | 11.12.0 | 11.12.0 |
+| defusedxml | 0.7.1 | 0.7.1 | 0.7.1 |
+| distlib | 0.4.4 | 0.4.4 | 0.4.4 |
+| distro | 1.9.0 | 1.9.0 | 1.9.0 |
+| fasteners | 0.20 | 0.20 | 0.20 |
+| filelock | 4.2.10 | 4.2.10 | 4.2.10 |
+| gcovr | 8.8 | 8.8 | 8.8 |
+| identify | 2.6.20 | 2.6.20 | 2.6.20 |
+| idna | 3.20 | 3.20 | 3.20 |
+| importlib-metadata | 10.2.0 | 10.2.0 | 10.2.0 |
+| iniconfig | 2.3.1 | 2.3.1 | 2.3.1 |
+| jinja2 | 3.1.6 | 3.1.6 | 3.1.6 |
+| license-expression | 30.4.4 | 30.4.4 | 30.4.4 |
+| lxml | 6.1.3 | 6.1.3 | 6.1.3 |
+| markdown-it-py | 4.3.0 | 4.3.0 | 4.3.0 |
+| markupsafe | 3.0.4 | 3.0.4 | 3.0.4 |
+| mdurl | 0.1.2 | 0.1.2 | 0.1.2 |
+| msgpack | 1.2.4 | 1.2.4 | 1.2.4 |
+| ninja | 1.13.2 | 1.13.2 | 1.13.2 |
+| nodeenv | 1.12.0 | 1.12.0 | 1.12.0 |
+| packageurl-python | 0.17.6 | 0.17.6 | 0.17.6 |
+| packaging | 26.3 | 26.3 | 26.3 |
+| patch-ng | 1.19.1 | 1.19.1 | 1.19.1 |
+| pip | 26.3 | 26.3 | 26.3 |
+| pip-api | 0.0.35 | 0.0.35 | 0.0.35 |
+| pip-audit | 2.10.1 | 2.10.1 | 2.10.1 |
+| pip-requirements-parser | 32.0.1 | 32.0.1 | 32.0.1 |
+| platformdirs | 4.14.5 | 4.14.5 | 4.14.5 |
+| pluggy | 1.7.0 | 1.7.0 | 1.7.0 |
+| pre-commit | 4.7.0 | 4.7.0 | 4.7.0 |
+| pre-commit-hooks | 6.0.0 | 6.0.0 | 6.0.0 |
+| py-serializable | 2.2.0 | 2.2.0 | 2.2.0 |
+| pygments | 2.21.0 | 2.21.0 | 2.21.0 |
+| pyparsing | 3.3.3 | 3.3.3 | 3.3.3 |
+| pytest | 9.2.0 | 9.2.0 | 9.2.0 |
+| python-discovery | 1.9.5 | 1.9.5 | 1.9.5 |
+| pyyaml | 6.0.3 | 6.0.3 | 6.0.3 |
+| requests | 2.34.2 | 2.34.2 | 2.34.2 |
+| rich | 15.0.0 | 15.0.0 | 15.0.0 |
+| ruamel-yaml | 0.19.1 | 0.19.1 | 0.19.1 |
+| sortedcontainers | 2.4.0 | 2.4.0 | 2.4.0 |
+| tomli | 2.5.0 | 2.5.0 | 2.5.0 |
+| tomli-w | 1.2.0 | 1.2.0 | 1.2.0 |
+| truststore | 0.10.5 | 0.10.5 | 0.10.5 |
+| urllib3 | 2.8.0 | 2.8.0 | 2.8.0 |
+| uv | 0.13.8 | 0.13.8 | 0.13.8 |
+| virtualenv | 21.15.6 | 21.15.6 | 21.15.6 |
+| zipp | 4.1.2 | 4.1.2 | 4.1.2 |
+| zizmor | 1.32.0 | 1.32.0 | 1.32.0 |

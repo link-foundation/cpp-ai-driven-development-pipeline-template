@@ -1,0 +1,7 @@
+{
+  "body": "The current PyPI release is clang-tidy 23.1.4, while LLVM has released 23.1.5: https://github.com/llvm/llvm-project/releases/tag/llvmorg-23.1.5 . The sibling clang-format wheel is already 23.1.5.\n\nMinimal version reproduction:\n\n```sh\npython -m pip index versions clang-tidy\npython -m pip install clang-tidy==23.1.4\nclang-tidy --version\n```\n\nIn https://github.com/link-foundation/cpp-ai-driven-development-pipeline-template/pull/31 we retain the current supported wheel and explicitly record the patch-release distribution lag. All our C++ lint checks pass with 23.1.4; this is a release availability request, not a claim of a lint failure.\n\nCould the wheel build/source version be advanced to LLVM 23.1.5 and published on the existing supported platforms, with the existing wheel smoke tests? That would let users keep the native linter and formatter on the same upstream patch without maintaining a separate LLVM installation.\n",
+  "comments": [],
+  "state": "OPEN",
+  "title": "Publish wheels for LLVM clang-tidy 23.1.5",
+  "url": "https://github.com/ssciwr/clang-tidy-wheel/issues/133"
+}

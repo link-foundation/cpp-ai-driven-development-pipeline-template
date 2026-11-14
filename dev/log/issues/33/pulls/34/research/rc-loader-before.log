@@ -1,0 +1,101 @@
+✔ clean content passes (555.279661ms)
+✔ checkstyle reports a finding and preserves the failure status (581.540675ms)
+✔ compact reports a finding and preserves the failure status (481.304613ms)
+✔ github reports a finding and preserves the failure status (493.035231ms)
+✔ jslint-xml reports a finding and preserves the failure status (527.257335ms)
+✔ junit reports a finding and preserves the failure status (521.821132ms)
+✔ pretty-error reports a finding and preserves the failure status (508.451861ms)
+✔ stylish reports a finding and preserves the failure status (505.767006ms)
+✔ tap reports a finding and preserves the failure status (471.154443ms)
+✔ unix reports a finding and preserves the failure status (453.669772ms)
+✔ json reports a finding and preserves the failure status (427.232028ms)
+✔ table reports a finding and preserves the failure status (510.373142ms)
+✔ YAML configuration loads with the updated parser (509.567691ms)
+✔ malformed configuration remains a fatal error (444.202513ms)
+✔ cjs configuration loads through the scanner (535.590341ms)
+✖ mjs configuration loads through the scanner (527.3933ms)
+✖ ts configuration loads through the scanner (506.054002ms)
+✔ invalid JSON retains the Babel code-frame diagnostic (17.46712ms)
+✔ package metadata and SPDX normalization still accept an MIT package (99.916445ms)
+✔ schema URI resolution retains validation and rejection (126.956742ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 18
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8972.423619
+
+✖ failing tests:
+
+test at scripts/test_secretlint.mjs:64:3
+✖ mjs configuration loads through the scanner (527.3933ms)
+  AssertionError [ERR_ASSERTION]: Error: secretlintrc should have required 'rules' property.
+              
+  {
+      "rules": [
+          {
+              "id": "secretlint-rule-example"
+          }
+      ]
+  }
+  
+      at validateConfigDescriptor (file:///tmp/gh-issue-solver-1794679279689/node_modules/@secretlint/config-loader/module/validator.js:21:20)
+      at loadPackagesFromConfigDescriptor (file:///tmp/gh-issue-solver-1794679279689/node_modules/@secretlint/config-loader/module/index.js:23:44)
+      at loadConfig (file:///tmp/gh-issue-solver-1794679279689/node_modules/@secretlint/config-loader/module/index.js:140:36)
+      at async file:///tmp/gh-issue-solver-1794679279689/node_modules/@secretlint/node/module/index.js:146:34
+      at async createEngine (file:///tmp/gh-issue-solver-1794679279689/node_modules/@secretlint/node/module/index.js:137:26)
+      at async lintFileOrText (file:///tmp/gh-issue-solver-1794679279689/node_modules/secretlint/module/index.js:5:20)
+      at async runSecretLint (file:///tmp/gh-issue-solver-1794679279689/node_modules/secretlint/module/index.js:33:28)
+  
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (file:///tmp/gh-issue-solver-1794679279689/scripts/test_secretlint.mjs:70:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts/test_secretlint.mjs:64:3
+✖ ts configuration loads through the scanner (506.054002ms)
+  AssertionError [ERR_ASSERTION]: Error: secretlint config is not found
+                  
+  Secretlint require .secretlintrc config file.
+  The config file define the use of rules.
+      at loadConfigDescriptor (file:///tmp/gh-issue-solver-1794679279689/node_modules/@secretlint/config-loader/module/index.js:171:15)
+      at loadConfig (file:///tmp/gh-issue-solver-1794679279689/node_modules/@secretlint/config-loader/module/index.js:133:56)
+      at file:///tmp/gh-issue-solver-1794679279689/node_modules/@secretlint/node/module/index.js:146:40
+      at createEngine (file:///tmp/gh-issue-solver-1794679279689/node_modules/@secretlint/node/module/index.js:152:7)
+      at lintFileOrText (file:///tmp/gh-issue-solver-1794679279689/node_modules/secretlint/module/index.js:5:26)
+      at runSecretLint (file:///tmp/gh-issue-solver-1794679279689/node_modules/secretlint/module/index.js:33:34)
+      at run (file:///tmp/gh-issue-solver-1794679279689/node_modules/secretlint/module/cli.js:277:12)
+      at async file:///tmp/gh-issue-solver-1794679279689/node_modules/secretlint/bin/secretlint.js:15:44
+  
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (file:///tmp/gh-issue-solver-1794679279689/scripts/test_secretlint.mjs:70:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

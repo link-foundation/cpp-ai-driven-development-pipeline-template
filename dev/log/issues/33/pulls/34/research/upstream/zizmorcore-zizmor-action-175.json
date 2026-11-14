@@ -1,0 +1,38 @@
+{
+  "body": ":robot: :warning: :robot:\n\nA newer stable release of `zizmor` is available on PyPI.\n\nThis PR refreshes the version groups in `support/pyproject.toml`,\nincluding `zizmor-latest` for the default version, and their\nhash-pinned requirements under `support/locks/`.\n\nPlease review manually before merging.\n\nCross-reference: <https://pypi.org/project/zizmor/>",
+  "comments": [
+    {
+      "id": "IC_kwDOOr5vE88AAAABcJ0I3w",
+      "author": {
+        "login": "woodruffw"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "Hmm, this is kind of what I was afraid of with https://github.com/zizmorcore/zizmor/pull/2425 -- older Ubuntu runners have random EOL Python versions on them, which screws with the bootstrapping here.\r\n\r\n",
+      "createdAt": "2026-10-15T04:18:34Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/zizmorcore/zizmor-action/pull/175#issuecomment-6184306911",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOOr5vE88AAAABcJ12SQ",
+      "author": {
+        "login": "woodruffw"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "(For posterity, this broke because we bumped the Python version to 3.11 in zizmor's packaging metadata, but older GitHub Ubuntu runners had 3.10. The fix in #174 was to force a specific Python version during `pip download`, which is fine since this is all binaries under the hood anyways.)\r\n\r\nCC @shaanmajid for viz",
+      "createdAt": "2026-10-15T04:21:00Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/zizmorcore/zizmor-action/pull/175#issuecomment-6184334921",
+      "viewerDidAuthor": false
+    }
+  ],
+  "state": "MERGED",
+  "title": "Sync zizmor versions",
+  "url": "https://github.com/zizmorcore/zizmor-action/pull/175"
+}

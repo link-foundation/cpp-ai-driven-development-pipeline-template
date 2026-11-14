@@ -1,0 +1,5 @@
+npm notice run npx
+npm notice run 'ncu' --upgrade
+Upgrading /tmp/gh-issue-solver-1794679279689/package.json
+
+All dependencies match the latest package versions :)
