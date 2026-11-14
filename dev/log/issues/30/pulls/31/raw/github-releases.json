@@ -1,0 +1,1099 @@
+{
+  "actions/checkout": {
+    "previous_ref": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+    "previous_version": "v7",
+    "tag": "v7.0.1",
+    "sha": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+    "published_at": "2026-07-20T15:10:05Z",
+    "url": "https://github.com/actions/checkout/releases/tag/v7.0.1",
+    "body": "## What's Changed\r\n* skip running unsafe pr check if input is default by @aiqiaoy in https://github.com/actions/checkout/pull/2518\r\n* trim only ascii whitespace for branch by @aiqiaoy in https://github.com/actions/checkout/pull/2521\r\n* escape values passed to --unset by @aiqiaoy in https://github.com/actions/checkout/pull/2530\r\n* Various dependency updates \r\n\r\n**Full Changelog**: https://github.com/actions/checkout/compare/v7...v7.0.1",
+    "assets": []
+  },
+  "github/codeql-action": {
+    "previous_ref": "33d7b85da1a04171e211befe2c739303b9a4c066",
+    "previous_version": "v4.39.3",
+    "tag": "v4.39.3",
+    "sha": "33d7b85da1a04171e211befe2c739303b9a4c066",
+    "published_at": "2026-11-02T16:13:49Z",
+    "url": "https://github.com/github/codeql-action/releases/tag/v4.39.3",
+    "body": "- Fixed diff-informed alert filtering incorrectly removing alerts in changed files whose paths contain spaces, special characters, or non-ASCII characters. [#4283](https://github.com/github/codeql-action/pull/4283)",
+    "assets": [
+      {
+        "name": "cli-version-2.27.4.txt",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/cli-version-2.27.4.txt",
+        "digest": "sha256:b514863527a322aa38b49606e6776b5ac3adb6edab95f55d5ce49b7d8a865e48"
+      },
+      {
+        "name": "codeql-bundle-actions-linux64.tar.zst",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-actions-linux64.tar.zst",
+        "digest": "sha256:f12b84c1ed3540c54691257ddea1b72b62f785c8bb3eca907562c6a8a2361d32"
+      },
+      {
+        "name": "codeql-bundle-cpp-linux64.tar.zst",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-cpp-linux64.tar.zst",
+        "digest": "sha256:eea5a76ed6778892278a387c4362fef8d03e5a9c3795f5d5022d496fccfd5388"
+      },
+      {
+        "name": "codeql-bundle-csharp-linux64.tar.zst",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-csharp-linux64.tar.zst",
+        "digest": "sha256:b991d23f6bc44fa34f81d0d4ba159a331f31c2a7f4ff5d53778ed0a19a0b48aa"
+      },
+      {
+        "name": "codeql-bundle-go-linux64.tar.zst",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-go-linux64.tar.zst",
+        "digest": "sha256:d79b33f86ec8b20af73d3456041349a2780c1081ee8c0eca624b9a25c5cb2e15"
+      },
+      {
+        "name": "codeql-bundle-java-linux64.tar.zst",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-java-linux64.tar.zst",
+        "digest": "sha256:dbeb8e2f4454bf4aad35fe16d8770dcc4a4ce0c3585d8952d57e41905396aff8"
+      },
+      {
+        "name": "codeql-bundle-javascript-linux64.tar.zst",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-javascript-linux64.tar.zst",
+        "digest": "sha256:082e798c97831283a2a5f69e9198c51270e5767013d5333daeeab6520af9ce72"
+      },
+      {
+        "name": "codeql-bundle-linux-arm64.tar.gz",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-linux-arm64.tar.gz",
+        "digest": "sha256:7dd066f805dfed19c9c4323d5f2003cd24fabd6e7304cdf799b94a84509fe92b"
+      },
+      {
+        "name": "codeql-bundle-linux-arm64.tar.gz.checksum.txt",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-linux-arm64.tar.gz.checksum.txt",
+        "digest": "sha256:56f0823bef6cc3ed61449a8b4a91becba4fe90e9092e5796f8600d71e74fc9a3"
+      },
+      {
+        "name": "codeql-bundle-linux-arm64.tar.zst",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-linux-arm64.tar.zst",
+        "digest": "sha256:1c015b411c6e1c7f7e767eb8c9408fc6a2012d24d78b177cf22f29edc5772d10"
+      },
+      {
+        "name": "codeql-bundle-linux-arm64.tar.zst.checksum.txt",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-linux-arm64.tar.zst.checksum.txt",
+        "digest": "sha256:1ab50b5faac0a9024a18c370c92668b43dd06a3cf2f8f88dbf9986ac084c13a9"
+      },
+      {
+        "name": "codeql-bundle-linux64.tar.gz",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-linux64.tar.gz",
+        "digest": "sha256:89ed56c8ec6bfccef6a0d2e7fe86da0469ca24b4db08b88016ec134b942c17a4"
+      },
+      {
+        "name": "codeql-bundle-linux64.tar.gz.checksum.txt",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-linux64.tar.gz.checksum.txt",
+        "digest": "sha256:2eeb8ac4dc487a0a90440cda17eeca33f0d8431cf74c270ef33d49af90bcfa26"
+      },
+      {
+        "name": "codeql-bundle-linux64.tar.zst",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-linux64.tar.zst",
+        "digest": "sha256:da3e952c7fe978a0b6b93e75d9cbabbdf8535667ca0810bd4b2ae37bc840ffee"
+      },
+      {
+        "name": "codeql-bundle-linux64.tar.zst.checksum.txt",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-linux64.tar.zst.checksum.txt",
+        "digest": "sha256:918b46165258d43207fae224baa4e0c0eb30d5b92f1df66ad5b79e70896a847f"
+      },
+      {
+        "name": "codeql-bundle-osx64.tar.gz",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-osx64.tar.gz",
+        "digest": "sha256:cfdf539260af57a18b50e56909ed94721844a99b195a1e492a9d901aae2899e5"
+      },
+      {
+        "name": "codeql-bundle-osx64.tar.gz.checksum.txt",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-osx64.tar.gz.checksum.txt",
+        "digest": "sha256:2a1fb0e5d077f887d3cfa862157ebb8fb22020c15a246b67758579f1333cb702"
+      },
+      {
+        "name": "codeql-bundle-osx64.tar.zst",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-osx64.tar.zst",
+        "digest": "sha256:d5940b767427f113705aca401c7c09cf7af8cedb82fdad8a170c9d964b3a699b"
+      },
+      {
+        "name": "codeql-bundle-osx64.tar.zst.checksum.txt",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-osx64.tar.zst.checksum.txt",
+        "digest": "sha256:2d1d469b25551286db39ce6ea4873cc9ed4ec7c8554ab790e576e73fed0b2a72"
+      },
+      {
+        "name": "codeql-bundle-python-linux64.tar.zst",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-python-linux64.tar.zst",
+        "digest": "sha256:d862cb11aff035988f178703b69751be072f2aa7e76616f16bb725a207b50b7d"
+      },
+      {
+        "name": "codeql-bundle-ruby-linux64.tar.zst",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-ruby-linux64.tar.zst",
+        "digest": "sha256:ab3a5abb89263a92a2e8b299dbb786c9f9d7b46593ba2d94c0ff63d8aadb9a15"
+      },
+      {
+        "name": "codeql-bundle-rust-linux64.tar.zst",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-rust-linux64.tar.zst",
+        "digest": "sha256:1c2f867094b80e43c9a0e511090e57e0ea3bf107600b4b3763c52b9020b4ec4b"
+      },
+      {
+        "name": "codeql-bundle-swift-osx64.tar.zst",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-swift-osx64.tar.zst",
+        "digest": "sha256:52e3f0ea756787f0ceb2e5b2553d2560ba1d83573e3f77002f31833b307fbebc"
+      },
+      {
+        "name": "codeql-bundle-win64.tar.gz",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-win64.tar.gz",
+        "digest": "sha256:d67fead75936c55a241d26c25342747b07f94664b104f719dfe291b665508c4d"
+      },
+      {
+        "name": "codeql-bundle-win64.tar.gz.checksum.txt",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-win64.tar.gz.checksum.txt",
+        "digest": "sha256:86075ca2547d6046f0e7a20a1c6b957828b0fbcc648114102eabac5e6738f864"
+      },
+      {
+        "name": "codeql-bundle-win64.tar.zst",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-win64.tar.zst",
+        "digest": "sha256:39f7f53a2136e773d11e636172e48caa714aabc84062a1a972dfc68cc37e396e"
+      },
+      {
+        "name": "codeql-bundle-win64.tar.zst.checksum.txt",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle-win64.tar.zst.checksum.txt",
+        "digest": "sha256:5b153e90fc254d71269fff439cdf832d21485ed2e909524f8d10919d1bcde15a"
+      },
+      {
+        "name": "codeql-bundle.tar.gz",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle.tar.gz",
+        "digest": "sha256:c6f96f3a92bc49ad8ef54484ddadc66d82d1de4d0f79170c0e936051e6aeadf4"
+      },
+      {
+        "name": "codeql-bundle.tar.gz.checksum.txt",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle.tar.gz.checksum.txt",
+        "digest": "sha256:f13e226b11d082afa726b6e25664a7b431f248b39048b9238e1564910b30d2f4"
+      },
+      {
+        "name": "codeql-bundle.tar.zst",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle.tar.zst",
+        "digest": "sha256:bc3280259c4dc074c34a29269aa8a909fb0b2c9413fe0684c01aa4f79d1078ac"
+      },
+      {
+        "name": "codeql-bundle.tar.zst.checksum.txt",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/codeql-bundle.tar.zst.checksum.txt",
+        "digest": "sha256:6e1724da5781d661ed72d01aefc90802f0b9fa522b9dae133e481731df537a03"
+      },
+      {
+        "name": "update-job-proxy-linux-arm64.tar.gz",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/update-job-proxy-linux-arm64.tar.gz",
+        "digest": "sha256:4e1d7119833115adcea78c42f2e83db4c3fb529507094ddefdef9b49b2bec3e8"
+      },
+      {
+        "name": "update-job-proxy-linux64.tar.gz",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/update-job-proxy-linux64.tar.gz",
+        "digest": "sha256:d1146acd17456ec616ad73686078c9c6036b80aff63ce6faec7965bde534a0fa"
+      },
+      {
+        "name": "update-job-proxy-osx64.tar.gz",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/update-job-proxy-osx64.tar.gz",
+        "digest": "sha256:d8b6030b5afac548adbf1f3e7b2bc3ceb7c834ff3720e5e1b0629979f4bc165a"
+      },
+      {
+        "name": "update-job-proxy-win64.tar.gz",
+        "url": "https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.27.4/update-job-proxy-win64.tar.gz",
+        "digest": "sha256:d7d63491ec04efae0899ac0c95d2824f50539082cfdcb25d4616c61e4fceb878"
+      }
+    ]
+  },
+  "actions/upload-artifact": {
+    "previous_ref": "cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+    "previous_version": "v7",
+    "tag": "v7.0.2",
+    "sha": "cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+    "published_at": "2026-10-07T10:08:14Z",
+    "url": "https://github.com/actions/upload-artifact/releases/tag/v7.0.2",
+    "body": "## What's Changed\r\n- Improves artifact download retries when the service returns HTTP 429 (rate limiting), including honoring valid Retry-After headers.\r\n- Updates @actions/artifact to v6.3.1.\r\n\r\n\r\n## New Contributors\r\n* @tunc-d made their first contribution in https://github.com/actions/upload-artifact/pull/821\r\n\r\n**Full Changelog**: https://github.com/actions/upload-artifact/compare/v7.0.1...v7.0.2",
+    "assets": []
+  },
+  "actions/setup-python": {
+    "previous_ref": "6d4fd22b20465ccc0f7354476588e8df7c9ca0e0",
+    "previous_version": "v7",
+    "tag": "v7.1.0",
+    "sha": "6d4fd22b20465ccc0f7354476588e8df7c9ca0e0",
+    "published_at": "2026-10-22T02:56:04Z",
+    "url": "https://github.com/actions/setup-python/releases/tag/v7.1.0",
+    "body": "## What's Changed\r\n\r\n### Enhancements\r\n* Add `mirror` and `mirror-token` inputs for custom Python distribution sources by @luhenry in https://github.com/actions/setup-python/pull/1302\r\n* Improve error message clarity by @v-lmvysakh in https://github.com/actions/setup-python/pull/1351\r\n\r\n### Dependency Upgrade\r\n* Upgrade browserslist from 4.28.2 to 4.28.9 by @dependabot in https://github.com/actions/setup-python/pull/1353\r\n* Upgrade @typescript-eslint/parser from 8.62.0 to 8.70.0 by @dependabot in https://github.com/actions/setup-python/pull/1343\r\n* Upgrade eslint-plugin-jest from 29.15.2 to 29.16.6 by @dependabot in https://github.com/actions/setup-python/pull/1342\r\n* Upgrade @vercel/ncc from 0.44.0 to 0.45.0 by @dependabot in https://github.com/actions/setup-python/pull/1357\r\n* Upgrade @types/semver from 7.7.1 to 7.8.0 by @dependabot in https://github.com/actions/setup-python/pull/1359\r\n* Upgrade undici from 6.28.0 to 6.29.0 by @dependabot in https://github.com/actions/setup-python/pull/1364\r\n* Upgrade ts-jest from 29.4.11 to 29.4.14 by @dependabot in https://github.com/actions/setup-python/pull/1361\r\n* Upgrade brace-expansion from 5.0.9 to 5.0.12 by @dependabot in https://github.com/actions/setup-python/pull/1365\r\n* Upgrade prettier from 3.8.4 to 3.9.9 and package.json from 7.0.0 to 7.1.0 by @dependabot in https://github.com/actions/setup-python/pull/1363\r\n* Upgrade @typescript-eslint/eslint-plugin from 8.62.0 to 8.71.1 by @dependabot in https://github.com/actions/setup-python/pull/1369\r\n* Upgrade actions/checkout from 7.0.0 to 7.0.1 by @dependabot in https://github.com/actions/setup-python/pull/1345\r\n* Upgrade cache to 6.3.0 by @v-HarithaVattikuti in https://github.com/actions/setup-python/pull/1370\r\n* Resolve Basic Validation audit failures by @v-HarithaVattikuti in https://github.com/actions/setup-python/pull/1347\r\n* Resolve npm audit failures by @v-HarithaVattikuti in https://github.com/actions/setup-python/pull/1350\r\n\r\n\r\n## New Contributors\r\n* @luhenry made their first contribution in https://github.com/actions/setup-python/pull/1302\r\n\r\n**Full Changelog**: https://github.com/actions/setup-python/compare/v7.0.0...v7.1.0",
+    "assets": []
+  },
+  "actions/dependency-review-action": {
+    "previous_ref": "a1d282b36b6f3519aa1f3fc636f609c47dddb294",
+    "previous_version": "v5.0.0",
+    "tag": "v5.0.0",
+    "sha": "a1d282b36b6f3519aa1f3fc636f609c47dddb294",
+    "published_at": "2026-05-08T20:23:50Z",
+    "url": "https://github.com/actions/dependency-review-action/releases/tag/v5.0.0",
+    "body": "This is a new major version of the Dependency Review Action which updates the runtime to node24. This requires a minimum Actions Runner version [v2.327.1](https://github.com/actions/runner/releases/tag/v2.327.1) to run.\r\n\r\n## What's Changed\r\n* Add .github/copilot-instructions.md for Copilot coding agent by @ahpook in https://github.com/actions/dependency-review-action/pull/1067\r\n* Update Node.js runtime from 20 to 24 by @scottschreckengaust in https://github.com/actions/dependency-review-action/pull/1084\r\n* Bump spdx-license-ids from 3.0.20 to 3.0.23 by @mongolyy in https://github.com/actions/dependency-review-action/pull/1091\r\n* docs: bump actions/checkout from v4 to v6 in workflow examples by @Marukome0743 in https://github.com/actions/dependency-review-action/pull/1077\r\n* fix: patched version display for advisories with non-strict semver ranges (e.g. Maven beta versions) by @tspascoal in https://github.com/actions/dependency-review-action/pull/1076\r\n* Resolve security findings by @AshelyTC in https://github.com/actions/dependency-review-action/pull/1094\r\n* v5.0.0 release branch by @ahpook in https://github.com/actions/dependency-review-action/pull/1098\r\n\r\n## New Contributors\r\n* @scottschreckengaust made their first contribution in https://github.com/actions/dependency-review-action/pull/1084\r\n* @mongolyy made their first contribution in https://github.com/actions/dependency-review-action/pull/1091\r\n* @Marukome0743 made their first contribution in https://github.com/actions/dependency-review-action/pull/1077\r\n\r\n**Full Changelog**: https://github.com/actions/dependency-review-action/compare/v4.9.0...v5.0.0",
+    "assets": []
+  },
+  "codecov/codecov-action": {
+    "previous_ref": "303a32d7a59b442fa8d48b6a1cc6825c09c847a5",
+    "previous_version": "v7.1.1",
+    "tag": "v7.1.1",
+    "sha": "303a32d7a59b442fa8d48b6a1cc6825c09c847a5",
+    "published_at": "2026-09-17T00:48:02Z",
+    "url": "https://github.com/codecov/codecov-action/releases/tag/v7.1.1",
+    "body": "## What's Changed\r\n* chore(release): 7.1.1 by @thomasrockhu-codecov in https://github.com/codecov/codecov-action/pull/1973\r\n\r\n\r\n**Full Changelog**: https://github.com/codecov/codecov-action/compare/v7.1.0...v7.1.1",
+    "assets": []
+  },
+  "NuGet/login": {
+    "previous_ref": "8d196754b4036150537f80ac539e15c2f1028841",
+    "previous_version": "v1",
+    "tag": "v1.2.0",
+    "sha": "8d196754b4036150537f80ac539e15c2f1028841",
+    "published_at": "2026-04-24T18:30:23Z",
+    "url": "https://github.com/NuGet/login/releases/tag/v1.2.0",
+    "body": "\ud83d\ude80 v1.2.0 \r\n\r\nThis is the newest stable release of NuGet/login, a GitHub Action for securely authenticating with NuGet using GitHub\u2019s OIDC tokens.\r\n\r\n\u2728 New features\r\n\r\n- Enhanced logging\r\n- Updated Node.js version\r\n\r\n\ud83d\udee0\ufe0f Example Usage\r\n\r\nname: NuGet Login\r\nuses: NuGet/login@v1.2.0\r\nwith:\r\nuser: my-nuget-username",
+    "assets": []
+  },
+  "peter-evans/create-pull-request": {
+    "previous_ref": "15733dbdfeedb4f7fdb73d13c6f5ac83b710fab8",
+    "previous_version": "v8.1.2",
+    "tag": "v8.1.3",
+    "sha": "3ffccacd46053766916f087ce41d627c0b8cf2d1",
+    "published_at": "2026-11-10T13:06:27Z",
+    "url": "https://github.com/peter-evans/create-pull-request/releases/tag/v8.1.3",
+    "body": "## What's Changed\r\n* fix: check git ref directly when pushing signed commits by @peter-evans in https://github.com/peter-evans/create-pull-request/pull/4521\r\n* Update distribution by @actions-bot in https://github.com/peter-evans/create-pull-request/pull/4526\r\n\r\n\r\n**Full Changelog**: https://github.com/peter-evans/create-pull-request/compare/v8.1.2...v8.1.3",
+    "assets": []
+  },
+  "lycheeverse/lychee-action": {
+    "previous_ref": "e7477775783ea5526144ba13e8db5eec57747ce8",
+    "previous_version": "v2.9.0",
+    "tag": "v2.9.0",
+    "sha": "e7477775783ea5526144ba13e8db5eec57747ce8",
+    "published_at": "2026-07-09T15:31:00Z",
+    "url": "https://github.com/lycheeverse/lychee-action/releases/tag/v2.9.0",
+    "body": "## Summary\n\nThis release updates the default lychee version from `v0.23.0` to `v0.24.2`.\n\nThe main reason for this release is compatibility with the new lychee `0.24.x` release artifacts. Starting with lychee `v0.24.0`, the archive layout changed, and the `lychee` binary may now be packaged inside a subdirectory. `lychee-action` now detects that layout automatically, so users can upgrade without changing their workflows.\n\nIf you use:\n\n```yaml\nuses: lycheeverse/lychee-action@v2\n```\n\nyou will get the new version once the floating `v2` tag has been updated. If you pin exact versions, update to:\n\n```yaml\nuses: lycheeverse/lychee-action@v2.9.0\n```\n\n## What\u2019s new from lychee `v0.24.x`\n\n### Better diagnostics\n\nlychee now reports line and column numbers for detected links. This makes broken link reports easier to act on, especially in larger documentation sites or generated reports.\n\n### Text fragment checking\n\nlychee can now check URL text fragments, such as links containing `#:~:text=...`. This helps catch links that point to a valid page but no longer points to the intended highlighted text.\n\n### Sitemap support\n\nlychee can now read `sitemap.xml` inputs. This is useful for checking published websites or generated documentation sites where the sitemap is the easiest source of URLs to validate.\n\n### JUnit output\n\nlychee now supports JUnit output. This makes it easier to integrate link checking results with CI systems and test reporting tools that understand JUnit XML.\n\n### Redirect and remap visibility\n\nlychee can now show redirects and remaps more clearly. This helps explain why a URL was checked as a different final URL and makes debugging link-checking behavior easier.\n\n### Multiple config files\n\nlychee now supports multiple configuration files and expanded config handling. This is useful for repositories that split documentation, website, or package-specific link-checking settings.\n\n### Timeout handling\n\nlychee can now accept timeouts explicitly. This gives users more control over how strict their link checks should be for flaky or slow endpoints.\n\n## Fixes and reliability improvements\n\n### Fixed lychee `0.24.x` archive compatibility\n\n`lychee-action` now handles the new lychee release archive layout by detecting whether the `lychee` binary is inside a subdirectory.\n\nThis fixes compatibility with lychee `0.24.x`.\n\n### More stable installation path\n\nThe action now installs lychee into `$RUNNER_TEMP/lychee/bin` instead of `$HOME`.\n\nThis avoids failures on runners where `$HOME` differs between composite action steps. In those environments, the action could add one directory to `PATH` but install the binary somewhere else, causing `lychee: command not found`.\n\n### Safer automatic lychee version updates\n\nThe workflow that checks for new lychee releases now guards against `null` release versions before creating update PRs. This prevents invalid automated PRs such as \u201cUpdate lycheeVersion to null\u201d.\n\n### Dependency updates\n\n- Updated `actions/checkout` from `v6` to `v7`\n- Updated `actions/cache` from `v5` to `v6`\n\n## Upstream lychee changelog\n\nFor the full lychee changelog, see:\n\n- https://github.com/lycheeverse/lychee/releases/tag/lychee-v0.24.0\n- https://github.com/lycheeverse/lychee/releases/tag/lychee-v0.24.1\n- https://github.com/lycheeverse/lychee/releases/tag/lychee-v0.24.2\n\n## What\u2019s Changed\n\n* bump default to 0.24.1 and auto-detect lychee bin in subfolder by @kaitlyndotmoe in https://github.com/lycheeverse/lychee-action/pull/330\n* fixes #322 check for null by @bgermann in https://github.com/lycheeverse/lychee-action/pull/336\n* Install into `$RUNNER_TEMP` instead of `$HOME` by @mre in https://github.com/lycheeverse/lychee-action/pull/338\n* Bump actions/checkout from 6 to 7 by @dependabot in https://github.com/lycheeverse/lychee-action/pull/339\n* Bump actions/cache from 5 to 6 by @dependabot in https://github.com/lycheeverse/lychee-action/pull/340\n\n**Full Changelog**: https://github.com/lycheeverse/lychee-action/compare/v2.8.0...v2.9.0\n",
+    "assets": []
+  },
+  "actions/upload-pages-artifact": {
+    "previous_ref": "fc324d3547104276b827a68afc52ff2a11cc49c9",
+    "previous_version": "v5",
+    "tag": "v5.0.0",
+    "sha": "fc324d3547104276b827a68afc52ff2a11cc49c9",
+    "published_at": "2026-04-10T18:22:59Z",
+    "url": "https://github.com/actions/upload-pages-artifact/releases/tag/v5.0.0",
+    "body": "# Changelog\r\n\r\n- Update upload-artifact action to version 7 @Tom-van-Woudenberg (#139)\r\n- feat: add `include-hidden-files` input @jonchurch (#137)\r\n\r\nSee details of [all code changes](https://github.com/actions/upload-pages-artifact/compare/v4.0.0...v4.0.1) since previous release.\r\n",
+    "assets": []
+  },
+  "actions/configure-pages": {
+    "previous_ref": "45bfe0192ca1faeb007ade9deae92b16b8254a0d",
+    "previous_version": "v6",
+    "tag": "v6.0.0",
+    "sha": "45bfe0192ca1faeb007ade9deae92b16b8254a0d",
+    "published_at": "2026-03-25T17:00:49Z",
+    "url": "https://github.com/actions/configure-pages/releases/tag/v6.0.0",
+    "body": "# Changelog\r\n\r\n- upgrade to node 24 @salmanmkc (#186)\r\n- Upgrade IA Publish @Jcambass (#165)\r\n- Add workflow file for publishing releases to immutable action package @Jcambass (#163)\r\n- pin draft release version @YiMysty (#162)\r\n- Bump espree from 9.6.1 to 10.1.0 @dependabot (#160)\r\n- Bump eslint-config-prettier from 8.8.0 to 9.1.0 @dependabot (#143)\r\n- Be more friendly to Dependabot @yoannchaudet (#158)\r\n- Bump eslint-plugin-github from 4.10.2 to 5.0.1 @dependabot (#154)\r\n- Bump braces from 3.0.2 to 3.0.3 in the npm_and_yarn group @dependabot (#156)\r\n- Bump undici from 5.28.3 to 5.28.4 @dependabot (#145)\r\n\r\nSee details of [all code changes](https://github.com/actions/configure-pages/compare/v5.0.0...v5.0.1) since previous release.\r\n",
+    "assets": []
+  },
+  "actions/deploy-pages": {
+    "previous_ref": "368f82528645a54fb793d4d04e342629a3f51346",
+    "previous_version": "v5",
+    "tag": "v5.0.1",
+    "sha": "368f82528645a54fb793d4d04e342629a3f51346",
+    "published_at": "2026-09-01T21:31:19Z",
+    "url": "https://github.com/actions/deploy-pages/releases/tag/v5.0.1",
+    "body": "# Changelog\r\n\r\n- Add backoff and jitter to deployment polling @yoannchaudet (#444)\r\n- Improve deployment request test coverage @adwitiyagoyal (#440)\r\n\r\n---\r\n\r\nSee details of [all code changes](https://github.com/actions/deploy-pages/compare/v5.0.0...v5.0.1) since previous release.\r\n\r\n:warning: For use with products other than GitHub.com, such as GitHub Enterprise Server, please consult the [compatibility table](https://github.com/actions/deploy-pages/#compatibility).\r\n",
+    "assets": []
+  },
+  "pre-commit/pre-commit-hooks": {
+    "tag": "v6.0.0",
+    "sha": "3e8a8703264a2f4a69428a0aa4dcb512790b2c8c",
+    "published_at": "2025-08-09T19:31:54Z",
+    "url": "https://github.com/pre-commit/pre-commit-hooks/releases/tag/v6.0.0",
+    "body": "## Fixes\r\n- `check-shebang-scripts-are-executable`: improve error message.\r\n    - #1115 PR by @homebysix.\r\n\r\n## Migrating\r\n- now requires python >= 3.9.\r\n    - #1098 PR by @asottile.\r\n- `file-contents-sorter`: disallow `--unique` and `--ignore-case` at the same\r\n  time.\r\n    - #1095 PR by @nemacysts.\r\n    - #794 issue by @teksturi.\r\n- Removed `check-byte-order-marker` and `fix-encoding-pragma`.\r\n    - `check-byte-order-marker`: migrate to `fix-byte-order-marker`.\r\n    - `fix-encoding-pragma`: migrate to `pyupgrade`.\r\n    - #1034 PR by @mxr.\r\n    - #1032 issue by @mxr.\r\n    - #522 PR by @jgowdy.\r\n\r\n",
+    "assets": []
+  },
+  "pre-commit/mirrors-clang-format": {
+    "tag": "v23.1.5",
+    "sha": "ce4bd7270237e95464b37d808b942f02785192c4",
+    "published_at": null,
+    "url": "https://github.com/pre-commit/mirrors-clang-format/tags",
+    "body": "No GitHub release; newest tag",
+    "assets": []
+  },
+  "google/googletest": {
+    "tag": "v1.18.0",
+    "sha": "063de7e9578f82b369302001269680b4b1553359",
+    "published_at": "2026-08-10T17:37:46Z",
+    "url": "https://github.com/google/googletest/releases/tag/v1.18.0",
+    "body": "# Release Notes\r\n\r\nGoogleTest will **not** accept patches of new features to the `v1.18.x` branch.  \r\nWe recommend building GoogleTest from the latest commit instead.   \r\nExceptional critical bug fixes may be considered.\r\n\r\n## C++ Language Support\r\n* GoogleTest now requires at least C++17 and follows [Google's Foundational C++ Support Policy](https://opensource.google/documentation/policies/cplusplus-support). See [this table](https://github.com/google/oss-policies-info/blob/main/foundational-cxx-support-matrix.md) for a list of currently supported versions compilers, platforms, and build tools.\r\n\r\n## Notable Changes\r\n* Set GTEST_INTERNAL_HAS_STRING_VIEW = 1 in googletest as C++17 always supports it\r\n (https://github.com/google/googletest/commit/4f472747b124e9ddf3434c0e77ea032c799244d5)\r\n* Many bug fixes",
+    "assets": [
+      {
+        "name": "googletest-1.18.0.tar.gz",
+        "url": "https://github.com/google/googletest/releases/download/v1.18.0/googletest-1.18.0.tar.gz",
+        "digest": "sha256:6e3191c1455468b3fc35a417fb565c1c5071aee1b7e7f85e30cf48a98d37d8b5"
+      }
+    ]
+  },
+  "google/benchmark": {
+    "tag": "v1.10.0",
+    "sha": "a6b4a9f00b36c19af9997d68a1cf6e0b5b3d032c",
+    "published_at": "2026-10-14T10:12:03Z",
+    "url": "https://github.com/google/benchmark/releases/tag/v1.10.0",
+    "body": "## What's Changed\r\n* exclude linking to lib rt for QNX to avoid linking error by @Osama131 in https://github.com/google/benchmark/pull/2114\r\n* fix(pyproject): Update license to SPDX identifier by @nicholasjng in https://github.com/google/benchmark/pull/2120\r\n* Replicate generic hardware events on all CPU PMUs by @pcc in https://github.com/google/benchmark/pull/2123\r\n* #2125: Fix error: format string is not a string literal (#2126) by @sergio-nsk in https://github.com/google/benchmark/pull/2126\r\n* Revert \"Remove redundant feature checks on re-run of CMake config ste\u2026 by @dsharlet in https://github.com/google/benchmark/pull/2127\r\n* Bump the version of python used for pip. by @dmah42 in https://github.com/google/benchmark/pull/2130\r\n* Add BENCHMARK_NAMED macro for named benchmarks without lambda by @5kng in https://github.com/google/benchmark/pull/2135\r\n* cmake: cache HAVE_* results to skip feature checks on re-runs by @5kng in https://github.com/google/benchmark/pull/2137\r\n* multiple fixes to avoid Windows x64 crashes by @dmah42 in https://github.com/google/benchmark/pull/2139\r\n* Refactor/modularize headers by @dmah42 in https://github.com/google/benchmark/pull/2140\r\n* refactor ToExponentAndMantissa to use StrFormat instead of std::stringstream by @dmah42 in https://github.com/google/benchmark/pull/2138\r\n* Fix CMake detection on pthread_affinity test on FreeBSD by @aokblast in https://github.com/google/benchmark/pull/2146\r\n* Add WASI compatibility by @ashvardanian in https://github.com/google/benchmark/pull/2144\r\n* docs: document benchmark_min_time CLI forms by @felmonon in https://github.com/google/benchmark/pull/2154\r\n* feat: Add ScopedPauseTiming RAII helper by @dmah42 in https://github.com/google/benchmark/pull/2157\r\n* Fix two GCC 16 issues by @gruenich in https://github.com/google/benchmark/pull/2164\r\n* [doc] Properly document CMake minimum required version as 3.13 by @gruenich in https://github.com/google/benchmark/pull/2162\r\n* In PerfCountersTest.MultiThreaded, serialize worker threads by @musicinmybrain in https://github.com/google/benchmark/pull/2175\r\n* Fix thread safety attribute detection failing to link in CMake check by @anishesg in https://github.com/google/benchmark/pull/2178\r\n* Replace deprecated _ReadWriteBarrier with std::atomic_signal_fence in MSVC path by @qorexdevs in https://github.com/google/benchmark/pull/2177\r\n* docs: document benchmark argument names by @shreejaykurhade in https://github.com/google/benchmark/pull/2180\r\n* Docs: JSON output format by @shreejaykurhade in https://github.com/google/benchmark/pull/2181\r\n* BENCHMARK_ENABLE_WERROR=Off should also disable -pedantic-errors by @ednolan in https://github.com/google/benchmark/pull/2183\r\n* docs: Add comprehensive command-line options documentation by @jlaportebot in https://github.com/google/benchmark/pull/2187\r\n* Fix .gitignore to unignore .cmake files recursively under cmake/ by @ShawayL in https://github.com/google/benchmark/pull/2191\r\n* Sort entry in AUTHORS and CONTRIBUTORS by @ShawayL in https://github.com/google/benchmark/pull/2192\r\n* Add -lpfm to pkg-config Libs.private when libpfm is enabled by @kiwigitops in https://github.com/google/benchmark/pull/2194\r\n* Fix pkg-config paths for absolute install dirs by @Haihan-Jiang in https://github.com/google/benchmark/pull/2198\r\n* Add AGENTS.md by @LebedevRI in https://github.com/google/benchmark/pull/2202\r\n* Clarify benchmark_main CMake target usage by @Haihan-Jiang in https://github.com/google/benchmark/pull/2205\r\n* Document static library benchmark registration by @Haihan-Jiang in https://github.com/google/benchmark/pull/2200\r\n* Document CMake embedding guidance by @Haihan-Jiang in https://github.com/google/benchmark/pull/2203\r\n* Skip errored runs when computing repetition statistics by @Haihan-Jiang in https://github.com/google/benchmark/pull/2199\r\n* Clarify DoNotOptimize const-ref warning by @Haihan-Jiang in https://github.com/google/benchmark/pull/2201\r\n* Skip perf counter tests when counters are unavailable by @Haihan-Jiang in https://github.com/google/benchmark/pull/2204\r\n* Tune AGENTS.md by @LebedevRI in https://github.com/google/benchmark/pull/2208\r\n* CONTRIBUTING: actually link to AGENTS.md by @LebedevRI in https://github.com/google/benchmark/pull/2211\r\n* Disable allocation zeroing in benchmarks on Android by @charlesmunger in https://github.com/google/benchmark/pull/2214\r\n* Handle missing locale in test on more platforms by @alyssais in https://github.com/google/benchmark/pull/2219\r\n* Fix up windows tests by @dmah42 in https://github.com/google/benchmark/pull/2220\r\n* Introduce Rust bindings by @dmah42 in https://github.com/google/benchmark/pull/2221\r\n* better rust build/test by @dmah42 in https://github.com/google/benchmark/pull/2223\r\n* rust bindings: keep argv[0] alive across benchmark reporting by @Alearner12 in https://github.com/google/benchmark/pull/2237\r\n* docs: document Bazel integration by @tuna4ll in https://github.com/google/benchmark/pull/2238\r\n* Run an autofix pass on github workflows using zizmor by @dmah42 in https://github.com/google/benchmark/pull/2233\r\n* fix(linux): prevent infinite re-exec loop under AppArmor by @anishesg in https://github.com/google/benchmark/pull/2239\r\n* Make --benchmark_list_tests respect --benchmark_format by @devtejasx in https://github.com/google/benchmark/pull/2245\r\n* Fix typos, add codespell configuration by @mwtoews in https://github.com/google/benchmark/pull/2262\r\n* Fix compile error with clang -Werror -Wunused-template by @aokblast in https://github.com/google/benchmark/pull/2268\r\n* Fix use-after-free in CreateDefaultDisplayReporter (#2240) by @devtejasx in https://github.com/google/benchmark/pull/2265\r\n* Exclude setup/teardown from the MemoryManager measurement window (#2149) by @devtejasx in https://github.com/google/benchmark/pull/2276\r\n* Make random number generator thread-local in perf_counters_gtest. by @oontvoo in https://github.com/google/benchmark/pull/2283\r\n* Update Bazel tooling for Python bindings by @stanbot8 in https://github.com/google/benchmark/pull/2287\r\n* Fix tsan/asan/hwasan/etc failures on Android by @charlesmunger in https://github.com/google/benchmark/pull/2229\r\n* Ignore skipped benchmark when computing geomean by @Krzmbrzl in https://github.com/google/benchmark/pull/2290\r\n* Py tooling: fix Windows terminal color output and handle color flags in compare.py (fixes #642) by @jdymitarai in https://github.com/google/benchmark/pull/2297\r\n* Report the complexity aggregates in the family's time unit by @lenamonj in https://github.com/google/benchmark/pull/2294\r\n* Replace offsetof cache-line check with a well-defined runtime check (#1877) by @devtejasx in https://github.com/google/benchmark/pull/2264\r\n* Detect thread safety attribute support in mutex.h (#2263) by @devtejasx in https://github.com/google/benchmark/pull/2275\r\n* Diagnose invalid PauseTiming()/ResumeTiming() calls (#2235) by @devtejasx in https://github.com/google/benchmark/pull/2274\r\n* Register Python 3.14 with Bazel by @stanbot8 in https://github.com/google/benchmark/pull/2307\r\n* feat: allow custom multiplier in Benchmark::ThreadRange (fixes #1531) by @ReturnKartikey in https://github.com/google/benchmark/pull/2304\r\n* Pass State to ProfilerManager via new WithState hooks (#2234) by @Chaturvediharsh123 in https://github.com/google/benchmark/pull/2313\r\n* feat(reporter): introduce scientific notation for counters in console (fixes #818) by @ReturnKartikey in https://github.com/google/benchmark/pull/2305\r\n* fix(timing): Do not resume timing in pause scope on skipped benchmarks by @nicholasjng in https://github.com/google/benchmark/pull/2318\r\n* Guard result.rms against division by zero by @stanbot8 in https://github.com/google/benchmark/pull/2317\r\n* Add Python 3.13\u20133.15 and free-threading wheel support by @hawkinsp in https://github.com/google/benchmark/pull/2314\r\n* Apply UseManualTime to BM_bytes_per_second and BM_items_per_second by @stanbot8 in https://github.com/google/benchmark/pull/2320\r\n* Add `State::in_timed_section()` helper by @nicholasjng in https://github.com/google/benchmark/pull/2319\r\n* fix(mutex): hold lock during notify_all in Barrier::wait to prevent teardown race (fixes #1672) by @jdymitarai in https://github.com/google/benchmark/pull/2325\r\n* Support DoNotOptimize on types with const members (#1997) by @devtejasx in https://github.com/google/benchmark/pull/2291\r\n\r\n## New Contributors\r\n* @Osama131 made their first contribution in https://github.com/google/benchmark/pull/2114\r\n* @sergio-nsk made their first contribution in https://github.com/google/benchmark/pull/2126\r\n* @5kng made their first contribution in https://github.com/google/benchmark/pull/2135\r\n* @aokblast made their first contribution in https://github.com/google/benchmark/pull/2146\r\n* @ashvardanian made their first contribution in https://github.com/google/benchmark/pull/2144\r\n* @felmonon made their first contribution in https://github.com/google/benchmark/pull/2154\r\n* @gruenich made their first contribution in https://github.com/google/benchmark/pull/2164\r\n* @musicinmybrain made their first contribution in https://github.com/google/benchmark/pull/2175\r\n* @anishesg made their first contribution in https://github.com/google/benchmark/pull/2178\r\n* @qorexdevs made their first contribution in https://github.com/google/benchmark/pull/2177\r\n* @shreejaykurhade made their first contribution in https://github.com/google/benchmark/pull/2180\r\n* @ednolan made their first contribution in https://github.com/google/benchmark/pull/2183\r\n* @jlaportebot made their first contribution in https://github.com/google/benchmark/pull/2187\r\n* @ShawayL made their first contribution in https://github.com/google/benchmark/pull/2191\r\n* @kiwigitops made their first contribution in https://github.com/google/benchmark/pull/2194\r\n* @Haihan-Jiang made their first contribution in https://github.com/google/benchmark/pull/2198\r\n* @charlesmunger made their first contribution in https://github.com/google/benchmark/pull/2214\r\n* @alyssais made their first contribution in https://github.com/google/benchmark/pull/2219\r\n* @Alearner12 made their first contribution in https://github.com/google/benchmark/pull/2237\r\n* @tuna4ll made their first contribution in https://github.com/google/benchmark/pull/2238\r\n* @devtejasx made their first contribution in https://github.com/google/benchmark/pull/2245\r\n* @mwtoews made their first contribution in https://github.com/google/benchmark/pull/2262\r\n* @stanbot8 made their first contribution in https://github.com/google/benchmark/pull/2287\r\n* @jdymitarai made their first contribution in https://github.com/google/benchmark/pull/2297\r\n* @lenamonj made their first contribution in https://github.com/google/benchmark/pull/2294\r\n* @ReturnKartikey made their first contribution in https://github.com/google/benchmark/pull/2304\r\n* @Chaturvediharsh123 made their first contribution in https://github.com/google/benchmark/pull/2313\r\n\r\n**Full Changelog**: https://github.com/google/benchmark/compare/v1.9.5...v1.10.0",
+    "assets": []
+  },
+  "cpm-cmake/CPM.cmake": {
+    "tag": "v0.43.2",
+    "sha": "01678cfe175eab53143640429fdaa57c3c621cc6",
+    "published_at": "2026-09-24T19:23:06Z",
+    "url": "https://github.com/cpm-cmake/CPM.cmake/releases/tag/v0.43.2",
+    "body": "## What's Changed\n* fix: Enhance CPMAddPackage with source override to preserve semicolons by @mathisloge in https://github.com/cpm-cmake/CPM.cmake/pull/712\n\n## New Contributors\n* @mathisloge made their first contribution in https://github.com/cpm-cmake/CPM.cmake/pull/712\n\n**Full Changelog**: https://github.com/cpm-cmake/CPM.cmake/compare/v0.43.1...v0.43.2",
+    "assets": [
+      {
+        "name": "CPM.cmake",
+        "url": "https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.43.2/CPM.cmake",
+        "digest": "sha256:49a3bef91ceb65bb66d57255e12d1ffd22abc2f6408fa9fe4534c544a2f232aa"
+      },
+      {
+        "name": "get_cpm.cmake",
+        "url": "https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.43.2/get_cpm.cmake",
+        "digest": "sha256:ffeb85103e3b9567dd2b2d815176cf5bfb9d1de8affb7033d848a0899247ca46"
+      }
+    ]
+  },
+  "microsoft/vcpkg": {
+    "tag": "2026.10.16",
+    "sha": "9eec002df1cd109f8f104cd966a763daf9751489",
+    "published_at": "2026-10-20T21:47:37Z",
+    "url": "https://github.com/microsoft/vcpkg/releases/tag/2026.10.16",
+    "body": "#### Total port count: 2877\r\n#### Total port count per triplet (tested):  https://dev.azure.com/vcpkg/public/_build/results?buildId=139127\r\n|triplet|ports available|                                                                                               \r\n|---|---|\r\n|x86-windows|2675|\r\n|**x64-windows**|2809|\r\n|x64-windows-release|2805|\r\n|x64-windows-static|2682|\r\n|x64-windows-static-md|2742|\r\n|arm64-windows|2486|\r\n|arm64-windows-static-md|2467|\r\n|**arm64-osx**|2639|\r\n|**x64-linux**|2835|\r\n|arm-neon-android|2271|\r\n|x64-android|2334|\r\n|arm64-android|2310|\r\n|arm64-linux|2340|\r\n\r\nThe following vcpkg-tool releases have occurred since the last registry release:\r\n* https://github.com/microsoft/vcpkg-tool/releases/tag/2026-09-26\r\n\r\nIn those tool releases, the following changes are particularly meaningful:\r\n* Fix x-add-version to be as transactional as its error messages suggest (and 1/10th the time) by @BillyONeal in https://github.com/microsoft/vcpkg-tool/pull/2050\r\n* [curl] propagate VCPKG_SSL_REVOKE_BEST_EFFORT to spawned processes by @mem16k in https://github.com/microsoft/vcpkg-tool/pull/2098\r\n* Fix binary cache precheck result mapping by @miyanyan in https://github.com/microsoft/vcpkg-tool/pull/2112\r\n* Do not replace registry errors with \"<port> does not exist\" by @bugale in https://github.com/microsoft/vcpkg-tool/pull/2095\r\n* Add `apple` as a valid platform expression by @cqundefine in https://github.com/microsoft/vcpkg-tool/pull/2121\r\n* Audit for git commands that can accept more `--`. by @BillyONeal in https://github.com/microsoft/vcpkg-tool/pull/2118\r\n* Match xbox expressions to CMake definitions by @BillyONeal in https://github.com/microsoft/vcpkg-tool/pull/2124\r\n* Standardize binary cache upload failure diagnostics by @xiaozhuai in https://github.com/microsoft/vcpkg-tool/pull/2105\r\n* Make binary cache ZIP compression level configurable by @xiaozhuai in https://github.com/microsoft/vcpkg-tool/pull/2125\r\n* [export] Get vcpkg.exe into the nupkg. by @BillyONeal in https://github.com/microsoft/vcpkg-tool/pull/2134\r\n* Gracefully fallback to WinNET proxy settings when HTTPS_PROXY/NO_PROXY are malformed by @camillebruckmann in https://github.com/microsoft/vcpkg-tool/pull/2137\r\n\r\n<details>\r\n<summary><b>The following 41 ports have been added:</b></summary>\r\n\r\n|port|version|\r\n|---|---|\r\n|amsozzer1-plusweb|0.1.2|\r\n|aui|7.1.2|\r\n|aui-toolbox|7.1.2|\r\n|cpp-unicodelib|2026-09-05|\r\n|cppduals|0.9.6|\r\n|engitsdatalib|1.0.1|\r\n|fcftest|1.2.9|\r\n|gif-load|2019-01-06|\r\n|iceberg-cpp|0.4.0#2|\r\n|kalshi-cpp|0.6.2|\r\n|kvazaar|2.3.2|\r\n|libdaemon|0.14|\r\n|libfn|0.1.0|\r\n|libnatpmp|2025-04-03|\r\n|libnfs|8.0.0|\r\n|libnsgif|1.0.0#1|\r\n|librats|2.3.7|\r\n|mach|1.0.0|\r\n|mas-bandwidth-netcode|1.4.3|\r\n|mas-bandwidth-reliable|1.4.0|\r\n|mas-bandwidth-serialize|1.15.0|\r\n|mas-bandwidth-yojimbo|1.11.0|\r\n|mpdecimal|4.0.1|\r\n|mumps-solver|5.9.1#1|\r\n|openpit|0.9.0|\r\n|perf-cpp|1.1.1|\r\n|plf-tools|1.0.8|\r\n|rectpack2d|2026-08-09|\r\n|rohit-singh-gautam-serializer|2.0.1|\r\n|slang-verilog|10.0|\r\n|slick-perfmon|0.3.0|\r\n|stdgpu|2026-07-08|\r\n|sz|3.4.0|\r\n|time-shield-cpp|2.0.0|\r\n|tlsf|2020-03-29|\r\n|vsgpoints|0.7.0|\r\n|vvdec|3.2.0|\r\n|wukong-easy-sdk|0.1.0|\r\n|xyo-sdk|2.1.0|\r\n|zimg|3.0.6|\r\n|zmij|1.2|\r\n</details>\r\n\r\n<details>\r\n<summary><b>The following 806 ports have been updated:</b></summary>\r\n\r\n|port|original version|new version|\r\n|---|---|---|\r\n|7zip|26.2|26.4|\r\n|ace|8.0.6|8.0.8|\r\n|ada-url|3.4.4|4.0.0|\r\n|advobfuscator|2.1.2|2.1.3|\r\n|aeron|1.52.0|1.52.2|\r\n|alibabacloud-oss-cpp-sdk-v2|0.1.1|0.2.0|\r\n|amd-amf|1.5.2|1.5.3|\r\n|aom|3.13.3|3.15.2|\r\n|appstream|1.0.6#1|1.0.6#2|\r\n|apsi|0.11.0#2|1.0.1|\r\n|argus|0.2.1|0.3.0|\r\n|armadillo|14.4.1#1|15.6.1|\r\n|arrow|25.0.0|25.0.1|\r\n|assimp|6.0.4#3|6.0.5|\r\n|async-mqtt|10.3.0|10.3.1|\r\n|atomic-queue|1.9.2|1.9.4|\r\n|attr|2.5.2#1|2.6.0|\r\n|aurora-au|0.5.1|0.6.0|\r\n|avro-c|1.12.1#1|1.12.2|\r\n|avro-cpp|1.12.1#1|1.12.2#3|\r\n|awlib|2024-04-06#2|2026-08-07|\r\n|aws-c-auth|0.10.4|1.0.0|\r\n|aws-c-cal|0.9.15|1.0.0|\r\n|aws-c-common|0.14.3|1.0.2|\r\n|aws-c-compression|0.3.2|1.0.0|\r\n|aws-c-event-stream|0.7.1|1.0.0|\r\n|aws-c-http|0.11.0|1.0.0|\r\n|aws-c-io|0.27.5|1.0.0|\r\n|aws-c-mqtt|0.16.0|1.0.0|\r\n|aws-c-s3|0.13.2|1.3.1|\r\n|aws-c-sdkutils|0.2.7|1.0.0|\r\n|aws-checksums|0.2.10|1.0.1|\r\n|aws-crt-cpp|0.43.0|0.43.7|\r\n|aws-lambda-cpp|0.2.10|1.0.1|\r\n|aws-sdk-cpp|1.11.840|1.11.900|\r\n|azure-core-amqp-cpp|1.0.0-beta.12|1.0.0-beta.13|\r\n|azure-messaging-eventhubs-cpp|1.0.0-beta.13|1.0.0-beta.15#1|\r\n|azure-storage-blobs-cpp|12.18.0|12.19.0|\r\n|azure-storage-common-cpp|12.14.0|12.15.0|\r\n|azure-storage-files-datalake-cpp|12.16.0|12.17.0|\r\n|azure-storage-files-shares-cpp|12.18.0|12.19.0|\r\n|azure-storage-queues-cpp|12.7.0#1|12.8.0|\r\n|babl|0.1.126#1|0.1.128#1|\r\n|backward-cpp|2023-11-24#1|2025-04-14|\r\n|baresip-libre|4.9.0|4.10.0|\r\n|basisu|2.1.0|2.50#1|\r\n|bde|4.38.0.0|4.39.0.0|\r\n|behaviortree-cpp|4.9.1|4.10.0|\r\n|bitmagic|8.0.1#1|9.3.2|\r\n|blake3|1.8.5|1.8.7|\r\n|blosc2|3.2.3|3.3.5|\r\n|boinc|8.2.13|8.2.15|\r\n|boost|1.91.0|1.92.0|\r\n|boost-accumulators|1.91.0|1.92.0|\r\n|boost-algorithm|1.91.0|1.92.0|\r\n|boost-align|1.91.0|1.92.0|\r\n|boost-any|1.91.0|1.92.0|\r\n|boost-array|1.91.0|1.92.0|\r\n|boost-asio|1.91.0|1.92.0|\r\n|boost-assert|1.91.0|1.92.0|\r\n|boost-assign|1.91.0|1.92.0|\r\n|boost-atomic|1.91.0|1.92.0|\r\n|boost-beast|1.91.0|1.92.0|\r\n|boost-bimap|1.91.0|1.92.0|\r\n|boost-bind|1.91.0|1.92.0|\r\n|boost-bloom|1.91.0|1.92.0|\r\n|boost-build|1.91.0|1.92.0|\r\n|boost-callable-traits|1.91.0|1.92.0|\r\n|boost-charconv|1.91.0|1.92.0|\r\n|boost-chrono|1.91.0|1.92.0|\r\n|boost-circular-buffer|1.91.0|1.92.0|\r\n|boost-cmake|1.91.0|1.92.0|\r\n|boost-cobalt|1.91.0#1|1.92.0|\r\n|boost-compat|1.91.0|1.92.0|\r\n|boost-compute|1.91.0|1.92.0|\r\n|boost-concept-check|1.91.0|1.92.0|\r\n|boost-config|1.91.0|1.92.0|\r\n|boost-container|1.91.0|1.92.0|\r\n|boost-container-hash|1.91.0|1.92.0|\r\n|boost-context|1.91.0|1.92.0|\r\n|boost-contract|1.91.0|1.92.0|\r\n|boost-conversion|1.91.0|1.92.0|\r\n|boost-convert|1.91.0|1.92.0|\r\n|boost-core|1.91.0|1.92.0|\r\n|boost-coroutine|1.91.0|1.92.0|\r\n|boost-coroutine2|1.91.0|1.92.0|\r\n|boost-crc|1.91.0|1.92.0|\r\n|boost-date-time|1.91.0|1.92.0|\r\n|boost-decimal|1.91.0|1.92.0|\r\n|boost-describe|1.91.0|1.92.0|\r\n|boost-detail|1.91.0|1.92.0|\r\n|boost-dll|1.91.0|1.92.0|\r\n|boost-dynamic-bitset|1.91.0|1.92.0|\r\n|boost-endian|1.91.0|1.92.0|\r\n|boost-exception|1.91.0|1.92.0|\r\n|boost-fiber|1.91.0|1.92.0|\r\n|boost-filesystem|1.91.0|1.92.0|\r\n|boost-flyweight|1.91.0|1.92.0|\r\n|boost-foreach|1.91.0|1.92.0|\r\n|boost-format|1.91.0|1.92.0|\r\n|boost-function|1.91.0|1.92.0|\r\n|boost-function-types|1.91.0|1.92.0|\r\n|boost-functional|1.91.0|1.92.0|\r\n|boost-fusion|1.91.0|1.92.0|\r\n|boost-geometry|1.91.0|1.92.0|\r\n|boost-gil|1.91.0|1.92.0|\r\n|boost-graph|1.91.0|1.92.0|\r\n|boost-graph-parallel|1.91.0|1.92.0|\r\n|boost-hana|1.91.0|1.92.0|\r\n|boost-hash2|1.91.0|1.92.0|\r\n|boost-headers|1.91.0|1.92.0|\r\n|boost-heap|1.91.0|1.92.0|\r\n|boost-histogram|1.91.0|1.92.0|\r\n|boost-hof|1.91.0|1.92.0|\r\n|boost-icl|1.91.0|1.92.0|\r\n|boost-integer|1.91.0|1.92.0|\r\n|boost-interprocess|1.91.0|1.92.0|\r\n|boost-interval|1.91.0|1.92.0|\r\n|boost-intrusive|1.91.0|1.92.0|\r\n|boost-io|1.91.0|1.92.0|\r\n|boost-iostreams|1.91.0|1.92.0|\r\n|boost-iterator|1.91.0|1.92.0|\r\n|boost-json|1.91.0|1.92.0|\r\n|boost-lambda|1.91.0|1.92.0|\r\n|boost-lambda2|1.91.0|1.92.0|\r\n|boost-leaf|1.91.0|1.92.0|\r\n|boost-lexical-cast|1.91.0|1.92.0|\r\n|boost-local-function|1.91.0|1.92.0|\r\n|boost-locale|1.91.0|1.92.0|\r\n|boost-lockfree|1.91.0|1.92.0|\r\n|boost-log|1.91.0|1.92.0|\r\n|boost-logic|1.91.0|1.92.0|\r\n|boost-math|1.91.0|1.92.0|\r\n|boost-metaparse|1.91.0|1.92.0|\r\n|boost-move|1.91.0|1.92.0|\r\n|boost-mp11|1.91.0|1.92.0|\r\n|boost-mpi|1.91.0|1.92.0|\r\n|boost-mpl|1.91.0|1.92.0|\r\n|boost-mqtt5|1.91.0|1.92.0|\r\n|boost-msm|1.91.0|1.92.0|\r\n|boost-multi-array|1.91.0|1.92.0|\r\n|boost-multi-index|1.91.0|1.92.0|\r\n|boost-multiprecision|1.91.0|1.92.0|\r\n|boost-mysql|1.91.0|1.92.0|\r\n|boost-nowide|1.91.0|1.92.0|\r\n|boost-numeric-conversion|1.91.0|1.92.0|\r\n|boost-odeint|1.91.0|1.92.0|\r\n|boost-openmethod|1.91.0|1.92.0|\r\n|boost-optional|1.91.0|1.92.0|\r\n|boost-outcome|1.91.0|1.92.0|\r\n|boost-parameter|1.91.0|1.92.0|\r\n|boost-parameter-python|1.91.0|1.92.0|\r\n|boost-parser|1.91.0|1.92.0|\r\n|boost-pfr|1.91.0|1.92.0|\r\n|boost-phoenix|1.91.0|1.92.0|\r\n|boost-poly-collection|1.91.0|1.92.0|\r\n|boost-polygon|1.91.0|1.92.0|\r\n|boost-pool|1.91.0|1.92.0|\r\n|boost-predef|1.91.0|1.92.0|\r\n|boost-preprocessor|1.91.0|1.92.0|\r\n|boost-process|1.91.0|1.92.0|\r\n|boost-program-options|1.91.0|1.92.0|\r\n|boost-property-map|1.91.0|1.92.0|\r\n|boost-property-map-parallel|1.91.0|1.92.0|\r\n|boost-property-tree|1.91.0|1.92.0|\r\n|boost-proto|1.91.0|1.92.0|\r\n|boost-ptr-container|1.91.0|1.92.0|\r\n|boost-python|1.91.0|1.92.0|\r\n|boost-qvm|1.91.0|1.92.0|\r\n|boost-random|1.91.0|1.92.0|\r\n|boost-range|1.91.0|1.92.0|\r\n|boost-ratio|1.91.0|1.92.0|\r\n|boost-rational|1.91.0|1.92.0|\r\n|boost-redis|1.91.0|1.92.0|\r\n|boost-regex|1.91.0|1.92.0|\r\n|boost-safe-numerics|1.91.0|1.92.0|\r\n|boost-scope|1.91.0|1.92.0|\r\n|boost-scope-exit|1.91.0|1.92.0|\r\n|boost-serialization|1.91.0|1.92.0|\r\n|boost-signals2|1.91.0|1.92.0|\r\n|boost-smart-ptr|1.91.0|1.92.0|\r\n|boost-sort|1.91.0|1.92.0|\r\n|boost-spirit|1.91.0|1.92.0|\r\n|boost-stacktrace|1.91.0|1.92.0|\r\n|boost-statechart|1.91.0|1.92.0|\r\n|boost-static-assert|1.91.0|1.92.0|\r\n|boost-static-string|1.91.0|1.92.0|\r\n|boost-stl-interfaces|1.91.0|1.92.0|\r\n|boost-system|1.91.0|1.92.0|\r\n|boost-test|1.91.0|1.92.0|\r\n|boost-thread|1.91.0|1.92.0|\r\n|boost-throw-exception|1.91.0|1.92.0|\r\n|boost-timer|1.91.0|1.92.0|\r\n|boost-tokenizer|1.91.0|1.92.0|\r\n|boost-tti|1.91.0|1.92.0|\r\n|boost-tuple|1.91.0|1.92.0|\r\n|boost-type-erasure|1.91.0|1.92.0|\r\n|boost-type-index|1.91.0|1.92.0|\r\n|boost-type-traits|1.91.0|1.92.0|\r\n|boost-typeof|1.91.0|1.92.0|\r\n|boost-ublas|1.91.0|1.92.0|\r\n|boost-uninstall|1.91.0|1.92.0|\r\n|boost-units|1.91.0|1.92.0|\r\n|boost-unordered|1.91.0|1.92.0|\r\n|boost-url|1.91.0|1.92.0|\r\n|boost-utility|1.91.0|1.92.0|\r\n|boost-uuid|1.91.0|1.92.0|\r\n|boost-variant|1.91.0|1.92.0|\r\n|boost-variant2|1.91.0|1.92.0|\r\n|boost-vmd|1.91.0|1.92.0|\r\n|boost-wave|1.91.0|1.92.0|\r\n|boost-winapi|1.91.0|1.92.0|\r\n|boost-xpressive|1.91.0|1.92.0|\r\n|boost-yap|1.91.0|1.92.0|\r\n|boringssl|2025-08-18|2026-08-13|\r\n|botan|3.12.0|3.13.0|\r\n|buck-yeh-bux|1.12.5|1.12.7|\r\n|bungee|2.4.15|2.4.30|\r\n|bzip3|1.5.3|1.5.4|\r\n|cairo|1.18.4#1|1.18.6|\r\n|calceph|5.0.0|5.0.1|\r\n|casadi|3.7.2|3.8.1|\r\n|catch2|3.15.3|3.16.0|\r\n|cdt|1.4.5|2.0.0|\r\n|cfitsio|4.6.4|4.7.0|\r\n|cgal|6.2|6.2.1|\r\n|chromaprint|1.6.0#2|1.6.1|\r\n|cimg|3.7.6|4.0.5#1|\r\n|cleishm-frequency-cpp|1.2.0|1.2.1|\r\n|cleishm-thermo-cpp|2.1.0|2.1.1|\r\n|cli11|2.6.2|2.7.2|\r\n|cnats|3.13.0|3.14.0|\r\n|coin-or-ipopt|2023-02-01#1|2023-02-01#2|\r\n|coinbase-advanced-cpp|1.0.0|2.0.1|\r\n|comms|5.5.2|5.5.3|\r\n|comms-ublox|3.0.7|3.0.8|\r\n|cpp-client-telemetry|3.10.173.1|3.10.281.1|\r\n|cpp-httplib|0.51.0|0.59.0|\r\n|cpp-peglib|1.15.0|1.20.0|\r\n|cpp-sort|2.1.0|2.2.0|\r\n|cppwinrt|2.0.250303.1#1|3.0.260818.1#1|\r\n|cpuid|0.8.1|0.8.2|\r\n|crashcatch|1.4.0|1.6.0|\r\n|crcpp|1.2.1.0|1.2.3.0|\r\n|croncpp|2023-03-30|2026-08-12|\r\n|crow|1.3.3|1.3.4|\r\n|cudnn-frontend|1.25.0|1.31.0|\r\n|curl|8.21.0#1|8.23.0|\r\n|curve-coco|4.3.0|4.7.2|\r\n|cyrus-sasl|2.1.28#4|2.1.28#5|\r\n|dataframe|4.0.2|4.1.0|\r\n|date|3.0.4|3.0.5|\r\n|dav1d|1.5.3|1.5.4|\r\n|daw-header-libraries|2.132.1|2.136.0|\r\n|daw-json-link|3.31.0|3.38.1|\r\n|dawn|20260714.215939|20260911.162847#1|\r\n|decimal-for-cpp|1.18#1|1.21|\r\n|directx-headers|1.619.4|1.619.5|\r\n|directx12-agility|1.619.4|1.619.5|\r\n|dispenso|1.5.1|1.6.2|\r\n|dlib|20.0.1#2|20.0.1#3|\r\n|docraft|v1.0.0-beta.3|v1.0.0|\r\n|dpdk|26.3#5|26.3#6|\r\n|dpp|10.1.5|10.1.6|\r\n|drogon|1.9.13#1|1.9.13#2|\r\n|duckdb|1.4.4#1|1.5.6|\r\n|duckx|1.2.2#1|1.2.2#2|\r\n|earcut-hpp|2.2.4#1|3.2.4|\r\n|ebml|1.4.5#1|1.4.7|\r\n|ecal|5.13.4#2|6.1.1|\r\n|ecbuild|3.15.0|3.16.0|\r\n|eccodes|2.48.0#1|2.49.0|\r\n|ecm|6.28.0|6.30.0|\r\n|efsw|1.6.3|1.7.2|\r\n|enchantum|0.4.0|0.4.0#1|\r\n|ethindp-prism|0.16.7|0.18.3|\r\n|etl|20.48.0|20.49.0|\r\n|exiv2|0.28.8|0.28.9|\r\n|expat|2.8.2|2.9.0|\r\n|ezc3d|1.7.0|1.7.2|\r\n|faker-cxx|4.3.2|4.4.1|\r\n|fancyargumentparser|1.0.3|1.0.4|\r\n|fast-float|8.2.10#1|8.3.1|\r\n|fastdds|3.6.1|3.6.2|\r\n|fastgltf|0.9.0|0.9.1|\r\n|fastpfor|0.3.1|0.3.1#1|\r\n|faudio|26.7|26.10|\r\n|fbgemm|1.5.0|1.6.0|\r\n|ffmpeg|8.1.2#3|9.0.2#1|\r\n|ffmpeg-bin2c|8.1.1|9.0.2|\r\n|ffnvcodec|13.0.19.0|13.1.15.0|\r\n|fkyaml|0.4.3|0.4.4|\r\n|flatbush|1.4.1|1.6.0|\r\n|flatcc|0.6.2-pre-29201734bf2d12713a7a1a035d31e5123aac9c93|0.6.4|\r\n|fluidsynth|2.5.5|2.6.1|\r\n|freerdp|3.26.0|3.32.1|\r\n|frei0r|3.1.3|3.5.0|\r\n|fribidi|1.0.16|1.0.17|\r\n|ftxui|7.0.0|7.0.3|\r\n|gapp|1.0.0|1.0.1|\r\n|gdbm|1.24#1|1.26|\r\n|gdk-pixbuf|2.44.6#1|2.44.8|\r\n|gegl|0.4.70|0.4.72|\r\n|genann|2019-07-10#3|1.1.1|\r\n|geos|3.14.1|3.15.0|\r\n|ggml|0.11.1|0.26.0|\r\n|gl2ps|1.4.2#5|1.4.3|\r\n|glaze|7.9.0|9.0.0|\r\n|glbinding|3.1.0#4|3.5.0|\r\n|glfw3|3.4#1|3.5.1|\r\n|glib|2.88.2|2.90.0|\r\n|glib-networking|2.80.1|2.90.0|\r\n|glibmm|2.88.1|2.90.0|\r\n|globjects|1.1.0#6|1.1.0#7|\r\n|gloo|20251202|20260212|\r\n|glpk|5.0#3|5.0#5|\r\n|gmmlib|22.10.0|22.10.2|\r\n|gmp|6.3.0#4|6.3.0#5|\r\n|gobject-introspection|1.86.0#2|1.86.0#3|\r\n|gperf|3.3|3.3#1|\r\n|graaf|1.1.1|1.2.0|\r\n|graphviz|15.1.0|15.1.1|\r\n|gsl-lite|1.1.0|1.1.1|\r\n|gst-rtsp-server|1.28.4|1.28.7|\r\n|gstreamer|1.28.4#1|1.28.7|\r\n|gtest|1.17.0#3|1.18.0|\r\n|gtk|4.22.4|4.24.1|\r\n|gtkmm|4.22.0|4.24.0|\r\n|gtsam|4.2.2|4.3.0|\r\n|gumbo|0.13.2|0.14.1|\r\n|gz-cmake|4.2.1|4.3.0|\r\n|gz-math|8.2.1|8.3.0|\r\n|gz-msgs|11.1.0#1|11.2.0|\r\n|gz-physics|8.3.0#1|8.4.0|\r\n|gz-sim|9.5.0#2|9.6.0|\r\n|gz-tools|2.0.3#1|2.0.4|\r\n|gz-transport|14.2.0|14.3.0|\r\n|halide|18.0.0#1|21.0.0|\r\n|hanjingo-high-jump|1.0.10|1.1.0|\r\n|harfbuzz|14.2.1#2|14.6.0|\r\n|hazelcast-cpp-client|5.7.0|5.7.1|\r\n|hdf5|2.1.1#1|2.2.0|\r\n|hello-imgui|1.92.5|1.92.901|\r\n|hexl|1.2.6|1.2.6#2|\r\n|hical61-hical|2.6.7|2.6.8|\r\n|highs|1.14.0|1.15.1#2|\r\n|hiredis|1.3.0|1.4.1|\r\n|huira|0.9.6|0.9.9|\r\n|hunspell|1.7.3|1.7.5|\r\n|hyperscan|5.4.2#3|5.4.2#4|\r\n|icey|2.4.11#1|2.5.1|\r\n|icu|78.3#1|78.3#2|\r\n|imath|3.2.2|3.2.3|\r\n|imgui|1.92.8#1|1.92.9|\r\n|inflatelib|0.2.0|0.3.0|\r\n|ini-cpp|2.0.0|2.1.0|\r\n|iniparser|4.2.6|4.3.2|\r\n|intelrdfpmathlib|20U2#7|20U5|\r\n|joltphysics|5.6.0|5.6.0#1|\r\n|json-c|0.19-20260627|0.19-20260627#1|\r\n|jsoncons|1.8.1|1.9.0|\r\n|jsonfusion|0.710.0|1.1.1|\r\n|jsonifier|1.0.0|1.0.2|\r\n|karchive|6.28.0|6.30.0|\r\n|kauth|6.28.0|6.30.0|\r\n|kbreezeicons|6.28.0|6.30.0|\r\n|kcodecs|6.28.0|6.30.0|\r\n|kconfig|6.28.0|6.30.0|\r\n|kcoreaddons|6.28.0|6.30.0|\r\n|kcrash|6.28.0|6.30.0|\r\n|kdbusaddons|6.28.0|6.30.0|\r\n|kddockwidgets|2.4.0#1|2.4.1|\r\n|kf6-solid|6.28.0|6.30.0|\r\n|kglobalaccel|6.28.0|6.30.0|\r\n|kguiaddons|6.28.0|6.30.0|\r\n|ki18n|6.28.0|6.30.0|\r\n|kitemmodels|6.28.0|6.30.0|\r\n|kitemviews|6.28.0|6.30.0|\r\n|knncolle|3.1.0|3.1.1|\r\n|komihash|5.33|5.34|\r\n|krb5|1.22.2#1|1.22.2#2|\r\n|kubazip|0.3.14|0.3.15|\r\n|kuku|3.0.0|4.0.0|\r\n|kwidgetsaddons|6.28.0|6.30.0|\r\n|kwindowsystem|6.28.0|6.30.0#1|\r\n|lcm|1.5.2|1.5.3|\r\n|lemon-parser-generator|3.39.3#1|3.53.4|\r\n|level-zero|1.32.0|1.33.1|\r\n|leveldb|1.23#1|2026-03-11|\r\n|lexbor|3.0.0|3.0.1|\r\n|libadlmidi|2025-04-14|1.6.2.1|\r\n|libaio|0.3.113|0.3.113#1|\r\n|libao|1.2.2#6|1.2.2#7|\r\n|libarchive|3.8.7|3.8.9|\r\n|libbacktrace|2024-11-30#1|2024-11-30#2|\r\n|libbluray|1.4.1|1.5.1|\r\n|libbson|2.3.2|2.5.5|\r\n|libconfuse|3.3#1|3.4|\r\n|libczi|0.67.6|0.69.1|\r\n|libdatachannel|0.24.5|0.24.6|\r\n|libdatrie|0.2.13#1|0.2.14|\r\n|libde265|1.1.1|1.1.3|\r\n|libdeflate|1.25|1.26|\r\n|libdivide|5.3.0|5.4.0|\r\n|libdvdnav|6.1.1#1|6.1.1#2|\r\n|libdwarf|2.3.1|2.3.3|\r\n|libe57format|3.3.0#1|3.4.1|\r\n|libevdev|1.13.6|1.13.7|\r\n|libevent|2.1.12+20230128#1|2.1.12+20230128#2|\r\n|libffi|3.7.1|3.8.0|\r\n|libfort|0.4.2#1|0.5.1|\r\n|libfuse|3.18.2#1|3.18.3|\r\n|libgd|2.3.3#3|2.3.3#4|\r\n|libgit2|1.9.4#1|1.9.7|\r\n|libgnutls|3.8.12|3.8.13|\r\n|libgpiod|2.2.3|2.2.3#1|\r\n|libheif|1.23.1|1.23.5|\r\n|libiconv|1.19|1.19#1|\r\n|libics|1.7.0|1.7.1|\r\n|libjpeg-turbo|3.2.0|3.2.0#1|\r\n|libjuice|1.7.2|1.7.4|\r\n|libjxl|0.11.2|0.12.0|\r\n|liblzma|5.8.3|5.8.4|\r\n|libmagic|5.47#1|5.48|\r\n|libmariadb|3.4.8|3.4.11|\r\n|libmaxminddb|1.13.3|1.14.0|\r\n|libmidi2|0.16|0.20|\r\n|libmodbus|3.1.12|3.2.0|\r\n|libmysofa|1.3.4#1|1.3.5|\r\n|libobfuscate|2024-07-10|1.0.0|\r\n|liborigin|3.0.3|3.0.4|\r\n|libosdp|3.2.2|3.2.7|\r\n|libpcap|1.10.6|1.10.7|\r\n|libphonenumber|9.0.33|9.0.37|\r\n|libplist|2.7.0|2.8.0|\r\n|libpng|1.6.58|1.6.59|\r\n|libpopcnt|3.1|4.2|\r\n|libpq|18.4|18.4#1|\r\n|librabbitmq|0.16.0|0.17.0|\r\n|libraqm|0.10.5|0.11.0|\r\n|libraw|0.22.1|0.22.2|\r\n|librdkafka|2.14.2|2.15.1|\r\n|libressl|4.2.1|4.3.3|\r\n|libsl3|1.2.53003|1.2.53004|\r\n|libsm|1.2.6#1|1.2.6#3|\r\n|libsoup|3.6.6|3.8.0|\r\n|libspng|0.7.4|0.7.4#1|\r\n|libsrt|1.5.6|1.5.7|\r\n|libsrtp|2.8.0|2.8.1|\r\n|libsvm|3.35|3.37|\r\n|libsystemd|260.2|260.2#1|\r\n|libtar|1.2.20#1|1.2.20#2|\r\n|libtorch|2.12.0|2.13.0|\r\n|libtorrent|2.0.11|2.1.2|\r\n|libunistring|1.2#3|1.2#4|\r\n|liburing|2.15|2.15#1|\r\n|libvips|8.18.2|8.18.7|\r\n|libvmaf|3.2.0|3.2.1|\r\n|libvpx|1.16.0#2|1.16.0#3|\r\n|libwebp|1.6.0#2|1.6.0#3|\r\n|libwebsockets|4.5.8|4.5.8#1|\r\n|libxchange|1.2.0#1|1.3.0|\r\n|libxfont|2.0.7|2.0.9|\r\n|libxi|1.8.2#1|1.8.3|\r\n|libxkbcommon|1.13.1#1|1.13.2|\r\n|libxlsxwriter|1.2.4#1|1.2.4#2|\r\n|libxml2|2.15.3|2.15.4|\r\n|libxmlb|0.3.28|0.3.29|\r\n|libxmp|4.7.2|4.7.3|\r\n|lief|0.17.6|0.17.6#1|\r\n|lightgbm|4.5.0|4.7.0|\r\n|liquid-dsp|1.8.0|1.8.3|\r\n|litehtml|0.9.0|0.10|\r\n|live555|2026-03-23|2026-09-23|\r\n|livepp|2.11.3|2.11.4|\r\n|llama-cpp|9030|0.6.0|\r\n|llvm|18.1.6#6|23.1.3|\r\n|lmdb|1.0.0|1.0.1|\r\n|log4cplus|2.1.2|2.2.0.1|\r\n|log4cxx|1.7.0|1.8.0|\r\n|ls-qpack|2.6.6|2.7.0|\r\n|lua|5.5.0#1|5.5.1|\r\n|lua-compat53|0.14.4|0.15.1|\r\n|luajit|2026-07-11|2026-10-14|\r\n|luau|0.729|0.741|\r\n|lunarg-vulkantools|1.4.350.1|1.4.357.0|\r\n|lzav|5.12|5.17|\r\n|manifold|3.5.2|3.5.4|\r\n|matroska|1.7.1#3|1.7.2|\r\n|mbedtls|3.6.5|3.6.5#1|\r\n|md4c|0.5.3|0.6.0|\r\n|mdl-sdk|2026.0.0|2026.0.2|\r\n|mesa|24.0.7#3|26.2.4#1|\r\n|meshoptimizer|1.2|1.3|\r\n|metis|2025-07-04#1|2025-07-04#2|\r\n|mexce|1.0.2|1.2.1|\r\n|mimalloc|3.4.3|3.5.3|\r\n|minifb|2023-09-21|0.13.0|\r\n|minimp3|2021-11-30|2026-07-27|\r\n|mongo-c-driver|2.3.1#1|2.5.5|\r\n|mongoose|7.22|7.23|\r\n|morphologica|4.1|4.1#1|\r\n|mpfr|4.2.2#1|4.2.2#2|\r\n|mpg123|1.33.4|1.33.7#1|\r\n|mpi|1#6|1#7|\r\n|mpir|3.0.0#12|3.0.0#13|\r\n|ms-gdk|2604.2.7849|2604.3.7874|\r\n|msgpack|8.0.0|9.0.0|\r\n|mujs|1.3.9|1.3.10|\r\n|mxml|4.0.4#1|4.0.6|\r\n|mygui|3.4.3#4|3.5.3|\r\n|nanoarrow|0.8.0#2|0.9.0|\r\n|nanobench|4.3.11|4.6.0|\r\n|nanobind|2.13.0|3.1.0|\r\n|nanoflann|1.10.1|1.14.0|\r\n|nanomsg|1.2.2|1.3.0|\r\n|nanopb|0.4.9.1|0.4.9.2|\r\n|nanoprintf|0.7.0|0.8.0|\r\n|nanovg|2023-08-26|2026-02-19|\r\n|nativefiledialog-extended|1.3.0|1.4.1|\r\n|neargye-semver|1.0.0|1.0.1|\r\n|neko-event|1.0.1|1.0.2|\r\n|neko-function|1.0.11|1.0.12|\r\n|neko-log|1.0.7|1.0.8|\r\n|neko-network|1.0.3|1.0.4|\r\n|neko-schema|1.1.5|1.1.6|\r\n|neko-system|1.0.1|1.0.3|\r\n|neko-threadpool|1.0.2|1.0.3|\r\n|neon2sse|2026-04-28|2026-08-13|\r\n|netcdf-c|4.9.3#3|4.9.3#5|\r\n|nettle|3.10#1|4.0|\r\n|ng-log|0.8.3|0.8.4|\r\n|nghttp2|1.69.0|1.70.0|\r\n|ngtcp2|1.25.0|1.25.0#1|\r\n|nng|1.12.0|1.12.4|\r\n|node-addon-api|8.9.0|8.9.2|\r\n|numcpp|2.16.1|2.17.0|\r\n|numkong|7.7.1|7.8.1|\r\n|nuspell|5.1.7|5.1.9|\r\n|nvidia-cutlass|4.5.2|4.8.0|\r\n|oboe|1.10.0|1.10.0#1|\r\n|octomap|1.10.0|1.10.1|\r\n|omniorb|4.3.0#5|4.3.0#6|\r\n|open-dis-cpp|1.1.0|1.2.0|\r\n|open62541|1.4.14|1.4.21|\r\n|open62541pp|0.21.1|0.21.3|\r\n|openal-soft|1.25.1#2|1.25.2|\r\n|openblas|0.3.33|0.3.34|\r\n|opencascade|8.0.0#1|8.0.1|\r\n|opencc|1.1.9#1|1.4.1|\r\n|opencolorio|2.5.2|2.6.0|\r\n|opencv|4.12.0|4.14.0|\r\n|opencv3|3.4.20#3|3.4.20#4|\r\n|opencv4|4.12.0#7|4.14.0|\r\n|openexr|3.4.13|3.5.2|\r\n|openfbx|2024-12-28|2024-12-28#1|\r\n|opengl-registry|2026-01-26|2026-08-03|\r\n|openjph|0.30.1|0.32.0#1|\r\n|openmpi|4.1.8#2|5.0.11|\r\n|openssl|3.6.3|3.6.5#2|\r\n|opentelemetry-cpp|1.28.0|1.29.0#1|\r\n|openvino|2026.1.0#1|2026.3.1#1|\r\n|openxr-loader|1.1.60|1.1.63|\r\n|openzl|0.2.0|0.3.0|\r\n|opus|1.5.2#1|1.6.1|\r\n|orange-math|5.5.1|5.7.0|\r\n|orefkov-simstr|1.8.1|1.9.1|\r\n|osg|3.6.5#27|3.6.5#29|\r\n|osgearth|3.8#1|3.8.1|\r\n|otl|4.0.502|4.0.504|\r\n|pagmo2|2.19.1#2|2.20.0#1|\r\n|parmetis|2023-03-26|2023-03-26#1|\r\n|patternia|0.9.3|0.9.4|\r\n|pcre2|10.47#1|10.49|\r\n|pfring|8.8.0|9.4.0|\r\n|picobench|2.9.0|2.10.0|\r\n|pistache|2021-03-31#4|0.4.26|\r\n|pkgconf|3.0.3|3.0.3#1|\r\n|plf-colony|7.6.10|7.7.15|\r\n|plf-hive|2025-12-22|1.55.0|\r\n|plf-indiesort|1.4.4|1.4.10|\r\n|plf-list|2.8.0|7.6.36|\r\n|plf-nanotimer|1.0.8|1.0.10|\r\n|plf-queue|2.2|2.0.36|\r\n|plf-stack|2.0.13|2.0.37|\r\n|poco|1.14.1#2|1.15.4|\r\n|ppqsort|1.0.6|1.0.6#1|\r\n|proj|9.8.1|9.9.0|\r\n|projectm|4.1.7|4.1.8|\r\n|projectm-eval|1.0.6#1|1.0.8|\r\n|ptex|2.5.2|2.5.4|\r\n|pybind11|3.0.4|3.1.0|\r\n|python3|3.12.13#1|3.14.8|\r\n|qca|2.3.10|2.3.10#1|\r\n|qpdf|12.3.2#1|12.4.2|\r\n|qt|6.11.1|6.11.2|\r\n|qt3d|6.11.1|6.11.2|\r\n|qt5-3d|5.15.19|5.15.19#1|\r\n|qt5-base|5.15.19|5.15.19#1|\r\n|qt5-location|5.15.19|5.15.19#2|\r\n|qt5compat|6.11.1|6.11.2|\r\n|qtactiveqt|6.11.1|6.11.2|\r\n|qtapplicationmanager|6.11.1|6.11.2|\r\n|qtbase|6.11.1#1|6.11.2|\r\n|qtcharts|6.11.1|6.11.2|\r\n|qtcoap|6.11.1|6.11.2|\r\n|qtconnectivity|6.11.1|6.11.2|\r\n|qtdatavis3d|6.11.1|6.11.2|\r\n|qtdeclarative|6.11.1|6.11.2|\r\n|qtdeviceutilities|6.11.1|6.11.2|\r\n|qtdoc|6.11.1|6.11.2|\r\n|qtgraphs|6.11.1|6.11.2|\r\n|qtgrpc|6.11.1|6.11.2|\r\n|qthttpserver|6.11.1|6.11.2|\r\n|qtimageformats|6.11.1|6.11.2|\r\n|qtinterfaceframework|6.11.1|6.11.2|\r\n|qtlanguageserver|6.11.1|6.11.2|\r\n|qtlocation|6.11.1|6.11.2|\r\n|qtlottie|6.11.1|6.11.2|\r\n|qtmqtt|6.11.1|6.11.2|\r\n|qtmultimedia|6.11.1|6.11.2|\r\n|qtnetworkauth|6.11.1|6.11.2|\r\n|qtopcua|6.11.1|6.11.2|\r\n|qtpositioning|6.11.1|6.11.2|\r\n|qtquick3d|6.11.1|6.11.2|\r\n|qtquick3dphysics|6.11.1|6.11.2|\r\n|qtquickeffectmaker|6.11.1|6.11.2|\r\n|qtquicktimeline|6.11.1|6.11.2|\r\n|qtremoteobjects|6.11.1|6.11.2|\r\n|qtscxml|6.11.1|6.11.2|\r\n|qtsensors|6.11.1|6.11.2|\r\n|qtserialbus|6.11.1|6.11.2|\r\n|qtserialport|6.11.1|6.11.2|\r\n|qtshadertools|6.11.1|6.11.2|\r\n|qtspeech|6.11.1|6.11.2|\r\n|qtsvg|6.11.1|6.11.2|\r\n|qttools|6.11.1|6.11.2|\r\n|qttranslations|6.11.1|6.11.2|\r\n|qtvirtualkeyboard|6.11.1|6.11.2|\r\n|qtwayland|6.11.1|6.11.2|\r\n|qtwebchannel|6.11.1|6.11.2|\r\n|qtwebengine|6.11.1#1|6.11.2|\r\n|qtwebsockets|6.11.1|6.11.2|\r\n|qtwebview|6.11.1|6.11.2|\r\n|quantlib|1.42.1|1.43|\r\n|quickjs-ng|0.15.1|0.16.2|\r\n|quill|12.1.0|13.0.0|\r\n|rapidcsv|8.99|9.07|\r\n|rapidjson|2025-02-26|2025-02-26#1|\r\n|raylib-cpp|6.0.2|6.0.3|\r\n|realm-core|14.14.0|14.14.0#1|\r\n|realsense2|2.56.5|2.58.4|\r\n|redisx|1.0.4#1|1.1.0|\r\n|rego-cpp|1.4.1#1|1.5.2|\r\n|reproc|14.2.7|14.2.8|\r\n|rerun-sdk|0.33.1|0.36.3|\r\n|rexo|0.2.2|0.2.3|\r\n|rmlui|6.2|6.3|\r\n|roaring|4.7.2|5.2.3|\r\n|rocksdb|11.1.2|11.8.1|\r\n|rtabmap-res-tool|0.23.2|0.23.8|\r\n|rubberband|4.0.0#1|4.0.0#2|\r\n|s2n|1.7.3|1.7.6|\r\n|sail|1.0.3|1.2.0#2|\r\n|scintilla|5.5.8|5.6.7|\r\n|scinumtools3|0.5.11|0.9.1|\r\n|sciter-js|6.0.4.5|6.0.4.10|\r\n|sdbus-cpp|2.3.1|2.3.1#1|\r\n|sdl3|3.4.12|3.4.18|\r\n|sdl3-image|3.4.4#1|3.4.8|\r\n|seal|4.4.0|4.7.0|\r\n|secp256k1|0.7.1|0.7.1#1|\r\n|sentry-native|0.16.0|0.17.3|\r\n|sf2cute|0.2.0#4|2026-03-21|\r\n|sfgui|1.0.0|1.0.1|\r\n|shader-slang|2026.7.1|2026.19|\r\n|simd|7.1.162#1|7.2.165|\r\n|simde|0.8.2|0.8.4-rc3|\r\n|simdjson|4.6.4|5.0.2|\r\n|simdutf|8.2.0|9.1.1|\r\n|simpleini|4.26|4.27|\r\n|slick-dynamic-buffer|1.0.1|1.0.2|\r\n|slick-logger|1.1.1|2.2.1|\r\n|slick-net|3.1.0|4.0.0|\r\n|slick-object-pool|0.1.3|0.2.0|\r\n|slick-queue|1.5.0|2.3.0|\r\n|slick-shm|0.1.4|0.1.6|\r\n|slick-socket|1.0.6|1.2.0|\r\n|slick-stream-buffer|1.0.5|2.1.0|\r\n|slick-stream-buffer-multiplexer|1.0.1|2.2.0|\r\n|slickquant-hyperliquid-cpp|0.3.0|0.4.0|\r\n|small-gicp|1.0.0|1.0.1|\r\n|snmalloc|0.7.4|0.7.6|\r\n|sobjectizer|5.8.5.1|5.8.6.1|\r\n|soci|4.1.4|4.1.4#1|\r\n|sonivox|4.0.1|4.0.2|\r\n|soxr|0.1.3#8|0.1.3#9|\r\n|spirv-cross|1.4.350.1|1.4.363.0|\r\n|spirv-headers|1.4.350.1|1.4.357.0|\r\n|spirv-reflect|1.4.350.1|1.4.357.0|\r\n|spirv-tools|1.4.350.1|1.4.357.0|\r\n|spout2|2.007.010|2.007.010#1|\r\n|sqlgen|0.6.0|0.6.0#1|\r\n|sqlite3|3.53.4|3.53.4#2|\r\n|sqlpp23|0.69|0.70|\r\n|srpc|0.10.4#2|0.10.5|\r\n|stb|2024-07-29#1|2026-08-02|\r\n|stdexec|2026-05-25|2026-05-25#1|\r\n|stillwater-universal|4.7.7|4.10.1|\r\n|stlab-copy-on-write|1.1.0|1.1.1|\r\n|stormlib|9.31|9.40|\r\n|str-view|0.7.7|0.8.1|\r\n|string-view-lite|1.8.0#1|1.8.1|\r\n|stringzilla|4.6.2|5.1.2|\r\n|stronk|0.14.0|0.17.1|\r\n|suitesparse|7.12.3|7.14.1|\r\n|suitesparse-amd|3.3.4#1|3.3.4#4|\r\n|suitesparse-btf|2.3.3#1|2.3.3#4|\r\n|suitesparse-camd|3.3.5#1|3.3.5#4|\r\n|suitesparse-ccolamd|3.3.5#1|3.3.5#4|\r\n|suitesparse-cholmod|5.3.5|5.3.5#3|\r\n|suitesparse-colamd|3.3.5#1|3.3.5#4|\r\n|suitesparse-config|7.12.3|7.14.1|\r\n|suitesparse-cxsparse|4.4.2#1|4.4.2#4|\r\n|suitesparse-graphblas|10.3.2|10.5.1|\r\n|suitesparse-klu|2.3.6#1|2.3.6#4|\r\n|suitesparse-lagraph|1.2.2|1.2.2#3|\r\n|suitesparse-ldl|3.3.3#1|3.3.3#4|\r\n|suitesparse-mongoose|3.3.6#1|3.3.6#4|\r\n|suitesparse-paru|1.1.1|1.1.2#2|\r\n|suitesparse-rbio|4.3.5#1|4.3.5#4|\r\n|suitesparse-spex|3.2.4#1|3.2.4#4|\r\n|suitesparse-spqr|4.3.6#1|4.3.6#4|\r\n|suitesparse-umfpack|6.3.8|6.3.8#3|\r\n|sundials|7.8.0|7.9.0|\r\n|supernovas|1.7.1#1|1.7.2|\r\n|swaggercpp|0.3.0|0.4.0|\r\n|symengine|0.14.0#1|0.15.0|\r\n|syntax-highlighting|6.28.0|6.30.0|\r\n|talib|0.7.1|0.8.1|\r\n|tcp-pubsub|1.0.3|2.0.1|\r\n|tdlib|1.8.65|1.8.68|\r\n|tesseract|5.5.2|5.5.3|\r\n|thermadiag-seq|2.1|2.3|\r\n|thorvg|1.1.0|1.1.3|\r\n|threadweaver|6.28.0|6.30.0|\r\n|thrift|0.23.0|0.25.0|\r\n|tinyexif|1.0.4|1.2.0|\r\n|tinyexpr|2020-09-25#2|1.1.1|\r\n|tinyexr|3.1.0|3.2.0|\r\n|tinygltf|3.0.0|3.0.0#1|\r\n|tracy|0.13.1|0.14.1#1|\r\n|tree-sitter|0.26.11|0.26.12|\r\n|unimail-cpp-sdk|1.0.0|1.1.0|\r\n|units|3.3.0|3.6.1|\r\n|unordered-dense|4.8.1|5.3.1|\r\n|unrar|7.2.7|7.3.1|\r\n|usd|26.5#1|26.8#2|\r\n|usearch|2.25.3|2.25.3#1|\r\n|utf8proc|2.11.3|2.12.0|\r\n|utfcpp|4.1.1|4.2.1|\r\n|uthash|2.3.0|2.4.0|\r\n|uwebsockets|20.79.0|20.80.0|\r\n|vanillapdf|2.2.1#1|2.3.0|\r\n|vcpkg-boost|2025-03-29|2026-08-21|\r\n|vcpkg-cmake|2024-04-23|2025-08-07|\r\n|vcpkg-make|2026-07-09|2026-07-09#1|\r\n|vcpkg-tool-nodejs|24.14.0|24.21.0|\r\n|vk-bootstrap|1.4.350|1.4.363|\r\n|volk|1.4.350.1|1.4.363.0|\r\n|vowpal-wabbit|9.11.2#1|9.11.9|\r\n|vst3sdk|v3.8.0_build_66|v3.8.1_build_84|\r\n|vtk|9.3.0-pv5.12.1#17|9.3.0-pv5.12.1#18|\r\n|vulkan-extensionlayer|1.4.350.1|1.4.357.0|\r\n|vulkan-headers|1.4.350.1|1.4.363.0|\r\n|vulkan-loader|1.4.350.1|1.4.357.0|\r\n|vulkan-memory-allocator-hpp|3.3.0#1|3.4.0|\r\n|vulkan-sdk-components|1.4.350.0|1.4.357.0|\r\n|vulkan-tools|1.4.350.1|1.4.357.0|\r\n|vulkan-utility-libraries|1.4.350.1|1.4.357.0|\r\n|vulkan-validationlayers|1.4.350.1#1|1.4.357.0|\r\n|vvenc|1.14.0|1.14.0#1|\r\n|wabt|1.0.41|1.0.42|\r\n|wavelib|2021-11-26|2025-12-12|\r\n|wcslib|8.5#1|8.10|\r\n|webview2|1.0.3800.47|1.0.4258.31|\r\n|winreg|6.4.0|8.0.0|\r\n|wirestead|0.9.0|0.10.0|\r\n|wolfssl|5.9.2|5.9.4|\r\n|wolftpm|4.0.0|4.2.0|\r\n|wt|4.13.3|4.13.4|\r\n|wxwidgets|3.3.1#1|3.3.3#1|\r\n|x264|0.164.3108#2|0.165.3222|\r\n|x265|4.2|4.3|\r\n|xbitmaps|1.1.3#1|1.1.4|\r\n|xlsxio|0.2.36|0.2.37|\r\n|xxhash|0.8.3|0.8.4|\r\n|yara|4.5.5|4.5.8|\r\n|yunsmall-usbipdcpp|1.0.7|1.0.9|\r\n|yyjson|0.12.0|0.13.0|\r\n|z3|5.0.0|5.1.0|\r\n|zimpl|3.7.1|3.8.0|\r\n|zlib|1.3.2#1|1.3.2#2|\r\n|zpp-bits|4.7.3|4.7.6|\r\n|zstr|1.1.0|1.2.0|\r\n|zxc|0.13.1|0.14.1|\r\n</details>\r\n\r\n<details>\r\n<summary><b>The following 22 ports have been removed:</b></summary>\r\n\r\n|port|\r\n|---|\r\n|cppdap|\r\n|ctp|\r\n|dx|\r\n|keccak-tiny|\r\n|kf5diagram|\r\n|libfreenect2|\r\n|qtquickcontrols2|\r\n|rapidfuzz|\r\n|sdl1|\r\n|sdl1-mixer|\r\n|sdl1-net|\r\n|septag-sx|\r\n|shiftmedia-libgnutls|\r\n|sqlpp11-connector-mysql|\r\n|sqlpp11-connector-sqlite3|\r\n|tensorflow|\r\n|tensorflow-cc|\r\n|tensorflow-common|\r\n|threadpool|\r\n|v8|\r\n|vcpkg-tool-bazel|\r\n|vulkan-hpp|\r\n</details>\r\n\r\n#### New Contributors\r\n* @HenrikGharagyozyan made their first contribution in https://github.com/microsoft/vcpkg/pull/53097\r\n* @zsy056 made their first contribution in https://github.com/microsoft/vcpkg/pull/53093\r\n* @ssunday made their first contribution in https://github.com/microsoft/vcpkg/pull/52862\r\n* @NathanGray-ChurchillNavigation made their first contribution in https://github.com/microsoft/vcpkg/pull/53111\r\n* @amarpMSFT made their first contribution in https://github.com/microsoft/vcpkg/pull/53127\r\n* @emusgrave made their first contribution in https://github.com/microsoft/vcpkg/pull/53126\r\n* @vanillapdf-bot made their first contribution in https://github.com/microsoft/vcpkg/pull/53043\r\n* @jalfd made their first contribution in https://github.com/microsoft/vcpkg/pull/53119\r\n* @sparcyu made their first contribution in https://github.com/microsoft/vcpkg/pull/53170\r\n* @gujjwal00 made their first contribution in https://github.com/microsoft/vcpkg/pull/53251\r\n* @aaron-stebner made their first contribution in https://github.com/microsoft/vcpkg/pull/53258\r\n* @martinus made their first contribution in https://github.com/microsoft/vcpkg/pull/53293\r\n* @gafferongames made their first contribution in https://github.com/microsoft/vcpkg/pull/52858\r\n* @emabrey made their first contribution in https://github.com/microsoft/vcpkg/pull/53318\r\n* @danfiedler-msft made their first contribution in https://github.com/microsoft/vcpkg/pull/53387\r\n* @DEgITx made their first contribution in https://github.com/microsoft/vcpkg/pull/53300\r\n* @bmarques1995 made their first contribution in https://github.com/microsoft/vcpkg/pull/53317\r\n* @moyer-avs made their first contribution in https://github.com/microsoft/vcpkg/pull/52645\r\n* @tesch1 made their first contribution in https://github.com/microsoft/vcpkg/pull/53513\r\n* @reeshabh90 made their first contribution in https://github.com/microsoft/vcpkg/pull/53482\r\n* @wingfiring made their first contribution in https://github.com/microsoft/vcpkg/pull/53548\r\n* @lukiod made their first contribution in https://github.com/microsoft/vcpkg/pull/53660\r\n* @saksoy-engits made their first contribution in https://github.com/microsoft/vcpkg/pull/53566\r\n* @Bronek made their first contribution in https://github.com/microsoft/vcpkg/pull/53682\r\n* @RazerM made their first contribution in https://github.com/microsoft/vcpkg/pull/53599\r\n* @papachi-one made their first contribution in https://github.com/microsoft/vcpkg/pull/53695\r\n* @syniol made their first contribution in https://github.com/microsoft/vcpkg/pull/53527\r\n* @tsurumi-yizhou made their first contribution in https://github.com/microsoft/vcpkg/pull/53741\r\n* @j7nw4r made their first contribution in https://github.com/microsoft/vcpkg/pull/53774\r\n* @tangtaoit made their first contribution in https://github.com/microsoft/vcpkg/pull/53837\r\n* @TuxedoFish made their first contribution in https://github.com/microsoft/vcpkg/pull/53838\r\n* @ZHBHFUT made their first contribution in https://github.com/microsoft/vcpkg/pull/53845\r\n* @LimiNode made their first contribution in https://github.com/microsoft/vcpkg/pull/53893\r\n* @yangjiang0217 made their first contribution in https://github.com/microsoft/vcpkg/pull/53936\r\n* @leohige made their first contribution in https://github.com/microsoft/vcpkg/pull/53950\r\n* @Kanishk6582 made their first contribution in https://github.com/microsoft/vcpkg/pull/53900\r\n* @pedrocatalao made their first contribution in https://github.com/microsoft/vcpkg/pull/53988\r\n* @aidangarske made their first contribution in https://github.com/microsoft/vcpkg/pull/53938\r\n* @sleepwalkera made their first contribution in https://github.com/microsoft/vcpkg/pull/53788\r\n* @Kiptoo-Deus made their first contribution in https://github.com/microsoft/vcpkg/pull/53998\r\n* @Amsozzer1 made their first contribution in https://github.com/microsoft/vcpkg/pull/54044\r\n* @Thermadiag made their first contribution in https://github.com/microsoft/vcpkg/pull/54065\r\n* @Reddimus made their first contribution in https://github.com/microsoft/vcpkg/pull/54107\r\n* @mcoliver made their first contribution in https://github.com/microsoft/vcpkg/pull/54087\r\n* @ashwinbhat made their first contribution in https://github.com/microsoft/vcpkg/pull/54086\r\n* @fcf-framework made their first contribution in https://github.com/microsoft/vcpkg/pull/54162\r\n* @asaf08da made their first contribution in https://github.com/microsoft/vcpkg/pull/54105\r\n* @rohanjain101 made their first contribution in https://github.com/microsoft/vcpkg/pull/54192\r\n* @nistick21 made their first contribution in https://github.com/microsoft/vcpkg/pull/54214\r\n* @dimateos made their first contribution in https://github.com/microsoft/vcpkg/pull/54216\r\n* @jmuehlig made their first contribution in https://github.com/microsoft/vcpkg/pull/54282\r\n* @rohit-singh-gautam made their first contribution in https://github.com/microsoft/vcpkg/pull/53948\r\n* @azchohfi made their first contribution in https://github.com/microsoft/vcpkg/pull/54330\r\n* @ayzk made their first contribution in https://github.com/microsoft/vcpkg/pull/54300\r\n* @palchukovsky made their first contribution in https://github.com/microsoft/vcpkg/pull/53799\r\n* @dunkbing made their first contribution in https://github.com/microsoft/vcpkg/pull/54344\r\n* @azure-sdk-automation[bot] made their first contribution in https://github.com/microsoft/vcpkg/pull/54197\r\n* @LeStahL made their first contribution in https://github.com/microsoft/vcpkg/pull/54358\r\n* @Flying-Magnus made their first contribution in https://github.com/microsoft/vcpkg/pull/54378\r\n\r\n**Full Changelog**: https://github.com/microsoft/vcpkg/compare/2026.07.29...2026.10.16",
+    "assets": []
+  },
+  "microsoft/vcpkg-tool": {
+    "tag": "2026-10-29",
+    "sha": "139f2e53438b1529e178f6295bc563f4e0de734f",
+    "published_at": "2026-10-29T23:42:49Z",
+    "url": "https://github.com/microsoft/vcpkg-tool/releases/tag/2026-10-29",
+    "body": "## What's Changed\r\n* Address host/target choosing different versions in the x-update-baseline diff by @BillyONeal in https://github.com/microsoft/vcpkg-tool/pull/2151\r\n* Test-Json:  -FetchExternalReference by @BillyONeal in https://github.com/microsoft/vcpkg-tool/pull/2164\r\n* Fix x-package-info always exiting with failure by @autoantwort in https://github.com/microsoft/vcpkg-tool/pull/2167\r\n* Add JSON output to depend-info by @autoantwort in https://github.com/microsoft/vcpkg-tool/pull/2168\r\n* Don't open the source exclusively in copy_file with skip_existing. by @akshat-lakhera in https://github.com/microsoft/vcpkg-tool/pull/2165\r\n* Fix depend-info JSON crash in manifest mode with versioned ports by @autoantwort in https://github.com/microsoft/vcpkg-tool/pull/2173\r\n\r\n## Dependency Updates\r\n* Bump the github-actions group with 2 updates by @dependabot[bot] in https://github.com/microsoft/vcpkg-tool/pull/2155\r\n* Bump the github-actions group across 1 directory with 5 updates by @dependabot[bot] in https://github.com/microsoft/vcpkg-tool/pull/2162\r\n* Bump brace-expansion from 1.1.18 to 1.1.21 in /vcpkg-artifacts by @dependabot[bot] in https://github.com/microsoft/vcpkg-tool/pull/2156\r\n* Bump the github-actions group with 2 updates by @dependabot[bot] in https://github.com/microsoft/vcpkg-tool/pull/2170\r\n* Update vcpkg-scripts SHA 2026-10-28 + enable curl decompressors by @BillyONeal in https://github.com/microsoft/vcpkg-tool/pull/2171\r\n\r\n## New Contributors\r\n* @akshat-lakhera made their first contribution in https://github.com/microsoft/vcpkg-tool/pull/2165\r\n\r\n**Full Changelog**: https://github.com/microsoft/vcpkg-tool/compare/2026-09-26...2026-10-29",
+    "assets": [
+      {
+        "name": "addPoshVcpkgToPowershellProfile.ps1",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/addPoshVcpkgToPowershellProfile.ps1",
+        "digest": "sha256:7a7c75e108d1d942fe96055b2fb2dcf45a9fb91daba736a1eebe9298e99381f9"
+      },
+      {
+        "name": "applocal.ps1",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/applocal.ps1",
+        "digest": "sha256:625d30eab25379801577205539744098e253eadfd4f67975d34a1d864c724a71"
+      },
+      {
+        "name": "NOTICE.txt",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/NOTICE.txt",
+        "digest": "sha256:6b9a0fc7d06f94019adc9705b92d0b2e53509f23f9d43744bbd663aa2c1597d5"
+      },
+      {
+        "name": "posh-vcpkg.psd1",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/posh-vcpkg.psd1",
+        "digest": "sha256:1a99b1202c81f0aba214d7e6faff8af85689509cca1cda69afa4d5ec9e4013ce"
+      },
+      {
+        "name": "posh-vcpkg.psm1",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/posh-vcpkg.psm1",
+        "digest": "sha256:928fe3c7dfde99231b964cbca8497274882ba536831a3f27b70cdcddc84dddda"
+      },
+      {
+        "name": "tls12-download-arm64.exe",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/tls12-download-arm64.exe",
+        "digest": "sha256:9817f51eebb5dac3db1915c95157d10c4a223eb8dd42fb3a5481fb13700bea38"
+      },
+      {
+        "name": "tls12-download-arm64.pdb",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/tls12-download-arm64.pdb",
+        "digest": "sha256:8138c84a2f8ff627f5a0d8a4934f10361249dfb76cd9d9ba20d870cfa62b2910"
+      },
+      {
+        "name": "tls12-download.exe",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/tls12-download.exe",
+        "digest": "sha256:effac716dc9a84158a4219ed63f7051f3de7295ea6d67f6fd1cfbf21a02067ca"
+      },
+      {
+        "name": "tls12-download.pdb",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/tls12-download.pdb",
+        "digest": "sha256:fcf8ebbc1156bd3c21c0d57476ea25e4adb0d60483582fb27f3c52627c25e43d"
+      },
+      {
+        "name": "vcpkg-arm64.exe",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/vcpkg-arm64.exe",
+        "digest": "sha256:f265afafe091f1414ad619d13ddd01f6be3f01a5c83a011a7cd1426287e4ed16"
+      },
+      {
+        "name": "vcpkg-arm64.pdb",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/vcpkg-arm64.pdb",
+        "digest": "sha256:d5d7d13d3aca2d0d42ee25c24fcf71935ae1570bf5bd493a738fd5c0698ee3aa"
+      },
+      {
+        "name": "vcpkg-artifacts.mjs",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/vcpkg-artifacts.mjs",
+        "digest": "sha256:6ef542d95ab6ea42b87645bbbb4e24d5162745546b9e0afe36c24f380cf5904c"
+      },
+      {
+        "name": "vcpkg-glibc",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/vcpkg-glibc",
+        "digest": "sha256:8b10d43c1392a2d51622b1e439cb952289dcf56cbb595eb935847e79fe00d303"
+      },
+      {
+        "name": "vcpkg-glibc-arm64",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/vcpkg-glibc-arm64",
+        "digest": "sha256:e59a1f42de574dbceec05e4f90630898a33150f27c5a999e0f2d9b80a17001e3"
+      },
+      {
+        "name": "vcpkg-glibc-arm64.sig",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/vcpkg-glibc-arm64.sig",
+        "digest": "sha256:fd4228b8a857a3d4c5351364852b880f81abc49a121329cdadeab429908b1549"
+      },
+      {
+        "name": "vcpkg-glibc.sig",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/vcpkg-glibc.sig",
+        "digest": "sha256:7b89e950ccc615c69c1b07c3509ef8a59420a603618841cdfeacad50752fdfea"
+      },
+      {
+        "name": "vcpkg-init",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/vcpkg-init",
+        "digest": "sha256:c59ff8951560ff93caf86050d886d236d0b0d2635a58d371ce249d7f3900d676"
+      },
+      {
+        "name": "vcpkg-init.cmd",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/vcpkg-init.cmd",
+        "digest": "sha256:7f4cf6ae5c963d8d5556211a987cfda2f781d65142918c7a354e9ea875dc7fcc"
+      },
+      {
+        "name": "vcpkg-init.ps1",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/vcpkg-init.ps1",
+        "digest": "sha256:7f4cf6ae5c963d8d5556211a987cfda2f781d65142918c7a354e9ea875dc7fcc"
+      },
+      {
+        "name": "vcpkg-init.sig",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/vcpkg-init.sig",
+        "digest": "sha256:3b6ed600ff3ca0cb978284edaaf1b17cb16402aa42f507e0a8b922cb8d08112c"
+      },
+      {
+        "name": "vcpkg-macos",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/vcpkg-macos",
+        "digest": "sha256:754638ffd0d4c85ee194a2a215d4a6727b1d33829944667d74e7397459e54005"
+      },
+      {
+        "name": "vcpkg-muslc",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/vcpkg-muslc",
+        "digest": "sha256:a47694e8a09c49991e8689b0e1e11daf6459353b7f8e38870211b5681bbd68a7"
+      },
+      {
+        "name": "vcpkg-muslc.sig",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/vcpkg-muslc.sig",
+        "digest": "sha256:0ea5f667f90f080143c034724782bdcd09f7259cc0a23d4fd4e43f303ffea4a8"
+      },
+      {
+        "name": "vcpkg-standalone-bundle.tar.gz",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/vcpkg-standalone-bundle.tar.gz",
+        "digest": "sha256:3e128d4e44dfb0400bfef92d00e259a7095db2a2ca218e0c483145aa16e41b62"
+      },
+      {
+        "name": "vcpkg.exe",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/vcpkg.exe",
+        "digest": "sha256:191ee64b0887af80aad3eff6c5e888ab733d3ef2182885ed4747b4574c201834"
+      },
+      {
+        "name": "vcpkg.pdb",
+        "url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-10-29/vcpkg.pdb",
+        "digest": "sha256:f5f241a363cc6c59fb96d5973c5133e86c90fa79c8f38461746e08c5a2fd22cc"
+      }
+    ]
+  },
+  "rhysd/actionlint": {
+    "tag": "v1.7.12",
+    "sha": "914e7df21a07ef503a81201c76d2b11c789d3fca",
+    "published_at": "2026-03-30T17:49:21Z",
+    "url": "https://github.com/rhysd/actionlint/releases/tag/v1.7.12",
+    "body": "- Support the [`timezone` configuration in `on.schedule`](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#onschedule) with checks for IANA timezone string. See the [documentation](https://github.com/rhysd/actionlint/blob/main/docs/checks.md#check-cron-syntax-and-timezone) for more details. Note that actionlint starts to embed the timezone database in the executables from this version so the binary sizes slightly increase. (#641, thanks @martincostello)\r\n  ```yaml\r\n  on:\r\n    schedule:\r\n      # ERROR: The timezone is not a valid IANA timezone string\r\n      - cron: '*/5 * * * *'\r\n        timezone: 'Asia/Somewhere'\r\n  ```\r\n- Support the [`jobs.<job_name>.environment.deployment` configuration](https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/control-deployments#using-environments-without-deployments). (#639, thanks @springmeyer)\r\n- Support the [`macos-26-intel` runner label](https://github.blog/changelog/2026-02-26-macos-26-is-now-generally-available-for-github-hosted-runners/). (#629, thanks @hugovk)\r\n- Fix the outdated [table of webhook activity types](https://github.com/rhysd/actionlint/blob/main/all_webhooks.go) by rebuilding the [script to scrape the table](https://github.com/rhysd/actionlint/tree/main/scripts/generate-webhook-events) from scratch.\r\n- Support Go 1.26 and drop the support for Go 1.24. Now supported versions are 1.25 and 1.26.\r\n- Tests are run on arm64 Windows in CI.\r\n- Update the popular actions data set to the latest.",
+    "assets": [
+      {
+        "name": "actionlint_1.7.12_checksums.txt",
+        "url": "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_checksums.txt",
+        "digest": "sha256:433028cf0ba3c42163ea1a668dedce30fcdbe84fe912b1a5e288c006eab8a4f5"
+      },
+      {
+        "name": "actionlint_1.7.12_darwin_amd64.tar.gz",
+        "url": "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_darwin_amd64.tar.gz",
+        "digest": "sha256:5b44c3bc2255115c9b69e30efc0fecdf498fdb63c5d58e17084fd5f16324c644"
+      },
+      {
+        "name": "actionlint_1.7.12_darwin_arm64.tar.gz",
+        "url": "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_darwin_arm64.tar.gz",
+        "digest": "sha256:aba9ced2dee8d27fecca3dc7feb1a7f9a52caefa1eb46f3271ea66b6e0e6953f"
+      },
+      {
+        "name": "actionlint_1.7.12_freebsd_386.tar.gz",
+        "url": "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_freebsd_386.tar.gz",
+        "digest": "sha256:7170cc3db006f83154583dc385c84bea3f6ee767a167bb9ca41de6593ebbb186"
+      },
+      {
+        "name": "actionlint_1.7.12_freebsd_amd64.tar.gz",
+        "url": "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_freebsd_amd64.tar.gz",
+        "digest": "sha256:3de1b027d0b749e81d6d972cbf5d14dc708a275248da1ba4eed4a9af707d1339"
+      },
+      {
+        "name": "actionlint_1.7.12_linux_386.tar.gz",
+        "url": "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_386.tar.gz",
+        "digest": "sha256:72a44b32c2d032700e6d0c23ca2f540b67519ec68db098ddfcfa96059e61f723"
+      },
+      {
+        "name": "actionlint_1.7.12_linux_amd64.tar.gz",
+        "url": "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_amd64.tar.gz",
+        "digest": "sha256:8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8"
+      },
+      {
+        "name": "actionlint_1.7.12_linux_arm64.tar.gz",
+        "url": "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_arm64.tar.gz",
+        "digest": "sha256:325e971b6ba9bfa504672e29be93c24981eeb1c07576d730e9f7c8805afff0c6"
+      },
+      {
+        "name": "actionlint_1.7.12_linux_armv6.tar.gz",
+        "url": "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_armv6.tar.gz",
+        "digest": "sha256:ae4a0a5227578e66f5d00ee02788d5c64fdae1fa6484ab88ceaeee9359c28fa4"
+      },
+      {
+        "name": "actionlint_1.7.12_windows_386.zip",
+        "url": "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_windows_386.zip",
+        "digest": "sha256:cdc8643b2c8dc890c76ad16095da97e75f86572805cc3573cc13f31ea0f19127"
+      },
+      {
+        "name": "actionlint_1.7.12_windows_amd64.zip",
+        "url": "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_windows_amd64.zip",
+        "digest": "sha256:6e7241b51e6817ea6a047693d8e6fed13b31819c9a0dd6c5a726e1592d22f6e9"
+      },
+      {
+        "name": "actionlint_1.7.12_windows_arm64.zip",
+        "url": "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_windows_arm64.zip",
+        "digest": "sha256:cadcf7ea4efe3a68728893813643cebe1185e5b1d4be5b96245f65c9a4d5ea41"
+      }
+    ]
+  },
+  "doxygen/doxygen": {
+    "tag": "Release_1_18_0",
+    "sha": "8e760943e5d9581a444cf327f43a0b4d20d29482",
+    "published_at": "2026-08-13T13:07:07Z",
+    "url": "https://github.com/doxygen/doxygen/releases/tag/Release_1_18_0",
+    "body": "See the [changelog](https://www.doxygen.org/manual/changelog.html#log_1_18_0) for release 1.18.0",
+    "assets": [
+      {
+        "name": "Doxygen-1.18.0-arm.dmg",
+        "url": "https://github.com/doxygen/doxygen/releases/download/Release_1_18_0/Doxygen-1.18.0-arm.dmg",
+        "digest": "sha256:59f42b0b991766380a6b0a42afca226e0fc172ef4525145eaef044e3a6663259"
+      },
+      {
+        "name": "Doxygen-1.18.0-intel.dmg",
+        "url": "https://github.com/doxygen/doxygen/releases/download/Release_1_18_0/Doxygen-1.18.0-intel.dmg",
+        "digest": "sha256:36440a181c89f48e56817d85210d55a6e7f4c60ee6d6238370e1f81089d4d3ab"
+      },
+      {
+        "name": "doxygen-1.18.0-mac-arm.zip",
+        "url": "https://github.com/doxygen/doxygen/releases/download/Release_1_18_0/doxygen-1.18.0-mac-arm.zip",
+        "digest": "sha256:31d1c74467a9f6f456b4e6a4eff0c03e93d1ffa92da5fdf2d53a2f14ebaabbd7"
+      },
+      {
+        "name": "doxygen-1.18.0-mac-intel.zip",
+        "url": "https://github.com/doxygen/doxygen/releases/download/Release_1_18_0/doxygen-1.18.0-mac-intel.zip",
+        "digest": "sha256:8045d72f6f900fd430042339c1493d6eefcc85a7f990361fb57685682f16a2f9"
+      },
+      {
+        "name": "doxygen-1.18.0-setup.exe",
+        "url": "https://github.com/doxygen/doxygen/releases/download/Release_1_18_0/doxygen-1.18.0-setup.exe",
+        "digest": "sha256:d322c96ec74547bf6e77e9c538537540ccfd4ada06f1b05df06e713f668cf3c7"
+      },
+      {
+        "name": "doxygen-1.18.0.linux.bin.tar.gz",
+        "url": "https://github.com/doxygen/doxygen/releases/download/Release_1_18_0/doxygen-1.18.0.linux.bin.tar.gz",
+        "digest": "sha256:14fa81bdc34171edb5f1f02b1d60e74802f0439b77fa44e592565d517d72df90"
+      },
+      {
+        "name": "doxygen-1.18.0.src.tar.gz",
+        "url": "https://github.com/doxygen/doxygen/releases/download/Release_1_18_0/doxygen-1.18.0.src.tar.gz",
+        "digest": "sha256:a1deed70a6785bbec95a2b2a9e419dc7f7b223a9d74a8644ae611c8e2dcdd354"
+      },
+      {
+        "name": "doxygen-1.18.0.windows.x64.bin.zip",
+        "url": "https://github.com/doxygen/doxygen/releases/download/Release_1_18_0/doxygen-1.18.0.windows.x64.bin.zip",
+        "digest": "sha256:e84f54cfd49ef06b0b16536056dbec0c496323de28abcce53a4269463de35eaf"
+      },
+      {
+        "name": "doxygen_manual-1.18.0.chm.zip",
+        "url": "https://github.com/doxygen/doxygen/releases/download/Release_1_18_0/doxygen_manual-1.18.0.chm.zip",
+        "digest": "sha256:7f71d397acb56250e72839b04da87859a21fb888cec0b7f844b6e630f71cd26b"
+      },
+      {
+        "name": "doxygen_manual-1.18.0.pdf.zip",
+        "url": "https://github.com/doxygen/doxygen/releases/download/Release_1_18_0/doxygen_manual-1.18.0.pdf.zip",
+        "digest": "sha256:ec9a7e336036c271d6538ce72a019cadef2721f81c6e91ef3fe06438c9ef78e8"
+      }
+    ]
+  },
+  "python/cpython": {
+    "tag": "v3.15.2",
+    "sha": "d1ff5e51e3fbb30bde31fcd7c2c8ef0b3b1b1cef",
+    "published_at": null,
+    "url": "https://www.python.org/downloads/release/python-3152/",
+    "body": "No GitHub release; newest tag",
+    "assets": [],
+    "note": "Exclude prerelease 3.16 alpha tags; stable version verified from GitHub tags"
+  },
+  "Kitware/CMake": {
+    "tag": "v4.5.0",
+    "sha": "f3a3cb0c6542ee497d8e9ec85f3603acb64736ca",
+    "published_at": "2026-11-12T18:53:08Z",
+    "url": "https://github.com/Kitware/CMake/releases/tag/v4.5.0",
+    "body": "See also the [release notes](https://cmake.org/cmake/help/latest/release/4.5.html) and [release milestone](https://gitlab.kitware.com/cmake/cmake/-/milestones/206).\r\n\r\nPGP sig by [2D2CEF1034921684](http://pool.sks-keyservers.net:11371/pks/lookup?op=get&search=0xCBA23971357C2E6590D9EFD3EC8FEF3A7BFB4EDA)",
+    "assets": [
+      {
+        "name": "cmake-4.5.0-files-v1.json",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-files-v1.json",
+        "digest": "sha256:cc5c1580cb7a10a993ef6e3ffa2c271d63938a04d3ccbac37c30dc335750ec97"
+      },
+      {
+        "name": "cmake-4.5.0-linux-aarch64.sh",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-linux-aarch64.sh",
+        "digest": "sha256:9c1ea4430c93001f8ae1c93ba81f7372e5d431a4329df8c07a472de862c9a8f9"
+      },
+      {
+        "name": "cmake-4.5.0-linux-aarch64.tar.gz",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-linux-aarch64.tar.gz",
+        "digest": "sha256:0c8447e7bba9701467b5ac6155d157aa9e309e71af4981f78bd4b9176107f553"
+      },
+      {
+        "name": "cmake-4.5.0-linux-x86_64.sh",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-linux-x86_64.sh",
+        "digest": "sha256:67a05954850976717d14ae9bd6fea305a084c650c8eb58c69b8fb92231ee39cb"
+      },
+      {
+        "name": "cmake-4.5.0-linux-x86_64.tar.gz",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-linux-x86_64.tar.gz",
+        "digest": "sha256:81f0d5b0960fb6adc8197030ffc827fba937640d51e73e39e0e9e40d88c66f6f"
+      },
+      {
+        "name": "cmake-4.5.0-macos-universal.dmg",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-macos-universal.dmg",
+        "digest": "sha256:32b13f7e23c592bdbc01c93c88f5148cfd04e135eb7d6f0f2e63e29c27f109b5"
+      },
+      {
+        "name": "cmake-4.5.0-macos-universal.tar.gz",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-macos-universal.tar.gz",
+        "digest": "sha256:a645d69fd21e521759cc0c64e7c60462d43faf0c7214ac05f75c80f7c5037dde"
+      },
+      {
+        "name": "cmake-4.5.0-macos10.10-universal.dmg",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-macos10.10-universal.dmg",
+        "digest": "sha256:b6f74f8f51ac741feb31d3537c6e89f68c672bc5b3e1ccb43201265b0e6351d1"
+      },
+      {
+        "name": "cmake-4.5.0-macos10.10-universal.tar.gz",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-macos10.10-universal.tar.gz",
+        "digest": "sha256:0c96b6f4a358f52f83229959777d0beddf06063ecd0a202aadfca78565ec5619"
+      },
+      {
+        "name": "cmake-4.5.0-SHA-256.txt",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-SHA-256.txt",
+        "digest": "sha256:32f7aaffd4f866c926835dbb95a8b08fd4c2f5a0b5899e97b2f29f6be3c0b020"
+      },
+      {
+        "name": "cmake-4.5.0-SHA-256.txt.asc",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-SHA-256.txt.asc",
+        "digest": "sha256:efa26a53e079f2cf09fc68ac809dd0c029d138f74ff4483b92e72bfe5b0efcc1"
+      },
+      {
+        "name": "cmake-4.5.0-sunos-sparc64.sh",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-sunos-sparc64.sh",
+        "digest": "sha256:e9d5e73a310006ceb30af5beb8d22418630e53da8e8daa8ff6cc375bdad1d509"
+      },
+      {
+        "name": "cmake-4.5.0-sunos-sparc64.tar.gz",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-sunos-sparc64.tar.gz",
+        "digest": "sha256:76d4aa2431ae17e75edaf8f2d88af74616239788d4255600b14885a1b4e2a5c2"
+      },
+      {
+        "name": "cmake-4.5.0-sunos-x86_64.sh",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-sunos-x86_64.sh",
+        "digest": "sha256:04c2a0b7edcf9b6f210f714d8ec53d6acc6d94f12869b0e6b6ad21667936473d"
+      },
+      {
+        "name": "cmake-4.5.0-sunos-x86_64.tar.gz",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-sunos-x86_64.tar.gz",
+        "digest": "sha256:3fceae3acac8600d213cedc04861795c558ba39e1d9bb72d05e8a6305d0d2e63"
+      },
+      {
+        "name": "cmake-4.5.0-windows-arm64.msi",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-windows-arm64.msi",
+        "digest": "sha256:92887d4efa33bd968c8bfce0fda0d16b8d52ef750d164d0a24177da0c29182e1"
+      },
+      {
+        "name": "cmake-4.5.0-windows-arm64.zip",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-windows-arm64.zip",
+        "digest": "sha256:7dba95db83ec1e8fa3f221c06454ebc692c8f06d93bf5fdf840113fa28018690"
+      },
+      {
+        "name": "cmake-4.5.0-windows-i386.msi",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-windows-i386.msi",
+        "digest": "sha256:11385cba33eb742cc9b40a05e6f74bd6f6d6883559cc3f208f8b46d11b2e7b84"
+      },
+      {
+        "name": "cmake-4.5.0-windows-i386.zip",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-windows-i386.zip",
+        "digest": "sha256:3f6506812e922b4ca4acfe37e57515c3002bfcd8fa429edeaca9cb223b54c8ef"
+      },
+      {
+        "name": "cmake-4.5.0-windows-x86_64.msi",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-windows-x86_64.msi",
+        "digest": "sha256:8e450caad4ce6bfb0f30206cac64bc611deee0d6848f4bf0ef30f51ff3606e25"
+      },
+      {
+        "name": "cmake-4.5.0-windows-x86_64.zip",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-windows-x86_64.zip",
+        "digest": "sha256:301b1728317ccd84e984b02e366a8293735bc5ac618757d3d8f58b578f062411"
+      },
+      {
+        "name": "cmake-4.5.0.tar.gz",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0.tar.gz",
+        "digest": "sha256:424352d6133e8455e020da787008e8dc67abb18820af3532572ab35657e49213"
+      },
+      {
+        "name": "cmake-4.5.0.zip",
+        "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0.zip",
+        "digest": "sha256:40044088f7aa4b58a736d318292b81ccaae1c76383f77f86f244a2ca4e120c0f"
+      }
+    ]
+  },
+  "ninja-build/ninja": {
+    "tag": "v1.13.2",
+    "sha": "3441b633c2fe2c494e958780ba0f4227b1327634",
+    "published_at": "2025-11-20T16:51:20Z",
+    "url": "https://github.com/ninja-build/ninja/releases/tag/v1.13.2",
+    "body": "* Fix Ninja exit code when interrupted (issue #2681) #2690",
+    "assets": [
+      {
+        "name": "ninja-linux-aarch64.zip",
+        "url": "https://github.com/ninja-build/ninja/releases/download/v1.13.2/ninja-linux-aarch64.zip",
+        "digest": "sha256:fd2cacc8050a7f12a16a2e48f9e06fca5c14fc4c2bee2babb67b58be17a607fc"
+      },
+      {
+        "name": "ninja-linux.zip",
+        "url": "https://github.com/ninja-build/ninja/releases/download/v1.13.2/ninja-linux.zip",
+        "digest": "sha256:5749cbc4e668273514150a80e387a957f933c6ed3f5f11e03fb30955e2bbead6"
+      },
+      {
+        "name": "ninja-mac.zip",
+        "url": "https://github.com/ninja-build/ninja/releases/download/v1.13.2/ninja-mac.zip",
+        "digest": "sha256:c99048673aa765960a99cf10c6ddb9f1fad506099ff0a0e137ad8960a88f321b"
+      },
+      {
+        "name": "ninja-win.zip",
+        "url": "https://github.com/ninja-build/ninja/releases/download/v1.13.2/ninja-win.zip",
+        "digest": "sha256:07fc8261b42b20e71d1720b39068c2e14ffcee6396b76fb7a795fb460b78dc65"
+      },
+      {
+        "name": "ninja-winarm64.zip",
+        "url": "https://github.com/ninja-build/ninja/releases/download/v1.13.2/ninja-winarm64.zip",
+        "digest": "sha256:e52f0bdef9dfb1003229dbd6508a508c4073fd017247002adc66e5e806cb0391"
+      }
+    ]
+  },
+  "dotnet/sdk": {
+    "tag": "v10.0.404",
+    "sha": "cf8b42ed5c0b5ad9c517aacea0aed983c10d91f7",
+    "published_at": "2026-11-10T17:15:41Z",
+    "url": "https://github.com/dotnet/sdk/releases/tag/v10.0.404",
+    "body": "[Release](https://github.com/dotnet/core/releases/tag/v10.0.15)\n\n## What's Changed\n* [release/10.0.1xx] Source code updates from dotnet/dotnet by @dotnet-maestro[bot] in https://github.com/dotnet/sdk/pull/56107\n* [release/10.0.1xx] Source code updates from dotnet/dotnet by @dotnet-maestro[bot] in https://github.com/dotnet/sdk/pull/56127\n* [release/10.0.1xx] Source code updates from dotnet/dotnet by @dotnet-maestro[bot] in https://github.com/dotnet/sdk/pull/56142\n* [release/10.0.4xx] Fix dotnet test argument isolation after -- by @Evangelink in https://github.com/dotnet/sdk/pull/56374\n* [release/10.0.4xx] Source code updates from dotnet/dotnet by @dotnet-maestro[bot] in https://github.com/dotnet/sdk/pull/56372\n* [release/10.0.4xx] Source code updates from dotnet/dotnet by @dotnet-maestro[bot] in https://github.com/dotnet/sdk/pull/56420\n* [release/10.0.4xx] Source code updates from dotnet/dotnet by @dotnet-maestro[bot] in https://github.com/dotnet/sdk/pull/56455\n* [10.0.4xx] Use dotnetup preview for .NET acquisition by @nagilson in https://github.com/dotnet/sdk/pull/55640\n* [release/10.0.4xx] Verify MSI signature before manifest extraction. by @joeloff in https://github.com/dotnet/sdk/pull/56468\n* [automated] Merge branch 'release/10.0.1xx' => 'release/10.0.4xx' by @github-actions[bot] in https://github.com/dotnet/sdk/pull/56171\n\n\n**Full Changelog**: https://github.com/dotnet/sdk/compare/v10.0.402...v10.0.404",
+    "assets": []
+  },
+  "llvm/llvm-project": {
+    "tag": "llvmorg-23.1.5",
+    "sha": "392dfff97d29b59d77e5cac6d4b6ef2585fe7117",
+    "published_at": "2026-11-03T21:35:47Z",
+    "url": "https://github.com/llvm/llvm-project/releases/tag/llvmorg-23.1.5",
+    "body": "## LLVM 23.1.5 Release\r\n\r\n* Linux x86_64: [xz archive](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-X64.tar.xz) ([signature](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-X64.tar.xz.jsonl)), [zstd archive](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-X64.tar.zst) ([signature](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-X64.tar.zst.jsonl))\r\n* Linux Arm64: [xz archive](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-ARM64.tar.xz) ([signature](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-ARM64.tar.xz.jsonl)), [zstd archive](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-ARM64.tar.zst) ([signature](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-ARM64.tar.zst.jsonl))\r\n<!-- LINUX_ARMV7A * [Linux Armv7-a](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang+llvm-23.1.5-armv7a-linux-gnueabihf.tar.gz) ([signature](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang+llvm-23.1.5-armv7a-linux-gnueabihf.tar.gz.sig)) -->\r\n\r\n* macOS Apple Silicon (ARM64): [xz archive](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-macOS-ARM64.tar.xz) ([signature](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-macOS-ARM64.tar.xz.jsonl)), [zstd archive](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-macOS-ARM64.tar.zst) ([signature](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-macOS-ARM64.tar.zst.jsonl))\r\n<!-- MACOS_X86 * macOS Intel (x86-64): [xz archive](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-macOS-X64.tar.xz) ([signature](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-macOS-X64.tar.xz.jsonl)), [zstd archive](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-macOS-X64.tar.zst) ([signature](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-macOS-X64.tar.zst.jsonl)) -->\r\n\r\n* Windows x64 (64-bit): [installer](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-win64.msi) ([signature](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-win64.msi.jsonl)), [xz archive](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang+llvm-23.1.5-x86_64-pc-windows-msvc.tar.xz) ([signature](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang+llvm-23.1.5-x86_64-pc-windows-msvc.tar.xz.jsonl)), [zstd archive](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang+llvm-23.1.5-x86_64-pc-windows-msvc.tar.zst) ([signature](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang+llvm-23.1.5-x86_64-pc-windows-msvc.tar.zst.jsonl))\r\n<!-- WINDOWS_X86 * Windows x86 (32-bit): [installer](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-win32.msi) ([signature](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-win32.msi.sig)) -->\r\n* Windows on Arm (ARM64): [installer](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-woa64.msi) ([signature](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-woa64.msi.jsonl)), [xz archive](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang+llvm-23.1.5-aarch64-pc-windows-msvc.tar.xz) ([signature](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang+llvm-23.1.5-aarch64-pc-windows-msvc.tar.xz.jsonl)), [zstd archive](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang+llvm-23.1.5-aarch64-pc-windows-msvc.tar.zst) ([signature](https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang+llvm-23.1.5-aarch64-pc-windows-msvc.tar.zst.jsonl))\r\n\r\nDownload links for common platforms will appear above once builds have completed, if they are available. Check the full list of release packages at the bottom of this release page if you do not find a link above.\r\n\r\nIf you do not find a release package for your platform, you may be able to find a community built package on the LLVM Discourse forum thread for this release. Remember that these are built by volunteers and may not always be available. If you rely on a platform or configuration that is not one of the defaults, we suggest you use the binaries that your platform provides, or build your own release packages.\r\n\r\n## Package Types\r\n\r\nEach platform has binary release packages. The file name starts with either `LLVM-` or `clang+llvm-` and ends with the platform's name. For example, `LLVM-23.1.5-Linux-ARM64.tar.xz` contains LLVM binaries for Arm64 Linux. Binary archive packages may be available as `.tar.xz` or `.tar.zst` files. The `.tar.zst` files contain the same package contents, but use zstd compression.\r\n\r\nExcept for Windows. Where `LLVM-*.msi` is an installer intended for using LLVM as a toolchain and the archive `clang+llvm-` contains the contents of the installer, plus libraries and tools not normally used in a toolchain. You most likely want the `LLVM-` installer, unless you are developing software which itself uses LLVM, in which case choose `clang+llvm-`.\r\n\r\nIn addition, source archives are available:\r\n* To get all the `llvm-project` source code for this release, choose `llvm-project-23.1.5.src.tar.xz`.\r\n* `test-suite-23.1.5.src.tar.xz` is an archive of the [LLVM Test Suite](https://github.com/llvm/llvm-test-suite)) for this release.\r\n\r\n## Verifying Packages\r\n\r\nAll packages come with a matching `.sig` and/or `.jsonl` file. You should use these to verify the integrity of the packages.\r\n\r\nIf it has a `.sig` file, it should have been signed by the release managers using GPG. Download the keys from the [LLVM website](https://releases.llvm.org/release-keys.asc), import them into your keyring and use them to verify the file:\r\n```\r\n$ gpg --import release-keys.asc\r\n$ gpg --verify <package file name>.sig <package file name>\r\n```\r\n\r\nIf it has a `.jsonl` file, use [gh](https://cli.github.com/manual/gh_attestation_verify) to verify the package:\r\n```\r\n$ gh attestation verify --repo llvm/llvm-project <package file name>\r\n(if you are able to connect to GitHub)\r\n$ gh attestation verify --repo llvm/llvm-project <package file name> --bundle <package file name>.jsonl\r\n(using attestation file on disk)\r\n```",
+    "assets": [
+      {
+        "name": "clang+llvm-23.1.5-aarch64-pc-windows-msvc.tar.xz",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang%2Bllvm-23.1.5-aarch64-pc-windows-msvc.tar.xz",
+        "digest": "sha256:f06382f2c99c68a4e80f7044446df1fcf52bc3cc05158626bd0b966d51a5369a"
+      },
+      {
+        "name": "clang+llvm-23.1.5-aarch64-pc-windows-msvc.tar.xz.jsonl",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang%2Bllvm-23.1.5-aarch64-pc-windows-msvc.tar.xz.jsonl",
+        "digest": "sha256:3afaeffe73032f42e6659bd2ccaa8402324b56817980d931ece1c09b6148a941"
+      },
+      {
+        "name": "clang+llvm-23.1.5-aarch64-pc-windows-msvc.tar.xz.sig",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang%2Bllvm-23.1.5-aarch64-pc-windows-msvc.tar.xz.sig",
+        "digest": "sha256:78ed68adc1baa91914f52a86c949047af418a13bf13b1fe299a8d1d3bc5fe3b0"
+      },
+      {
+        "name": "clang+llvm-23.1.5-aarch64-pc-windows-msvc.tar.zst",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang%2Bllvm-23.1.5-aarch64-pc-windows-msvc.tar.zst",
+        "digest": "sha256:cb523582d9fe00862c5584ce5f7715f963037c11bba95181fa98425f48e06863"
+      },
+      {
+        "name": "clang+llvm-23.1.5-aarch64-pc-windows-msvc.tar.zst.jsonl",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang%2Bllvm-23.1.5-aarch64-pc-windows-msvc.tar.zst.jsonl",
+        "digest": "sha256:3afaeffe73032f42e6659bd2ccaa8402324b56817980d931ece1c09b6148a941"
+      },
+      {
+        "name": "clang+llvm-23.1.5-aarch64-pc-windows-msvc.tar.zst.sig",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang%2Bllvm-23.1.5-aarch64-pc-windows-msvc.tar.zst.sig",
+        "digest": "sha256:fc72601c3ef929e48c7da7868ba47f8d2334db808644fc28e6b09fa57ef5186c"
+      },
+      {
+        "name": "clang+llvm-23.1.5-x86_64-pc-windows-msvc.tar.xz",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang%2Bllvm-23.1.5-x86_64-pc-windows-msvc.tar.xz",
+        "digest": "sha256:62fdada7f6fa2b73856486dfbbdba3d2c1882991621615bcb55c60207611c6d4"
+      },
+      {
+        "name": "clang+llvm-23.1.5-x86_64-pc-windows-msvc.tar.xz.jsonl",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang%2Bllvm-23.1.5-x86_64-pc-windows-msvc.tar.xz.jsonl",
+        "digest": "sha256:49eef46c394217ae02c4de101ba1cc722b649db9c315eacbab1185966316ef53"
+      },
+      {
+        "name": "clang+llvm-23.1.5-x86_64-pc-windows-msvc.tar.xz.sig",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang%2Bllvm-23.1.5-x86_64-pc-windows-msvc.tar.xz.sig",
+        "digest": "sha256:e5ae1915bbbf5dbe842d94554efec05a5c08318ba0ec79e46cf42dc7ebff726a"
+      },
+      {
+        "name": "clang+llvm-23.1.5-x86_64-pc-windows-msvc.tar.zst",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang%2Bllvm-23.1.5-x86_64-pc-windows-msvc.tar.zst",
+        "digest": "sha256:b2be33385ddc86e83511417a060de927ae8b09d1f3017cc3cdce5c73cd5029d7"
+      },
+      {
+        "name": "clang+llvm-23.1.5-x86_64-pc-windows-msvc.tar.zst.jsonl",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang%2Bllvm-23.1.5-x86_64-pc-windows-msvc.tar.zst.jsonl",
+        "digest": "sha256:49eef46c394217ae02c4de101ba1cc722b649db9c315eacbab1185966316ef53"
+      },
+      {
+        "name": "clang+llvm-23.1.5-x86_64-pc-windows-msvc.tar.zst.sig",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang%2Bllvm-23.1.5-x86_64-pc-windows-msvc.tar.zst.sig",
+        "digest": "sha256:e452a33f38a471eed98b91ef6b01f1cee1f9e296e180066c1fdbd316717a635b"
+      },
+      {
+        "name": "clang-tools-extra_doxygen-23.1.5.tar.xz",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang-tools-extra_doxygen-23.1.5.tar.xz",
+        "digest": "sha256:d61f36a95e121fa08bfcd25983e78f9a592a12ef36ab58edd5e8b51177fd6af0"
+      },
+      {
+        "name": "clang-tools-extra_doxygen-23.1.5.tar.xz.jsonl",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang-tools-extra_doxygen-23.1.5.tar.xz.jsonl",
+        "digest": "sha256:ad6172884472c1b43877498cb01c78597bb000068fde53c3188ef861d15bffb4"
+      },
+      {
+        "name": "clang-tools-extra_doxygen-23.1.5.tar.xz.sig",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang-tools-extra_doxygen-23.1.5.tar.xz.sig",
+        "digest": "sha256:600e267d38bb3ec3af3ede4239167dd31ae9aa5164b89fc5ddfcfb08be33cc35"
+      },
+      {
+        "name": "clang_doxygen-23.1.5.tar.xz",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang_doxygen-23.1.5.tar.xz",
+        "digest": "sha256:d588d245a720bc51d0bdb4a533766e39873836f87faeec2441f49ed8d1fef38f"
+      },
+      {
+        "name": "clang_doxygen-23.1.5.tar.xz.jsonl",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang_doxygen-23.1.5.tar.xz.jsonl",
+        "digest": "sha256:ad6172884472c1b43877498cb01c78597bb000068fde53c3188ef861d15bffb4"
+      },
+      {
+        "name": "clang_doxygen-23.1.5.tar.xz.sig",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/clang_doxygen-23.1.5.tar.xz.sig",
+        "digest": "sha256:78701c0b7bbf8d06948ce3cbdff92c5e1c38db082260813580df0b5e485fd84a"
+      },
+      {
+        "name": "flang_doxygen-23.1.5.tar.xz",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/flang_doxygen-23.1.5.tar.xz",
+        "digest": "sha256:6623f2a028260ae04f179977a47591c5521326b33797453e553b86772ab1e9e8"
+      },
+      {
+        "name": "flang_doxygen-23.1.5.tar.xz.jsonl",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/flang_doxygen-23.1.5.tar.xz.jsonl",
+        "digest": "sha256:ad6172884472c1b43877498cb01c78597bb000068fde53c3188ef861d15bffb4"
+      },
+      {
+        "name": "flang_doxygen-23.1.5.tar.xz.sig",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/flang_doxygen-23.1.5.tar.xz.sig",
+        "digest": "sha256:c97c5e6bad04489cb552fc1f5c7a308c54f985ea09b0a29eae6fae67d400fe58"
+      },
+      {
+        "name": "LLVM-23.1.5-Linux-ARM64.tar.xz",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-ARM64.tar.xz",
+        "digest": "sha256:44f1e4b7a125b2763d56386a199928dd57ec32e151cc6042dce2f7b0da7bb651"
+      },
+      {
+        "name": "LLVM-23.1.5-Linux-ARM64.tar.xz.jsonl",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-ARM64.tar.xz.jsonl",
+        "digest": "sha256:e2cb38e1559d8da56705a4d4f6d4e148b4155e9700d4dcedfffd3b389015b808"
+      },
+      {
+        "name": "LLVM-23.1.5-Linux-ARM64.tar.xz.sig",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-ARM64.tar.xz.sig",
+        "digest": "sha256:42ca9771b22233c9b4664b0acccb80d6d9a5c337333c8e355dbc82a8903ccb17"
+      },
+      {
+        "name": "LLVM-23.1.5-Linux-ARM64.tar.zst",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-ARM64.tar.zst",
+        "digest": "sha256:830ceb70edf63849ce66e97bf85310a3bf2bdd04c860a9f2fa4ef1560e290cef"
+      },
+      {
+        "name": "LLVM-23.1.5-Linux-ARM64.tar.zst.jsonl",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-ARM64.tar.zst.jsonl",
+        "digest": "sha256:e2cb38e1559d8da56705a4d4f6d4e148b4155e9700d4dcedfffd3b389015b808"
+      },
+      {
+        "name": "LLVM-23.1.5-Linux-ARM64.tar.zst.sig",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-ARM64.tar.zst.sig",
+        "digest": "sha256:42959abad57864af3618a14033f4899b0832de73c66fc1e005a96923e2c596fb"
+      },
+      {
+        "name": "LLVM-23.1.5-Linux-X64.tar.xz",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-X64.tar.xz",
+        "digest": "sha256:f72edb0b36580ece7f52e23858f00c18fad4e87395ea7ad05d7e55c39f8fc78a"
+      },
+      {
+        "name": "LLVM-23.1.5-Linux-X64.tar.xz.jsonl",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-X64.tar.xz.jsonl",
+        "digest": "sha256:b2bb5d229cc071b00858b4ab0e414f4ba7218b7cdfa858b2cac281687769ed81"
+      },
+      {
+        "name": "LLVM-23.1.5-Linux-X64.tar.xz.sig",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-X64.tar.xz.sig",
+        "digest": "sha256:12357ba3680b9fa1574b87d4437c7ebf2b24ec6e4869cb02a271a1bfddd5b1fd"
+      },
+      {
+        "name": "LLVM-23.1.5-Linux-X64.tar.zst",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-X64.tar.zst",
+        "digest": "sha256:c3107384835f788768f614db610e87fba7077f125ca950eb02a78bab0a308065"
+      },
+      {
+        "name": "LLVM-23.1.5-Linux-X64.tar.zst.jsonl",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-X64.tar.zst.jsonl",
+        "digest": "sha256:b2bb5d229cc071b00858b4ab0e414f4ba7218b7cdfa858b2cac281687769ed81"
+      },
+      {
+        "name": "LLVM-23.1.5-Linux-X64.tar.zst.sig",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-X64.tar.zst.sig",
+        "digest": "sha256:38ff1de57e20e90341efa94c62400757841d5bde7d438b0ea0af788b90f3c930"
+      },
+      {
+        "name": "LLVM-23.1.5-macOS-ARM64.tar.xz",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-macOS-ARM64.tar.xz",
+        "digest": "sha256:aba592b4a15e8f90c634c5367b51ec8418b8bcd2829865db331a17dc9418dcff"
+      },
+      {
+        "name": "LLVM-23.1.5-macOS-ARM64.tar.xz.jsonl",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-macOS-ARM64.tar.xz.jsonl",
+        "digest": "sha256:961b20e89b54952add75ab7a3a565de1db1e300b546cceb091ade31afe21d671"
+      },
+      {
+        "name": "LLVM-23.1.5-macOS-ARM64.tar.xz.sig",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-macOS-ARM64.tar.xz.sig",
+        "digest": "sha256:94e001ad2b43a95af6a3cf0558827147e7e01c1e51abe09485d9bd7949349aea"
+      },
+      {
+        "name": "LLVM-23.1.5-macOS-ARM64.tar.zst",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-macOS-ARM64.tar.zst",
+        "digest": "sha256:503de30ef90311e0b143623801b19af2250adac6d69faed65ad0051170202e3b"
+      },
+      {
+        "name": "LLVM-23.1.5-macOS-ARM64.tar.zst.jsonl",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-macOS-ARM64.tar.zst.jsonl",
+        "digest": "sha256:961b20e89b54952add75ab7a3a565de1db1e300b546cceb091ade31afe21d671"
+      },
+      {
+        "name": "LLVM-23.1.5-macOS-ARM64.tar.zst.sig",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-macOS-ARM64.tar.zst.sig",
+        "digest": "sha256:23d97a7c4a172f0ccf8d175848d58a756fc00650508dc18a7bb684f6eba4890a"
+      },
+      {
+        "name": "LLVM-23.1.5-win64.msi",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-win64.msi",
+        "digest": "sha256:288ab326377157a9e02e6fb9724914cc2b55963882d493a405f31dc66e837c12"
+      },
+      {
+        "name": "LLVM-23.1.5-win64.msi.jsonl",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-win64.msi.jsonl",
+        "digest": "sha256:49eef46c394217ae02c4de101ba1cc722b649db9c315eacbab1185966316ef53"
+      },
+      {
+        "name": "LLVM-23.1.5-win64.msi.sig",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-win64.msi.sig",
+        "digest": "sha256:37a6e498e7d781db5d77b4ed111f020e89c3f71580978592eeba218caa2eb20f"
+      },
+      {
+        "name": "LLVM-23.1.5-woa64.msi",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-woa64.msi",
+        "digest": "sha256:0e8a80e8c8a9a17958e65ec706b62fd07b172792bccfed54a32006e1823a79b7"
+      },
+      {
+        "name": "LLVM-23.1.5-woa64.msi.jsonl",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-woa64.msi.jsonl",
+        "digest": "sha256:3afaeffe73032f42e6659bd2ccaa8402324b56817980d931ece1c09b6148a941"
+      },
+      {
+        "name": "LLVM-23.1.5-woa64.msi.sig",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-woa64.msi.sig",
+        "digest": "sha256:fe3d6a128d19846d98e15e7ad8c9e059588b83e2781a51051c2261ba21522f15"
+      },
+      {
+        "name": "llvm-project-23.1.5.src.tar.xz",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/llvm-project-23.1.5.src.tar.xz",
+        "digest": "sha256:fb50b1eac93ddeb3aa8dab4cfe324dff74f4a9c2bdee6160c9e36188f8d06a6e"
+      },
+      {
+        "name": "llvm-project-23.1.5.src.tar.xz.jsonl",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/llvm-project-23.1.5.src.tar.xz.jsonl",
+        "digest": "sha256:d7e58d1a885d793ad3a95e5f5f47d7f17ca52f7b9350c4763caadf7d36db48c1"
+      },
+      {
+        "name": "llvm-project-23.1.5.src.tar.xz.sig",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/llvm-project-23.1.5.src.tar.xz.sig",
+        "digest": "sha256:c8ddd0ad6c8c5eb0f902e54f19580340e3c701a53fc7e5890f69851724305382"
+      },
+      {
+        "name": "llvm_doxygen-23.1.5.tar.xz",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/llvm_doxygen-23.1.5.tar.xz",
+        "digest": "sha256:c4a37136a124962f80d99bbd33b69e197863aafcd1324f82bbf3f1e5471ab03f"
+      },
+      {
+        "name": "llvm_doxygen-23.1.5.tar.xz.jsonl",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/llvm_doxygen-23.1.5.tar.xz.jsonl",
+        "digest": "sha256:ad6172884472c1b43877498cb01c78597bb000068fde53c3188ef861d15bffb4"
+      },
+      {
+        "name": "llvm_doxygen-23.1.5.tar.xz.sig",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/llvm_doxygen-23.1.5.tar.xz.sig",
+        "digest": "sha256:5fe88b7c3f6a92e6088489ee31d4f01fab5cae20f91b1bec20d4da5c9abc5fa8"
+      },
+      {
+        "name": "llvm_man_pages-23.1.5.tar.xz",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/llvm_man_pages-23.1.5.tar.xz",
+        "digest": "sha256:ba08a070d4ad120913b60254968f051bf497195b06a065155edb83e8e59e9425"
+      },
+      {
+        "name": "llvm_man_pages-23.1.5.tar.xz.jsonl",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/llvm_man_pages-23.1.5.tar.xz.jsonl",
+        "digest": "sha256:29233f8a75a1a2de1627c43f4db30195ffdf25b2135b16909d51b5b1f18383cf"
+      },
+      {
+        "name": "llvm_man_pages-23.1.5.tar.xz.sig",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/llvm_man_pages-23.1.5.tar.xz.sig",
+        "digest": "sha256:b87e4971a1e7a78e66dbca89f68d7e6e5e41ddbc9908f52875831ff73c51da58"
+      },
+      {
+        "name": "test-suite-23.1.5.src.tar.xz",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/test-suite-23.1.5.src.tar.xz",
+        "digest": "sha256:14d955b25c4000ee4e1ff2e2c9d109122fbee67952db4b956581435693959dab"
+      },
+      {
+        "name": "test-suite-23.1.5.src.tar.xz.jsonl",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/test-suite-23.1.5.src.tar.xz.jsonl",
+        "digest": "sha256:d7e58d1a885d793ad3a95e5f5f47d7f17ca52f7b9350c4763caadf7d36db48c1"
+      },
+      {
+        "name": "test-suite-23.1.5.src.tar.xz.sig",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/test-suite-23.1.5.src.tar.xz.sig",
+        "digest": "sha256:341af7ca547f679dc49d801bb7feb10f9e1fbf8f29e118d26e32b7d3c9ea80e8"
+      }
+    ]
+  }
+}

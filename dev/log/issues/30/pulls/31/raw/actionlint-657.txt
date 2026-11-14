@@ -1,0 +1,119 @@
+author:	stempler
+association:	none
+edited:	false
+status:	none
+--
+There is a PR for this already, but no feedback yet: https://github.com/rhysd/actionlint/pull/654
+--
+author:	amonshiz
+association:	none
+edited:	false
+status:	none
+--
+@rhysd hi hi! Would you be able to review #654 and create a release with the feature? At the moment we are suppressing this error explicitly but the PR introduces validation for the combination of `queue` and `cancel-in-progress`.
+--
+author:	roryabraham
+association:	none
+edited:	false
+status:	none
+--
+In case it's helpful to anyone needing a temporary workaround, you can do something like this: https://github.com/Expensify/GitHub-Actions/pull/101/changes
+--
+author:	lcv-leo
+association:	none
+edited:	false
+status:	none
+--
+<!-- LCV-407-actionlint-queue-20261015 -->
+
+Confirmed on Windows x64 on 2026-10-15 with the current official release, v1.7.12. WinGet reports that no newer package is available, and the repository's latest-release endpoint also returns v1.7.12.
+
+Version output:
+
+```text
+1.7.12
+installed by downloading from release page
+built with go1.26.1 compiler for windows/amd64
+```
+
+Minimal reproduction:
+
+```yaml
+name: Queue syntax reproduction
+on:
+  workflow_dispatch:
+permissions: {}
+concurrency:
+  group: queue-syntax-reproduction
+  queue: max
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Queue syntax reproduction"
+```
+
+Running `actionlint -no-color queue-max-reproduction.yml` exits with code 1. The diagnostic is:
+
+```text
+unexpected key "queue" for "concurrency" section. expected one of "cancel-in-progress", "group" [syntax-check]
+  |
+7 |   queue: max
+  |   ^~~~~~
+```
+
+GitHub's current official documentation explicitly supports this property for queueing pending workflow runs: https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency#example-queueing-multiple-pending-runs . The reproduction does not combine it with `cancel-in-progress: true`.
+
+Could the maintainers review the existing fix in #654 and include support in an official release? Adding this reproduction here to preserve the existing issue rather than open a duplicate.
+
+--
+author:	konard
+association:	none
+edited:	false
+status:	none
+--
+Latest-version verification: actionlint 1.7.12 still rejects the documented concurrency `queue` key on Linux. Minimal reproduction:
+```yaml
+name: queued
+on: workflow_dispatch
+permissions:
+  contents: read
+concurrency:
+  group: queued-example
+  queue: max
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo checked
+```
+`actionlint -shellcheck= -pyflakes= repro.yml` reports `unexpected key "queue" for "concurrency" section` (line 8). The downstream workaround is a narrowly scoped ignore for only this diagnostic, retaining queue behavior and all other workflow checks: https://github.com/link-foundation/sensitive-data-sanitizer/pull/103 .
+
+This confirms the existing report on the current published release. Adding the documented queue enum/schema support (the work tracked by #654) would remove the exception; increasing job timeouts or deleting queue behavior would not address the parser mismatch.
+
+--
+author:	konard
+association:	none
+edited:	true
+status:	none
+--
+Confirmed on **actionlint 1.7.12**: GitHub's workflow-level `concurrency.queue` still requires the existing `-ignore 'unexpected key.*queue'` workaround. We use `queue: max` with `cancel-in-progress: false` for release serialization; removing the queue would change our existing release behavior. The rest of the workflow is still checked normally, with the Actionlint version and image digest pinned/verified.
+
+Current reproducing workflow and bounded suppression: https://github.com/link-foundation/java-ai-driven-development-pipeline-template/pull/25 . A supported schema field for workflow-level `queue` (documented GitHub queue values including `max`) would remove this local workaround. Prepared with AI assistance and verified with the released actionlint binary.
+
+
+Related schema gap found in the same migration: latest 1.7.12 also rejects the now-GA `ubuntu-26.04` label, already tracked in #682. The runner-images catalog currently lists it without a preview badge. Our consumer extends only that label through documented `.github/actionlint.yaml` configuration (`self-hosted-runner.labels: [ubuntu-26.04]`), leaving all other runner checks enabled. A one-job `on: push` workflow with `runs-on: ubuntu-26.04` and `steps: [{run: echo ok}]` reproduces the error. Native label support would remove this configuration alongside the queue suppression. This adds the current consumer evidence here instead of duplicating the existing runner-label issue.
+
+--
+author:	konard
+association:	none
+edited:	false
+status:	none
+--
+Reconfirmed on Linux with the current 1.7.12 release while updating https://github.com/link-foundation/rust-ai-driven-development-pipeline-template/pull/248 .
+
+The existing minimal workflow with `concurrency: {group: release, queue: max}` still produces `unexpected key "queue" for "concurrency" section`. Our release workflows require queue serialization and retain only the existing narrow ignore for this diagnostic; all other Actionlint, ShellCheck and workflow security checks remain active.
+
+The proposed enum/schema validation in #654 would remove the local exception. No new issue is needed; this adds another current-release consumer and verification result to the existing reproducer.
+
+--
