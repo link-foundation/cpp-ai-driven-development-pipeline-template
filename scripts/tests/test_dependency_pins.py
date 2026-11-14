@@ -83,3 +83,24 @@ include("${PORT}")
         assert f'-DBENCHMARK_INSTALL_TOOLS={enabled}' in options
         assert 'core' not in options
         assert 'tools' not in options
+
+
+def test_cmake_action_uses_consistent_cmake_and_ninja_pins():
+    """All build paths use the current toolkit action, without warning suppression."""
+    import yaml
+
+    ninja = pins((ROOT / 'scripts/requirements-toolchain.txt').read_text())['ninja']
+    found = 0
+    for workflow in (ROOT / '.github/workflows').glob('*.yml'):
+        text = workflow.read_text()
+        assert 'jwlawson/actions-setup-cmake@' not in text
+        assert 'NODE_NO_WARNINGS' not in text
+        assert '--no-deprecation' not in text
+        data = yaml.safe_load(text)
+        for job in data.get('jobs', {}).values():
+            for step in job.get('steps', []):
+                if step.get('uses', '').startswith('lukka/get-cmake@'):
+                    assert step['with']['cmakeVersion'] == '4.5.0'
+                    assert step['with']['ninjaVersion'] == ninja
+                    found += 1
+    assert found == 10

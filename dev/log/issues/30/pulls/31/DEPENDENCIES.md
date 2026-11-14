@@ -75,7 +75,7 @@ The package-manager CLI is a separate distribution, with its own recorded audit.
 | secretlint / recommended rules | unpinned npx | 13.1.0 | 13.1.0 | Exact direct pins and npm lock |
 | actions/setup-node | absent | 7.1.0 | 7.1.0 | Commit 949feb2413d6458794dcd2491c4babbbce0c15c1 |
 | zizmorcore/zizmor-action | absent (pipx workaround) | 0.8.1 | 0.8.1 | Commit 45d7276c9ca790aabd705e31ca99c6185c3e76dd; now supports zizmor 1.32.0 |
-| jwlawson/actions-setup-cmake | absent | 2.2.0 | 2.2.0 | Commit 0d6a7d60b009d01c9e7523be22153ff8f19460d3 |
+| lukka/get-cmake | absent | 4.5.0 | 4.5.0 | Commit 16e8153a8b4918849d92aad131befe67a3705daa; toolkit 3, verified CMake/Ninja catalog |
 | CMake CI binary | runner bundled | 4.5.0 | 4.5.0 | Upstream distribution avoids PyPI lag |
 | Conan Center CMake build requirement | implicitly resolved | 4.4.4 | 4.5.0 | Registry has not published 4.5.0; upstream PR 31443; audit retains the real version |
 | .NET SDK / NuGet CLI | runner bundled | 11.0.100 | 11.0.100 | Official release index, rather than stale SDK GitHub release |
@@ -103,3 +103,10 @@ The Conan CMake and clang-tidy distribution lag, compiler distribution lag,
 and npm CLI advisories are explicit remaining limits of a literal
 "every upstream component current and no advisory" acceptance criterion.
 They are not hidden by the clean Python/application audits.
+
+`jwlawson/actions-setup-cmake` 2.2.0 was initially evaluated and tested, but its
+old HTTP/tool-cache dependencies emit DEP0169 on current Node runtimes. It was
+replaced throughout with registry-current `lukka/get-cmake` 4.5.0, which uses
+`@actions/tool-cache` 3 and `@actions/core` 2, verifies archive checksums and
+supports both pinned CMake 4.5.0 and Ninja 1.13.2 across the matrix. The old action
+is not an active dependency. Metadata/catalog evidence is in `raw/get-cmake-*`.

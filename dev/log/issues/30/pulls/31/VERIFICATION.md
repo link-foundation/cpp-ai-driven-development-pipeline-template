@@ -61,3 +61,25 @@ succeeded. The focused regression exercises both OFF/ON without a native rebuild
 The first final pre-commit invocation reported concurrent working-tree edits made
 while its 508 passing tests ran; the subsequent clean-tree hook run is retained in
 `raw/pre-commit-clean.log`.
+
+## CMake action warning correction
+
+The final log review found a real newly introduced DEP0169 warning in the CMake
+setup dependency despite passing jobs. The current replacement action was queried
+from its release registry, its tag dereferenced to a commit, and its platform
+checksum catalog inspected. `experiments/verify_issue_30_cmake_action.py` executes
+that exact bundle with Node 26, deprecation tracing and a 256 MiB JS heap, validates
+CMake 4.5.0 / Ninja 1.13.2 and fails on any DeprecationWarning. The successful raw
+log is `raw/get-cmake-smoke.log`. Focused workflow/pin regression checks: 67 passed
+(`raw/cmake-action-policy-tests.log`). The full hosted suite is rerun for the
+replacement commit; its exact head/conclusions are recorded in the PR.
+
+All five workflows passed at 474a0f0 (run IDs/timestamps/SHA retained in
+`raw/pre-action-replacement-runs.json`). Full pipeline log review found only the
+same Setup CMake deprecation across its ten invocations; matching log line
+numbers are retained in `raw/setup-cmake-pipeline-warnings.log`. This additional
+review is why a further action correction was made despite green CI. The
+workflow policy regression rejects the previous action and accepts all ten new
+steps (`raw/cmake-action-regression.log`). Local hooks repeat only fast checks;
+the 67 focused tests and native action smoke cover this correction locally, and
+the full script suite is rerun in hosted CI.

@@ -265,9 +265,10 @@ jobs:
           } >> "$GITHUB_ENV"
 
       - name: Setup CMake
-        uses: jwlawson/actions-setup-cmake@0d6a7d60b009d01c9e7523be22153ff8f19460d3 # v2.2.0
+        uses: lukka/get-cmake@16e8153a8b4918849d92aad131befe67a3705daa # v4.5.0
         with:
-          cmake-version: '4.5.0'
+          cmakeVersion: '4.5.0'
+          ninjaVersion: '1.13.2'
 
       - name: Build and test the merge result
         working-directory: ${{ env.CPP_DIR }}
@@ -308,9 +309,10 @@ jobs:
           python-version: '3.15.2'
 
       - name: Setup CMake
-        uses: jwlawson/actions-setup-cmake@0d6a7d60b009d01c9e7523be22153ff8f19460d3 # v2.2.0
+        uses: lukka/get-cmake@16e8153a8b4918849d92aad131befe67a3705daa # v4.5.0
         with:
-          cmake-version: '4.5.0'
+          cmakeVersion: '4.5.0'
+          ninjaVersion: '1.13.2'
 
       - name: Install pinned lint tools
         # clang-format, clang-tidy and cppcheck come from PyPI wheels pinned in
@@ -420,9 +422,10 @@ jobs:
           python-version: '3.15.2'
 
       - name: Setup CMake
-        uses: jwlawson/actions-setup-cmake@0d6a7d60b009d01c9e7523be22153ff8f19460d3 # v2.2.0
+        uses: lukka/get-cmake@16e8153a8b4918849d92aad131befe67a3705daa # v4.5.0
         with:
-          cmake-version: '4.5.0'
+          cmakeVersion: '4.5.0'
+          ninjaVersion: '1.13.2'
 
       - name: Install pinned build tools
         run: python -m pip install --disable-pip-version-check -r scripts/requirements-toolchain.txt
@@ -497,9 +500,10 @@ jobs:
           persist-credentials: false
 
       - name: Setup CMake
-        uses: jwlawson/actions-setup-cmake@0d6a7d60b009d01c9e7523be22153ff8f19460d3 # v2.2.0
+        uses: lukka/get-cmake@16e8153a8b4918849d92aad131befe67a3705daa # v4.5.0
         with:
-          cmake-version: '4.5.0'
+          cmakeVersion: '4.5.0'
+          ninjaVersion: '1.13.2'
 
       - name: Locate the C++ project
         run: |
@@ -546,9 +550,10 @@ jobs:
           python-version: '3.15.2'
 
       - name: Setup CMake
-        uses: jwlawson/actions-setup-cmake@0d6a7d60b009d01c9e7523be22153ff8f19460d3 # v2.2.0
+        uses: lukka/get-cmake@16e8153a8b4918849d92aad131befe67a3705daa # v4.5.0
         with:
-          cmake-version: '4.5.0'
+          cmakeVersion: '4.5.0'
+          ninjaVersion: '1.13.2'
 
       - name: Install pinned tools
         run: python -m pip install --disable-pip-version-check -r scripts/requirements-ci.txt
@@ -592,9 +597,10 @@ jobs:
           python-version: '3.15.2'
 
       - name: Setup CMake
-        uses: jwlawson/actions-setup-cmake@0d6a7d60b009d01c9e7523be22153ff8f19460d3 # v2.2.0
+        uses: lukka/get-cmake@16e8153a8b4918849d92aad131befe67a3705daa # v4.5.0
         with:
-          cmake-version: '4.5.0'
+          cmakeVersion: '4.5.0'
+          ninjaVersion: '1.13.2'
 
       - name: Install gcovr
         run: python -m pip install --disable-pip-version-check -r scripts/requirements-ci.txt
@@ -658,9 +664,10 @@ jobs:
           python-version: '3.15.2'
 
       - name: Setup CMake
-        uses: jwlawson/actions-setup-cmake@0d6a7d60b009d01c9e7523be22153ff8f19460d3 # v2.2.0
+        uses: lukka/get-cmake@16e8153a8b4918849d92aad131befe67a3705daa # v4.5.0
         with:
-          cmake-version: '4.5.0'
+          cmakeVersion: '4.5.0'
+          ninjaVersion: '1.13.2'
 
       - name: Install pinned tools
         run: python -m pip install --disable-pip-version-check -r scripts/requirements-ci.txt
@@ -763,9 +770,10 @@ jobs:
           python-version: '3.15.2'
 
       - name: Setup CMake
-        uses: jwlawson/actions-setup-cmake@0d6a7d60b009d01c9e7523be22153ff8f19460d3 # v2.2.0
+        uses: lukka/get-cmake@16e8153a8b4918849d92aad131befe67a3705daa # v4.5.0
         with:
-          cmake-version: '4.5.0'
+          cmakeVersion: '4.5.0'
+          ninjaVersion: '1.13.2'
 
       - name: Install Conan
         if: vars.CONAN_REMOTE_URL != ''
@@ -855,9 +863,10 @@ jobs:
           python-version: '3.15.2'
 
       - name: Setup CMake
-        uses: jwlawson/actions-setup-cmake@0d6a7d60b009d01c9e7523be22153ff8f19460d3 # v2.2.0
+        uses: lukka/get-cmake@16e8153a8b4918849d92aad131befe67a3705daa # v4.5.0
         with:
-          cmake-version: '4.5.0'
+          cmakeVersion: '4.5.0'
+          ninjaVersion: '1.13.2'
 
       - name: Install Conan
         if: vars.CONAN_REMOTE_URL != ''

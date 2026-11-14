@@ -76,7 +76,7 @@ Major migration review:
 
 Every action commit was compared with the latest upstream stable release.
 Most existing SHAs were current already; update create-pull-request to 8.1.3
-and label unchanged references precisely. Newly used setup-node, setup-cmake
+and label unchanged references precisely. Newly used setup-node, get-cmake
 and zizmor-action are also pinned to immutable current-release commits.
 
 The current zizmor-action 0.8.1 now includes the pinned 1.32.0 wheel in its hash
@@ -185,3 +185,24 @@ preserves archived investigation evidence rather than rewriting source snapshots
 The general logic that belongs upstream remains bounded locally until a supported
 release replaces it. Current PR CI and reproducible local evidence are recorded
 in VERIFICATION.md. Passing PR CI alone does not complete the external blockers.
+
+## CMake action deprecation found in hosted logs
+
+Even though all jobs passed, the initial CMake setup action emitted DEP0169 in
+Security run 43582428645, full log line 664 (before excerpt retained in
+`raw/setup-cmake-deprecation-before.log`). Its latest 2.2.0 still packages older
+Actions toolkit and typed-rest-client dependencies. The existing warning report
+is [jwlawson/actions-setup-cmake#97](https://github.com/jwlawson/actions-setup-cmake/issues/97).
+A new confirmation includes exact versions, the minimal workflow step, the local
+replacement and a toolkit/WHATWG URL migration proposal.
+
+Use [lukka/get-cmake 4.5.0](https://github.com/lukka/get-cmake/releases/tag/v4.5.0)
+with its exact commit and explicit `cmakeVersion`/`ninjaVersion` inputs in all ten
+build paths. It uses the modern toolkit and has a built-in checksum catalog for
+Linux, macOS and Windows, replacing any need for a local binary installer. Its
+Node 24 runtime, configuration and cache behavior were checked against its action
+manifest and README. A real Node 26 action smoke run with `--trace-deprecation`
+downloaded and verified both binaries, checked their versions, and emitted no
+DeprecationWarning. No warning filter or suppression was introduced. Regression
+coverage checks every workflow's action, inputs and shared Ninja pin; hosted CI
+verifies all matrix platforms and warning-free execution.

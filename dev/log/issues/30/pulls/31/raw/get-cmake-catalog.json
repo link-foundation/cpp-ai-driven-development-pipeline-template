@@ -1,0 +1,76 @@
+{
+  "cmakeCatalog": {
+    "linux-arm64": {
+      "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-linux-aarch64.tar.gz",
+      "fileName": "cmake-4.5.0-linux-aarch64.tar.gz",
+      "binPath": "bin/",
+      "dropSuffix": ".tar.gz",
+      "sha256": "0c8447e7bba9701467b5ac6155d157aa9e309e71af4981f78bd4b9176107f553"
+    },
+    "linux": {
+      "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-linux-x86_64.tar.gz",
+      "fileName": "cmake-4.5.0-linux-x86_64.tar.gz",
+      "binPath": "bin/",
+      "dropSuffix": ".tar.gz",
+      "sha256": "81f0d5b0960fb6adc8197030ffc827fba937640d51e73e39e0e9e40d88c66f6f"
+    },
+    "darwin": {
+      "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-macos-universal.tar.gz",
+      "fileName": "cmake-4.5.0-macos-universal.tar.gz",
+      "binPath": "CMake.app/Contents/bin/",
+      "dropSuffix": ".tar.gz",
+      "sha256": "a645d69fd21e521759cc0c64e7c60462d43faf0c7214ac05f75c80f7c5037dde"
+    },
+    "win32-arm64": {
+      "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-windows-arm64.zip",
+      "fileName": "cmake-4.5.0-windows-arm64.zip",
+      "binPath": "bin/",
+      "dropSuffix": ".zip",
+      "sha256": "7dba95db83ec1e8fa3f221c06454ebc692c8f06d93bf5fdf840113fa28018690"
+    },
+    "win32": {
+      "url": "https://github.com/Kitware/CMake/releases/download/v4.5.0/cmake-4.5.0-windows-x86_64.zip",
+      "fileName": "cmake-4.5.0-windows-x86_64.zip",
+      "binPath": "bin/",
+      "dropSuffix": ".zip",
+      "sha256": "301b1728317ccd84e984b02e366a8293735bc5ac618757d3d8f58b578f062411"
+    }
+  },
+  "ninjaCatalog": {
+    "linux-arm64": {
+      "url": "https://github.com/ninja-build/ninja/releases/download/v1.13.2/ninja-linux-aarch64.zip",
+      "fileName": "ninja-linux-aarch64.zip",
+      "binPath": "",
+      "dropSuffix": "ninja-linux-aarch64.zip",
+      "sha256": "fd2cacc8050a7f12a16a2e48f9e06fca5c14fc4c2bee2babb67b58be17a607fc"
+    },
+    "linux": {
+      "url": "https://github.com/ninja-build/ninja/releases/download/v1.13.2/ninja-linux.zip",
+      "fileName": "ninja-linux.zip",
+      "binPath": "",
+      "dropSuffix": "ninja-linux.zip",
+      "sha256": "5749cbc4e668273514150a80e387a957f933c6ed3f5f11e03fb30955e2bbead6"
+    },
+    "darwin": {
+      "url": "https://github.com/ninja-build/ninja/releases/download/v1.13.2/ninja-mac.zip",
+      "fileName": "ninja-mac.zip",
+      "binPath": "",
+      "dropSuffix": "ninja-mac.zip",
+      "sha256": "c99048673aa765960a99cf10c6ddb9f1fad506099ff0a0e137ad8960a88f321b"
+    },
+    "win32": {
+      "url": "https://github.com/ninja-build/ninja/releases/download/v1.13.2/ninja-win.zip",
+      "fileName": "ninja-win.zip",
+      "binPath": "",
+      "dropSuffix": "ninja-win.zip",
+      "sha256": "07fc8261b42b20e71d1720b39068c2e14ffcee6396b76fb7a795fb460b78dc65"
+    },
+    "win32-arm64": {
+      "url": "https://github.com/ninja-build/ninja/releases/download/v1.13.2/ninja-winarm64.zip",
+      "fileName": "ninja-winarm64.zip",
+      "binPath": "",
+      "dropSuffix": "ninja-winarm64.zip",
+      "sha256": "e52f0bdef9dfb1003229dbd6508a508c4073fd017247002adc66e5e806cb0391"
+    }
+  }
+}
