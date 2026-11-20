@@ -54,13 +54,16 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Test archive download retries
+        run: python3 -m unittest scripts.tests.test_download_archive
+
       - name: Install Doxygen
         env:
           DOXYGEN_VERSION: '1.18.0'
           DOXYGEN_SHA256: 14fa81bdc34171edb5f1f02b1d60e74802f0439b77fa44e592565d517d72df90
         run: |
           archive="$RUNNER_TEMP/doxygen.tar.gz"
-          curl --fail --location --retry 3 "https://github.com/doxygen/doxygen/releases/download/Release_${DOXYGEN_VERSION//./_}/doxygen-$DOXYGEN_VERSION.linux.bin.tar.gz" --output "$archive"
+          bash scripts/download-archive.sh "https://github.com/doxygen/doxygen/releases/download/Release_${DOXYGEN_VERSION//./_}/doxygen-$DOXYGEN_VERSION.linux.bin.tar.gz" "$archive"
           echo "$DOXYGEN_SHA256  $archive" | sha256sum --check
           tar -xzf "$archive" -C "$RUNNER_TEMP"
           echo "$RUNNER_TEMP/doxygen-$DOXYGEN_VERSION/bin" >> "$GITHUB_PATH"
