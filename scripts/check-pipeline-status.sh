@@ -18,14 +18,25 @@ select_by_result() {
   SELECTION="$selection" NEEDS_JSON="$NEEDS_JSON" python3 - <<'PY'
 import json
 import os
+import re
 
-needs = json.loads(os.environ["NEEDS_JSON"])
+try:
+    needs = json.loads(os.environ["NEEDS_JSON"])
+except json.JSONDecodeError as error:
+    raise SystemExit(f"Invalid NEEDS_JSON: {error}") from error
+if not isinstance(needs, dict) or not needs:
+    raise SystemExit("Invalid NEEDS_JSON: expected a nonempty workflow needs object")
+
 selection = os.environ["SELECTION"]
 for name, details in needs.items():
-    result = (details or {}).get("result", "unknown")
+    if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_.-]*", name):
+        raise SystemExit(f"Invalid NEEDS_JSON: invalid job ID {name!r}")
+    result = details.get("result") if isinstance(details, dict) else None
+    if result not in ("success", "skipped", "cancelled", "failure"):
+        raise SystemExit(f"Invalid NEEDS_JSON: expected a completed result for job {name!r}")
     if selection == "cancelled" and result == "cancelled":
         print(name)
-    elif selection == "failed" and result not in {"success", "skipped", "cancelled"}:
+    elif selection == "failed" and result == "failure":
         print(name)
 PY
 }
@@ -91,12 +102,16 @@ if [[ -n "$cancelled_jobs" ]]; then
 
   declare -A cancellation_policy=()
   if [[ -n "$workflow_file" && -f "$workflow_file" ]]; then
-    while IFS=$'\t' read -r job value; do
-      cancellation_policy["$job"]="$value"
-    done < <(
+    # A failed reader can leave partial rows on stdout. Only use a successful read.
+    if policy_rows="$(
       WORKFLOW_FILE="$workflow_file" JOB_NAMES="$cancelled_jobs" \
         "$SCRIPT_DIR/read-job-cancel-in-progress.sh"
-    )
+    )"; then
+      while IFS=$'\t' read -r job value; do
+        [[ -n "$job" ]] || continue
+        cancellation_policy["$job"]="$value"
+      done <<< "$policy_rows"
+    fi
   fi
 
   while IFS= read -r job; do
