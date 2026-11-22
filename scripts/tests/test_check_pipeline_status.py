@@ -6,7 +6,9 @@ Shared with link-foundation/python-ai-driven-development-pipeline-template;
 
 from __future__ import annotations
 
+import json
 import os
+import shutil
 import subprocess
 from pathlib import Path
 
@@ -134,31 +136,113 @@ def test_reader_uses_job_value_before_workflow_value(tmp_path: Path) -> None:
     }
 
 
-def run_gate(workflow: Path, ref: str = "", **results: str) -> subprocess.CompletedProcess[str]:
-    """Run the status gate as a provably superseded branch run."""
-    needs = (
-        "{"
-        + ",".join(
-            f'"{job}":{{"result":"{result}"}}' for job, result in results.items()
-        )
-        + "}"
-    )
+def run_gate(
+    workflow: Path,
+    ref: str = "",
+    *,
+    needs: str | None = None,
+    gate: Path = GATE,
+    superseded: bool = True,
+    **results: str,
+) -> subprocess.CompletedProcess[str]:
+    """Run the status gate offline with known run and branch-head SHAs."""
+    if needs is None:
+        needs = json.dumps({job: {"result": result} for job, result in results.items()})
     return subprocess.run(
-        ["bash", str(GATE)],
+        ["bash", str(gate)],
         cwd=ROOT,
         env={
             **{key: value for key, value in os.environ.items() if key != "GITHUB_REF"},
             **({"GITHUB_REF": ref} if ref else {}),
             "NEEDS_JSON": needs,
             "RUN_SHA": "1" * 40,
-            "BRANCH_HEAD_SHA": "2" * 40,
+            "BRANCH_HEAD_SHA": ("2" if superseded else "1") * 40,
             "BRANCH_NAME": "feature",
             "WORKFLOW_FILE": str(workflow),
+            "GH_TOKEN": "",
+            "GITHUB_RUN_ID": "",
         },
         capture_output=True,
         text=True,
         check=False,
+        timeout=10,
     )
+
+
+@pytest.mark.parametrize(
+    ("rows", "reader_exit", "superseded", "expected"),
+    [
+        pytest.param("build\ttrue\n", 29, True, 1, id="partial-output-before-failure"),
+        pytest.param("", 29, True, 1, id="failed-without-output"),
+        pytest.param("", 0, True, 1, id="succeeded-without-output"),
+        pytest.param("build\ttrue\n", 0, True, 0, id="superseded-with-true-policy"),
+        pytest.param("build\ttrue\n", 0, False, 1, id="current-head-with-true-policy"),
+    ],
+)
+def test_gate_requires_a_successful_cancellation_policy_read(
+    tmp_path: Path, rows: str, reader_exit: int, superseded: bool, expected: int
+) -> None:
+    gate = tmp_path / GATE.name
+    shutil.copyfile(GATE, gate)
+    reader = tmp_path / READER.name
+    reader.write_text(
+        f"#!/usr/bin/env bash\ncat <<'ROWS'\n{rows}ROWS\nexit {reader_exit}\n",
+        encoding="utf-8",
+    )
+    reader.chmod(0o755)
+    workflow = write_workflow(tmp_path, "  build:\n    runs-on: ubuntu-latest\n")
+
+    completed = run_gate(workflow, gate=gate, superseded=superseded, build="cancelled")
+
+    assert completed.returncode == expected, completed.stdout + completed.stderr
+    assert ("Pipeline passed." in completed.stdout) == (expected == 0)
+    if expected and superseded:
+        assert "the active workflow cancellation policy could not be read" in completed.stdout
+
+
+@pytest.mark.parametrize(
+    "needs",
+    [
+        "{}",
+        "null",
+        "[]",
+        '{"build": null}',
+        '{"build": {}, "test": {"result": "success"}}',
+        '{"build": {"result": null}}',
+        '{"build": {"result": "waiting"}}',
+        '{"build": {"result": []}}',
+        '{"": {"result": "cancelled"}}',
+        "{",
+        "{} {}",
+    ],
+)
+def test_gate_rejects_invalid_needs(tmp_path: Path, needs: str) -> None:
+    workflow = write_workflow(tmp_path, "  build:\n    runs-on: ubuntu-latest\n")
+
+    completed = run_gate(workflow, needs=needs)
+
+    assert completed.returncode == 1, completed.stdout + completed.stderr
+    assert "Invalid NEEDS_JSON" in completed.stderr
+    assert "Pipeline passed." not in completed.stdout
+
+
+@pytest.mark.parametrize(
+    ("result", "expected", "message"),
+    [
+        ("success", 0, "Pipeline passed."),
+        ("skipped", 0, "Pipeline passed."),
+        ("failure", 1, "Failed jobs: build"),
+    ],
+)
+def test_gate_classifies_completed_jobs(
+    tmp_path: Path, result: str, expected: int, message: str
+) -> None:
+    workflow = write_workflow(tmp_path, "  build:\n    runs-on: ubuntu-latest\n")
+
+    completed = run_gate(workflow, build=result)
+
+    assert completed.returncode == expected, completed.stdout + completed.stderr
+    assert message in completed.stdout
 
 
 def test_supersede_only_excuses_jobs_that_cancel_in_progress(tmp_path: Path) -> None:
