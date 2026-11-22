@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Unreleased changes are kept as fragments in [changelog.d/](changelog.d/) and
 collected here by the release pipeline.
 
+## [0.2.9] - 2026-11-22
+
+### Fixed
+- Require a nonempty workflow needs map with completed job results and ignore cancellation policy output from failed reads.
+
 ## [0.2.8] - 2026-11-20
 
 ### Fixed
