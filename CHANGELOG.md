@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Unreleased changes are kept as fragments in [changelog.d/](changelog.d/) and
 collected here by the release pipeline.
 
+## [0.2.10] - 2026-11-23
+
+### Fixed
+- Check every annotation page when identifying jobs that GitHub could not hand to a hosted runner.
+
 ## [0.2.9] - 2026-11-22
 
 ### Fixed
