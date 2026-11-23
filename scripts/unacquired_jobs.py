@@ -110,10 +110,15 @@ def find_unacquired(repository: str, run_id: str, attempt: str, run_gh: Gh = gh)
     for job in jobs:
         if not never_started(job):
             continue
-        found = json.loads(
-            run_gh("api", f"repos/{repository}/check-runs/{job['id']}/annotations?per_page=100")
-        )
-        annotations[job["id"]] = [item.get("message", "") for item in found]
+        endpoint = f"repos/{repository}/check-runs/{job['id']}/annotations?per_page=100"
+        annotation_pages = json.loads(run_gh("api", "--paginate", "--slurp", endpoint))
+        if not isinstance(annotation_pages, list) or not annotation_pages or any(
+            not isinstance(page, list) for page in annotation_pages
+        ):
+            raise ValueError(f"Expected annotation pages from {endpoint}")
+        annotations[job["id"]] = [
+            item.get("message", "") for page in annotation_pages for item in page
+        ]
         if verbose():
             print(f"{job['name']} ({job.get('conclusion')}, no runner): {annotations[job['id']]}")
     return unacquired(jobs, annotations)
