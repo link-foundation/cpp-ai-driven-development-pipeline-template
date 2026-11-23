@@ -29,6 +29,7 @@ NOT_ACQUIRED = (
 
 FAKE_GH = """#!/usr/bin/env python3
 import json, os, re, sys
+from urllib.parse import parse_qs, urlsplit
 data = os.environ["FAKE_GH_DIR"]
 args = sys.argv[1:]
 with open(os.path.join(data, "calls.log"), "a") as log:
@@ -43,9 +44,27 @@ if "/jobs" in path:
     with open(os.path.join(data, "jobs.json")) as handle:
         print(json.dumps([{"jobs": json.load(handle)}]))
 else:
-    job = re.search(r"check-runs/(\\d+)/annotations", path).group(1)
+    url = urlsplit(path)
+    job = re.search(r"check-runs/(\\d+)/annotations", url.path).group(1)
     name = os.path.join(data, f"annotations-{job}.json")
-    print(open(name).read() if os.path.exists(name) else "[]")
+    annotations = []
+    if os.path.exists(name):
+        with open(name) as handle:
+            annotations = json.load(handle)
+    page_size = int(parse_qs(url.query).get("per_page", [30])[0])
+    first_page = annotations[:page_size]
+    if "--paginate" not in args:
+        print(json.dumps(first_page))
+        sys.exit(0)
+    assert "--slurp" in args
+    pages = [first_page]
+    for start in range(page_size, len(annotations), page_size):
+        if os.path.exists(os.path.join(data, "fail-annotation-pagination")):
+            print("[" + json.dumps(first_page), end="")
+            sys.stderr.write("HTTP 503: Unable to fetch the next annotation page")
+            sys.exit(1)
+        pages.append(annotations[start:start + page_size])
+    print(json.dumps(pages))
 """
 
 
@@ -75,11 +94,13 @@ def fake_gh(tmp_path: Path):
     data = tmp_path / "data"
     data.mkdir()
 
-    def serve(jobs: List[Dict], annotated: Dict[int, str]) -> Path:
+    def serve(jobs: List[Dict], annotated: Dict[int, List[str]]) -> Path:
         (data / "jobs.json").write_text(json.dumps(jobs), encoding="utf-8")
-        for job_id, message in annotated.items():
+        for job_id, messages in annotated.items():
             (data / f"annotations-{job_id}.json").write_text(
-                json.dumps([{"message": message, "annotation_level": "failure"}]),
+                json.dumps([
+                    {"message": message, "annotation_level": "failure"} for message in messages
+                ]),
                 encoding="utf-8",
             )
         return data
@@ -126,9 +147,14 @@ def run_rerun(env: Dict[str, str], attempt: int = 1) -> subprocess.CompletedProc
     )
 
 
-def test_rerun_reruns_failed_jobs_when_a_runner_was_not_acquired(fake_gh) -> None:
+@pytest.mark.parametrize("marker_index", [0, 29, 30, 99, 100])
+def test_rerun_reruns_failed_jobs_when_a_runner_was_not_acquired(
+    fake_gh, marker_index: int
+) -> None:
     serve, env, data = fake_gh
-    serve([UNACQUIRED, REAL_FAILURE, PASSED], {1: NOT_ACQUIRED})
+    messages = ["Ordinary diagnostic"] * (marker_index + 1)
+    messages[marker_index] = NOT_ACQUIRED
+    serve([UNACQUIRED, REAL_FAILURE, PASSED], {1: messages})
 
     completed = run_rerun(env)
 
@@ -137,13 +163,20 @@ def test_rerun_reruns_failed_jobs_when_a_runner_was_not_acquired(fake_gh) -> Non
     assert "run rerun 42 --failed --repo owner/repo" in calls(data)
     # Only jobs without steps are inspected for annotations.
     assert [call for call in calls(data) if "annotations" in call] == [
-        "api repos/owner/repo/check-runs/1/annotations?per_page=100"
+        "api --paginate --slurp repos/owner/repo/check-runs/1/annotations?per_page=100"
     ]
 
 
-def test_rerun_leaves_real_failures_and_supersedes_alone(fake_gh) -> None:
+@pytest.mark.parametrize("diagnostic_count", [0, 101])
+def test_rerun_leaves_real_failures_and_supersedes_alone(fake_gh, diagnostic_count: int) -> None:
     serve, env, data = fake_gh
-    serve([REAL_FAILURE, QUEUED_AND_SUPERSEDED], {2: NOT_ACQUIRED})
+    serve(
+        [REAL_FAILURE, QUEUED_AND_SUPERSEDED],
+        {
+            2: ["Ordinary diagnostic"] * 100 + [NOT_ACQUIRED],
+            3: ["The operation was canceled."] * diagnostic_count,
+        },
+    )
 
     completed = run_rerun(env)
 
@@ -154,7 +187,7 @@ def test_rerun_leaves_real_failures_and_supersedes_alone(fake_gh) -> None:
 
 def test_rerun_gives_up_on_the_third_attempt_with_the_manual_command(fake_gh) -> None:
     serve, env, data = fake_gh
-    serve([UNACQUIRED], {1: NOT_ACQUIRED})
+    serve([UNACQUIRED], {1: ["Ordinary diagnostic"] * 100 + [NOT_ACQUIRED]})
 
     completed = run_rerun(env, attempt=3)
 
@@ -188,7 +221,7 @@ def run_gate(env: Dict[str, str], needs: Dict[str, str]) -> subprocess.Completed
 
 def test_status_gate_stays_red_and_names_the_infrastructure_cause(fake_gh) -> None:
     serve, env, data = fake_gh
-    serve([UNACQUIRED, PASSED], {1: NOT_ACQUIRED})
+    serve([UNACQUIRED, PASSED], {1: ["Ordinary diagnostic"] * 100 + [NOT_ACQUIRED]})
 
     completed = run_gate(env, {"lint": "success", "test": "cancelled", "build": "skipped"})
 
@@ -223,7 +256,7 @@ def test_status_gate_skips_the_api_when_the_pipeline_passed(fake_gh) -> None:
 
 def test_status_gate_survives_an_unreadable_job_list(fake_gh) -> None:
     serve, env, data = fake_gh
-    serve([UNACQUIRED], {1: NOT_ACQUIRED})
+    serve([UNACQUIRED], {1: [NOT_ACQUIRED]})
     (data / "fail").write_text("", encoding="utf-8")
 
     completed = run_gate(env, {"test": "cancelled"})
@@ -231,6 +264,36 @@ def test_status_gate_survives_an_unreadable_job_list(fake_gh) -> None:
     assert completed.returncode == 1
     assert "Pipeline has cancelled jobs::test" in completed.stdout
     assert "::warning title=Runner acquisition not checked::" in completed.stdout
+
+
+def test_failed_later_annotation_page_prevents_rerun_and_warns_in_gate(fake_gh) -> None:
+    serve, env, data = fake_gh
+    serve([UNACQUIRED], {1: [NOT_ACQUIRED] + ["Ordinary diagnostic"] * 100})
+    (data / "fail-annotation-pagination").touch()
+
+    rerun = run_rerun(env)
+    assert rerun.returncode != 0
+    assert "HTTP 503: Unable to fetch the next annotation page" in rerun.stderr
+    assert "No runner-acquisition failures" not in rerun.stdout
+    assert not [call for call in calls(data) if call.startswith("run rerun")]
+
+    gate = run_gate(env, {"test": "cancelled"})
+    assert gate.returncode == 1
+    assert "Pipeline has cancelled jobs::test" in gate.stdout
+    assert "::warning title=Runner acquisition not checked::" in gate.stdout
+    assert "HTTP 503: Unable to fetch the next annotation page" in gate.stdout
+    assert "Hosted runner not acquired" not in gate.stdout
+
+
+@pytest.mark.parametrize("response", ["[]", "[[], {}]"])
+def test_missing_or_malformed_annotation_pages_are_rejected(response: str) -> None:
+    def api(*args: str) -> str:
+        if "/jobs?" in args[-1]:
+            return json.dumps([{"jobs": [UNACQUIRED]}])
+        return response
+
+    with pytest.raises(ValueError, match="Expected annotation pages"):
+        uj.find_unacquired("owner/repo", "42", "1", api)
 
 
 def test_status_gate_without_a_token_does_not_call_the_api(fake_gh) -> None:
